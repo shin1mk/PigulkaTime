@@ -1,0 +1,6 @@
+framework module Pods_PigulkaTime_PigulkaTimeUITests {
+  umbrella header "Pods-PigulkaTime-PigulkaTimeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
