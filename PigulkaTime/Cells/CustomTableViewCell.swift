@@ -33,7 +33,6 @@ final class CustomTableViewCell: UITableViewCell {
     //MARK: Methods
     private func setupConstraints() {
         backgroundColor = .clear
-
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in

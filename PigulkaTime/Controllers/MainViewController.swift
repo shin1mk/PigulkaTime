@@ -16,6 +16,7 @@ struct Pill {
 
 final class MainViewController: UIViewController {
     private var pillsArray: [Pill] = []
+    private let bottomMarginGuide = UILayoutGuide()
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -26,7 +27,7 @@ final class MainViewController: UIViewController {
         attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
         titleLabel.attributedText = attributedText
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 34)
+        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
         return titleLabel
     }()
     private lazy var tableView: UITableView = {
@@ -42,11 +43,14 @@ final class MainViewController: UIViewController {
         // сначала текст, а затем изображение
         let attributedText = NSMutableAttributedString(string: buttonLabelText)
         attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
+        // задаем шрифт
+        attributedText.addAttributes([.font: UIFont.SFUITextRegular(ofSize: 20)!], range: NSRange(location: 0, length: buttonLabelText.count))
         button.setAttributedTitle(attributedText, for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemBlue
         return button
     }()
+
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,14 +67,23 @@ final class MainViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
         }
+        // Создайте и добавьте bottomMarginGuide
+        view.addLayoutGuide(bottomMarginGuide)
+        bottomMarginGuide.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.height.equalTo(50)
+        }
         // tableView
         view.addSubview(tableView)
+        tableView.backgroundColor = UIColor.clear
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(bottomMarginGuide.snp.top)
         }
+        // addButton
         view.addSubview(addButton)
         addButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
@@ -79,11 +92,11 @@ final class MainViewController: UIViewController {
             make.height.equalTo(45)
         }
     }
+
     // Delegate/DataSource
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor.clear 
     }
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
@@ -108,7 +121,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pillsArray.count
     }
-
     //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
@@ -121,6 +133,5 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
     }
 }
