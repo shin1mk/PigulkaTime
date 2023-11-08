@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131BE8B62AFBD24600A36DD1 /* PillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BE8B52AFBD24600A36DD1 /* PillsViewController.swift */; };
 		135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38512AFA9EC4007C1C04 /* AppDelegate.swift */; };
 		135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */; };
 		135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38552AFA9EC4007C1C04 /* MainViewController.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		12D20B54DFB2496D0FB680CF /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		131BE8B52AFBD24600A36DD1 /* PillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsViewController.swift; sourceTree = "<group>"; };
 		135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigulkaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		135B38512AFA9EC4007C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				135B38552AFA9EC4007C1C04 /* MainViewController.swift */,
+				131BE8B52AFBD24600A36DD1 /* PillsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */,
+				131BE8B62AFBD24600A36DD1 /* PillsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

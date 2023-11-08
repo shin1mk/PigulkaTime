@@ -15,47 +15,50 @@ struct Pill {
 }
 
 final class MainViewController: UIViewController {
-    private var pillsArray: [Pill] = []
+    private let feedbackGenerator = UISelectionFeedbackGenerator()
     private let bottomMarginGuide = UILayoutGuide()
+
+    private var pillsArray: [Pill] = []
     //MARK: Properties
-    private let titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        let pillImage = UIImage(systemName: "pill")
-        let titleLabelText = "Your pills "
-        // сначала текст, а затем изображение
-        let attributedText = NSMutableAttributedString(string: titleLabelText)
-        attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
-        titleLabel.attributedText = attributedText
-        titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
-        return titleLabel
-    }()
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
         return tableView
     }()
+    private let titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        let pillImage = UIImage(systemName: "pill")
+        let titleLabelText = "Pills "
+        // сначала текст, а потом изображение
+        let attributedText = NSMutableAttributedString(string: titleLabelText)
+        attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
+        titleLabel.attributedText = attributedText
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
+        titleLabel.textColor = .white // Изменили цвет шрифта на белый
+        return titleLabel
+    }()
     private let addButton: UIButton = {
         let button = UIButton()
-        let pillImage = UIImage(systemName: "pill")
-        let buttonLabelText = "Add Pills "
-        // сначала текст, а затем изображение
-        let attributedText = NSMutableAttributedString(string: buttonLabelText)
+        // plus.fill icon attachment
+        let plusFillImage = UIImage(systemName: "plus.circle.fill")?.withTintColor(.white)
+        let plusFillAttachment = NSTextAttachment(image: plusFillImage!)
+                let pillImage = UIImage(systemName: "pill")?.withTintColor(.white)
+        // attributed text
+        let attributedText = NSMutableAttributedString(string: " Add pills ")
+        attributedText.insert(NSAttributedString(attachment: plusFillAttachment), at: 0)
         attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
-        // задаем шрифт
-        attributedText.addAttributes([.font: UIFont.SFUITextRegular(ofSize: 20)!], range: NSRange(location: 0, length: buttonLabelText.count))
+        // text color to white
+        attributedText.addAttributes([.font: UIFont.SFUITextRegular(ofSize: 20)!, .foregroundColor: UIColor.white], range: NSRange(location: 1, length: "Add Pills ".count))
         button.setAttributedTitle(attributedText, for: .normal)
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .systemBlue
         return button
     }()
-
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
         setupConstraints()
+        setupTableView()
         setupTarget()
     }
     //MARK: Constraints
@@ -67,7 +70,7 @@ final class MainViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
         }
-        // Создайте и добавьте bottomMarginGuide
+        // bottomMarginGuide
         view.addLayoutGuide(bottomMarginGuide)
         bottomMarginGuide.snp.makeConstraints { make in
             make.leading.trailing.equalTo(view)
@@ -92,19 +95,21 @@ final class MainViewController: UIViewController {
             make.height.equalTo(45)
         }
     }
-
     // Delegate/DataSource
-    private func configureTableView() {
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    // targets
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
     }
-    @objc func addPillButtonTapped() {
+    // func
+    @objc private func addPillButtonTapped() {
         print("add pill button")
+        feedbackGenerator.selectionChanged() // Добавьте виброотклик
         // Создание объекта таблетки (предположим, у вас есть модель Pill)
-        let newPill = Pill(name: "Название таблетки", dosage: "Дозировка")
+        let newPill = Pill(name: "", dosage: "")
         // Добавление таблетки в источник данных вашей таблицы
         pillsArray.append(newPill)
         // Обновление таблицы
