@@ -12,12 +12,12 @@ import UserNotifications
 struct Pill {
     var name: String
     var dosage: String
+    var isEditable: Bool // Добавьте флаг для редактирования
 }
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController, PillsViewControllerDelegate {
     private let feedbackGenerator = UISelectionFeedbackGenerator()
     private let bottomMarginGuide = UILayoutGuide()
-
     private var pillsArray: [Pill] = []
     //MARK: Properties
     private lazy var tableView: UITableView = {
@@ -44,7 +44,7 @@ final class MainViewController: UIViewController {
         // plus.fill icon attachment
         let plusFillImage = UIImage(systemName: "plus.circle.fill")?.withTintColor(.white)
         let plusFillAttachment = NSTextAttachment(image: plusFillImage!)
-                let pillImage = UIImage(systemName: "pill")?.withTintColor(.white)
+        let pillImage = UIImage(systemName: "pill")?.withTintColor(.white)
         // attributed text
         let attributedText = NSMutableAttributedString(string: " Add pills ")
         attributedText.insert(NSAttributedString(attachment: plusFillAttachment), at: 0)
@@ -63,12 +63,12 @@ final class MainViewController: UIViewController {
     }
     //MARK: Constraints
     private func setupConstraints() {
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = .black
         // titleLabel
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
+            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
         }
         // bottomMarginGuide
         view.addLayoutGuide(bottomMarginGuide)
@@ -104,15 +104,19 @@ final class MainViewController: UIViewController {
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
     }
-    // func
+    // add pill button
     @objc private func addPillButtonTapped() {
-        print("add pill button")
-        feedbackGenerator.selectionChanged() // Добавьте виброотклик
-        // Создание объекта таблетки (предположим, у вас есть модель Pill)
-        let newPill = Pill(name: "", dosage: "")
-        // Добавление таблетки в источник данных вашей таблицы
-        pillsArray.append(newPill)
-        // Обновление таблицы
+        feedbackGenerator.selectionChanged()
+        // open PillsViewController
+        let pillsViewController = PillsViewController()
+        pillsViewController.modalPresentationStyle = .popover
+        pillsViewController.delegate = self // Установим себя как делегат
+        present(pillsViewController, animated: true, completion: nil)
+    }
+    // добавляет в массив данные из pillsViewControler
+    func pillsViewController(_ controller: PillsViewController, didAddPill pill: Pill) {
+        pillsArray.append(pill)
+        print("Added a new pill: \(pill)")
         tableView.reloadData()
     }
 } // end
@@ -120,7 +124,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 75
     }
     //MARK: numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,14 +133,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
-        // Настройте ячейку с данными из вашего массива pillsArray
+        // change color cell
+        let backgroundCellColor = UIView()
+        backgroundCellColor.backgroundColor = .clear
+        cell.selectedBackgroundView = backgroundCellColor
+        
         let pill = pillsArray[indexPath.row]
         cell.textLabel?.text = pill.name
         cell.detailTextLabel?.text = pill.dosage
-
         return cell
     }
     //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell
+//        cell?.textField.becomeFirstResponder()
     }
 }
