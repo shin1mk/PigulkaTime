@@ -20,4 +20,23 @@
  // Обновление таблицы
  tableView.reloadData()
  }
+ 
+ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell
+//        cell?.textField.becomeFirstResponder()
+ }
+ 
+ //MARK: cellForRowAt
+ //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+ //        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
+ //        // change color cell
+ //        let backgroundCellColor = UIView()
+ //        backgroundCellColor.backgroundColor = .clear
+ //        cell.selectedBackgroundView = backgroundCellColor
+ //
+ //        let pill = pillsArray[indexPath.row]
+ //        cell.textLabel?.text = pill.name
+ //        cell.detailTextLabel?.text = pill.dosage
+ //        return cell
+ //    }
  */

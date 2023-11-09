@@ -9,12 +9,6 @@ import UIKit
 import SnapKit
 import UserNotifications
 
-struct Pill {
-    var name: String
-    var dosage: String
-    var isEditable: Bool // Добавьте флаг для редактирования
-}
-
 final class MainViewController: UIViewController, PillsViewControllerDelegate {
     private let feedbackGenerator = UISelectionFeedbackGenerator()
     private let bottomMarginGuide = UILayoutGuide()
@@ -36,7 +30,7 @@ final class MainViewController: UIViewController, PillsViewControllerDelegate {
         titleLabel.attributedText = attributedText
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
-        titleLabel.textColor = .white // Изменили цвет шрифта на белый
+        titleLabel.textColor = .white
         return titleLabel
     }()
     private let addButton: UIButton = {
@@ -70,7 +64,7 @@ final class MainViewController: UIViewController, PillsViewControllerDelegate {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
         }
-        // bottomMarginGuide
+        // bottomMarginGuide // граница что б за нее не заходила таблица
         view.addLayoutGuide(bottomMarginGuide)
         bottomMarginGuide.snp.makeConstraints { make in
             make.leading.trailing.equalTo(view)
@@ -113,39 +107,37 @@ final class MainViewController: UIViewController, PillsViewControllerDelegate {
         pillsViewController.delegate = self // Установим себя как делегат
         present(pillsViewController, animated: true, completion: nil)
     }
-    // добавляет в массив данные из pillsViewControler
+    // открытая функция добавляет в массив данные из PillsViewControler
     func pillsViewController(_ controller: PillsViewController, didAddPill pill: Pill) {
         pillsArray.append(pill)
         print("Added a new pill: \(pill)")
         tableView.reloadData()
     }
+ 
 } // end
 //MARK: TableView
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    //MARK: heightForRowAt
+    // heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    //MARK: numberOfRowsInSection
+    // numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pillsArray.count
     }
     //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
-        // change color cell
         let backgroundCellColor = UIView()
         backgroundCellColor.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundCellColor
-        
+
         let pill = pillsArray[indexPath.row]
-        cell.textLabel?.text = pill.name
-        cell.detailTextLabel?.text = pill.dosage
+        cell.setTitleLabelText(pill.name!)
+//        cell.setTypeLabelText.text = pill.dosage
         return cell
     }
     //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell
-//        cell?.textField.becomeFirstResponder()
     }
 }

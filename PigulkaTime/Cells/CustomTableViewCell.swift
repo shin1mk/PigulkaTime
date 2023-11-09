@@ -8,15 +8,28 @@
 import UIKit
 import SnapKit
 
+protocol CustomTableViewCellDelegate: AnyObject {
+    func setLabelText(_ text: String)
+//    func setTypeLabelText(_ text: String)
+    func setDosageLabelText(_ text: String)
+}
+
 final class CustomTableViewCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Custom Name"
+        titleLabel.text = ""
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextBold(ofSize: 25)
         return titleLabel
+    }()
+    private let typeLabel: UILabel = {
+        let typeLabel = UILabel()
+        typeLabel.text = "pill"
+        typeLabel.textColor = .gray
+        typeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        return typeLabel
     }()
     private let dateLabel: UILabel = {
         let dateLabel = UILabel()
@@ -32,18 +45,11 @@ final class CustomTableViewCell: UITableViewCell {
         dosageLabel.font = UIFont.SFUITextBold(ofSize: 25)
         return dosageLabel
     }()
-    let textField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "add pill"
-        textField.textColor = .white
-        textField.font = UIFont.SFUITextRegular(ofSize: 22)
-        return textField
-    }()
-    
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
+        setupTarget()
     }
     required init?(coder aDecoder: NSCoder) {
         return nil
@@ -64,30 +70,32 @@ final class CustomTableViewCell: UITableViewCell {
             make.leading.equalTo(titleLabel.snp.trailing).offset(15)
             make.trailing.equalToSuperview()
         }
-        // textField
-        //        addSubview(textField)
-        //        textField.snp.makeConstraints { make in
-        //            make.top.equalToSuperview()
-        //            make.leading.equalToSuperview()
-        //            make.trailing.equalToSuperview()
-        //        }
+        // typeLabel
+        addSubview(typeLabel)
+        typeLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(-10)
+            make.leading.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
+        }
         // date Label
         addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(-10)
-            make.leading.equalToSuperview()
+            make.leading.equalTo(typeLabel.snp.trailing).offset(10)
+            make.top.equalTo(typeLabel.snp.top)
             make.bottom.equalToSuperview().offset(-10)
         }
     }
     // target
     private func setupTarget() {
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
-    // textField
-    @objc private func textFieldDidChange(_ textField: UITextField) {
-        // Обработка изменений в текстовом поле
-        if let text = textField.text {
-            print("Text changed: \(text)")
-        }
+    // общий метод для установки текста в titleLabel
+    func setTitleLabelText(_ text: String) {
+        titleLabel.text = text
+    }
+    func setTypeLabelText(_ text: String) {
+        typeLabel.text = text
+    }
+    func setDosageLabelText(_ text: String) {
+        dosageLabel.text = text
     }
 } //end

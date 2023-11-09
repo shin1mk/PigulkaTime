@@ -24,6 +24,7 @@
 		135B38932AFA9F98007C1C04 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */; };
 		135B38952AFAA031007C1C04 /* textHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38942AFAA031007C1C04 /* textHelper.swift */; };
 		13CB053A2AFB5AAE008770D0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* CustomTableViewCell.swift */; };
+		13F556092AFCB0CE0025119F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F556082AFCB0CE0025119F /* Models.swift */; };
 		AD8F4DEAC04FBA172CE0EFC8 /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6855FC40960A817A349E52 /* Pods_PigulkaTime.framework */; };
 		D9E18B4C8A3982411EC35AAD /* Pods_PigulkaTime_PigulkaTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2123D9AE6ABC962E41BAB9 /* Pods_PigulkaTime_PigulkaTimeUITests.framework */; };
 		FA588D0D527E05A5C492032A /* Pods_PigulkaTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DE4F7494E68C24A4D50413 /* Pods_PigulkaTimeTests.framework */; };
@@ -69,6 +70,7 @@
 		135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHelper.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		13F556082AFCB0CE0025119F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		630046FCB176F21C67F644D8 /* Pods-PigulkaTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A2123D9AE6ABC962E41BAB9 /* Pods_PigulkaTime_PigulkaTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime_PigulkaTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9416B68BE4CFB77FA8BD62B6 /* Pods-PigulkaTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				135B38942AFAA031007C1C04 /* textHelper.swift */,
+				13F556072AFCB0BA0025119F /* Models */,
 				13C8F3582AFB55F700756B3D /* Cells */,
 				135B38862AFA9F45007C1C04 /* Resources */,
 				135B38852AFA9F2E007C1C04 /* Controllers */,
@@ -206,6 +209,14 @@
 				13CB05392AFB5AAE008770D0 /* CustomTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		13F556072AFCB0BA0025119F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13F556082AFCB0CE0025119F /* Models.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		35D045381EE73A043F7829DD /* Pods */ = {
@@ -479,6 +490,7 @@
 				13CB053A2AFB5AAE008770D0 /* CustomTableViewCell.swift in Sources */,
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
+				13F556092AFCB0CE0025119F /* Models.swift in Sources */,
 				135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */,
 				131BE8B62AFBD24600A36DD1 /* PillsViewController.swift in Sources */,
 			);
