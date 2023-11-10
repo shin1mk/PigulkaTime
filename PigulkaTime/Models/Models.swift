@@ -10,6 +10,6 @@ import Foundation
 struct Pill {
     var name: String?
     var dosage: String
-    var type: String // Добавлено поле для хранения типа
+    var type: String
     var isEditable: Bool
 }

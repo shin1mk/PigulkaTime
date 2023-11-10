@@ -10,40 +10,42 @@ import SnapKit
 
 protocol CustomTableViewCellDelegate: AnyObject {
     func setLabelText(_ text: String)
-//    func setTypeLabelText(_ text: String)
+    func setTitleLabelText(_ text: String)
     func setDosageLabelText(_ text: String)
+    func setTypeLabelText(_ text: String)
+    func setDateLabelText(_ text: String)
 }
 
-final class CustomTableViewCell: UITableViewCell {
+final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = ""
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextBold(ofSize: 25)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 25)
         return titleLabel
+    }()
+    private let dosageLabel: UILabel = {
+        let dosageLabel = UILabel()
+        dosageLabel.text = "1"
+        dosageLabel.textColor = .systemGray
+        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
-        typeLabel.text = "pill"
-        typeLabel.textColor = .gray
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        typeLabel.text = "type"
+        typeLabel.textColor = .systemGray
+        typeLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return typeLabel
     }()
     private let dateLabel: UILabel = {
         let dateLabel = UILabel()
-        dateLabel.text = "Today"
-        dateLabel.textColor = .gray
-        dateLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        dateLabel.text = "date"
+        dateLabel.textColor = .systemGray
+        dateLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return dateLabel
-    }()
-    private let dosageLabel: UILabel = {
-        let dosageLabel = UILabel()
-        dosageLabel.text = "1pc"
-        dosageLabel.textColor = .white
-        dosageLabel.font = UIFont.SFUITextBold(ofSize: 25)
-        return dosageLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -63,21 +65,21 @@ final class CustomTableViewCell: UITableViewCell {
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
         }
-        // dosage Label
+        // typeLabel
         addSubview(dosageLabel)
         dosageLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.top)
-            make.leading.equalTo(titleLabel.snp.trailing).offset(15)
-            make.trailing.equalToSuperview()
-        }
-        // typeLabel
-        addSubview(typeLabel)
-        typeLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(-10)
             make.leading.equalToSuperview()
             make.bottom.equalToSuperview().offset(-10)
         }
         // date Label
+        addSubview(typeLabel)
+        typeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(dosageLabel.snp.trailing).offset(10)
+            make.top.equalTo(dosageLabel.snp.top)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        // dosage Label
         addSubview(dateLabel)
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(typeLabel.snp.trailing).offset(10)
@@ -92,10 +94,13 @@ final class CustomTableViewCell: UITableViewCell {
     func setTitleLabelText(_ text: String) {
         titleLabel.text = text
     }
+    func setDosageLabelText(_ text: String) {
+        dosageLabel.text = text
+    }
     func setTypeLabelText(_ text: String) {
         typeLabel.text = text
     }
-    func setDosageLabelText(_ text: String) {
-        dosageLabel.text = text
+    func setDateLabelText(_ text: String) {
+        dateLabel.text = text
     }
 } //end
