@@ -89,6 +89,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     }
     // target
     private func setupTarget() {
+        
     }
     // общий метод для установки текста в titleLabel
     func setTitleLabelText(_ text: String) {

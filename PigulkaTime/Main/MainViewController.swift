@@ -8,7 +8,8 @@
 import UIKit
 import SnapKit
 
-final class MainViewController: UIViewController, PillsViewControllerDelegate {
+//final class MainViewController: UIViewController, PillsViewControllerDelegate {
+final class MainViewController: UIViewController {
     public var pillsArray: [Pill] = []
     private let feedbackGenerator = UISelectionFeedbackGenerator()
     private let bottomMarginGuide = UILayoutGuide()
@@ -103,7 +104,7 @@ final class MainViewController: UIViewController, PillsViewControllerDelegate {
         // open PillsViewController
         let pillsViewController = PillsViewController()
         pillsViewController.modalPresentationStyle = .popover
-        pillsViewController.delegate = self
+//        pillsViewController.delegate = self
         present(pillsViewController, animated: true, completion: nil)
     }
     // открытая функция добавляет в массив данные из PillsViewControler и показывает на экране

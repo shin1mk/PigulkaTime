@@ -7,7 +7,7 @@
 
 import SnapKit
 import UIKit
-
+/*
 protocol PillsViewControllerDelegate: AnyObject {
     func pillsViewController(_ controller: PillsViewController, didAddPill pill: Pill)
 }
@@ -109,3 +109,4 @@ final class PillsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 } // end
+*/
