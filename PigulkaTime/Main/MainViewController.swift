@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-//final class MainViewController: UIViewController, PillsViewControllerDelegate {
 final class MainViewController: UIViewController {
     public var pillsArray: [Pill] = []
     private let feedbackGenerator = UISelectionFeedbackGenerator()
@@ -73,7 +72,7 @@ final class MainViewController: UIViewController {
         }
         // tableView
         view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(15)
@@ -101,17 +100,11 @@ final class MainViewController: UIViewController {
     // add pill button
     @objc private func addPillButtonTapped() {
         feedbackGenerator.selectionChanged()
-        // open PillsViewController
+        
         let pillsViewController = PillsViewController()
         pillsViewController.modalPresentationStyle = .popover
-//        pillsViewController.delegate = self
+        pillsViewController.delegate = self
         present(pillsViewController, animated: true, completion: nil)
-    }
-    // открытая функция добавляет в массив данные из PillsViewControler и показывает на экране
-    func pillsViewController(_ controller: PillsViewController, didAddPill pill: Pill) {
-        pillsArray.append(pill)
-        print("Added a new pill: \(pill)")
-        tableView.reloadData()
     }
 } // end
 //MARK: TableView
@@ -137,5 +130,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+}
+//MARK: открытая функция добавляет в массив данные из PillsViewControler и показывает на экране
+extension MainViewController: PillsViewControllerDelegate {
+    func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill]) {
+        pillsArray.append(contentsOf: pills)
+        print("Added a new pill: \(pills)")
+        tableView.reloadData()
     }
 }

@@ -20,7 +20,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = ""
+        titleLabel.text = "MainVC_title"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextMedium(ofSize: 25)
@@ -28,21 +28,21 @@ final class MainViewCustomTableCell: UITableViewCell {
     }()
     private let dosageLabel: UILabel = {
         let dosageLabel = UILabel()
-        dosageLabel.text = "1"
+        dosageLabel.text = "MainVC_dosage"
         dosageLabel.textColor = .systemGray
         dosageLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
-        typeLabel.text = "type"
+        typeLabel.text = "MainVC_type"
         typeLabel.textColor = .systemGray
         typeLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return typeLabel
     }()
     private let dateLabel: UILabel = {
         let dateLabel = UILabel()
-        dateLabel.text = "date"
+        dateLabel.text = "MainVC_date"
         dateLabel.textColor = .systemGray
         dateLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return dateLabel

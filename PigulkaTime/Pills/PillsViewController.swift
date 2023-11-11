@@ -8,13 +8,19 @@
 import UIKit
 import SnapKit
 
+protocol PillsViewControllerDelegate: AnyObject {
+    func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill])
+}
+
 final class PillsViewController: UIViewController {
+    weak var delegate: PillsViewControllerDelegate?
+    private var pillsArray: [Pill] = []
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide()
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(MainViewCustomTableCell.self, forCellReuseIdentifier: "MainCustomCell")
+        tableView.register(PillViewCustomTableCell.self, forCellReuseIdentifier: "PillCustomCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -84,32 +90,39 @@ final class PillsViewController: UIViewController {
     }
     // saveButton
     @objc private func saveButtonTapped() {
-        print("save")
+        let newPill = Pill(name: "", dosage: "10mg", type: "Type A", isEditable: true)
+        pillsArray.append(newPill)
+        delegate?.pillsViewController(self, didSavePills: pillsArray)
+        dismiss(animated: true, completion: nil)
     }
 } //end
 //MARK: TableView
 extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
     // heightForRowAt
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 45
     }
     // numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 5
     }
     //MARK: cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
-        let backgroundCellColor = UIView()
-        backgroundCellColor.backgroundColor = .clear
-        cell.selectedBackgroundView = backgroundCellColor
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PillCustomCell", for: indexPath) as! PillViewCustomTableCell
         
-//        let pill = pillsArray[indexPath.row]
-//        cell.setTitleLabelText(pill.name!)
+        if indexPath.row == 0 {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
+            cell.addGestureRecognizer(tapGesture)
+        }
         return cell
     }
     //MARK: didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Custom cell at index: \(indexPath.row)")
+    }
+    // Обработчик события касания
+    @objc private func cellTapped(_ gesture: UITapGestureRecognizer) {
+        guard let tappedCell = gesture.view as? PillViewCustomTableCell else { return }
+        tappedCell.textField.becomeFirstResponder()
     }
 }
