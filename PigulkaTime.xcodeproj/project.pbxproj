@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		131BE8B62AFBD24600A36DD1 /* ----PillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131BE8B52AFBD24600A36DD1 /* ----PillsViewController.swift */; };
+		1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */; };
+		1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */; };
 		134CEF762AFD40C300164A7B /* DosageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CEF752AFD40C300164A7B /* DosageView.swift */; };
 		135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38512AFA9EC4007C1C04 /* AppDelegate.swift */; };
 		135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */; };
@@ -26,7 +28,7 @@
 		135B38952AFAA031007C1C04 /* textHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38942AFAA031007C1C04 /* textHelper.swift */; };
 		139364742AFD35C300FB4CA2 /* DrugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139364732AFD35C300FB4CA2 /* DrugView.swift */; };
 		139364762AFD380900FB4CA2 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139364752AFD380900FB4CA2 /* TypeView.swift */; };
-		13B4F9642AFF3E18007B779D /* PillViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* PillViewCustomTableCell.swift */; };
+		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
 		13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFB0212AFE453F00C9E67B /* PillsViewController.swift */; };
 		13F556092AFCB0CE0025119F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F556082AFCB0CE0025119F /* Models.swift */; };
@@ -55,6 +57,8 @@
 /* Begin PBXFileReference section */
 		12D20B54DFB2496D0FB680CF /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		131BE8B52AFBD24600A36DD1 /* ----PillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "----PillsViewController.swift"; sourceTree = "<group>"; };
+		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
+		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
 		134CEF752AFD40C300164A7B /* DosageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageView.swift; sourceTree = "<group>"; };
 		135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigulkaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		135B38512AFA9EC4007C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,7 +81,7 @@
 		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHelper.swift; sourceTree = "<group>"; };
 		139364732AFD35C300FB4CA2 /* DrugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugView.swift; sourceTree = "<group>"; };
 		139364752AFD380900FB4CA2 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
-		13B4F9632AFF3E18007B779D /* PillViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillViewCustomTableCell.swift; sourceTree = "<group>"; };
+		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
 		13EFB0212AFE453F00C9E67B /* PillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsViewController.swift; sourceTree = "<group>"; };
 		13F556082AFCB0CE0025119F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -119,6 +123,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131FF95A2AFF87F700ABFCB9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */,
+				1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */,
+				1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		1337D5552AFCF556002012B5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				135B38942AFAA031007C1C04 /* textHelper.swift */,
+				131FF95A2AFF87F700ABFCB9 /* Cells */,
 				13EFB0202AFE444900C9E67B /* Pills */,
 				13D5FE5E2AFE41F900F403D0 /* Main */,
 				1337D5552AFCF556002012B5 /* Views */,
@@ -237,7 +252,6 @@
 			children = (
 				131BE8B52AFBD24600A36DD1 /* ----PillsViewController.swift */,
 				13EFB0212AFE453F00C9E67B /* PillsViewController.swift */,
-				13B4F9632AFF3E18007B779D /* PillViewCustomTableCell.swift */,
 			);
 			path = Pills;
 			sourceTree = "<group>";
@@ -522,10 +536,12 @@
 				13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */,
 				139364762AFD380900FB4CA2 /* TypeView.swift in Sources */,
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
-				13B4F9642AFF3E18007B779D /* PillViewCustomTableCell.swift in Sources */,
+				13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */,
 				134CEF762AFD40C300164A7B /* DosageView.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */,
+				1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */,
+				1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */,
 				13F556092AFCB0CE0025119F /* Models.swift in Sources */,
 				135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */,
 				131BE8B62AFBD24600A36DD1 /* ----PillsViewController.swift in Sources */,

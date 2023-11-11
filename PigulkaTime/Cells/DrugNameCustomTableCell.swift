@@ -1,5 +1,5 @@
 //
-//  PillViewCustomTableCell.swift
+//  DrugNameCustomTableCell.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 11.11.2023.
@@ -8,28 +8,21 @@
 import UIKit
 import SnapKit
 
-final class PillViewCustomTableCell: UITableViewCell, UITextFieldDelegate {
+final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "PillVC_title"
+        titleLabel.text = "Drug name"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return titleLabel
     }()
-    private let typeLabel: UILabel = {
-        let typeLabel = UILabel()
-        typeLabel.text = "PillVC_type"
-        typeLabel.textColor = .white
-        typeLabel.textAlignment = .right
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 20)
-        return typeLabel
-    }()
-    let textField: UITextField = {
+    public let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter text here"
-        textField.textColor = .white
+        textField.placeholder = "Enter drug name"
+        textField.textColor = .systemGray3
+        textField.textAlignment = .right
         textField.isUserInteractionEnabled = true
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
@@ -69,17 +62,18 @@ final class PillViewCustomTableCell: UITableViewCell, UITextFieldDelegate {
     private func setupDelegate() {
         textField.delegate = self
     }
+} //end
+//MARK: Keyboard
+extension DrugNameCustomTableCell {    // Keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // Закрыть клавиатуру по нажатию на done
+        return true
+    }
     // Keyboard
     @objc private func textFieldDidChange(_ textField: UITextField) {
         // Обработка изменений в текстовом поле
         if let text = textField.text {
-            // Обновите данные в вашем массиве или другие действия по мере ввода
             print("Text changed: \(text)")
         }
     }
-    // Keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // Закрыть клавиатуру
-        return true
-    }
-} //end
+}

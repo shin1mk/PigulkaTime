@@ -8,14 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol CustomTableViewCellDelegate: AnyObject {
-    func setLabelText(_ text: String)
-    func setTitleLabelText(_ text: String)
-    func setDosageLabelText(_ text: String)
-    func setTypeLabelText(_ text: String)
-    func setDateLabelText(_ text: String)
-}
-
 final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
@@ -91,7 +83,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     private func setupTarget() {
         
     }
-    // общий метод для установки текста в titleLabel
+    // общий метод для установки текста в Labels
     func setTitleLabelText(_ text: String) {
         titleLabel.text = text
     }

@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 
 final class MainViewController: UIViewController {
-    public var pillsArray: [Pill] = []
-    private let feedbackGenerator = UISelectionFeedbackGenerator()
-    private let bottomMarginGuide = UILayoutGuide()
+    public var pillsArray: [Pill] = [] // массив таблеток
+    private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
+    private let bottomMarginGuide = UILayoutGuide() // нижняя граница
     //MARK: Properties
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -37,13 +37,11 @@ final class MainViewController: UIViewController {
         // plus.fill icon attachment
         let plusFillImage = UIImage(systemName: "plus.circle.fill")?.withTintColor(.white)
         let plusFillAttachment = NSTextAttachment(image: plusFillImage!)
-        let pillImage = UIImage(systemName: "pill")?.withTintColor(.white)
         // attributed text
-        let attributedText = NSMutableAttributedString(string: " Add pills ")
+        let attributedText = NSMutableAttributedString(string: " Add pills")
         attributedText.insert(NSAttributedString(attachment: plusFillAttachment), at: 0)
-        attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
         // text color to white
-        attributedText.addAttributes([.font: UIFont.SFUITextMedium(ofSize: 20)!, .foregroundColor: UIColor.white], range: NSRange(location: 1, length: "Add Pills ".count))
+        attributedText.addAttributes([.font: UIFont.SFUITextMedium(ofSize: 20)!, .foregroundColor: UIColor.white], range: NSRange(location: 1, length: "Add Pills".count))
         button.setAttributedTitle(attributedText, for: .normal)
         return button
     }()
@@ -97,10 +95,10 @@ final class MainViewController: UIViewController {
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
     }
-    // add pill button
+    // add pill кнопка
     @objc private func addPillButtonTapped() {
         feedbackGenerator.selectionChanged()
-        
+        // открываем модальное окно
         let pillsViewController = PillsViewController()
         pillsViewController.modalPresentationStyle = .popover
         pillsViewController.delegate = self
@@ -109,27 +107,29 @@ final class MainViewController: UIViewController {
 } // end
 //MARK: TableView
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    // heightForRowAt
+    // высота
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    // numberOfRowsInSection
+    // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pillsArray.count
     }
-    //MARK: cellForRowAt
+    //содержимое ячечки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
+        // фон ячейки
         let backgroundCellColor = UIView()
         backgroundCellColor.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundCellColor
-        
+        // установим title в ячейку
         let pill = pillsArray[indexPath.row]
         cell.setTitleLabelText(pill.name!)
         return cell
     }
-    //MARK: didSelectRowAt
+    // нажатая ячейка
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didSelectRowAt")
     }
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и показывает на экране
