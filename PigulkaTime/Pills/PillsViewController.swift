@@ -20,7 +20,9 @@ protocol DosageCustomTableCellDelegate: AnyObject {
 protocol FrequencyCustomTableCellDelegate: AnyObject {
     func didSelectFrequency(cell: FrequencyCustomTableCell)
 }
-
+protocol DaysCustomTableCellDelegate: AnyObject {
+    func didSelectDays(cell: DaysCustomTableCell)
+}
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var delegate: PillsViewControllerDelegate?
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
@@ -34,7 +36,10 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // for frequency picker view
     private let frequency = ["Daily", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 10 days", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months"]
     private var selectedFrequency: String?
-
+    // for days picker view
+    private let days: [String] = (1...100).map { "Day \($0)" }
+    private var selectedDays: String?
+    
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
     private lazy var tableView: UITableView = {
@@ -44,6 +49,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(TypeCustomTableCell.self, forCellReuseIdentifier: "TypeCustomCell")
         tableView.register(DosageCustomTableCell.self, forCellReuseIdentifier: "DosageCustomCell")
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
+        tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -119,7 +125,12 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             return
         }
         // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
-        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: selectedDosage ?? "Default", type: selectedType ?? "Default", frequency: selectedFrequency ?? "Default", isEditable: true)
+        let newPill = Pill(name: editingCell.textField.text ?? "",
+                           dosage: selectedDosage ?? "Default",
+                           type: selectedType ?? "Default",
+                           frequency: selectedFrequency ?? "Default",
+                           days: selectedDays ?? "Default",
+                           isEditable: true)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
@@ -339,6 +350,56 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+//MARK: Days picker view
+extension PillsViewController: DaysCustomTableCellDelegate {
+    func didSelectDays(cell: DaysCustomTableCell) {
+        // Создайте UIViewController
+        let pickerViewController = UIViewController()
+        // Создайте UIPickerView
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.tag = 4 // Для Type picker view
+        pickerView.backgroundColor = .black
+        // Установите размеры UIPickerView
+        let pickerViewHeight: CGFloat = 250
+        let bottomMargin: CGFloat = 30
+        pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
+        // Добавьте UIPickerView в UIViewController
+        pickerViewController.view.addSubview(pickerView)
+        // Создайте кнопку "OK" для закрытия пикера
+        let okButton = UIButton(type: .system)
+        okButton.setTitle("OK", for: .normal)
+        okButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .black
+        okButton.addTarget(self, action: #selector(daysOkButtonTapped(_:)), for: .touchUpInside)
+        
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
+        // Добавьте кнопку в UIViewController
+        pickerViewController.view.addSubview(okButton)
+        // Отобразите UIViewController модально
+        pickerViewController.modalPresentationStyle = .overCurrentContext
+        present(pickerViewController, animated: true, completion: nil)
+    }
+
+    @objc private func daysOkButtonTapped(_ sender: UIButton) {
+        // Получите выбранный тип из свойства selectedType
+        guard let selectedDays = selectedDays else {
+            print("No type selected.")
+            return
+        }
+        // Выведите в консоль выбранный тип
+        print("Selected days: \(selectedDays)")
+        // выбранный тип в typeLabel
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
+            typeCell.setDaysText("\(selectedDays)")
+        }
+        // Закройте UIViewController при нажатии кнопки "OK"
+        dismiss(animated: true, completion: nil)
+    }
+}
 extension PillsViewController {
     // Методы для первого UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -353,6 +414,9 @@ extension PillsViewController {
         } else if pickerView.tag == 3 {
             selectedFrequency = frequency[row]
             print("Selected Frequency: \(selectedFrequency ?? "No frequency selected")")
+        } else if pickerView.tag == 4 {
+            selectedDays = days[row]
+            print("Selected Days: \(selectedDays ?? "No days selected")")
         }
     }
     
@@ -368,6 +432,8 @@ extension PillsViewController {
             return dosages.count
         } else if pickerView.tag == 3 {
             return frequency.count
+        } else if pickerView.tag == 4 {
+            return days.count
         }
         return 0
     }
@@ -379,6 +445,8 @@ extension PillsViewController {
             return dosages[row]
         } else if pickerView.tag == 3 {
             return frequency[row]
+        } else if pickerView.tag == 4 {
+            return days[row]
         }
         return nil
     }

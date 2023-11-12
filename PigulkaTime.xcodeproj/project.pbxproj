@@ -30,6 +30,7 @@
 		139364762AFD380900FB4CA2 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139364752AFD380900FB4CA2 /* TypeView.swift */; };
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
+		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
 		13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFB0212AFE453F00C9E67B /* PillsViewController.swift */; };
 		13F556092AFCB0CE0025119F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F556082AFCB0CE0025119F /* Models.swift */; };
 		AD8F4DEAC04FBA172CE0EFC8 /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6855FC40960A817A349E52 /* Pods_PigulkaTime.framework */; };
@@ -83,6 +84,7 @@
 		139364752AFD380900FB4CA2 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
+		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
 		13EFB0212AFE453F00C9E67B /* PillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsViewController.swift; sourceTree = "<group>"; };
 		13F556082AFCB0CE0025119F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		630046FCB176F21C67F644D8 /* Pods-PigulkaTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */,
 				1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */,
 				1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */,
+				13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				139364762AFD380900FB4CA2 /* TypeView.swift in Sources */,
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
 				13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */,
+				13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */,
 				134CEF762AFD40C300164A7B /* DosageView.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */,
