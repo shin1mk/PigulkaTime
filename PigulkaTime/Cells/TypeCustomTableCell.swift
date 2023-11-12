@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class TypeCustomTableCell: UITableViewCell, UITextFieldDelegate {
+final class TypeCustomTableCell: UITableViewCell {
     weak var delegate: TypeCustomTableCellDelegate?
     //MARK: Properties
     private let titleLabel: UILabel = {

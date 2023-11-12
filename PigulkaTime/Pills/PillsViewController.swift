@@ -14,14 +14,23 @@ protocol PillsViewControllerDelegate: AnyObject {
 protocol TypeCustomTableCellDelegate: AnyObject {
     func didSelectType(cell: TypeCustomTableCell)
 }
+protocol DosageCustomTableCellDelegate: AnyObject {
+    func didSelectDosage(cell: DosageCustomTableCell)
+}
 
-final class PillsViewController: UIViewController {
+final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
     weak var delegate: PillsViewControllerDelegate?
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
     private var pillsArray: [Pill] = [] // массив
     // for type picker view
-    private let types = ["Pills", "Injections", "Suppositories", "Tablets", "Capsules"]
+    private let types = ["None", "Pills", "Injections", "Suppositories", "Tablets", "Capsules"]
     private var selectedType: String?
+    // for dosage picker view
+    private let dosages = ["None", "0.5", "1", "1.5", "2", "3", "4", "5"]
+    private var selectedDosage: String?
+    
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
     private lazy var tableView: UITableView = {
@@ -105,7 +114,7 @@ final class PillsViewController: UIViewController {
             return
         }
         // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
-        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: "10mg", type: selectedType ?? "Default Type", isEditable: true)
+        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: selectedDosage ?? "Default Dosage", type: selectedType ?? "Default Type", isEditable: true)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
@@ -145,6 +154,9 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 2:
             cellIdentifier = "DosageCustomCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DosageCustomTableCell
+            cell.delegate = self
+            return cell
         default:
             cellIdentifier = "TypeCustomCell"
         }
@@ -164,9 +176,10 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         editingCell = tappedCell
         tappedCell.textField.becomeFirstResponder()
     }
+    
 }
-//MARK: Picker view type
-extension PillsViewController: TypeCustomTableCellDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+//MARK: Type picker view
+extension PillsViewController: TypeCustomTableCellDelegate {
     func didSelectType(cell: TypeCustomTableCell) {
         // Создайте UIViewController
         let pickerViewController = UIViewController()
@@ -174,6 +187,7 @@ extension PillsViewController: TypeCustomTableCellDelegate, UIPickerViewDelegate
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
+        pickerView.tag = 1 // Для Type picker view
         pickerView.backgroundColor = .black
         // Установите размеры UIPickerView
         let pickerViewHeight: CGFloat = 250
@@ -207,27 +221,97 @@ extension PillsViewController: TypeCustomTableCellDelegate, UIPickerViewDelegate
         // Выведите в консоль выбранный тип
         print("Selected Type: \(selectedType)")
         // выбранный тип в typeLabel
-           if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
-               typeCell.setLabelText("\(selectedType)")
-           }
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
+            typeCell.setLabelText("\(selectedType)")
+        }
         // Закройте UIViewController при нажатии кнопки "OK"
         dismiss(animated: true, completion: nil)
     }
+}
+//MARK: Dosage picker view
+extension PillsViewController: DosageCustomTableCellDelegate {
+    func didSelectDosage(cell: DosageCustomTableCell) {
+        // Создайте UIViewController
+        let pickerViewController = UIViewController()
+        // Создайте UIPickerView
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.tag = 2 // Для Type picker view
+        pickerView.backgroundColor = .black
+        // Установите размеры UIPickerView
+        let pickerViewHeight: CGFloat = 250
+        let bottomMargin: CGFloat = 30
+        pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
+        // Добавьте UIPickerView в UIViewController
+        pickerViewController.view.addSubview(pickerView)
+        // Создайте кнопку "OK" для закрытия пикера
+        let okButton = UIButton(type: .system)
+        okButton.setTitle("OK", for: .normal)
+        okButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .black
+        okButton.addTarget(self, action: #selector(dosageOkButtonTapped(_:)), for: .touchUpInside)
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedType = types[row]
-        print("Selected Type: \(selectedType ?? "No type selected")")
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
+        // Добавьте кнопку в UIViewController
+        pickerViewController.view.addSubview(okButton)
+        // Отобразите UIViewController модально
+        pickerViewController.modalPresentationStyle = .overCurrentContext
+        present(pickerViewController, animated: true, completion: nil)
     }
+
+    @objc private func dosageOkButtonTapped(_ sender: UIButton) {
+        // Получите выбранный тип из свойства selectedType
+        guard let selectedDosage = selectedDosage else {
+            print("No type selected.")
+            return
+        }
+        // Выведите в консоль выбранный тип
+        print("Selected Dosage: \(selectedDosage)")
+        // выбранный тип в typeLabel
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DosageCustomTableCell {
+            typeCell.setDosageText("\(selectedDosage)")
+        }
+        // Закройте UIViewController при нажатии кнопки "OK"
+        dismiss(animated: true, completion: nil)
+    }
+}
+extension PillsViewController {
+    // Методы для первого UIPickerView
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {
+            // Обработка выбора в первом UIPickerView
+            selectedType = types[row]
+            print("Selected Type: \(selectedType ?? "No type selected")")
+        } else if pickerView.tag == 2 {
+            // Обработка выбора во втором UIPickerView (если добавлен второй)
+            selectedDosage = dosages[row]
+            print("Selected Dosage: \(selectedDosage ?? "No dosage selected")")
+        }
+    }
+    
     // Методы для UIPickerViewDelegate и UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return types.count
+        if pickerView.tag == 1 {
+            return types.count
+        } else if pickerView.tag == 2 {
+            return dosages.count
+        }
+        return 0
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return types[row]
+        if pickerView.tag == 1 {
+            return types[row]
+        } else if pickerView.tag == 2 {
+            return dosages[row]
+        }
+        return nil
     }
 }

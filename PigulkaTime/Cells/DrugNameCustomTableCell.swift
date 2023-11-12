@@ -64,7 +64,8 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
     }
 } //end
 //MARK: Keyboard
-extension DrugNameCustomTableCell {    // Keyboard
+extension DrugNameCustomTableCell {
+    // Keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Закрыть клавиатуру по нажатию на done
         return true

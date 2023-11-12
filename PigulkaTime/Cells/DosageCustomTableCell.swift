@@ -8,30 +8,30 @@
 import UIKit
 import SnapKit
 
-final class DosageCustomTableCell: UITableViewCell, UITextFieldDelegate {
+final class DosageCustomTableCell: UITableViewCell {
+    weak var delegate: DosageCustomTableCellDelegate?
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "PillVC_title"
+        titleLabel.text = "Dosage"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return titleLabel
     }()
     private let dosageLabel: UILabel = {
-        let typeLabel = UILabel()
-        typeLabel.text = "PillVC_dosage"
-        typeLabel.textColor = .white
-        typeLabel.textAlignment = .right
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 20)
-        return typeLabel
+        let dosageLabel = UILabel()
+        dosageLabel.text = "Choose dosage"
+        dosageLabel.textColor = .systemGray3
+        dosageLabel.textAlignment = .right
+        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        return dosageLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
         setupTarget()
-        setupDelegate()
     }
     required init?(coder aDecoder: NSCoder) {
         return nil
@@ -54,11 +54,15 @@ final class DosageCustomTableCell: UITableViewCell, UITextFieldDelegate {
     }
     // target
     private func setupTarget() {
-//        typeLabel.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
+        addGestureRecognizer(tapGesture)
     }
-    // delegate
-    private func setupDelegate() {
-//        typeLabel.delegate = self
+    // cell action
+    @objc private func cellTapped() {
+        delegate?.didSelectDosage(cell: self)
+    }
+    // set label
+    func setDosageText(_ text: String) {
+        dosageLabel.text = text
     }
 } //end
-//MARK:

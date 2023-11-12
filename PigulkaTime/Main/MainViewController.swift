@@ -126,6 +126,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let pill = pillsArray[indexPath.row]
         cell.setTitleLabelText(pill.name!)
         cell.setTypeLabelText(pill.type)
+        cell.setDosageLabelText(pill.dosage)
+
 // cюда добавим то что надо отобразить на мейн контроллере
         return cell
     }
