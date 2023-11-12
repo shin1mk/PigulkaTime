@@ -113,23 +113,38 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pillsArray.count
+        if pillsArray.isEmpty {
+            // Если массив пуст, вернуть 1 для отображения сообщения об отсутствии данных
+            return 1
+        } else {
+            return pillsArray.count
+        }
     }
-    //содержимое ячечки
+    // содержимое ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
-        // фон ячейки
-        let backgroundCellColor = UIView()
-        backgroundCellColor.backgroundColor = .clear
-        cell.selectedBackgroundView = backgroundCellColor
-        // установим title в ячейку
-        let pill = pillsArray[indexPath.row]
-        cell.setTitleLabelText(pill.name!)
-        cell.setTypeLabelText(pill.type)
-        cell.setDosageLabelText(pill.dosage)
-        cell.setFrequencyLabelText(pill.frequency)
-
-        return cell
+        if pillsArray.isEmpty {
+            // Если массив пуст, создайте ячейку с сообщением об отсутствии данных
+            let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell") ?? UITableViewCell(style: .default, reuseIdentifier: "EmptyCell")
+            emptyCell.textLabel?.text = "No pills available"
+            emptyCell.textLabel?.textColor = .white
+            emptyCell.textLabel?.textAlignment = .center
+            emptyCell.backgroundColor = .clear
+            return emptyCell
+        } else {
+            // В противном случае, создайте ячейку с данными из массива
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
+            // фон ячейки
+            let backgroundCellColor = UIView()
+            backgroundCellColor.backgroundColor = .clear
+            cell.selectedBackgroundView = backgroundCellColor
+            // установим title в ячейку
+            let pill = pillsArray[indexPath.row]
+            cell.setTitleLabelText(pill.name!)
+            cell.setTypeLabelText(pill.type)
+            cell.setDosageLabelText(pill.dosage)
+            cell.setFrequencyLabelText(pill.frequency)
+            return cell
+        }
     }
     // нажатая ячейка
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
