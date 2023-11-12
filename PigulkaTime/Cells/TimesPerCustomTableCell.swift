@@ -1,31 +1,31 @@
 //
-//  DosageCustomTableCell.swift
+//  TimesPerCustomTableCell.swift
 //  PigulkaTime
 //
-//  Created by SHIN MIKHAIL on 11.11.2023.
+//  Created by SHIN MIKHAIL on 12.11.2023.
 //
 
 import UIKit
 import SnapKit
 
-final class DosageCustomTableCell: UITableViewCell {
-    weak var delegate: DosageCustomTableCellDelegate?
+final class TimesCustomTableCell: UITableViewCell {
+    weak var delegate: TimesCustomTableCellDelegate?
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Quantity per dose"
+        titleLabel.text = "How many times per day"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return titleLabel
     }()
-    private let dosageLabel: UILabel = {
-        let dosageLabel = UILabel()
-        dosageLabel.text = "Choose dosage"
-        dosageLabel.textColor = .systemGray
-        dosageLabel.textAlignment = .right
-        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
-        return dosageLabel
+    private let timesLabel: UILabel = {
+        let timesLabel = UILabel()
+        timesLabel.text = "1"
+        timesLabel.textColor = .systemGray
+        timesLabel.textAlignment = .right
+        timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        return timesLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,8 +46,8 @@ final class DosageCustomTableCell: UITableViewCell {
             make.leading.equalToSuperview()
         }
         // textField
-        addSubview(dosageLabel)
-        dosageLabel.snp.makeConstraints { make in
+        addSubview(timesLabel)
+        timesLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -59,10 +59,10 @@ final class DosageCustomTableCell: UITableViewCell {
     }
     // cell action
     @objc private func cellTapped() {
-        delegate?.didSelectDosage(cell: self)
+        delegate?.didSelectTimes(cell: self)
     }
     // set label
-    func setDosageText(_ text: String) {
-        dosageLabel.text = text
+    func setTimesText(_ text: String) {
+        timesLabel.text = text
     }
 } //end

@@ -23,23 +23,32 @@ protocol FrequencyCustomTableCellDelegate: AnyObject {
 protocol DaysCustomTableCellDelegate: AnyObject {
     func didSelectDays(cell: DaysCustomTableCell)
 }
+protocol TimesCustomTableCellDelegate: AnyObject {
+    func didSelectTimes(cell: TimesCustomTableCell)
+}
+
+
 
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     weak var delegate: PillsViewControllerDelegate?
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
     private var pillsArray: [Pill] = [] // массив
     // for type picker view
-    private let types = ["None", "Pills", "Injections", "Suppositories", "Tablets", "Capsules"]
+    private let types = ["None", "Pills", "Injections", "Suppositories", "Tablets", "Capsules", "Syrups", "Drops", "Ointments", "Sprays", "Lozenges", "Inhalers"]
     private var selectedType: String?
     // for dosage picker view
-    private let dosages = ["None", "0.5", "1", "1.5", "2", "3", "4", "5"]
+    private let dosages = ["None", "0.125", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
     private var selectedDosage: String?
     // for frequency picker view
-    private let frequency = ["None", "Daily", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 10 days", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months"]
+    private let frequency = ["None", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every Day", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months", "Every 6 months"]
     private var selectedFrequency: String?
     // for days picker view
     private let days: [String] = (0...100).map { "\($0) day\($0 == 1 ? "" : "s")" }
     private var selectedDays: String?
+    // for times per day picker view
+    private let times: [String] = (0...10).map { "\($0)" }
+    private var selectedTimes: String?
     
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
@@ -51,6 +60,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(DosageCustomTableCell.self, forCellReuseIdentifier: "DosageCustomCell")
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
+        tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -134,6 +144,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                            type: selectedType ?? "",
                            frequency: selectedFrequency ?? "",
                            days: selectedDays ?? "",
+                           times: selectedTimes ?? "",
                            isEditable: true)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
@@ -143,7 +154,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         dismiss(animated: true, completion: nil)
     }
 } //end
-//MARK: tap to close Keyboard/picker view
+//MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {
     private func setupGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -195,6 +206,11 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         case 4:
             cellIdentifier = "DaysCustomCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DaysCustomTableCell
+            cell.delegate = self
+            return cell
+        case 5:
+            cellIdentifier = "TimesCustomCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TimesCustomTableCell
             cell.delegate = self
             return cell
         default:
@@ -428,6 +444,60 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+//MARK: Times per day picker view
+extension PillsViewController: TimesCustomTableCellDelegate {
+    func didSelectTimes(cell: TimesCustomTableCell) {
+        // Создайте UIViewController
+        let pickerViewController = UIViewController()
+        // Создайте UIPickerView
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.tag = 5
+        pickerView.backgroundColor = .black
+        // Установите размеры UIPickerView
+        let pickerViewHeight: CGFloat = 250
+        let bottomMargin: CGFloat = 30
+        pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
+        // Добавьте UIPickerView в UIViewController
+        pickerViewController.view.addSubview(pickerView)
+        // Создайте кнопку "OK" для закрытия пикера
+        let okButton = UIButton(type: .system)
+        okButton.setTitle("OK", for: .normal)
+        okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .systemGray6
+        okButton.addTarget(self, action: #selector(timesOkButtonTapped(_:)), for: .touchUpInside)
+        
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
+        // Добавьте кнопку в UIViewController
+        pickerViewController.view.addSubview(okButton)
+        // Отобразите UIViewController модально
+        pickerViewController.modalPresentationStyle = .overCurrentContext
+        present(pickerViewController, animated: true, completion: nil)
+    }
+    
+    @objc private func timesOkButtonTapped(_ sender: UIButton) {
+        // Получите выбранный тип из свойства selectedType
+        guard let selectedTimes = selectedTimes else {
+            print("No times selected.")
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        // Выведите в консоль выбранный тип
+        print("Selected times: \(selectedTimes)")
+        // выбранный тип в typeLabel
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? TimesCustomTableCell {
+            typeCell.setTimesText("\(selectedTimes)")
+        }
+        // Снимите фокус с текстового поля
+        editingCell?.textField.resignFirstResponder()
+        // Закройте UIViewController при нажатии кнопки "OK"
+        dismiss(animated: true, completion: nil)
+    }
+}
+
 //MARK: Settings Picker view
 extension PillsViewController {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -444,6 +514,9 @@ extension PillsViewController {
         case 4:
             selectedDays = days[row]
             print("Selected Days: \(selectedDays ?? "No days selected")")
+        case 5:
+            selectedTimes = times[row]
+            print("Selected Days: \(selectedTimes ?? "No times selected")")
         default:
             break
         }
@@ -463,6 +536,8 @@ extension PillsViewController {
             return frequency.count
         case 4:
             return days.count
+        case 5:
+            return times.count
         default:
             return 0
         }
@@ -478,6 +553,8 @@ extension PillsViewController {
             return frequency[row]
         case 4:
             return days[row]
+        case 5:
+            return times[row]
         default:
             return nil
         }

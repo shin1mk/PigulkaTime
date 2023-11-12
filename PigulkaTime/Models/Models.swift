@@ -13,6 +13,6 @@ struct Pill {
     var type: String
     var frequency: String
     var days: String
-//    var times: String
+    var times: String
     var isEditable: Bool
 }

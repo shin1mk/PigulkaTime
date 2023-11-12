@@ -10,6 +10,7 @@
 		1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */; };
 		1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */; };
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
+		134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */; };
 		135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38512AFA9EC4007C1C04 /* AppDelegate.swift */; };
 		135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */; };
 		135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38552AFA9EC4007C1C04 /* MainViewController.swift */; };
@@ -57,6 +58,7 @@
 		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
 		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
+		134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPerCustomTableCell.swift; sourceTree = "<group>"; };
 		135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigulkaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		135B38512AFA9EC4007C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */,
 				1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */,
 				13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */,
+				134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */,
 				135B38952AFAA031007C1C04 /* textHelper.swift in Sources */,
 				135B385C2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodeld in Sources */,
 				135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */,
