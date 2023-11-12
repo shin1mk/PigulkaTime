@@ -127,8 +127,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTitleLabelText(pill.name!)
         cell.setTypeLabelText(pill.type)
         cell.setDosageLabelText(pill.dosage)
+        cell.setFrequencyLabelText(pill.frequency)
 
-// cюда добавим то что надо отобразить на мейн контроллере
         return cell
     }
     // нажатая ячейка

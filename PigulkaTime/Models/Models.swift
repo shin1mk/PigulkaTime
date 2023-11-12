@@ -11,5 +11,6 @@ struct Pill {
     var name: String?
     var dosage: String
     var type: String
+    var frequency: String
     var isEditable: Bool
 }

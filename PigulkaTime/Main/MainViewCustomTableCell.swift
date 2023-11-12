@@ -32,12 +32,12 @@ final class MainViewCustomTableCell: UITableViewCell {
         typeLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return typeLabel
     }()
-    private let dateLabel: UILabel = {
-        let dateLabel = UILabel()
-        dateLabel.text = "date"
-        dateLabel.textColor = .systemGray
-        dateLabel.font = UIFont.SFUITextRegular(ofSize: 20)
-        return dateLabel
+    private let frequencyLabel: UILabel = {
+        let frequencyLabel = UILabel()
+        frequencyLabel.text = "daily"
+        frequencyLabel.textColor = .systemGray
+        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        return frequencyLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -72,8 +72,8 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-10)
         }
         // dosage Label
-        addSubview(dateLabel)
-        dateLabel.snp.makeConstraints { make in
+        addSubview(frequencyLabel)
+        frequencyLabel.snp.makeConstraints { make in
             make.leading.equalTo(typeLabel.snp.trailing).offset(10)
             make.top.equalTo(typeLabel.snp.top)
             make.bottom.equalToSuperview().offset(-10)
@@ -93,7 +93,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     func setTypeLabelText(_ text: String) {
         typeLabel.text = text
     }
-    func setDateLabelText(_ text: String) {
-        dateLabel.text = text
+    func setFrequencyLabelText(_ text: String) {
+        frequencyLabel.text = text
     }
 } //end

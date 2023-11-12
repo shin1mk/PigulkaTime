@@ -17,10 +17,11 @@ protocol TypeCustomTableCellDelegate: AnyObject {
 protocol DosageCustomTableCellDelegate: AnyObject {
     func didSelectDosage(cell: DosageCustomTableCell)
 }
+protocol FrequencyCustomTableCellDelegate: AnyObject {
+    func didSelectFrequency(cell: FrequencyCustomTableCell)
+}
 
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    
     weak var delegate: PillsViewControllerDelegate?
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
     private var pillsArray: [Pill] = [] // массив
@@ -30,7 +31,10 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // for dosage picker view
     private let dosages = ["None", "0.5", "1", "1.5", "2", "3", "4", "5"]
     private var selectedDosage: String?
-    
+    // for frequency picker view
+    private let frequency = ["Daily", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 10 days", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months"]
+    private var selectedFrequency: String?
+
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
     private lazy var tableView: UITableView = {
@@ -39,6 +43,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(DrugNameCustomTableCell.self, forCellReuseIdentifier: "DrugNameCustomCell")
         tableView.register(TypeCustomTableCell.self, forCellReuseIdentifier: "TypeCustomCell")
         tableView.register(DosageCustomTableCell.self, forCellReuseIdentifier: "DosageCustomCell")
+        tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -114,7 +119,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             return
         }
         // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
-        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: selectedDosage ?? "Default Dosage", type: selectedType ?? "Default Type", isEditable: true)
+        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: selectedDosage ?? "Default", type: selectedType ?? "Default", frequency: selectedFrequency ?? "Default", isEditable: true)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
@@ -133,13 +138,15 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
             return 45 // Высота для второй ячейки
         case 2:
             return 45 // Высота для третьей ячейки
+        case 3:
+            return 45 // Высота для третьей ячейки
         default:
             return 45 // Значение по умолчанию для остальных ячеек
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 // Общее количество ячеек
+        return 4 // Общее количество ячеек
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -155,6 +162,11 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             cellIdentifier = "DosageCustomCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DosageCustomTableCell
+            cell.delegate = self
+            return cell
+        case 3:
+            cellIdentifier = "FrequencyCustomCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FrequencyCustomTableCell
             cell.delegate = self
             return cell
         default:
@@ -176,7 +188,6 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         editingCell = tappedCell
         tappedCell.textField.becomeFirstResponder()
     }
-    
 }
 //MARK: Type picker view
 extension PillsViewController: TypeCustomTableCellDelegate {
@@ -278,6 +289,56 @@ extension PillsViewController: DosageCustomTableCellDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+//MARK: Frequency picker view
+extension PillsViewController: FrequencyCustomTableCellDelegate {
+    func didSelectFrequency(cell: FrequencyCustomTableCell) {
+        // Создайте UIViewController
+        let pickerViewController = UIViewController()
+        // Создайте UIPickerView
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.tag = 3 // Для Type picker view
+        pickerView.backgroundColor = .black
+        // Установите размеры UIPickerView
+        let pickerViewHeight: CGFloat = 250
+        let bottomMargin: CGFloat = 30
+        pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
+        // Добавьте UIPickerView в UIViewController
+        pickerViewController.view.addSubview(pickerView)
+        // Создайте кнопку "OK" для закрытия пикера
+        let okButton = UIButton(type: .system)
+        okButton.setTitle("OK", for: .normal)
+        okButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .black
+        okButton.addTarget(self, action: #selector(frequencyOkButtonTapped(_:)), for: .touchUpInside)
+        
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
+        // Добавьте кнопку в UIViewController
+        pickerViewController.view.addSubview(okButton)
+        // Отобразите UIViewController модально
+        pickerViewController.modalPresentationStyle = .overCurrentContext
+        present(pickerViewController, animated: true, completion: nil)
+    }
+
+    @objc private func frequencyOkButtonTapped(_ sender: UIButton) {
+        // Получите выбранный тип из свойства selectedType
+        guard let selectedFrequency = selectedFrequency else {
+            print("No type selected.")
+            return
+        }
+        // Выведите в консоль выбранный тип
+        print("Selected Frequency: \(selectedFrequency)")
+        // выбранный тип в typeLabel
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
+            typeCell.setFrequencyText("\(selectedFrequency)")
+        }
+        // Закройте UIViewController при нажатии кнопки "OK"
+        dismiss(animated: true, completion: nil)
+    }
+}
 extension PillsViewController {
     // Методы для первого UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -289,6 +350,9 @@ extension PillsViewController {
             // Обработка выбора во втором UIPickerView (если добавлен второй)
             selectedDosage = dosages[row]
             print("Selected Dosage: \(selectedDosage ?? "No dosage selected")")
+        } else if pickerView.tag == 3 {
+            selectedFrequency = frequency[row]
+            print("Selected Frequency: \(selectedFrequency ?? "No frequency selected")")
         }
     }
     
@@ -302,6 +366,8 @@ extension PillsViewController {
             return types.count
         } else if pickerView.tag == 2 {
             return dosages.count
+        } else if pickerView.tag == 3 {
+            return frequency.count
         }
         return 0
     }
@@ -311,6 +377,8 @@ extension PillsViewController {
             return types[row]
         } else if pickerView.tag == 2 {
             return dosages[row]
+        } else if pickerView.tag == 3 {
+            return frequency[row]
         }
         return nil
     }
