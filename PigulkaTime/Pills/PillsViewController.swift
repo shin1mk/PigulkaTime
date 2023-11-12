@@ -66,6 +66,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.setTitle("Save", for: .normal)
         saveButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
         saveButton.setTitleColor(.white, for: .normal)
+        saveButton.backgroundColor = .systemGray6
+        saveButton.layer.cornerRadius = 5
         return saveButton
     }()
     //MARK: Lifecycle
@@ -101,7 +103,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             make.trailing.equalToSuperview().offset(-15)
             make.bottom.equalTo(bottomMarginGuide.snp.top)
         }
-        // addButton
+        // saveButton
         view.addSubview(saveButton)
         saveButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
