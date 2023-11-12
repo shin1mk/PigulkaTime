@@ -20,12 +20,19 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
     }()
     public let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter drug name"
-        textField.textColor = .systemGray3
+        textField.textColor = .systemGray
         textField.textAlignment = .right
         textField.isUserInteractionEnabled = true
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
+        // Настройте шрифт для текста плейсхолдера
+        let placeholderFont = UIFont.SFUITextRegular(ofSize: 17)
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.gray, // Цвет текста плейсхолдера
+            .font: placeholderFont as Any,
+        ]
+        textField.attributedPlaceholder = NSAttributedString(string: "Enter drug name", attributes: placeholderAttributes)
+        
         return textField
     }()
     //MARK: Lifecycle
@@ -71,7 +78,7 @@ extension DrugNameCustomTableCell {
         return true
     }
     // Keyboard
-    @objc private func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         // Обработка изменений в текстовом поле
         if let text = textField.text {
             print("Text changed: \(text)")

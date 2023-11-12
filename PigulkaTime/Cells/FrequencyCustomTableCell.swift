@@ -20,12 +20,12 @@ final class FrequencyCustomTableCell: UITableViewCell {
         return titleLabel
     }()
     private let frequencyLabel: UILabel = {
-        let dosageLabel = UILabel()
-        dosageLabel.text = "Daily"
-        dosageLabel.textColor = .systemGray3
-        dosageLabel.textAlignment = .right
-        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
-        return dosageLabel
+        let frequencyLabel = UILabel()
+        frequencyLabel.text = "Daily"
+        frequencyLabel.textColor = .systemGray
+        frequencyLabel.textAlignment = .right
+        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        return frequencyLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

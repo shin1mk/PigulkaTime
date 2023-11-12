@@ -12,7 +12,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "title"
+        titleLabel.text = ""
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextMedium(ofSize: 25)
@@ -20,21 +20,21 @@ final class MainViewCustomTableCell: UITableViewCell {
     }()
     private let dosageLabel: UILabel = {
         let dosageLabel = UILabel()
-        dosageLabel.text = "dosage"
+        dosageLabel.text = ""
         dosageLabel.textColor = .systemGray
         dosageLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
-        typeLabel.text = "type"
+        typeLabel.text = ""
         typeLabel.textColor = .systemGray
         typeLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return typeLabel
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
-        frequencyLabel.text = "daily"
+        frequencyLabel.text = ""
         frequencyLabel.textColor = .systemGray
         frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return frequencyLabel
@@ -43,7 +43,6 @@ final class MainViewCustomTableCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
-        setupTarget()
     }
     required init?(coder aDecoder: NSCoder) {
         return nil
@@ -78,10 +77,6 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(typeLabel.snp.top)
             make.bottom.equalToSuperview().offset(-10)
         }
-    }
-    // target
-    private func setupTarget() {
-        
     }
     // общий метод для установки текста в Labels
     func setTitleLabelText(_ text: String) {

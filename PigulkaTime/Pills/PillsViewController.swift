@@ -64,7 +64,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private let saveButton: UIButton = {
         let saveButton = UIButton()
         saveButton.setTitle("Save", for: .normal)
-        saveButton.titleLabel?.font = UIFont.SFUITextHeavy(ofSize: 20)
+        saveButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
         saveButton.setTitleColor(.white, for: .normal)
         return saveButton
     }()
@@ -140,7 +140,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Закрываем текущий контроллер
         dismiss(animated: true, completion: nil)
     }
-    
 } //end
 //MARK: tap to close Keyboard/picker view
 extension PillsViewController: UIGestureRecognizerDelegate {
@@ -201,7 +200,6 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         // for cell DrugNameCustomCell
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        // Check if the cell is of type DrugNameCustomTableCell before adding gesture
         if let drugNameCell = cell as? DrugNameCustomTableCell, indexPath.row == 0 {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
             drugNameCell.addGestureRecognizer(tapGesture)
@@ -209,7 +207,7 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
+    // tap cell == 0
     @objc private func cellTapped(_ gesture: UITapGestureRecognizer) {
         guard let tappedCell = gesture.view as? DrugNameCustomTableCell else { return }
         editingCell = tappedCell
@@ -482,5 +480,4 @@ extension PillsViewController {
             return nil
         }
     }
-    
 }

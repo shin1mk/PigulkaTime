@@ -22,7 +22,7 @@ final class TypeCustomTableCell: UITableViewCell {
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
         typeLabel.text = "Choose type"
-        typeLabel.textColor = .systemGray3
+        typeLabel.textColor = .systemGray
         typeLabel.textAlignment = .right
         typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return typeLabel
