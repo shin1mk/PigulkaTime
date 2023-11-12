@@ -10,7 +10,6 @@ import SnapKit
 
 final class TypeCustomTableCell: UITableViewCell, UITextFieldDelegate {
     weak var delegate: TypeCustomTableCellDelegate?
-
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -33,7 +32,6 @@ final class TypeCustomTableCell: UITableViewCell, UITextFieldDelegate {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
         setupTarget()
-        setupDelegate()
     }
     required init?(coder aDecoder: NSCoder) {
         return nil
@@ -58,17 +56,13 @@ final class TypeCustomTableCell: UITableViewCell, UITextFieldDelegate {
     private func setupTarget() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         addGestureRecognizer(tapGesture)
-        
     }
+    // cell action
     @objc private func cellTapped() {
         delegate?.didSelectType(cell: self)
     }
-    // delegate
-    private func setupDelegate() {
-//        typeLabel.delegate = self
-    }
+    // set label
     func setLabelText(_ text: String) {
-         typeLabel.text = text
-     }
+        typeLabel.text = text
+    }
 } //end
-//MARK:

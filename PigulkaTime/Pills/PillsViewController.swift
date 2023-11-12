@@ -19,11 +19,9 @@ final class PillsViewController: UIViewController {
     weak var delegate: PillsViewControllerDelegate?
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
     private var pillsArray: [Pill] = [] // массив
-    
+    // for type picker view
     private let types = ["Pills", "Injections", "Suppositories", "Tablets", "Capsules"]
     private var selectedType: String?
-
-    
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
     private lazy var tableView: UITableView = {
@@ -59,7 +57,6 @@ final class PillsViewController: UIViewController {
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black
-        
         // titleLabel
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
@@ -107,9 +104,8 @@ final class PillsViewController: UIViewController {
             // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
             return
         }
-        
-        // Создаем новый объект Pill на основе введенных данных в текстовое поле
-        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: "10mg", type: "Type A", isEditable: true)
+        // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
+        let newPill = Pill(name: editingCell.textField.text ?? "", dosage: "10mg", type: selectedType ?? "Default Type", isEditable: true)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
@@ -119,36 +115,6 @@ final class PillsViewController: UIViewController {
     }
 } //end
 //MARK: TableView
-//extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
-//    // высота
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 45
-//    }
-//    // кол-во строк
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 5
-//    }
-//    //содержимое ячечки
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "DrugNameCustomCell", for: indexPath) as! DrugNameCustomTableCell
-//        // если 0 ячейка, то нажимаем тап
-//        if indexPath.row == 0 {
-//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
-//            cell.addGestureRecognizer(tapGesture)
-//        }
-//        return cell
-//    }
-//    // нажатая ячейка
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("Custom cell at index: \(indexPath.row)")
-//    }
-//    // 0 ячейка нажата вызвали ее редактирование
-//    @objc private func cellTapped(_ gesture: UITapGestureRecognizer) {
-//        guard let tappedCell = gesture.view as? DrugNameCustomTableCell else { return }
-//        editingCell = tappedCell
-//        tappedCell.textField.becomeFirstResponder()
-//    }
-//}
 extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
@@ -182,9 +148,8 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             cellIdentifier = "TypeCustomCell"
         }
-        
+        // for cell DrugNameCustomCell
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
         // Check if the cell is of type DrugNameCustomTableCell before adding gesture
         if let drugNameCell = cell as? DrugNameCustomTableCell, indexPath.row == 0 {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
@@ -200,7 +165,7 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
         tappedCell.textField.becomeFirstResponder()
     }
 }
-
+//MARK: Picker view type
 extension PillsViewController: TypeCustomTableCellDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     func didSelectType(cell: TypeCustomTableCell) {
         // Создайте UIViewController
@@ -239,11 +204,9 @@ extension PillsViewController: TypeCustomTableCellDelegate, UIPickerViewDelegate
             print("No type selected.")
             return
         }
-
         // Выведите в консоль выбранный тип
         print("Selected Type: \(selectedType)")
-        // Установите выбранный тип в typeLabel
-        // Установите выбранный тип в typeLabel в соответствующей ячейке
+        // выбранный тип в typeLabel
            if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
                typeCell.setLabelText("\(selectedType)")
            }
@@ -267,6 +230,4 @@ extension PillsViewController: TypeCustomTableCellDelegate, UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return types[row]
     }
-   
 }
-

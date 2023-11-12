@@ -125,6 +125,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         // установим title в ячейку
         let pill = pillsArray[indexPath.row]
         cell.setTitleLabelText(pill.name!)
+        cell.setTypeLabelText(pill.type)
+// cюда добавим то что надо отобразить на мейн контроллере
         return cell
     }
     // нажатая ячейка
