@@ -21,7 +21,7 @@ final class DaysCustomTableCell: UITableViewCell {
     }()
     private let daysLabel: UILabel = {
         let dosageLabel = UILabel()
-        dosageLabel.text = "days"
+        dosageLabel.text = "Days"
         dosageLabel.textColor = .systemGray3
         dosageLabel.textAlignment = .right
         dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
