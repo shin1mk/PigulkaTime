@@ -32,14 +32,14 @@ final class MainViewController: UIViewController {
         titleLabel.textColor = .white
         return titleLabel
     }()
-    private let emptyLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.text = "No pills available"
-        titleLabel.textColor = .white
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.SFUITextRegular(ofSize: 30)
-        return titleLabel
-    }()
+//    private let emptyLabel: UILabel = {
+//        let titleLabel = UILabel()
+//        titleLabel.text = "No pills available"
+//        titleLabel.textColor = .white
+//        titleLabel.textAlignment = .center
+//        titleLabel.font = UIFont.SFUITextRegular(ofSize: 30)
+//        return titleLabel
+//    }()
     private let addButton: UIButton = {
         let button = UIButton()
         // plus.fill icon attachment
@@ -83,8 +83,8 @@ final class MainViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
-            make.leading.equalToSuperview().offset(15)
-            make.trailing.equalToSuperview().offset(-15)
+            make.leading.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-5)
             make.bottom.equalTo(bottomMarginGuide.snp.top)
         }
         // addButton
@@ -119,7 +119,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // высота
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 120
     }
     // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,6 +139,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTypeLabelText(pill.type)
         cell.setDosageLabelText(pill.dosage)
         cell.setFrequencyLabelText(pill.frequency)
+        cell.setDaysLabelText(pill.days)
+        cell.setTimesLabelText(pill.times)
         return cell
     }
     // нажатая ячейка

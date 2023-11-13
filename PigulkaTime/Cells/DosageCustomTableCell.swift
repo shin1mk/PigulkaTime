@@ -21,7 +21,7 @@ final class DosageCustomTableCell: UITableViewCell {
     }()
     private let dosageLabel: UILabel = {
         let dosageLabel = UILabel()
-        dosageLabel.text = "Choose dosage"
+        dosageLabel.text = "Choose \u{2192}"
         dosageLabel.textColor = .systemGray
         dosageLabel.textAlignment = .right
         dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)

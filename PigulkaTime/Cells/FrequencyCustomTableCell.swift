@@ -21,7 +21,7 @@ final class FrequencyCustomTableCell: UITableViewCell {
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
-        frequencyLabel.text = "Daily"
+        frequencyLabel.text = "Choose \u{2192}"
         frequencyLabel.textColor = .systemGray
         frequencyLabel.textAlignment = .right
         frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)

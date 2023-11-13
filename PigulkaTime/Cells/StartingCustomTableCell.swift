@@ -1,31 +1,31 @@
 //
-//  TypeCustomTableCell.swift
+//  StartingCustomTableCell.swift
 //  PigulkaTime
 //
-//  Created by SHIN MIKHAIL on 11.11.2023.
+//  Created by SHIN MIKHAIL on 13.11.2023.
 //
 
 import UIKit
 import SnapKit
 
-final class TypeCustomTableCell: UITableViewCell {
-    weak var delegate: TypeCustomTableCellDelegate?
+final class StartingCustomTableCell: UITableViewCell {
+    weak var delegate: StartingCustomTableCellDelegate?
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Type"
+        titleLabel.text = "Starting at"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return titleLabel
     }()
-    private let typeLabel: UILabel = {
-        let typeLabel = UILabel()
-        typeLabel.text = "Choose \u{2192}"
-        typeLabel.textColor = .systemGray
-        typeLabel.textAlignment = .right
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
-        return typeLabel
+    private let startingLabel: UILabel = {
+        let startingLabel = UILabel()
+        startingLabel.text = "Choose \u{2192}"
+        startingLabel.textColor = .systemGray
+        startingLabel.textAlignment = .right
+        startingLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        return startingLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,8 +46,8 @@ final class TypeCustomTableCell: UITableViewCell {
             make.leading.equalToSuperview()
         }
         // textField
-        addSubview(typeLabel)
-        typeLabel.snp.makeConstraints { make in
+        addSubview(startingLabel)
+        startingLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -59,10 +59,10 @@ final class TypeCustomTableCell: UITableViewCell {
     }
     // cell action
     @objc private func cellTapped() {
-        delegate?.didSelectType(cell: self)
+        delegate?.didSelectStarting(cell: self)
     }
     // set label
-    func setLabelText(_ text: String) {
-        typeLabel.text = text
+    func setStartingText(_ text: String) {
+        startingLabel.text = text
     }
 } //end

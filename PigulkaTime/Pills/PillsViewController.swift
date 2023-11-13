@@ -26,22 +26,23 @@ protocol DaysCustomTableCellDelegate: AnyObject {
 protocol TimesCustomTableCellDelegate: AnyObject {
     func didSelectTimes(cell: TimesCustomTableCell)
 }
+protocol StartingCustomTableCellDelegate: AnyObject {
+    func didSelectStarting(cell: StartingCustomTableCell)
+}
 
-
-
-final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, StartingCustomTableCellDelegate {
     
     weak var delegate: PillsViewControllerDelegate?
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
     private var pillsArray: [Pill] = [] // массив
     // for type picker view
-    private let types = ["None", "Pills", "Injections", "Suppositories", "Tablets", "Capsules", "Syrups", "Drops", "Ointments", "Sprays", "Lozenges", "Inhalers"]
+    private let types = ["", "Pills", "Injections", "Suppositories", "Tablets", "Capsules", "Syrups", "Drops", "Ointments", "Sprays", "Lozenges", "Inhalers"]
     private var selectedType: String?
     // for dosage picker view
-    private let dosages = ["None", "0.125", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
+    private let dosages = ["", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
     private var selectedDosage: String?
     // for frequency picker view
-    private let frequency = ["None", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every Day", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months", "Every 6 months"]
+    private let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every Day", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months"]
     private var selectedFrequency: String?
     // for days picker view
     private let days: [String] = (0...100).map { "\($0) day\($0 == 1 ? "" : "s")" }
@@ -49,6 +50,18 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // for times per day picker view
     private let times: [String] = (0...10).map { "\($0)" }
     private var selectedTimes: String?
+    // for starting picker view
+    private let starting: [String] = {
+        var times = [String]()
+        for hour in 0...23 {
+            for minute in stride(from: 0, through: 55, by: 5) {
+                times.append(String(format: "%02d:%02d", hour, minute))
+            }
+        }
+        return times
+    }()
+
+    private var selectedStarting: String?
     
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
@@ -61,6 +74,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
+        tableView.register(StartingCustomTableCell.self, forCellReuseIdentifier: "StartingCustomCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -132,27 +146,64 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
+//    @objc private func saveButtonTapped() {
+//        // Проверяем, что у нас есть ссылка на редактируемую ячейку
+//        guard let editingCell = editingCell else {
+//            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
+//            return
+//        }
+//        // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
+//        let newPill = Pill(name: editingCell.textField.text ?? "",
+//                           dosage: selectedDosage ?? "",
+//                           type: selectedType ?? "",
+//                           frequency: selectedFrequency ?? "",
+//                           days: selectedDays! + " left",
+//                           times: selectedTimes! + " times",
+//                           isEditable: true)
+//        // Добавляем новый объект Pill в массив pillsArray
+//        pillsArray.append(newPill)
+//        // Вызываем делегата для передачи обновленного массива
+//        delegate?.pillsViewController(self, didSavePills: pillsArray)
+//        // Закрываем текущий контроллер
+//        dismiss(animated: true, completion: nil)
+//    }
     @objc private func saveButtonTapped() {
         // Проверяем, что у нас есть ссылка на редактируемую ячейку
         guard let editingCell = editingCell else {
             // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
             return
         }
+
+        // Проверяем, что все обязательные поля заполнены
+        guard let name = editingCell.textField.text, !name.isEmpty,
+              let selectedDosage = selectedDosage, !selectedDosage.isEmpty,
+              let selectedType = selectedType, !selectedType.isEmpty,
+              let selectedFrequency = selectedFrequency, !selectedFrequency.isEmpty,
+              let selectedDays = selectedDays, !selectedDays.isEmpty,
+              let selectedTimes = selectedTimes, !selectedTimes.isEmpty else {
+            // Если хотя бы одно из обязательных полей пусто, выходим из метода
+            return
+        }
+
         // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
-        let newPill = Pill(name: editingCell.textField.text ?? "",
-                           dosage: selectedDosage ?? "",
-                           type: selectedType ?? "",
-                           frequency: selectedFrequency ?? "",
-                           days: selectedDays ?? "",
-                           times: selectedTimes ?? "",
+        let newPill = Pill(name: name,
+                           dosage: selectedDosage,
+                           type: selectedType,
+                           frequency: selectedFrequency,
+                           days: selectedDays + " left",
+                           times: selectedTimes + " times",
                            isEditable: true)
+
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
+
         // Вызываем делегата для передачи обновленного массива
         delegate?.pillsViewController(self, didSavePills: pillsArray)
+
         // Закрываем текущий контроллер
         dismiss(animated: true, completion: nil)
     }
+
 } //end
 //MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {
@@ -213,6 +264,11 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TimesCustomTableCell
             cell.delegate = self
             return cell
+        case 6:
+            cellIdentifier = "StartingCustomCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! StartingCustomTableCell
+            cell.delegate = self
+            return cell
         default:
             cellIdentifier = "TypeCustomCell"
         }
@@ -243,8 +299,11 @@ extension PillsViewController: TypeCustomTableCellDelegate {
         pickerView.dataSource = self
         pickerView.tag = 1 // Для Type picker view
         pickerView.backgroundColor = .black
+        // Добавьте эту строку, чтобы выбрать первое значение
+        pickerView.selectRow(0, inComponent: 0, animated: false)
+
         // Установите размеры UIPickerView
-        let pickerViewHeight: CGFloat = 250
+        let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
         // Добавьте UIPickerView в UIViewController
@@ -257,7 +316,7 @@ extension PillsViewController: TypeCustomTableCellDelegate {
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(okButtonTapped(_:)), for: .touchUpInside)
         
-        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
         okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
         // Добавьте кнопку в UIViewController
         pickerViewController.view.addSubview(okButton)
@@ -297,7 +356,7 @@ extension PillsViewController: DosageCustomTableCellDelegate {
         pickerView.tag = 2 // Для Type picker view
         pickerView.backgroundColor = .black
         // Установите размеры UIPickerView
-        let pickerViewHeight: CGFloat = 250
+        let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
         // Добавьте UIPickerView в UIViewController
@@ -310,7 +369,7 @@ extension PillsViewController: DosageCustomTableCellDelegate {
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(dosageOkButtonTapped(_:)), for: .touchUpInside)
         
-        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
         okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
         // Добавьте кнопку в UIViewController
         pickerViewController.view.addSubview(okButton)
@@ -350,7 +409,7 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
         pickerView.tag = 3 // Для Type picker view
         pickerView.backgroundColor = .black
         // Установите размеры UIPickerView
-        let pickerViewHeight: CGFloat = 250
+        let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
         // Добавьте UIPickerView в UIViewController
@@ -363,7 +422,7 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(frequencyOkButtonTapped(_:)), for: .touchUpInside)
         
-        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
         okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
         // Добавьте кнопку в UIViewController
         pickerViewController.view.addSubview(okButton)
@@ -403,7 +462,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         pickerView.tag = 4 // Для Type picker view
         pickerView.backgroundColor = .black
         // Установите размеры UIPickerView
-        let pickerViewHeight: CGFloat = 250
+        let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
         // Добавьте UIPickerView в UIViewController
@@ -416,7 +475,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(daysOkButtonTapped(_:)), for: .touchUpInside)
         
-        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
         okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
         // Добавьте кнопку в UIViewController
         pickerViewController.view.addSubview(okButton)
@@ -456,7 +515,7 @@ extension PillsViewController: TimesCustomTableCellDelegate {
         pickerView.tag = 5
         pickerView.backgroundColor = .black
         // Установите размеры UIPickerView
-        let pickerViewHeight: CGFloat = 250
+        let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
         // Добавьте UIPickerView в UIViewController
@@ -469,7 +528,7 @@ extension PillsViewController: TimesCustomTableCellDelegate {
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(timesOkButtonTapped(_:)), for: .touchUpInside)
         
-        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 250
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
         okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
         // Добавьте кнопку в UIViewController
         pickerViewController.view.addSubview(okButton)
@@ -497,7 +556,62 @@ extension PillsViewController: TimesCustomTableCellDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+//MARK: starting picker view
+extension PillsViewController {
+    func didSelectStarting(cell: StartingCustomTableCell) {
+        // Создайте UIViewController
+        let pickerViewController = UIViewController()
+        // Создайте UIPickerView
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.tag = 6
+        pickerView.backgroundColor = .black
+        pickerView.reloadComponent(0) // 0 — это индекс компонента часов
+        pickerView.reloadComponent(1) // 1 — это индекс компонента минут
 
+        // Установите размеры UIPickerView
+        let pickerViewHeight: CGFloat = 340
+        let bottomMargin: CGFloat = 30
+        pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
+        // Добавьте UIPickerView в UIViewController
+        pickerViewController.view.addSubview(pickerView)
+        // Создайте кнопку "OK" для закрытия пикера
+        let okButton = UIButton(type: .system)
+        okButton.setTitle("OK", for: .normal)
+        okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .systemGray6
+        okButton.addTarget(self, action: #selector(startingOkButtonTapped(_:)), for: .touchUpInside)
+        
+        let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
+        okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
+        // Добавьте кнопку в UIViewController
+        pickerViewController.view.addSubview(okButton)
+        // Отобразите UIViewController модально
+        pickerViewController.modalPresentationStyle = .overCurrentContext
+        present(pickerViewController, animated: true, completion: nil)
+    }
+    
+    @objc private func startingOkButtonTapped(_ sender: UIButton) {
+        // Получите выбранный тип из свойства selectedType
+        guard let selectedStarting = selectedStarting else {
+            print("No times selected.")
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        // Выведите в консоль выбранный тип
+        print("Selected starting at: \(selectedStarting)")
+        // выбранный тип в typeLabel
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartingCustomTableCell {
+            typeCell.setStartingText("\(selectedStarting)")
+        }
+        // Снимите фокус с текстового поля
+        editingCell?.textField.resignFirstResponder()
+        // Закройте UIViewController при нажатии кнопки "OK"
+        dismiss(animated: true, completion: nil)
+    }
+}
 //MARK: Settings Picker view
 extension PillsViewController {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -517,13 +631,41 @@ extension PillsViewController {
         case 5:
             selectedTimes = times[row]
             print("Selected Days: \(selectedTimes ?? "No times selected")")
+        case 6:
+            if component == 0 {
+                   // Выбран час
+                   let selectedHour = row
+                   let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
+                   selectedStarting = String(format: "%02d:%02d", selectedHour, selectedMinute)
+               } else {
+                   // Выбраны минуты
+                   let selectedHour = pickerView.selectedRow(inComponent: 0)
+                   let selectedMinute = row * 5
+                   selectedStarting = String(format: "%02d:%02d", selectedHour, selectedMinute)
+               }
+               print("Selected Starting at: \(selectedStarting ?? "No starting at selected")")
         default:
             break
         }
     }
     // Методы для UIPickerViewDelegate и UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        switch pickerView.tag {
+        case 1:
+            return 1
+        case 2:
+            return 1
+        case 3:
+            return 1
+        case 4:
+            return 1
+        case 5:
+            return 1
+        case 6:
+            return 2
+        default:
+            return 1
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -538,6 +680,12 @@ extension PillsViewController {
             return days.count
         case 5:
             return times.count
+        case 6:
+            if component == 0 {
+                return 24 // Часы от 0 до 23
+            } else {
+                return 12 // Минуты от 0 до 55 с шагом 5
+            }
         default:
             return 0
         }
@@ -555,6 +703,12 @@ extension PillsViewController {
             return days[row]
         case 5:
             return times[row]
+        case 6:
+            if component == 0 {
+                return String(format: "%02d", row) // Форматирование часов
+            } else {
+                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
+            }
         default:
             return nil
         }

@@ -21,7 +21,7 @@ final class TimesCustomTableCell: UITableViewCell {
     }()
     private let timesLabel: UILabel = {
         let timesLabel = UILabel()
-        timesLabel.text = "1"
+        timesLabel.text = "Choose \u{2192}"
         timesLabel.textColor = .systemGray
         timesLabel.textAlignment = .right
         timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)

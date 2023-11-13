@@ -39,6 +39,20 @@ final class MainViewCustomTableCell: UITableViewCell {
         frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return frequencyLabel
     }()
+    private let daysLabel: UILabel = {
+        let daysLabel = UILabel()
+        daysLabel.text = ""
+        daysLabel.textColor = .systemGray
+        daysLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        return daysLabel
+    }()
+    private let timesLabel: UILabel = {
+        let timesLabel = UILabel()
+        timesLabel.text = ""
+        timesLabel.textColor = .systemGray
+        timesLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        return timesLabel
+    }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,32 +64,61 @@ final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Methods
     private func setupConstraints() {
         backgroundColor = .clear
+        layer.borderWidth = 0.5
+        layer.cornerRadius = 5
+        layer.backgroundColor = UIColor.systemGray6.cgColor
+        layer.borderColor = UIColor.systemGray5.cgColor
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(5)
+            make.leading.equalToSuperview().offset(10)
         }
-        // typeLabel
+        // dosageLabel
         addSubview(dosageLabel)
         dosageLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(-10)
-            make.leading.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.leading.equalToSuperview().offset(10)
+            make.height.equalTo(20)
+            
+            //            make.bottom.equalToSuperview().offset(-10)
         }
-        // date Label
+        // typeLabel
         addSubview(typeLabel)
         typeLabel.snp.makeConstraints { make in
-            make.leading.equalTo(dosageLabel.snp.trailing).offset(10)
             make.top.equalTo(dosageLabel.snp.top)
-            make.bottom.equalToSuperview().offset(-10)
+            make.leading.equalTo(dosageLabel.snp.trailing).offset(5)
+            make.height.equalTo(20)
+            
+            //            make.bottom.equalToSuperview().offset(-10)
         }
-        // dosage Label
+        // frequencyLabel
         addSubview(frequencyLabel)
         frequencyLabel.snp.makeConstraints { make in
-            make.leading.equalTo(typeLabel.snp.trailing).offset(10)
-            make.top.equalTo(typeLabel.snp.top)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalTo(typeLabel.snp.bottom).offset(5)
+            make.leading.equalToSuperview().offset(10)
+            make.height.equalTo(20)
+            
+            //            make.bottom.equalToSuperview().offset(-10)
+        }
+        
+        // times Label
+        addSubview(timesLabel)
+        timesLabel.snp.makeConstraints { make in
+            make.top.equalTo(frequencyLabel.snp.top)
+            make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
+            make.height.equalTo(20)
+            
+            //            make.bottom.equalToSuperview().offset(-10)
+        }
+        // days Label
+        addSubview(daysLabel)
+        daysLabel.snp.makeConstraints { make in
+            make.top.equalTo(frequencyLabel.snp.bottom).offset(5)
+            make.leading.equalToSuperview().offset(10)
+            make.height.equalTo(20)
+            
+            //            make.bottom.equalToSuperview().offset(-10)
         }
     }
     // общий метод для установки текста в Labels
@@ -91,4 +134,11 @@ final class MainViewCustomTableCell: UITableViewCell {
     func setFrequencyLabelText(_ text: String) {
         frequencyLabel.text = text
     }
+    func setDaysLabelText(_ text: String) {
+        daysLabel.text = text
+    }
+    func setTimesLabelText(_ text: String) {
+        timesLabel.text = text
+    }
+    
 } //end

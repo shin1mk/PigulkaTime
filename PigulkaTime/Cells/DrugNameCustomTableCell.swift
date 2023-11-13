@@ -31,7 +31,7 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
             .foregroundColor: UIColor.gray, // Цвет текста плейсхолдера
             .font: placeholderFont as Any,
         ]
-        textField.attributedPlaceholder = NSAttributedString(string: "Enter drug name", attributes: placeholderAttributes)
+        textField.attributedPlaceholder = NSAttributedString(string: "Enter name", attributes: placeholderAttributes)
         
         return textField
     }()
