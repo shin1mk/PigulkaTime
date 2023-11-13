@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import UserNotifications
+
 // протокол для передачи информации на MainViewController
 protocol PillsViewControllerDelegate: AnyObject {
     func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill])
@@ -26,13 +28,16 @@ protocol DaysCustomTableCellDelegate: AnyObject {
 protocol TimesCustomTableCellDelegate: AnyObject {
     func didSelectTimes(cell: TimesCustomTableCell)
 }
-protocol StartingCustomTableCellDelegate: AnyObject {
-    func didSelectStarting(cell: StartingCustomTableCell)
+protocol StartCustomTableCellDelegate: AnyObject {
+    func didSelectStart(cell: StartCustomTableCell)
 }
 
-final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, StartingCustomTableCellDelegate {
+final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     weak var delegate: PillsViewControllerDelegate?
+    // timer
+    var timer: Timer?
+
     private var editingCell: DrugNameCustomTableCell? // изменения ячейки
     private var pillsArray: [Pill] = [] // массив
     // for type picker view
@@ -51,7 +56,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private let times: [String] = (0...10).map { "\($0)" }
     private var selectedTimes: String?
     // for starting picker view
-    private let starting: [String] = {
+    private let start: [String] = {
         var times = [String]()
         for hour in 0...23 {
             for minute in stride(from: 0, through: 55, by: 5) {
@@ -61,7 +66,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return times
     }()
 
-    private var selectedStarting: String?
+    private var selectedStart: String?
     
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
@@ -74,7 +79,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
-        tableView.register(StartingCustomTableCell.self, forCellReuseIdentifier: "StartingCustomCell")
+        tableView.register(StartCustomTableCell.self, forCellReuseIdentifier: "StartCustomCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -146,34 +151,12 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
-//    @objc private func saveButtonTapped() {
-//        // Проверяем, что у нас есть ссылка на редактируемую ячейку
-//        guard let editingCell = editingCell else {
-//            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
-//            return
-//        }
-//        // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
-//        let newPill = Pill(name: editingCell.textField.text ?? "",
-//                           dosage: selectedDosage ?? "",
-//                           type: selectedType ?? "",
-//                           frequency: selectedFrequency ?? "",
-//                           days: selectedDays! + " left",
-//                           times: selectedTimes! + " times",
-//                           isEditable: true)
-//        // Добавляем новый объект Pill в массив pillsArray
-//        pillsArray.append(newPill)
-//        // Вызываем делегата для передачи обновленного массива
-//        delegate?.pillsViewController(self, didSavePills: pillsArray)
-//        // Закрываем текущий контроллер
-//        dismiss(animated: true, completion: nil)
-//    }
     @objc private func saveButtonTapped() {
         // Проверяем, что у нас есть ссылка на редактируемую ячейку
         guard let editingCell = editingCell else {
             // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
             return
         }
-
         // Проверяем, что все обязательные поля заполнены
         guard let name = editingCell.textField.text, !name.isEmpty,
               let selectedDosage = selectedDosage, !selectedDosage.isEmpty,
@@ -184,7 +167,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             // Если хотя бы одно из обязательных полей пусто, выходим из метода
             return
         }
-
         // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
         let newPill = Pill(name: name,
                            dosage: selectedDosage,
@@ -196,14 +178,11 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
 
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
-
         // Вызываем делегата для передачи обновленного массива
         delegate?.pillsViewController(self, didSavePills: pillsArray)
-
         // Закрываем текущий контроллер
         dismiss(animated: true, completion: nil)
     }
-
 } //end
 //MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {
@@ -231,7 +210,7 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10 // Общее количество ячеек
+        return 7 // Общее количество ячеек
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -265,12 +244,12 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         case 6:
-            cellIdentifier = "StartingCustomCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! StartingCustomTableCell
+            cellIdentifier = "StartCustomCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! StartCustomTableCell
             cell.delegate = self
             return cell
         default:
-            cellIdentifier = "TypeCustomCell"
+            return UITableViewCell()
         }
         // for cell DrugNameCustomCell
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
@@ -557,8 +536,8 @@ extension PillsViewController: TimesCustomTableCellDelegate {
     }
 }
 //MARK: starting picker view
-extension PillsViewController {
-    func didSelectStarting(cell: StartingCustomTableCell) {
+extension PillsViewController: StartCustomTableCellDelegate {
+    func didSelectStart(cell: StartCustomTableCell) {
         // Создайте UIViewController
         let pickerViewController = UIViewController()
         // Создайте UIPickerView
@@ -595,22 +574,96 @@ extension PillsViewController {
     
     @objc private func startingOkButtonTapped(_ sender: UIButton) {
         // Получите выбранный тип из свойства selectedType
-        guard let selectedStarting = selectedStarting else {
+        guard let selectedStart = selectedStart else {
             print("No times selected.")
             dismiss(animated: true, completion: nil)
             return
         }
         // Выведите в консоль выбранный тип
-        print("Selected starting at: \(selectedStarting)")
+        print("Selected start at: \(selectedStart)")
         // выбранный тип в typeLabel
-        if let typeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartingCustomTableCell {
-            typeCell.setStartingText("\(selectedStarting)")
+        if let typeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartCustomTableCell {
+            typeCell.setStartText("\(selectedStart)")
         }
         // Снимите фокус с текстового поля
         editingCell?.textField.resignFirstResponder()
         // Закройте UIViewController при нажатии кнопки "OK"
         dismiss(animated: true, completion: nil)
     }
+//    @objc private func startingOkButtonTapped(_ sender: UIButton) {
+//        // Получите выбранное время из свойства selectedStarting
+//        guard let selectedStarting = selectedStarting else {
+//            print("No time selected.")
+//            dismiss(animated: true, completion: nil)
+//            return
+//        }
+//        
+//        // Выведите в консоль выбранное время
+//        print("Selected starting at: \(selectedStarting)")
+//
+//        // Установите календарь и текущую дату
+//        let calendar = Calendar.current
+//        let currentDate = Date()
+//        
+//        // Разделите строку времени
+//        let timeComponents = selectedStarting.components(separatedBy: ":")
+//        guard let hour = Int(timeComponents[0]), let minute = Int(timeComponents[1]) else {
+//            print("Invalid time format.")
+//            dismiss(animated: true, completion: nil)
+//            return
+//        }
+//        
+//        // Создайте новую дату с текущими годом, месяцем и днем, а также выбранными часами и минутами
+//        var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+//        dateComponents.hour = hour
+//        dateComponents.minute = minute
+//        dateComponents.second = 0 // Установите секунды на 0, если необходимо
+//        let selectedDate = calendar.date(from: dateComponents)
+//        
+//        // Проверьте, не выбрано ли время в прошлом
+//        if selectedDate ?? Date() < currentDate {
+//            print("Selected time is in the past.")
+//            dismiss(animated: true, completion: nil)
+//            return
+//        }
+//        
+//        // Запланируйте уведомление
+//        scheduleNotification(at: selectedDate ?? Date())
+//
+//        // выбранное время в typeLabel
+//        if let typeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartingCustomTableCell {
+//            typeCell.setStartingText("\(selectedStarting)")
+//        }
+//        
+//        // Снимите фокус с текстового поля
+//        editingCell?.textField.resignFirstResponder()
+//        
+//        // Закройте UIViewController при нажатии кнопки "OK"
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    // Метод для запланированного уведомления
+//    private func scheduleNotification(at date: Date) {
+//        let content = UNMutableNotificationContent()
+//        content.title = "PigulkaTime"
+//        
+//        let name = editingCell?.textField.text ?? "Пора принять лекарство"
+//        content.body = "Time for \(name)"
+//        
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.hour, .minute], from: date)
+//        
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+//        let request = UNNotificationRequest(identifier: "medicationReminder", content: content, trigger: trigger)
+//        
+//        UNUserNotificationCenter.current().add(request) { error in
+//            if let error = error {
+//                print("Error scheduling notification: \(error)")
+//            } else {
+//                print("Notification scheduled successfully for time: \(components.hour ?? 0):\(components.minute ?? 0)")
+//            }
+//        }
+//    }
 }
 //MARK: Settings Picker view
 extension PillsViewController {
@@ -636,14 +689,14 @@ extension PillsViewController {
                    // Выбран час
                    let selectedHour = row
                    let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
-                   selectedStarting = String(format: "%02d:%02d", selectedHour, selectedMinute)
+                   selectedStart = String(format: "%02d:%02d", selectedHour, selectedMinute)
                } else {
                    // Выбраны минуты
                    let selectedHour = pickerView.selectedRow(inComponent: 0)
                    let selectedMinute = row * 5
-                   selectedStarting = String(format: "%02d:%02d", selectedHour, selectedMinute)
+                   selectedStart = String(format: "%02d:%02d", selectedHour, selectedMinute)
                }
-               print("Selected Starting at: \(selectedStarting ?? "No starting at selected")")
+               print("Selected Starting at: \(selectedStart ?? "No starting at selected")")
         default:
             break
         }

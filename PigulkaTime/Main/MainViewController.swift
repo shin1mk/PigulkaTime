@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import UserNotifications
 
 final class MainViewController: UIViewController {
     public var pillsArray: [Pill] = [] // массив таблеток

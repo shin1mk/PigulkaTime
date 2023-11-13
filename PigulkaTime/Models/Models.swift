@@ -15,4 +15,5 @@ struct Pill {
     var days: String
     var times: String
     var isEditable: Bool
+//    var startDate: Date? // Новое свойство для хранения времени начала употребления
 }

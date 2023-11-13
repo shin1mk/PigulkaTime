@@ -64,10 +64,10 @@ final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Methods
     private func setupConstraints() {
         backgroundColor = .clear
-        layer.borderWidth = 0.5
-        layer.cornerRadius = 5
-        layer.backgroundColor = UIColor.systemGray6.cgColor
-        layer.borderColor = UIColor.systemGray5.cgColor
+//        layer.borderWidth = 0.5
+//        layer.cornerRadius = 5
+//        layer.backgroundColor = UIColor.systemGray6.cgColor
+//        layer.borderColor = UIColor.systemGray5.cgColor
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in

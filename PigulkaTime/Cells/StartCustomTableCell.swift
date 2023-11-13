@@ -1,5 +1,5 @@
 //
-//  StartingCustomTableCell.swift
+//  StartCustomTableCell.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 13.11.2023.
@@ -8,18 +8,18 @@
 import UIKit
 import SnapKit
 
-final class StartingCustomTableCell: UITableViewCell {
-    weak var delegate: StartingCustomTableCellDelegate?
+final class StartCustomTableCell: UITableViewCell {
+    weak var delegate: StartCustomTableCellDelegate?
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Starting at"
+        titleLabel.text = "First dose at"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return titleLabel
     }()
-    private let startingLabel: UILabel = {
+    private let startLabel: UILabel = {
         let startingLabel = UILabel()
         startingLabel.text = "Choose \u{2192}"
         startingLabel.textColor = .systemGray
@@ -46,8 +46,8 @@ final class StartingCustomTableCell: UITableViewCell {
             make.leading.equalToSuperview()
         }
         // textField
-        addSubview(startingLabel)
-        startingLabel.snp.makeConstraints { make in
+        addSubview(startLabel)
+        startLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -59,10 +59,10 @@ final class StartingCustomTableCell: UITableViewCell {
     }
     // cell action
     @objc private func cellTapped() {
-        delegate?.didSelectStarting(cell: self)
+        delegate?.didSelectStart(cell: self)
     }
     // set label
-    func setStartingText(_ text: String) {
-        startingLabel.text = text
+    func setStartText(_ text: String) {
+        startLabel.text = text
     }
 } //end
