@@ -142,6 +142,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setFrequencyLabelText(pill.frequency)
         cell.setDaysLabelText(pill.days)
         cell.setTimesLabelText(pill.times)
+        cell.setStartLabelText(pill.start)
         return cell
     }
     // нажатая ячейка

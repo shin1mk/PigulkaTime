@@ -53,6 +53,13 @@ final class MainViewCustomTableCell: UITableViewCell {
         timesLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return timesLabel
     }()
+    private let startLabel: UILabel = {
+        let startLabel = UILabel()
+        startLabel.text = ""
+        startLabel.textColor = .systemGray
+        startLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        return startLabel
+    }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,10 +71,10 @@ final class MainViewCustomTableCell: UITableViewCell {
     //MARK: Methods
     private func setupConstraints() {
         backgroundColor = .clear
-//        layer.borderWidth = 0.5
-//        layer.cornerRadius = 5
-//        layer.backgroundColor = UIColor.systemGray6.cgColor
-//        layer.borderColor = UIColor.systemGray5.cgColor
+        layer.borderWidth = 0.5
+        layer.cornerRadius = 5
+        layer.backgroundColor = UIColor.systemGray6.cgColor
+        layer.borderColor = UIColor.systemGray5.cgColor
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
@@ -80,8 +87,7 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
-            
-            //            make.bottom.equalToSuperview().offset(-10)
+            // make.bottom.equalToSuperview().offset(-10)
         }
         // typeLabel
         addSubview(typeLabel)
@@ -89,8 +95,7 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(dosageLabel.snp.top)
             make.leading.equalTo(dosageLabel.snp.trailing).offset(5)
             make.height.equalTo(20)
-            
-            //            make.bottom.equalToSuperview().offset(-10)
+            // make.bottom.equalToSuperview().offset(-10)
         }
         // frequencyLabel
         addSubview(frequencyLabel)
@@ -98,18 +103,15 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(typeLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
-            
-            //            make.bottom.equalToSuperview().offset(-10)
+            // make.bottom.equalToSuperview().offset(-10)
         }
-        
         // times Label
         addSubview(timesLabel)
         timesLabel.snp.makeConstraints { make in
             make.top.equalTo(frequencyLabel.snp.top)
             make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
             make.height.equalTo(20)
-            
-            //            make.bottom.equalToSuperview().offset(-10)
+            // make.bottom.equalToSuperview().offset(-10)
         }
         // days Label
         addSubview(daysLabel)
@@ -117,8 +119,14 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(frequencyLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
-            
-            //            make.bottom.equalToSuperview().offset(-10)
+            // make.bottom.equalToSuperview().offset(-10)
+        }
+        // start Label
+        addSubview(startLabel)
+        startLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(20)
         }
     }
     // общий метод для установки текста в Labels
@@ -140,5 +148,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     func setTimesLabelText(_ text: String) {
         timesLabel.text = text
     }
-    
+    func setStartLabelText(_ text: String) {
+        startLabel.text = text
+    }
 } //end
