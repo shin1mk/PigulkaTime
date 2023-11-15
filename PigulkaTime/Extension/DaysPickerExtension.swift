@@ -41,6 +41,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         present(pickerViewController, animated: true, completion: nil)
     }
     
+    // daysOkButtonTapped
     @objc private func daysOkButtonTapped(_ sender: UIButton) {
         // Получите выбранные дни
         guard let selectedDaysString = selectedDays else {
@@ -49,51 +50,94 @@ extension PillsViewController: DaysCustomTableCellDelegate {
             dismiss(animated: true, completion: nil)
             return
         }
-        
         // Очистка строки от лишних символов и преобразование в Int
         let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
         guard let selectedDays = Int(cleanedSelectedDaysString) else {
             print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
             return
         }
-        
         // Выведите в консоль выбранный тип
         print("Selected days: \(selectedDays)")
         // выбранный тип в typeLabel
         if let typeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
             typeCell.setDaysText("\(selectedDays)")
         }
-        
         // Получите выбранное время
         guard let selectedStartTime = selectedStart else {
             print("Time not selected.")
             return
         }
-        
+        // Установите выбранную частоту
+        guard let selectedFrequency = selectedFrequency else {
+            print("Frequency not selected.")
+            return
+        }
         let startDate = Date() // Используйте вашу начальную дату
         let dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: startDate) ?? Date() }
-        scheduleNotifications(forDates: dates, atTimes: [selectedStartTime])
+        scheduleNotifications(forDates: dates, atTimes: [selectedStartTime], withFrequency: selectedFrequency)
         // Снимите фокус с текстового поля
         editingCell?.textField.resignFirstResponder()
         // Закройте UIViewController при нажатии кнопки "OK"
         dismiss(animated: true, completion: nil)
     }
+
+    private func getNotificationTrigger(forFrequency frequency: String, dateComponents: DateComponents) -> UNNotificationTrigger? {
+        switch frequency {
+        case "Daily":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every Hour":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+        case "Every 2 hours":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 7200, repeats: true)
+        case "Every 3 hours":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 10800, repeats: true)
+        case "Every 4 hours":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 14400, repeats: true)
+        case "Every 6 hours":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 21600, repeats: true)
+        case "Every 8 hours":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 28800, repeats: true)
+        case "Every 12 hours":
+            return UNTimeIntervalNotificationTrigger(timeInterval: 43200, repeats: true)
+        case "Every 2 days":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 3 days":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 4 days":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 5 days":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 6 days":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Weekly":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 2 weeks":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 3 weeks":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        case "Every 4 weeks":
+            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        default:
+            return nil
+        }
+    }
     
-    private func scheduleNotifications(forDates dates: [Date], atTimes times: [String]) {
+    private func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Время принять таблетку"
-        content.body = "Не забудьте принять свои таблетки."
+        content.title = "PigulkaTime"
+        let name = editingCell?.textField.text ?? "Пора принять лекарство"
+        content.body = "Time for \(name)"
 
         for (index, date) in dates.enumerated() {
             for time in times {
                 let components = time.components(separatedBy: ":")
                 guard components.count == 2 else {
-                    print("Error: Invalid time format - \(time)")
+                    print("Ошибка: Неверный формат времени - \(time)")
                     continue
                 }
 
                 guard let hour = Int(components[0]), let minute = Int(components[1]) else {
-                    print("Error: Unable to convert time components to integers - \(components)")
+                    print("Ошибка: Не удалось преобразовать компоненты времени в целые числа - \(components)")
                     continue
                 }
 
@@ -101,27 +145,33 @@ extension PillsViewController: DaysCustomTableCellDelegate {
                 dateComponents.hour = hour
                 dateComponents.minute = minute
 
-                if let notificationDate = Calendar.current.date(from: dateComponents) {
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+                if let trigger = getNotificationTrigger(forFrequency: frequency, dateComponents: dateComponents) {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let notificationDate = Calendar.current.date(from: dateComponents)
 
-                    let request = UNNotificationRequest(identifier: "\(index)-\(time)", content: content, trigger: trigger)
+                    if let notificationDate = notificationDate {
+                        let formattedDate = dateFormatter.string(from: notificationDate)
 
-                    // Выводим информацию о дне и времени перед установкой уведомления
-                    print("Setting notification for date \(notificationDate) at time \(time)")
+                        let request = UNNotificationRequest(identifier: "\(index)-\(time)", content: content, trigger: trigger)
 
-                    UNUserNotificationCenter.current().add(request) { (error) in
-                        if let error = error {
-                            print("Ошибка при установке уведомления: \(error.localizedDescription)")
-                        } else {
-                            print("Уведомление успешно установлено")
+                        // Выводим информацию о дне, времени и частоте перед установкой уведомления
+                        print("Уведомление будет установлено на дату \(formattedDate) в \(time) с частотой \(frequency)")
+
+                        UNUserNotificationCenter.current().add(request) { (error) in
+                            if let error = error {
+                                print("Ошибка при установке уведомления: \(error.localizedDescription)")
+                            } else {
+                                print("Уведомление успешно установлено")
+                            }
                         }
+                    } else {
+                        print("Ошибка: Не удалось создать дату уведомления для \(dateComponents)")
                     }
                 } else {
-                    print("Error: Unable to create notification date for \(dateComponents)")
+                    print("Ошибка: Неподдерживаемая частота - \(frequency)")
                 }
             }
         }
     }
-
-
 }

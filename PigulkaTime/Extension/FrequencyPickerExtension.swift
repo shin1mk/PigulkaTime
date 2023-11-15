@@ -49,9 +49,9 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
         }
         // Выведите в консоль выбранный тип
         print("Selected Frequency: \(selectedFrequency)")
-        // выбранный тип в typeLabel
-        if let typeCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
-            typeCell.setFrequencyText("\(selectedFrequency)")
+        // выбранную частоту в frequencyLabel
+        if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
+            frequencyCell.setFrequencyText("\(selectedFrequency)")
         }
         // Снимите фокус с текстового поля
         editingCell?.textField.resignFirstResponder()

@@ -102,4 +102,7 @@
      }
  }
 
+ 
+ first dose => frequency => how many days
+ frequency => first dose =>
  */

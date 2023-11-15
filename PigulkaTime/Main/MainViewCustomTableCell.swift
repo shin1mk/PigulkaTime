@@ -124,7 +124,7 @@ final class MainViewCustomTableCell: UITableViewCell {
         // start Label
         addSubview(startLabel)
         startLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(5)
+            make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(20)
         }
