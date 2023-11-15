@@ -1,5 +1,5 @@
 //
-//  TableViewExtension.swift
+//  PillsTableViewExtension.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 14.11.2023.

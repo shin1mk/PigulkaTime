@@ -36,7 +36,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     weak var delegate: PillsViewControllerDelegate?
     // timer
     var timer: Timer?
-
     //MARK: Public
     public var editingCell: DrugNameCustomTableCell? // изменения ячейки
     public var pillsArray: [Pill] = [] // массив

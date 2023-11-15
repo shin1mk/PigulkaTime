@@ -8,57 +8,68 @@
 import UIKit
 
 extension PillsViewController: TypeCustomTableCellDelegate {
+    // MARK: - Type Picker
     func didSelectType(cell: TypeCustomTableCell) {
-        // Создайте UIViewController
+        let pickerViewController = createPickerViewController()
+        present(pickerViewController, animated: true, completion: nil)
+    }
+
+    private func createPickerViewController() -> UIViewController {
         let pickerViewController = UIViewController()
-        // Создайте UIPickerView
+        let pickerView = createPickerView(for: pickerViewController)
+        let okButton = createTypeOkButton(for: pickerViewController)
+
+        pickerViewController.view.addSubview(pickerView)
+        pickerViewController.view.addSubview(okButton)
+        pickerViewController.modalPresentationStyle = .overCurrentContext
+
+        return pickerViewController
+    }
+
+    private func createPickerView(for pickerViewController: UIViewController) -> UIPickerView {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 1 // Для Type picker view
+        pickerView.tag = 1 // For Type picker view
         pickerView.backgroundColor = .black
-        // Добавьте эту строку, чтобы выбрать первое значение
         pickerView.selectRow(0, inComponent: 0, animated: false)
 
-        // Установите размеры UIPickerView
         let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
-        // Добавьте UIPickerView в UIViewController
-        pickerViewController.view.addSubview(pickerView)
-        // Создайте кнопку "OK" для закрытия пикера
+
+        return pickerView
+    }
+
+    private func createTypeOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
         okButton.setTitle("OK", for: .normal)
         okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
-        okButton.addTarget(self, action: #selector(okButtonTapped(_:)), for: .touchUpInside)
-        
+        okButton.addTarget(self, action: #selector(typeOkButtonTapped(_:)), for: .touchUpInside)
+
+        let bottomMargin: CGFloat = 30
         let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
         okButton.frame = CGRect(x: 0, y: okButtonY, width: pickerViewController.view.bounds.width, height: 50)
-        // Добавьте кнопку в UIViewController
-        pickerViewController.view.addSubview(okButton)
-        // Отобразите UIViewController модально
-        pickerViewController.modalPresentationStyle = .overCurrentContext
-        present(pickerViewController, animated: true, completion: nil)
+
+        return okButton
     }
-    
-    @objc private func okButtonTapped(_ sender: UIButton) {
-        // Получите выбранный тип из свойства selectedType
+    // MARK: - Ok Button Action
+    @objc private func typeOkButtonTapped(_ sender: UIButton) {
         guard let selectedType = selectedType else {
             print("No type selected.")
             dismiss(animated: true, completion: nil)
             return
         }
-        // Выведите в консоль выбранный тип
+
         print("Selected Type: \(selectedType)")
-        // выбранный тип в typeLabel
+
         if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
             typeCell.setLabelText("\(selectedType)")
         }
-        // Снимите фокус с текстового поля
+
         editingCell?.textField.resignFirstResponder()
-        // Закройте UIViewController при нажатии кнопки "OK"
         dismiss(animated: true, completion: nil)
     }
 }

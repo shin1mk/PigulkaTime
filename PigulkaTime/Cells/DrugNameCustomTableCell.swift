@@ -25,14 +25,12 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
         textField.isUserInteractionEnabled = true
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
-        // Настройте шрифт для текста плейсхолдера
         let placeholderFont = UIFont.SFUITextRegular(ofSize: 17)
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.gray, // Цвет текста плейсхолдера
             .font: placeholderFont as Any,
         ]
         textField.attributedPlaceholder = NSAttributedString(string: "Enter name", attributes: placeholderAttributes)
-        
         return textField
     }()
     //MARK: Lifecycle

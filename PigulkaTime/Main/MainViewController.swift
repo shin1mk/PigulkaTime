@@ -20,6 +20,14 @@ final class MainViewController: UIViewController {
         tableView.register(MainViewCustomTableCell.self, forCellReuseIdentifier: "MainCustomCell")
         return tableView
     }()
+    //    private let emptyLabel: UILabel = {
+    //        let titleLabel = UILabel()
+    //        titleLabel.text = "No pills available"
+    //        titleLabel.textColor = .white
+    //        titleLabel.textAlignment = .center
+    //        titleLabel.font = UIFont.SFUITextRegular(ofSize: 30)
+    //        return titleLabel
+    //    }()
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         let pillImage = UIImage(systemName: "pill")
@@ -33,14 +41,6 @@ final class MainViewController: UIViewController {
         titleLabel.textColor = .white
         return titleLabel
     }()
-//    private let emptyLabel: UILabel = {
-//        let titleLabel = UILabel()
-//        titleLabel.text = "No pills available"
-//        titleLabel.textColor = .white
-//        titleLabel.textAlignment = .center
-//        titleLabel.font = UIFont.SFUITextRegular(ofSize: 30)
-//        return titleLabel
-//    }()
     private let addButton: UIButton = {
         let button = UIButton()
         // plus.fill icon attachment
@@ -126,7 +126,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pillsArray.count
     }
-
     // содержимое ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
@@ -154,25 +153,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard !pillsArray.isEmpty else {
             return nil
         }
-
+        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
             // Perform your delete logic here
             self?.pillsArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             completionHandler(true)
         }
-
+        
         deleteAction.backgroundColor = .systemRed
         // Добавляем обработку для красного текста внутри кнопки удаления
         deleteAction.image = UIImage(systemName: "trash.fill")
         deleteAction.title = nil
-
+        
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = false
-
+        
         return configuration
     }
-
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и показывает на экране
 extension MainViewController: PillsViewControllerDelegate {

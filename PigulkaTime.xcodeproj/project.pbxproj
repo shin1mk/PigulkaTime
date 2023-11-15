@@ -12,7 +12,7 @@
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
 		134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */; };
 		13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D332B03465F00D5C649 /* TypePickerExtension.swift */; };
-		13523D382B0347D200D5C649 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D372B0347D200D5C649 /* TableViewExtension.swift */; };
+		13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */; };
 		13523D3A2B03483900D5C649 /* DosagePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D392B03483900D5C649 /* DosagePickerExtension.swift */; };
 		13523D3C2B03485A00D5C649 /* FrequencyPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */; };
 		13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */; };
@@ -69,7 +69,7 @@
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
 		134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPerCustomTableCell.swift; sourceTree = "<group>"; };
 		13523D332B03465F00D5C649 /* TypePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerExtension.swift; sourceTree = "<group>"; };
-		13523D372B0347D200D5C649 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
+		13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTableViewExtension.swift; sourceTree = "<group>"; };
 		13523D392B03483900D5C649 /* DosagePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosagePickerExtension.swift; sourceTree = "<group>"; };
 		13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyPickerExtension.swift; sourceTree = "<group>"; };
 		13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPickerExtension.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				13523D332B03465F00D5C649 /* TypePickerExtension.swift */,
-				13523D372B0347D200D5C649 /* TableViewExtension.swift */,
+				13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */,
 				13523D392B03483900D5C649 /* DosagePickerExtension.swift */,
 				13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */,
 				13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */,
@@ -567,7 +567,7 @@
 				1374D2C52B01FA4E0017398C /* StartCustomTableCell.swift in Sources */,
 				13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */,
 				13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */,
-				13523D382B0347D200D5C649 /* TableViewExtension.swift in Sources */,
+				13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */,
 				13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */,

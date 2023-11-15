@@ -57,7 +57,7 @@ final class MainViewCustomTableCell: UITableViewCell {
         let startLabel = UILabel()
         startLabel.text = ""
         startLabel.textColor = .systemGray
-        startLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        startLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return startLabel
     }()
     //MARK: Lifecycle
@@ -74,7 +74,7 @@ final class MainViewCustomTableCell: UITableViewCell {
         layer.borderWidth = 0.5
         layer.cornerRadius = 5
         layer.backgroundColor = UIColor.systemGray6.cgColor
-        layer.borderColor = UIColor.systemGray5.cgColor
+        layer.borderColor = UIColor.systemGray6.cgColor
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
