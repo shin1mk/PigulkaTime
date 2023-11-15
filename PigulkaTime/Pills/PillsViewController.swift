@@ -47,11 +47,13 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public let dosages = ["", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
     public var selectedDosage: String?
     // for frequency picker view
-    public let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Monthly", "Every 2 months", "Every 3 months"]
+    public let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Every 4 weeks"]
     public var selectedFrequency: String?
     // for days picker view
     public let days: [String] = (0...100).map { "\($0) day\($0 == 1 ? "" : "s")" }
     public var selectedDays: String?
+//    public var selectedDays: Int?
+
     // for times per day picker view
     public let times: [String] = (0...10).map { "\($0)" }
     public var selectedTimes: String?

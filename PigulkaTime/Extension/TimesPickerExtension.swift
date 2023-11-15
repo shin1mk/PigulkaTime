@@ -17,7 +17,7 @@ extension PillsViewController: TimesCustomTableCellDelegate {
         pickerView.dataSource = self
         pickerView.tag = 5
         pickerView.backgroundColor = .black
-        // Установите размеры UIPickerView
+        // размеры UIPickerView
         let pickerViewHeight: CGFloat = 340
         let bottomMargin: CGFloat = 30
         pickerView.frame = CGRect(x: 0, y: pickerViewController.view.bounds.height - pickerViewHeight - bottomMargin, width: pickerViewController.view.bounds.width, height: pickerViewHeight)
