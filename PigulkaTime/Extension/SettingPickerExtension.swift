@@ -26,20 +26,8 @@ extension PillsViewController {
             selectedTimes = times[row]
             print("Selected Days: \(selectedTimes ?? "No times selected")")
         case 6:
-            if component == 0 {
-                   // Выбран час
-                   let selectedHour = row
-//                   let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
-                   let selectedMinute = pickerView.selectedRow(inComponent: 1)
-                   selectedStart = String(format: "%02d:%02d", selectedHour, selectedMinute)
-               } else {
-                   // Выбраны минуты
-                   let selectedHour = pickerView.selectedRow(inComponent: 0)
-//                   let selectedMinute = row * 5
-                   let selectedMinute = row
-                   selectedStart = String(format: "%02d:%02d", selectedHour, selectedMinute)
-               }
-               print("Selected Starting at: \(selectedStart ?? "No starting at selected")")
+            selectedStart = start[row]
+            print("Selected Starting at: \(selectedStart ?? "No starting at selected")")
         default:
             break
         }
@@ -77,12 +65,7 @@ extension PillsViewController {
         case 5:
             return times.count
         case 6:
-            if component == 0 {
-                return 24 // Часы от 0 до 23
-            } else {
-//                return 12 // Минуты от 0 до 55 с шагом 5
-                return 60 // Минуты от 0 до 55 с шагом 5
-            }
+            return start.count
         default:
             return 0
         }
@@ -101,12 +84,7 @@ extension PillsViewController {
         case 5:
             return times[row]
         case 6:
-            if component == 0 {
-                return String(format: "%02d", row) // Форматирование часов
-            } else {
-                return String(format: "%02d", row) // Форматирование минут с шагом 5
-//                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
-            }
+            return start[row]
         default:
             return nil
         }

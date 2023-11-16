@@ -63,12 +63,7 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
             dismiss(animated: true, completion: nil)
             return
         }
-        
-        // Проверьте, было ли выбрано время, если нет, установите значение по умолчанию (0)
-        let selectedTime = selectedStart ?? "0"
-        
-        print("Selected Frequency: \(selectedFrequency)")
-        print("Selected Time: \(selectedTime)")
+ 
         print("Selected Frequency: \(selectedFrequency)")
         // выбранную частоту в frequencyLabel
         if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {

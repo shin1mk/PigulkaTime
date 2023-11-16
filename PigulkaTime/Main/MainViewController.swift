@@ -20,14 +20,6 @@ final class MainViewController: UIViewController {
         tableView.register(MainViewCustomTableCell.self, forCellReuseIdentifier: "MainCustomCell")
         return tableView
     }()
-    //    private let emptyLabel: UILabel = {
-    //        let titleLabel = UILabel()
-    //        titleLabel.text = "No pills available"
-    //        titleLabel.textColor = .white
-    //        titleLabel.textAlignment = .center
-    //        titleLabel.font = UIFont.SFUITextRegular(ofSize: 30)
-    //        return titleLabel
-    //    }()
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         let pillImage = UIImage(systemName: "pill")

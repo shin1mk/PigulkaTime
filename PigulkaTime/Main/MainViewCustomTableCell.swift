@@ -87,7 +87,6 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
-            // make.bottom.equalToSuperview().offset(-10)
         }
         // typeLabel
         addSubview(typeLabel)
@@ -95,7 +94,6 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(dosageLabel.snp.top)
             make.leading.equalTo(dosageLabel.snp.trailing).offset(5)
             make.height.equalTo(20)
-            // make.bottom.equalToSuperview().offset(-10)
         }
         // frequencyLabel
         addSubview(frequencyLabel)
@@ -103,7 +101,6 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(typeLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
-            // make.bottom.equalToSuperview().offset(-10)
         }
         // times Label
         addSubview(timesLabel)
@@ -111,7 +108,6 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(frequencyLabel.snp.top)
             make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
             make.height.equalTo(20)
-            // make.bottom.equalToSuperview().offset(-10)
         }
         // days Label
         addSubview(daysLabel)
@@ -119,7 +115,6 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalTo(frequencyLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
-            // make.bottom.equalToSuperview().offset(-10)
         }
         // start Label
         addSubview(startLabel)

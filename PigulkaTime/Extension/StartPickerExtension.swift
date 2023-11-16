@@ -66,50 +66,9 @@ extension PillsViewController: StartCustomTableCellDelegate {
         }
         // в консоль выбранное время
         print("Selected start at: \(selectedStart)")
-        // Установите календарь и текущую дату
-        let calendar = Calendar.current
-        let currentDate = Date()
-        // Разделите строку времени
-        let timeComponents = selectedStart.components(separatedBy: ":")
-        guard let hour = Int(timeComponents[0]), let minute = Int(timeComponents[1]) else {
-            print("Invalid time format.")
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        // Создайте новую дату с текущими годом, месяцем и днем, а также выбранными часами и минутами
-        var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-        dateComponents.second = 0 // Установите секунды на 0, если необходимо
-        let selectedDate = calendar.date(from: dateComponents)
-        // Проверьте, не выбрано ли время в прошлом
-        if selectedDate ?? Date() < currentDate {
-            print("Selected time is in the past. Scheduling for the next day.")
-            // Добавьте 24 часа к текущей дате
-            let nextDayDate = currentDate.addingTimeInterval(24 * 60 * 60)
-            // Создайте новую дату с выбранными часами и минутами на следующий день
-            var nextDayDateComponents = calendar.dateComponents([.year, .month, .day], from: nextDayDate)
-            nextDayDateComponents.hour = hour
-            nextDayDateComponents.minute = minute
-            nextDayDateComponents.second = 0
-            //            let nextDaySelectedDate = calendar.date(from: nextDayDateComponents)
-            // Запланируйте уведомление
-            //            scheduleNotification(at: nextDaySelectedDate ?? Date())
-            // выбранное время в typeLabel
-            if let startCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartCustomTableCell {
-                startCell.setStartText("\(selectedStart)")
-            }
-            // Снимите фокус с текстового поля
-            editingCell?.textField.resignFirstResponder()
-            // Закройте UIViewController при нажатии кнопки "OK"
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        // Запланируйте уведомление
-        //        scheduleNotification(at: selectedDate ?? Date())
-        // выбранное время в typeLabel
-        if let typeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartCustomTableCell {
-            typeCell.setStartText("\(selectedStart)")
+        
+        if let startCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartCustomTableCell {
+            startCell.setStartText("\(selectedStart)")
         }
         // Снимите фокус с текстового поля
         editingCell?.textField.resignFirstResponder()
