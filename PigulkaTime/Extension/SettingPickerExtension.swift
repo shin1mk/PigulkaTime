@@ -29,12 +29,14 @@ extension PillsViewController {
             if component == 0 {
                    // Выбран час
                    let selectedHour = row
-                   let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
+//                   let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
+                   let selectedMinute = pickerView.selectedRow(inComponent: 1)
                    selectedStart = String(format: "%02d:%02d", selectedHour, selectedMinute)
                } else {
                    // Выбраны минуты
                    let selectedHour = pickerView.selectedRow(inComponent: 0)
-                   let selectedMinute = row * 5
+//                   let selectedMinute = row * 5
+                   let selectedMinute = row
                    selectedStart = String(format: "%02d:%02d", selectedHour, selectedMinute)
                }
                print("Selected Starting at: \(selectedStart ?? "No starting at selected")")
@@ -78,7 +80,8 @@ extension PillsViewController {
             if component == 0 {
                 return 24 // Часы от 0 до 23
             } else {
-                return 12 // Минуты от 0 до 55 с шагом 5
+//                return 12 // Минуты от 0 до 55 с шагом 5
+                return 60 // Минуты от 0 до 55 с шагом 5
             }
         default:
             return 0
@@ -101,7 +104,8 @@ extension PillsViewController {
             if component == 0 {
                 return String(format: "%02d", row) // Форматирование часов
             } else {
-                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
+                return String(format: "%02d", row) // Форматирование минут с шагом 5
+//                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
             }
         default:
             return nil

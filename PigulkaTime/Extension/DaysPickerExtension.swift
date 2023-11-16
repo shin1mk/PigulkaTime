@@ -71,6 +71,8 @@ extension PillsViewController: DaysCustomTableCellDelegate {
             print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
             return
         }
+        // Проверьте, было ли выбрано время, если нет, установите значение по умолчанию (0)
+//        let selectedTime = selectedStart ?? "0"
         // Выведите в консоль выбранный тип
         print("Selected days: \(selectedDays)")
         // выбранный тип в typeLabel
