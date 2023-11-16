@@ -103,6 +103,10 @@
  }
 
  
+ frequency => first dose => how many days
  first dose => frequency => how many days
- frequency => first dose =>
+ 
+ need to
+ frequency => days => times => start
+ 
  */

@@ -71,8 +71,6 @@ extension PillsViewController: DaysCustomTableCellDelegate {
             print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
             return
         }
-        // Проверьте, было ли выбрано время, если нет, установите значение по умолчанию (0)
-//        let selectedTime = selectedStart ?? "0"
         // Выведите в консоль выбранный тип
         print("Selected days: \(selectedDays)")
         // выбранный тип в typeLabel
@@ -144,6 +142,9 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         content.title = "PigulkaTime"
         let name = editingCell?.textField.text ?? "Пора принять лекарство"
         content.body = "Time for \(name)"
+        // Добавляем виброотклик
+        content.sound = .default
+        content.sound = UNNotificationSound.default
 
         for (index, date) in dates.enumerated() {
             for time in times {
@@ -152,7 +153,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
                     print("Ошибка: Неверный формат времени - \(time)")
                     continue
                 }
-
+   
                 guard let hour = Int(components[0]), let minute = Int(components[1]) else {
                     print("Ошибка: Не удалось преобразовать компоненты времени в целые числа - \(components)")
                     continue
