@@ -59,15 +59,26 @@ extension PillsViewController: DaysCustomTableCellDelegate {
     // daysOkButtonTapped
     @objc private func daysOkButtonTapped(_ sender: UIButton) {
         // Получите выбранные дни
-        guard let selectedDays = selectedDays else {
-            // Обработка случая, когда selectedDays равно nil
-            print("Дни не выбраны.")
+        guard let selectedDays = selectedDays!.components(separatedBy: " ").first,
+              let daysCount = Int(selectedDays) else {
+            // Обработка случая, когда selectedDays равно nil или не является числом
+            print("Дни не выбраны или не являются числом.")
             dismiss(animated: true, completion: nil)
             return
         }
-        // Выведите в консоль выбранный тип
-        print("Selected days: \(selectedDays)")
-        // выбранный тип в typeLabel
+
+        // Получите текущую дату и время
+        let currentDate = Date()
+
+        // Создайте календарь
+        let calendar = Calendar.current
+
+        // Выведите будущие даты в консоль
+        for dayOffset in 1...daysCount {
+            if let futureDate = calendar.date(byAdding: .day, value: dayOffset, to: currentDate) {
+                print("Future Notification Date \(dayOffset): \(futureDate)")
+            }
+        }
         if let daysCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
@@ -77,3 +88,4 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+

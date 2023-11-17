@@ -17,7 +17,7 @@
 		13523D3C2B03485A00D5C649 /* FrequencyPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */; };
 		13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */; };
 		13523D402B03488F00D5C649 /* TimesPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */; };
-		13523D422B0348AB00D5C649 /* StartPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D412B0348AB00D5C649 /* StartPickerExtension.swift */; };
+		13523D422B0348AB00D5C649 /* FirstDoseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D412B0348AB00D5C649 /* FirstDoseExtension.swift */; };
 		13523D442B0348DC00D5C649 /* SettingPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */; };
 		135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38512AFA9EC4007C1C04 /* AppDelegate.swift */; };
 		135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */; };
@@ -34,15 +34,15 @@
 		135B38922AFA9F98007C1C04 /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */; };
 		135B38932AFA9F98007C1C04 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */; };
 		135B38952AFAA031007C1C04 /* textHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38942AFAA031007C1C04 /* textHelper.swift */; };
-		1374D2C52B01FA4E0017398C /* StartCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1374D2C42B01FA4E0017398C /* StartCustomTableCell.swift */; };
+		1374D2C52B01FA4E0017398C /* FirstDoseCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1374D2C42B01FA4E0017398C /* FirstDoseCustomTableCell.swift */; };
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
 		13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFB0212AFE453F00C9E67B /* PillsViewController.swift */; };
 		13F556092AFCB0CE0025119F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F556082AFCB0CE0025119F /* Models.swift */; };
-		AD8F4DEAC04FBA172CE0EFC8 /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6855FC40960A817A349E52 /* Pods_PigulkaTime.framework */; };
-		D9E18B4C8A3982411EC35AAD /* Pods_PigulkaTime_PigulkaTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2123D9AE6ABC962E41BAB9 /* Pods_PigulkaTime_PigulkaTimeUITests.framework */; };
-		FA588D0D527E05A5C492032A /* Pods_PigulkaTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DE4F7494E68C24A4D50413 /* Pods_PigulkaTimeTests.framework */; };
+		1C7C301CB9D25F401D0D202B /* Pods_PigulkaTime_PigulkaTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */; };
+		84AF4B7E89074E0BF10BCA7C /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1729811E64AF8AB5CFCAF21 /* Pods_PigulkaTime.framework */; };
+		EDB337EA128F5AF950FAD18C /* Pods_PigulkaTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8238238973B9FC1E3666BF86 /* Pods_PigulkaTimeTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		12D20B54DFB2496D0FB680CF /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		04D4F1B31EEF4894E03B9AD5 /* Pods-PigulkaTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime_PigulkaTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
 		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
@@ -74,7 +75,7 @@
 		13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyPickerExtension.swift; sourceTree = "<group>"; };
 		13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPickerExtension.swift; sourceTree = "<group>"; };
 		13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPickerExtension.swift; sourceTree = "<group>"; };
-		13523D412B0348AB00D5C649 /* StartPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPickerExtension.swift; sourceTree = "<group>"; };
+		13523D412B0348AB00D5C649 /* FirstDoseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDoseExtension.swift; sourceTree = "<group>"; };
 		13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPickerExtension.swift; sourceTree = "<group>"; };
 		135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigulkaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		135B38512AFA9EC4007C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,20 +96,19 @@
 		135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 		135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHelper.swift; sourceTree = "<group>"; };
-		1374D2C42B01FA4E0017398C /* StartCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCustomTableCell.swift; sourceTree = "<group>"; };
+		1374D2C42B01FA4E0017398C /* FirstDoseCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDoseCustomTableCell.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
 		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
 		13EFB0212AFE453F00C9E67B /* PillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsViewController.swift; sourceTree = "<group>"; };
 		13F556082AFCB0CE0025119F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		630046FCB176F21C67F644D8 /* Pods-PigulkaTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7A2123D9AE6ABC962E41BAB9 /* Pods_PigulkaTime_PigulkaTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime_PigulkaTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9416B68BE4CFB77FA8BD62B6 /* Pods-PigulkaTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime.release.xcconfig"; sourceTree = "<group>"; };
-		BA6855FC40960A817A349E52 /* Pods_PigulkaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC9B97506898C2BF663674AF /* Pods-PigulkaTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime.debug.xcconfig"; sourceTree = "<group>"; };
-		F05860BDA0D76A2035DFD323 /* Pods-PigulkaTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.release.xcconfig"; sourceTree = "<group>"; };
-		F5DE4F7494E68C24A4D50413 /* Pods_PigulkaTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCB318F7609B5254C00EAD47 /* Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1F2C74FC4DFA71A2C97BDD52 /* Pods-PigulkaTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime.debug.xcconfig"; sourceTree = "<group>"; };
+		7B38BE3A394CA9D37F38ED80 /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8238238973B9FC1E3666BF86 /* Pods_PigulkaTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A82AC6EFF27914374B4F5AA /* Pods-PigulkaTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime.release.xcconfig"; sourceTree = "<group>"; };
+		C0E95FE55E35F5B3A5C06DD2 /* Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D3C645FC152540316FBF9B42 /* Pods-PigulkaTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F1729811E64AF8AB5CFCAF21 /* Pods_PigulkaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD8F4DEAC04FBA172CE0EFC8 /* Pods_PigulkaTime.framework in Frameworks */,
+				84AF4B7E89074E0BF10BCA7C /* Pods_PigulkaTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA588D0D527E05A5C492032A /* Pods_PigulkaTimeTests.framework in Frameworks */,
+				EDB337EA128F5AF950FAD18C /* Pods_PigulkaTimeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9E18B4C8A3982411EC35AAD /* Pods_PigulkaTime_PigulkaTimeUITests.framework in Frameworks */,
+				1C7C301CB9D25F401D0D202B /* Pods_PigulkaTime_PigulkaTimeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +148,7 @@
 				1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */,
 				13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */,
 				134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */,
-				1374D2C42B01FA4E0017398C /* StartCustomTableCell.swift */,
+				1374D2C42B01FA4E0017398C /* FirstDoseCustomTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -162,7 +162,7 @@
 				13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */,
 				13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */,
 				13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */,
-				13523D412B0348AB00D5C649 /* StartPickerExtension.swift */,
+				13523D412B0348AB00D5C649 /* FirstDoseExtension.swift */,
 				13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */,
 			);
 			path = Extension;
@@ -176,7 +176,7 @@
 				135B38742AFA9EC5007C1C04 /* PigulkaTimeUITests */,
 				135B384F2AFA9EC4007C1C04 /* Products */,
 				35D045381EE73A043F7829DD /* Pods */,
-				A6886AD33E2166729FFAA065 /* Frameworks */,
+				F555BBF69CCAA6246C3EE7F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,22 +291,22 @@
 		35D045381EE73A043F7829DD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BC9B97506898C2BF663674AF /* Pods-PigulkaTime.debug.xcconfig */,
-				9416B68BE4CFB77FA8BD62B6 /* Pods-PigulkaTime.release.xcconfig */,
-				12D20B54DFB2496D0FB680CF /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */,
-				FCB318F7609B5254C00EAD47 /* Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig */,
-				630046FCB176F21C67F644D8 /* Pods-PigulkaTimeTests.debug.xcconfig */,
-				F05860BDA0D76A2035DFD323 /* Pods-PigulkaTimeTests.release.xcconfig */,
+				1F2C74FC4DFA71A2C97BDD52 /* Pods-PigulkaTime.debug.xcconfig */,
+				8A82AC6EFF27914374B4F5AA /* Pods-PigulkaTime.release.xcconfig */,
+				7B38BE3A394CA9D37F38ED80 /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */,
+				C0E95FE55E35F5B3A5C06DD2 /* Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig */,
+				D3C645FC152540316FBF9B42 /* Pods-PigulkaTimeTests.debug.xcconfig */,
+				04D4F1B31EEF4894E03B9AD5 /* Pods-PigulkaTimeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A6886AD33E2166729FFAA065 /* Frameworks */ = {
+		F555BBF69CCAA6246C3EE7F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA6855FC40960A817A349E52 /* Pods_PigulkaTime.framework */,
-				7A2123D9AE6ABC962E41BAB9 /* Pods_PigulkaTime_PigulkaTimeUITests.framework */,
-				F5DE4F7494E68C24A4D50413 /* Pods_PigulkaTimeTests.framework */,
+				F1729811E64AF8AB5CFCAF21 /* Pods_PigulkaTime.framework */,
+				10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */,
+				8238238973B9FC1E3666BF86 /* Pods_PigulkaTimeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,11 +318,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 135B387B2AFA9EC5007C1C04 /* Build configuration list for PBXNativeTarget "PigulkaTime" */;
 			buildPhases = (
-				ECD0BAC32EECAA2CACE8027E /* [CP] Check Pods Manifest.lock */,
+				B4A395D738B9CF5C0EF3CE56 /* [CP] Check Pods Manifest.lock */,
 				135B384A2AFA9EC4007C1C04 /* Sources */,
 				135B384B2AFA9EC4007C1C04 /* Frameworks */,
 				135B384C2AFA9EC4007C1C04 /* Resources */,
-				EEA4609643FBB2D3115F36BA /* [CP] Embed Pods Frameworks */,
+				7B9E55D09806803EBEF86BF0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,7 +337,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 135B387E2AFA9EC5007C1C04 /* Build configuration list for PBXNativeTarget "PigulkaTimeTests" */;
 			buildPhases = (
-				B69FC6FCCC97EE7B61AB06C2 /* [CP] Check Pods Manifest.lock */,
+				B65DD45F4312FB59D784E997 /* [CP] Check Pods Manifest.lock */,
 				135B38632AFA9EC5007C1C04 /* Sources */,
 				135B38642AFA9EC5007C1C04 /* Frameworks */,
 				135B38652AFA9EC5007C1C04 /* Resources */,
@@ -356,11 +356,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 135B38812AFA9EC5007C1C04 /* Build configuration list for PBXNativeTarget "PigulkaTimeUITests" */;
 			buildPhases = (
-				6C6B917B4FB6A34A7542BD1A /* [CP] Check Pods Manifest.lock */,
+				FD01290D9A5D0F62DF8D66A5 /* [CP] Check Pods Manifest.lock */,
 				135B386D2AFA9EC5007C1C04 /* Sources */,
 				135B386E2AFA9EC5007C1C04 /* Frameworks */,
 				135B386F2AFA9EC5007C1C04 /* Resources */,
-				2D4227DA0D3533DB66FBCA94 /* [CP] Embed Pods Frameworks */,
+				302E9FA335729E367671843B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -446,7 +446,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2D4227DA0D3533DB66FBCA94 /* [CP] Embed Pods Frameworks */ = {
+		302E9FA335729E367671843B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -463,51 +463,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6C6B917B4FB6A34A7542BD1A /* [CP] Check Pods Manifest.lock */ = {
+		7B9E55D09806803EBEF86BF0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PigulkaTime-PigulkaTimeUITests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B69FC6FCCC97EE7B61AB06C2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PigulkaTimeTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ECD0BAC32EECAA2CACE8027E /* [CP] Check Pods Manifest.lock */ = {
+		B4A395D738B9CF5C0EF3CE56 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,21 +502,48 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EEA4609643FBB2D3115F36BA /* [CP] Embed Pods Frameworks */ = {
+		B65DD45F4312FB59D784E997 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PigulkaTimeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD01290D9A5D0F62DF8D66A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PigulkaTime-PigulkaTimeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -562,9 +562,9 @@
 				135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */,
 				13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */,
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
-				13523D422B0348AB00D5C649 /* StartPickerExtension.swift in Sources */,
+				13523D422B0348AB00D5C649 /* FirstDoseExtension.swift in Sources */,
 				13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */,
-				1374D2C52B01FA4E0017398C /* StartCustomTableCell.swift in Sources */,
+				1374D2C52B01FA4E0017398C /* FirstDoseCustomTableCell.swift in Sources */,
 				13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */,
 				13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */,
 				13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */,
@@ -729,7 +729,7 @@
 		};
 		135B387C2AFA9EC5007C1C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC9B97506898C2BF663674AF /* Pods-PigulkaTime.debug.xcconfig */;
+			baseConfigurationReference = 1F2C74FC4DFA71A2C97BDD52 /* Pods-PigulkaTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -763,7 +763,7 @@
 		};
 		135B387D2AFA9EC5007C1C04 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9416B68BE4CFB77FA8BD62B6 /* Pods-PigulkaTime.release.xcconfig */;
+			baseConfigurationReference = 8A82AC6EFF27914374B4F5AA /* Pods-PigulkaTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -797,7 +797,7 @@
 		};
 		135B387F2AFA9EC5007C1C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 630046FCB176F21C67F644D8 /* Pods-PigulkaTimeTests.debug.xcconfig */;
+			baseConfigurationReference = D3C645FC152540316FBF9B42 /* Pods-PigulkaTimeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -818,7 +818,7 @@
 		};
 		135B38802AFA9EC5007C1C04 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F05860BDA0D76A2035DFD323 /* Pods-PigulkaTimeTests.release.xcconfig */;
+			baseConfigurationReference = 04D4F1B31EEF4894E03B9AD5 /* Pods-PigulkaTimeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -839,7 +839,7 @@
 		};
 		135B38822AFA9EC5007C1C04 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12D20B54DFB2496D0FB680CF /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */;
+			baseConfigurationReference = 7B38BE3A394CA9D37F38ED80 /* Pods-PigulkaTime-PigulkaTimeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -858,7 +858,7 @@
 		};
 		135B38832AFA9EC5007C1C04 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCB318F7609B5254C00EAD47 /* Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig */;
+			baseConfigurationReference = C0E95FE55E35F5B3A5C06DD2 /* Pods-PigulkaTime-PigulkaTimeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

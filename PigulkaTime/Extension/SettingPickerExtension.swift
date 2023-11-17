@@ -26,8 +26,42 @@ extension PillsViewController {
             selectedTimes = times[row]
             print("Selected Days: \(selectedTimes ?? "No times selected")")
         case 6:
-            selectedStart = start[row]
-            print("Selected Starting at: \(selectedStart ?? "No starting at selected")")
+            let selectedHour: Int
+            let selectedMinute: Int
+
+            if component == 0 {
+                // Выбран час
+                selectedHour = row
+                selectedMinute = pickerView.selectedRow(inComponent: 1)
+            } else {
+                // Выбраны минуты
+                selectedHour = pickerView.selectedRow(inComponent: 0)
+                selectedMinute = row
+            }
+
+            print("Selected Hour: \(selectedHour), Selected Minute: \(selectedMinute)")
+
+            // Получаем текущую дату
+            let currentDate = Date()
+
+            // Создаем объект DateComponents с использованием текущей даты и времени
+            var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: currentDate)
+
+            // Устанавливаем выбранные часы и минуты
+            dateComponents.hour = selectedHour
+            dateComponents.minute = selectedMinute
+
+            // Устанавливаем год, месяц и день на текущие
+            dateComponents.year = Calendar.current.component(.year, from: currentDate)
+            dateComponents.month = Calendar.current.component(.month, from: currentDate)
+            dateComponents.day = Calendar.current.component(.day, from: currentDate)
+
+            // Создаем объект Date с использованием Calendar и новых dateComponents
+            selectedFirstDose = Calendar.current.date(from: dateComponents)
+
+            // Теперь selectedFirstDose имеет тип Date?
+            print("Selected Starting at: \(selectedFirstDose ?? Date())")
+
         default:
             break
         }
@@ -65,12 +99,17 @@ extension PillsViewController {
         case 5:
             return times.count
         case 6:
-            return start.count
+            if component == 0 {
+                return 24 // Часы от 0 до 23
+            } else {
+                //                                return 12 // Минуты от 0 до 55 с шагом 5
+                return 60 // Минуты от 0 до 55 с шагом 5
+            }
         default:
             return 0
         }
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
         case 1:
@@ -84,9 +123,15 @@ extension PillsViewController {
         case 5:
             return times[row]
         case 6:
-            return start[row]
+            if component == 0 {
+                   return String(format: "%02d", row) // Форматирование часов
+               } else {
+                   return String(format: "%02d", row) // Форматирование минут с шагом 5
+   //                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
+               }
         default:
             return nil
         }
     }
+
 }

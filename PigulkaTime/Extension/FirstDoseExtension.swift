@@ -1,5 +1,5 @@
 //
-//  StartPickerExtension.swift
+//  FirstDoseCustomTableCell.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 14.11.2023.
@@ -8,9 +8,9 @@
 import UIKit
 import UserNotifications
 
-extension PillsViewController: StartCustomTableCellDelegate {
-    // MARK: - Start Picker
-    func didSelectStart(cell: StartCustomTableCell) {
+extension PillsViewController: FirstDoseCustomTableCellDelegate {
+    // MARK: - first dose Picker
+    func didSelectFirst(cell: FirstDoseCustomTableCell) {
         let pickerViewController = createPickerViewController()
         present(pickerViewController, animated: true, completion: nil)
     }
@@ -18,7 +18,7 @@ extension PillsViewController: StartCustomTableCellDelegate {
     private func createPickerViewController() -> UIViewController {
         let pickerViewController = UIViewController()
         let pickerView = createPickerView(for: pickerViewController)
-        let okButton = createStartOkButton(for: pickerViewController)
+        let okButton = createFirstDoseOkButton(for: pickerViewController)
         
         pickerViewController.view.addSubview(pickerView)
         pickerViewController.view.addSubview(okButton)
@@ -42,13 +42,13 @@ extension PillsViewController: StartCustomTableCellDelegate {
         return pickerView
     }
     
-    private func createStartOkButton(for pickerViewController: UIViewController) -> UIButton {
+    private func createFirstDoseOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
         okButton.setTitle("OK", for: .normal)
         okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
-        okButton.addTarget(self, action: #selector(startOkButtonTapped(_:)), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(firstDoseOkButtonTapped(_:)), for: .touchUpInside)
         
         let bottomMargin: CGFloat = 30
         let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
@@ -57,22 +57,23 @@ extension PillsViewController: StartCustomTableCellDelegate {
         return okButton
     }
     
-    @objc private func startOkButtonTapped(_ sender: UIButton) {
-        // Получите выбранное время из свойства selectedStarting
-        guard let selectedStart = selectedStart else {
-            print("No time selected.")
+    @objc private func firstDoseOkButtonTapped(_ sender: UIButton) {
+            // Получите выбранное время из свойства selectedFirstDose
+            guard let selectedFirstDose = selectedFirstDose else {
+                print("No time selected.")
+                dismiss(animated: true, completion: nil)
+                return
+            }
+            // в консоль выбранное время
+            print("Selected first dose at: \(selectedFirstDose)")
+
+            if let firstCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? FirstDoseCustomTableCell {
+                firstCell.setFirstDoseLabelText("\(selectedFirstDose)")
+            }
+            // Снимите фокус с текстового поля
+            editingCell?.textField.resignFirstResponder()
+            // Закройте UIViewController при нажатии кнопки "OK"
             dismiss(animated: true, completion: nil)
-            return
         }
-        // в консоль выбранное время
-        print("Selected start at: \(selectedStart)")
-        
-        if let startCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? StartCustomTableCell {
-            startCell.setStartText("\(selectedStart)")
-        }
-        // Снимите фокус с текстового поля
-        editingCell?.textField.resignFirstResponder()
-        // Закройте UIViewController при нажатии кнопки "OK"
-        dismiss(animated: true, completion: nil)
-    }
+
 }

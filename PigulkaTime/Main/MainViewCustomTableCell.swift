@@ -53,12 +53,12 @@ final class MainViewCustomTableCell: UITableViewCell {
         timesLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return timesLabel
     }()
-    private let startLabel: UILabel = {
-        let startLabel = UILabel()
-        startLabel.text = ""
-        startLabel.textColor = .systemGray
-        startLabel.font = UIFont.SFUITextRegular(ofSize: 15)
-        return startLabel
+    private let firstDoseLabel: UILabel = {
+        let firstDoseLabel = UILabel()
+        firstDoseLabel.text = ""
+        firstDoseLabel.textColor = .systemGray
+        firstDoseLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        return firstDoseLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -117,8 +117,8 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.height.equalTo(20)
         }
         // start Label
-        addSubview(startLabel)
-        startLabel.snp.makeConstraints { make in
+        addSubview(firstDoseLabel)
+        firstDoseLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(20)
@@ -143,7 +143,7 @@ final class MainViewCustomTableCell: UITableViewCell {
     func setTimesLabelText(_ text: String) {
         timesLabel.text = text
     }
-    func setStartLabelText(_ text: String) {
-        startLabel.text = text
+    func setFirstDoseLabelText(_ text: String) {
+        firstDoseLabel.text = text
     }
 } //end

@@ -15,5 +15,7 @@ struct Pill {
     var days: String
     var times: String
     var isEditable: Bool
-    var start: String 
+//    var firstDose: String
+    var firstDose: Date?
+
 }
