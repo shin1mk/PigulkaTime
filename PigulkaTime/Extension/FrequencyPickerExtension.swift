@@ -67,9 +67,6 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
 
         let frequencyInterval = getFrequencyInterval(for: selectedFrequency)
         print("frequencyInterval: \(frequencyInterval)")
-        // Создаем триггер уведомления с заданным интервалом
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: frequencyInterval, repeats: true)
-//        print("Notification scheduled successfully.")
         // выбранную частоту в frequencyLabel
         if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
             frequencyCell.setFrequencyText("\(selectedFrequency)")

@@ -56,33 +56,35 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public let times: [String] = (0...7).map { "\($0)" }
     public var selectedTimes: String?
     // for starting picker view
-//    public let firstDose: [String] = {
-//        var times = [String]()
-//        for hour in 0...23 {
-//            for minute in stride(from: 0, through: 55, by: 5) {
-//                times.append(String(format: "%02d:%02d", hour, minute))
-//            }
-//        }
-//        return times
-//    }()
-//    public var selectedFirstDose: String?
-    public let firstDose: [Date] = {
-        var dates = [Date]()
-        let currentDate = Date()
+  
+    //    public let firstDose: [String] = {
+    //        var times = [String]()
+    //        for hour in 0...23 {
+    //            for minute in stride(from: 0, through: 55, by: 5) {
+    //                times.append(String(format: "%02d:%02d", hour, minute))
+    //            }
+    //        }
+    //        return times
+    //    }()
+    //    public var selectedFirstDose: String?
+        public let firstDose: [Date] = {
+            var dates = [Date]()
+            let currentDate = Date()
 
-        for hour in 0...23 {
-            for minute in stride(from: 0, through: 55, by: 5) {
-                var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: currentDate)
-                components.hour = hour
-                components.minute = minute
-                if let date = Calendar.current.date(from: components) {
-                    dates.append(date)
+            for hour in 0...23 {
+                for minute in stride(from: 0, through: 55, by: 5) {
+                    var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: currentDate)
+                    components.hour = hour
+                    components.minute = minute
+                    if let date = Calendar.current.date(from: components) {
+                        dates.append(date)
+                    }
                 }
             }
-        }
-        return dates
-    }()
-    var selectedFirstDose: Date?
+            return dates
+        }()
+        var selectedFirstDose: Date?
+
 
 
     
@@ -169,47 +171,47 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
-    // saveButton
     @objc private func saveButtonTapped() {
-        // Проверяем, что у нас есть ссылка на редактируемую ячейку
-        guard let editingCell = editingCell else {
-            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
-            return
-        }
+         // Проверяем, что у нас есть ссылка на редактируемую ячейку
+         guard let editingCell = editingCell else {
+             // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
+             return
+         }
 
-        var newPill: Pill? // Declare newPill here
+         var newPill: Pill? // Declare newPill here
 
-        if let firstDoseDate = firstDose.first {
-            newPill = Pill(
-                name: editingCell.textField.text ?? "",
-                dosage: selectedDosage ?? "",
-                type: selectedType ?? "",
-                frequency: selectedFrequency ?? "",
-                days: (selectedDays ?? "") + " left",
-                times: (selectedTimes ?? "") + " times",
-                isEditable: true,
-                firstDose: firstDoseDate
-            )
-            // Используйте newPill
-        } else {
-            print("Ошибка: Массив firstDose пуст!")
-        }
+         if let firstDoseDate = firstDose.first {
+             newPill = Pill(
+                 name: editingCell.textField.text ?? "",
+                 dosage: selectedDosage ?? "",
+                 type: selectedType ?? "",
+                 frequency: selectedFrequency ?? "",
+                 days: (selectedDays ?? "") + " left",
+                 times: (selectedTimes ?? "") + " times",
+                 isEditable: true,
+                 firstDose: firstDoseDate
+             )
+             // Используйте newPill
+         } else {
+             print("Ошибка: Массив firstDose пуст!")
+         }
 
-        if let newPill = newPill {
-            print("Содержимое newPill:", newPill)
-            // Добавляем новый объект Pill в массив pillsArray
-            pillsArray.append(newPill)
-            
-            // Вызываем делегата для передачи обновленного массива
-            delegate?.pillsViewController(self, didSavePills: pillsArray)
-            // Выводим в консоль время уведомления
-            scheduleNotification(for: newPill)
-        }
+         if let newPill = newPill {
+             print("Содержимое newPill:", newPill)
+             // Добавляем новый объект Pill в массив pillsArray
+             pillsArray.append(newPill)
+             
+             // Вызываем делегата для передачи обновленного массива
+             delegate?.pillsViewController(self, didSavePills: pillsArray)
+             // Выводим в консоль время уведомления
+             scheduleNotification(for: newPill)
+         }
 
-        // Закрываем текущий контроллер
-        dismiss(animated: true, completion: nil)
-    }
+         // Закрываем текущий контроллер
+         dismiss(animated: true, completion: nil)
+     }
 
+     
     
 } //end
 //MARK: tap to close Keyboard
@@ -256,35 +258,37 @@ extension PillsViewController {
     //    }
     
     private func scheduleNotification(for pill: Pill) {
-        // Ensure that firstDose is not nil
-        if let firstDoseDate = pill.firstDose {
-            // Создаем контент уведомления
-            let content = UNMutableNotificationContent()
-            content.title = "Принять лекарство"
-            content.body = "Пора принять \(pill.name ?? "Лекарство")"
+            // Ensure that firstDose is not nil
+            if let firstDoseDate = pill.firstDose {
+                // Создаем контент уведомления
+                let content = UNMutableNotificationContent()
+                content.title = "Принять лекарство"
+                content.body = "Пора принять \(pill.name ?? "Лекарство")"
 
-            // Создаем компоненты даты для первой дозы
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: firstDoseDate)
+                // Создаем компоненты даты для первой дозы
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: firstDoseDate)
 
-            // Создаем триггер для уведомления
-            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+                // Создаем триггер для уведомления
+                let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
 
-            // Создаем запрос на уведомление
-            let request = UNNotificationRequest(identifier: "pillNotification", content: content, trigger: trigger)
+                // Создаем запрос на уведомление
+                let request = UNNotificationRequest(identifier: "pillNotification", content: content, trigger: trigger)
 
-            // Регистрируем запрос на уведомление
-            UNUserNotificationCenter.current().add(request) { (error) in
-                if let error = error {
-                    print("Ошибка при создании уведомления: \(error)")
-                } else {
-                    print("Уведомление успешно создано")
+                // Регистрируем запрос на уведомление
+                UNUserNotificationCenter.current().add(request) { (error) in
+                    if let error = error {
+                        print("Ошибка при создании уведомления: \(error)")
+                    } else {
+                        print("Уведомление успешно создано")
+                    }
                 }
+            } else {
+                print("Ошибка: Невозможно получить дату первой дозы")
             }
-        } else {
-            print("Ошибка: Невозможно получить дату первой дозы")
         }
-    }
+
 
     
 }
+

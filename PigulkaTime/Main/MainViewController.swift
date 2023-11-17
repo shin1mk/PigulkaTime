@@ -20,19 +20,6 @@ final class MainViewController: UIViewController {
         tableView.register(MainViewCustomTableCell.self, forCellReuseIdentifier: "MainCustomCell")
         return tableView
     }()
-//    private let titleLabel: UILabel = {
-//        let titleLabel = UILabel()
-//        let pillImage = UIImage(systemName: "pill")
-//        let titleLabelText = "Pills "
-//        // сначала текст, а потом изображение
-//        let attributedText = NSMutableAttributedString(string: titleLabelText)
-//        attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
-//        titleLabel.attributedText = attributedText
-//        titleLabel.textAlignment = .left
-//        titleLabel.font = UIFont.SFUITextBold(ofSize: 40)
-//        titleLabel.textColor = .white
-//        return titleLabel
-//    }()
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "Pills"
@@ -124,33 +111,34 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return pillsArray.count
     }
     // содержимое ячейки
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
-        // фон ячейки
-        let backgroundCellColor = UIView()
-        backgroundCellColor.backgroundColor = .clear
-        cell.selectedBackgroundView = backgroundCellColor
-        // установим title в ячейку
-        let pill = pillsArray[indexPath.row]
-        cell.setTitleLabelText(pill.name!)
-        cell.setTypeLabelText(pill.type)
-        cell.setDosageLabelText(pill.dosage)
-        cell.setFrequencyLabelText(pill.frequency)
-        cell.setDaysLabelText(pill.days)
-        cell.setTimesLabelText(pill.times)
-//        cell.setFirstDoseLabelText(pill.firstDose)
-        let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "HH:mm"
+    // содержимое ячейки
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
+          // фон ячейки
+          let backgroundCellColor = UIView()
+          backgroundCellColor.backgroundColor = .clear
+          cell.selectedBackgroundView = backgroundCellColor
+          // установим title в ячейку
+          let pill = pillsArray[indexPath.row]
+          cell.setTitleLabelText(pill.name!)
+          cell.setTypeLabelText(pill.type)
+          cell.setDosageLabelText(pill.dosage)
+          cell.setFrequencyLabelText(pill.frequency)
+          cell.setDaysLabelText(pill.days)
+          cell.setTimesLabelText(pill.times)
+  //        cell.setFirstDoseLabelText(pill.firstDose)
+          let dateFormatter = DateFormatter()
+             dateFormatter.dateFormat = "HH:mm"
 
-           // Преобразуем Date в строку с использованием DateFormatter
-           if let firstDoseDate = pill.firstDose {
-               let firstDoseString = dateFormatter.string(from: firstDoseDate)
-               cell.setFirstDoseLabelText(firstDoseString)
-           } else {
-               cell.setFirstDoseLabelText("No first dose")
-           }
-        return cell
-    }
+             // Преобразуем Date в строку с использованием DateFormatter
+             if let firstDoseDate = pill.firstDose {
+                 let firstDoseString = dateFormatter.string(from: firstDoseDate)
+                 cell.setFirstDoseLabelText(firstDoseString)
+             } else {
+                 cell.setFirstDoseLabelText("No first dose")
+             }
+          return cell
+      }
     // нажатая ячейка
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
@@ -187,3 +175,4 @@ extension MainViewController: PillsViewControllerDelegate {
         tableView.reloadData()
     }
 }
+

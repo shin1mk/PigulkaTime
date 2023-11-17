@@ -58,22 +58,23 @@ extension PillsViewController: FirstDoseCustomTableCellDelegate {
     }
     
     @objc private func firstDoseOkButtonTapped(_ sender: UIButton) {
-            // Получите выбранное время из свойства selectedFirstDose
-            guard let selectedFirstDose = selectedFirstDose else {
-                print("No time selected.")
-                dismiss(animated: true, completion: nil)
-                return
-            }
-            // в консоль выбранное время
-            print("Selected first dose at: \(selectedFirstDose)")
-
-            if let firstCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? FirstDoseCustomTableCell {
-                firstCell.setFirstDoseLabelText("\(selectedFirstDose)")
-            }
-            // Снимите фокус с текстового поля
-            editingCell?.textField.resignFirstResponder()
-            // Закройте UIViewController при нажатии кнопки "OK"
+        // Получите выбранное время из свойства selectedFirstDose
+        guard let selectedFirstDose = selectedFirstDose else {
+            print("No time selected.")
             dismiss(animated: true, completion: nil)
+            return
         }
+        // в консоль выбранное время
+        print("Selected first dose at: \(selectedFirstDose)")
+        
+        if let firstCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? FirstDoseCustomTableCell {
+            firstCell.setFirstDoseLabelText("\(selectedFirstDose)")
+        }
+        // Снимите фокус с текстового поля
+        editingCell?.textField.resignFirstResponder()
+        // Закройте UIViewController при нажатии кнопки "OK"
+        dismiss(animated: true, completion: nil)
+    }
 
 }
+

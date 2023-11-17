@@ -41,7 +41,7 @@ extension PillsViewController {
 
             print("Selected Hour: \(selectedHour), Selected Minute: \(selectedMinute)")
 
-            // Получаем текущую дату
+            // Получаем текущую дату и время
             let currentDate = Date()
 
             // Создаем объект DateComponents с использованием текущей даты и времени
@@ -51,17 +51,13 @@ extension PillsViewController {
             dateComponents.hour = selectedHour
             dateComponents.minute = selectedMinute
 
-            // Устанавливаем год, месяц и день на текущие
-            dateComponents.year = Calendar.current.component(.year, from: currentDate)
-            dateComponents.month = Calendar.current.component(.month, from: currentDate)
-            dateComponents.day = Calendar.current.component(.day, from: currentDate)
-
             // Создаем объект Date с использованием Calendar и новых dateComponents
             selectedFirstDose = Calendar.current.date(from: dateComponents)
 
             // Теперь selectedFirstDose имеет тип Date?
             print("Selected Starting at: \(selectedFirstDose ?? Date())")
 
+            
         default:
             break
         }
@@ -109,7 +105,7 @@ extension PillsViewController {
             return 0
         }
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
         case 1:
@@ -124,14 +120,14 @@ extension PillsViewController {
             return times[row]
         case 6:
             if component == 0 {
-                   return String(format: "%02d", row) // Форматирование часов
-               } else {
-                   return String(format: "%02d", row) // Форматирование минут с шагом 5
-   //                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
-               }
+                return String(format: "%02d", row) // Форматирование часов
+            } else {
+                return String(format: "%02d", row) // Форматирование минут с шагом 5
+            }
         default:
             return nil
         }
+        
+        
     }
-
 }
