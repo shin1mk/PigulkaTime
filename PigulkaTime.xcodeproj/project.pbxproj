@@ -23,7 +23,7 @@
 		135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38512AFA9EC4007C1C04 /* AppDelegate.swift */; };
 		135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */; };
 		135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38552AFA9EC4007C1C04 /* MainViewController.swift */; };
-		135B385C2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 135B385A2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodeld */; };
+		135B385C2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 135B385A2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld */; };
 		135B385E2AFA9EC5007C1C04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 135B385D2AFA9EC5007C1C04 /* Assets.xcassets */; };
 		135B386C2AFA9EC5007C1C04 /* PigulkaTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B386B2AFA9EC5007C1C04 /* PigulkaTimeTests.swift */; };
 		135B38762AFA9EC5007C1C04 /* PigulkaTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38752AFA9EC5007C1C04 /* PigulkaTimeUITests.swift */; };
@@ -271,7 +271,7 @@
 		135C5F402B08F67C00FF299B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				135B385A2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodeld */,
+				135B385A2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld */,
 				135C5F412B08F69100FF299B /* CoreDataManager.swift */,
 			);
 			path = CoreData;
@@ -572,7 +572,7 @@
 				135B38952AFAA031007C1C04 /* textHelper.swift in Sources */,
 				13523D3C2B03485A00D5C649 /* FrequencyPickerExtension.swift in Sources */,
 				13523D3A2B03483900D5C649 /* DosagePickerExtension.swift in Sources */,
-				135B385C2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodeld in Sources */,
+				135B385C2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld in Sources */,
 				135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */,
 				13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */,
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
@@ -933,13 +933,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		135B385A2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodeld */ = {
+		135B385A2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				135B385B2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodel */,
 			);
 			currentVersion = 135B385B2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodel */;
-			path = PigulkaTime.xcdatamodeld;
+			path = Pigulka.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
