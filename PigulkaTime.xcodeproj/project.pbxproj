@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1310BB9A2B089B84004AB7A2 /* NotificationsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1310BB992B089B84004AB7A2 /* NotificationsExtension.swift */; };
 		1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */; };
 		1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */; };
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		04D4F1B31EEF4894E03B9AD5 /* Pods-PigulkaTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime_PigulkaTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1310BB992B089B84004AB7A2 /* NotificationsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsExtension.swift; sourceTree = "<group>"; };
 		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
 		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */,
 				13523D412B0348AB00D5C649 /* TimeExtension.swift */,
 				13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */,
+				1310BB992B089B84004AB7A2 /* NotificationsExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */,
 				1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */,
 				1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */,
+				1310BB9A2B089B84004AB7A2 /* NotificationsExtension.swift in Sources */,
 				13F556092AFCB0CE0025119F /* Models.swift in Sources */,
 				135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */,
 			);
