@@ -94,14 +94,6 @@ final class MainViewController: UIViewController {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
     }
     // add pill кнопка
-//    @objc private func addPillButtonTapped() {
-//        feedbackGenerator.selectionChanged()
-//        // открываем модальное окно
-//        let pillsViewController = PillsViewController()
-//        pillsViewController.modalPresentationStyle = .popover
-//        pillsViewController.delegate = self
-//        present(pillsViewController, animated: true, completion: nil)
-//    }
     @objc private func addPillButtonTapped() {
         feedbackGenerator.selectionChanged()
         // открываем модальное окно
@@ -167,46 +159,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return configuration
     }
 }
-//MARK: открытая функция добавляет в массив данные из PillsViewControler и показывает на экране
-//extension MainViewController: PillsViewControllerDelegate {
-//    func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill]) {
-//        pillsArray.append(contentsOf: pills)
-//        print("Added a new pill: \(pills)")
-//        tableView.reloadData()
-//    }
-//}
-// Реализация метода PillsViewControllerDelegate
-//extension MainViewController: PillsViewControllerDelegate{
-//    func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill]) {
-//        // Сохраняем таблетки в Core Data
-//        for pill in pills {
-//            CoreDataManager.shared.savePillToCoreData(name: pill.name ?? "",
-//                                                      selectedDosage: pill.dosage ,
-//                                                      selectedType: pill.type ,
-//                                                      selectedFrequency: pill.frequency ,
-//                                                      selectedDays: Int(pill.days.components(separatedBy: " ")[0] ) ?? 0,
-//                                                      selectedTimes: pill.times.components(separatedBy: " ")[1],
-//                                                      selectedTime: pill.time.replacingOccurrences(of: "Time: ", with: "") )
-//        }
-//
-//        // Загружаем таблетки из Core Data и обновляем массив
-//        pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
-//
-//        // Обновляем tableView
-//        tableView.reloadData()
-//    }
-//}
+//MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
 extension MainViewController: PillsViewControllerDelegate {
     func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill]) {
         // Assuming you want to iterate over each pill in the array
         for pill in pills {
             CoreDataManager.shared.savePillToCoreData(name: pill.name ?? "",
-                                                      selectedDosage: pill.dosage ?? "",
-                                                      selectedType: pill.type ?? "",
-                                                      selectedFrequency: pill.frequency ?? "",
-                                                      selectedDays: Int(pill.days ?? "0") ?? 0, // Convert String to Int
-                                                      selectedTimes: pill.times ?? "",
-                                                      selectedTime: pill.time ?? "")
+                                                      selectedDosage: pill.dosage,
+                                                      selectedType: pill.type,
+                                                      selectedFrequency: pill.frequency,
+                                                      selectedDays: Int(pill.days) ?? 0, // Convert String to Int
+                                                      selectedTimes: pill.times,
+                                                      selectedTime: pill.time)
         }
         // Загрузите обновленные таблетки из Core Data
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
