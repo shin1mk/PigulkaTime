@@ -26,38 +26,20 @@ extension PillsViewController {
             selectedTimes = times[row]
             print("Selected Days: \(selectedTimes ?? "No times selected")")
         case 6:
-            let selectedHour: Int
-            let selectedMinute: Int
-
             if component == 0 {
                 // Выбран час
-                selectedHour = row
-                selectedMinute = pickerView.selectedRow(inComponent: 1)
+                let selectedHour = row
+                //                   let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
+                let selectedMinute = pickerView.selectedRow(inComponent: 1)
+                selectedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
             } else {
                 // Выбраны минуты
-                selectedHour = pickerView.selectedRow(inComponent: 0)
-                selectedMinute = row
+                let selectedHour = pickerView.selectedRow(inComponent: 0)
+                //                   let selectedMinute = row * 5
+                let selectedMinute = row
+                selectedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
             }
-
-            print("Selected Hour: \(selectedHour), Selected Minute: \(selectedMinute)")
-
-            // Получаем текущую дату и время
-            let currentDate = Date()
-
-            // Создаем объект DateComponents с использованием текущей даты и времени
-            var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: currentDate)
-
-            // Устанавливаем выбранные часы и минуты
-            dateComponents.hour = selectedHour
-            dateComponents.minute = selectedMinute
-
-            // Создаем объект Date с использованием Calendar и новых dateComponents
-            selectedFirstDose = Calendar.current.date(from: dateComponents)
-
-            // Теперь selectedFirstDose имеет тип Date?
-            print("Selected Starting at: \(selectedFirstDose ?? Date())")
-
-            
+            print("Selected time at: \(selectedTime ?? "No time selected")")
         default:
             break
         }
@@ -98,7 +80,7 @@ extension PillsViewController {
             if component == 0 {
                 return 24 // Часы от 0 до 23
             } else {
-                //                                return 12 // Минуты от 0 до 55 с шагом 5
+                //                return 12 // Минуты от 0 до 55 с шагом 5
                 return 60 // Минуты от 0 до 55 с шагом 5
             }
         default:
@@ -123,11 +105,10 @@ extension PillsViewController {
                 return String(format: "%02d", row) // Форматирование часов
             } else {
                 return String(format: "%02d", row) // Форматирование минут с шагом 5
+                //                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
             }
         default:
             return nil
         }
-        
-        
     }
 }

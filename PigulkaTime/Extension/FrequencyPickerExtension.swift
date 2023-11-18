@@ -57,66 +57,26 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
     }
     // MARK: - Ok Button Action
     @objc private func frequencyOkButtonTapped(_ sender: UIButton) {
+        // Получите выбранный тип из свойства selectedType
         guard let selectedFrequency = selectedFrequency else {
-            print("No frequency selected.")
+            print("No type selected.")
             dismiss(animated: true, completion: nil)
             return
         }
-
+        
+        // Проверьте, было ли выбрано время, если нет, установите значение по умолчанию (0)
+        let selectedTime = selectedTime ?? "0"
+        
         print("Selected Frequency: \(selectedFrequency)")
-
-        let frequencyInterval = getFrequencyInterval(for: selectedFrequency)
-        print("frequencyInterval: \(frequencyInterval)")
+        print("Selected Time: \(selectedTime)")
+        print("Selected Frequency: \(selectedFrequency)")
         // выбранную частоту в frequencyLabel
         if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
             frequencyCell.setFrequencyText("\(selectedFrequency)")
         }
         // Снимите фокус с текстового поля
         editingCell?.textField.resignFirstResponder()
-        // Закрываем UIViewController при нажатии кнопки "OK"
+        // Закройте UIViewController при нажатии кнопки "OK"
         dismiss(animated: true, completion: nil)
     }
-
-    private func getFrequencyInterval(for frequency: String) -> TimeInterval {
-        switch frequency {
-        case "Daily":
-            return 24 * 60 * 60 // 24 часа в секундах
-        case "Every Hour":
-            return 60 * 60 // 1 час в секундах
-        case "Every 2 hours":
-            return 2 * 60 * 60 // 2 часа в секундах
-        case "Every 3 hours":
-            return 3 * 60 * 60 // 3 часа в секундах
-        case "Every 4 hours":
-            return 4 * 60 * 60 // 4 часа в секундах
-        case "Every 6 hours":
-            return 6 * 60 * 60 // 6 часов в секундах
-        case "Every 8 hours":
-            return 8 * 60 * 60 // 8 часов в секундах
-        case "Every 12 hours":
-            return 12 * 60 * 60 // 12 часов в секундах
-        case "Every 2 days":
-            return 2 * 24 * 60 * 60 // 2 дня в секундах
-        case "Every 3 days":
-            return 3 * 24 * 60 * 60 // 3 дня в секундах
-        case "Every 4 days":
-            return 4 * 24 * 60 * 60 // 4 дня в секундах
-        case "Every 5 days":
-            return 5 * 24 * 60 * 60 // 5 дней в секундах
-        case "Every 6 days":
-            return 6 * 24 * 60 * 60 // 6 дней в секундах
-        case "Weekly":
-            return 7 * 24 * 60 * 60 // 7 дней в секундах (неделя)
-        case "Every 2 weeks":
-            return 2 * 7 * 24 * 60 * 60 // 2 недели в секундах
-        case "Every 3 weeks":
-            return 3 * 7 * 24 * 60 * 60 // 3 недели в секундах
-        case "Every 4 weeks":
-            return 4 * 7 * 24 * 60 * 60 // 4 недели в секундах
-        default:
-            return 0
-        }
-    }
-
 }
-

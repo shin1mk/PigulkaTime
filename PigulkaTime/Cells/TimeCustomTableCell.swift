@@ -1,5 +1,5 @@
 //
-//  FirstDoseCustomTableCell.swift
+//  TimeCustomTableCell.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 13.11.2023.
@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-final class FirstDoseCustomTableCell: UITableViewCell {
-    weak var delegate: FirstDoseCustomTableCellDelegate?
+final class TimeCustomTableCell: UITableViewCell {
+    weak var delegate: TimeCustomTableCellDelegate?
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -19,13 +19,13 @@ final class FirstDoseCustomTableCell: UITableViewCell {
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
         return titleLabel
     }()
-    private let firstDoseLabel: UILabel = {
-        let firstDoseLabel = UILabel()
-        firstDoseLabel.text = "Choose \u{2192}"
-        firstDoseLabel.textColor = .systemGray
-        firstDoseLabel.textAlignment = .right
-        firstDoseLabel.font = UIFont.SFUITextRegular(ofSize: 17)
-        return firstDoseLabel
+    private let timeLabel: UILabel = {
+        let timeLabel = UILabel()
+        timeLabel.text = "Choose \u{2192}"
+        timeLabel.textColor = .systemGray
+        timeLabel.textAlignment = .right
+        timeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        return timeLabel
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,8 +46,8 @@ final class FirstDoseCustomTableCell: UITableViewCell {
             make.leading.equalToSuperview()
         }
         // textField
-        addSubview(firstDoseLabel)
-        firstDoseLabel.snp.makeConstraints { make in
+        addSubview(timeLabel)
+        timeLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -59,10 +59,10 @@ final class FirstDoseCustomTableCell: UITableViewCell {
     }
     // cell action
     @objc private func cellTapped() {
-        delegate?.didSelectFirst(cell: self)
+        delegate?.didSelectTime(cell: self)
     }
     // set label
-    func setFirstDoseLabelText(_ text: String) {
-        firstDoseLabel.text = text
+    func setTimeLabelText(_ text: String) {
+        timeLabel.text = text
     }
 } //end

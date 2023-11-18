@@ -47,8 +47,8 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         case 6:
-            cellIdentifier = "FirstDoseCustomCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FirstDoseCustomTableCell
+            cellIdentifier = "TimeCustomCell"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TimeCustomTableCell
             cell.delegate = self
             return cell
         default:

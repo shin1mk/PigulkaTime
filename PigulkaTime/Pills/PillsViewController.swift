@@ -28,14 +28,15 @@ protocol DaysCustomTableCellDelegate: AnyObject {
 protocol TimesCustomTableCellDelegate: AnyObject {
     func didSelectTimes(cell: TimesCustomTableCell)
 }
-protocol FirstDoseCustomTableCellDelegate: AnyObject {
-    func didSelectFirst(cell: FirstDoseCustomTableCell)
+protocol TimeCustomTableCellDelegate: AnyObject {
+    func didSelectTime(cell: TimeCustomTableCell)
 }
 
 
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var delegate: PillsViewControllerDelegate?
-    
+    // timer
+    var timer: Timer?
     //MARK: Public
     public var editingCell: DrugNameCustomTableCell? // изменения ячейки
     public var pillsArray: [Pill] = [] // массив
@@ -49,45 +50,24 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Every 4 weeks"]
     public var selectedFrequency: String?
     // for days picker view
-    //    public let days: [String] = (0...100).map {  "\($0) day\($0 == 1 ? "" : "s")" }
+//    public let days: [String] = (0...100).map {  "\($0) day\($0 == 1 ? "" : "s")" }
     public let days: [String] = (0...100).compactMap { $0 == 1 ? nil : "\($0) day\($0 == 1 ? "" : "s")" }
     public var selectedDays: String?
+//    public var selectedDays: Int?
     // for times per day picker view
-    public let times: [String] = (0...7).map { "\($0)" }
+    public let times: [String] = (0...10).map { "\($0)" }
     public var selectedTimes: String?
     // for starting picker view
-  
-    //    public let firstDose: [String] = {
-    //        var times = [String]()
-    //        for hour in 0...23 {
-    //            for minute in stride(from: 0, through: 55, by: 5) {
-    //                times.append(String(format: "%02d:%02d", hour, minute))
-    //            }
-    //        }
-    //        return times
-    //    }()
-    //    public var selectedFirstDose: String?
-        public let firstDose: [Date] = {
-            var dates = [Date]()
-            let currentDate = Date()
-
-            for hour in 0...23 {
-                for minute in stride(from: 0, through: 55, by: 5) {
-                    var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: currentDate)
-                    components.hour = hour
-                    components.minute = minute
-                    if let date = Calendar.current.date(from: components) {
-                        dates.append(date)
-                    }
-                }
+    public let time: [String] = {
+        var times = [String]()
+        for hour in 0...23 {
+            for minute in stride(from: 0, through: 55, by: 5) {
+                times.append(String(format: "%02d:%02d", hour, minute))
             }
-            return dates
-        }()
-        var selectedFirstDose: Date?
-
-
-
-    
+        }
+        return times
+    }()
+    public var selectedTime: String?
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +77,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
-        tableView.register(FirstDoseCustomTableCell.self, forCellReuseIdentifier: "FirstDoseCustomCell")
+        tableView.register(TimeCustomTableCell.self, forCellReuseIdentifier: "TimeCustomCell")
         return tableView
     }()
     //MARK: Properties
@@ -171,48 +151,66 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
+//    @objc private func saveButtonTapped() {
+//        // Проверяем, что у нас есть ссылка на редактируемую ячейку
+//        guard let editingCell = editingCell else {
+//            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
+//            return
+//        }
+//        // Проверяем, что все обязательные поля заполнены
+//        guard let name = editingCell.textField.text, !name.isEmpty,
+//              let selectedDosage = selectedDosage, !selectedDosage.isEmpty,
+//              let selectedType = selectedType, !selectedType.isEmpty,
+//              let selectedFrequency = selectedFrequency, !selectedFrequency.isEmpty,
+//              let selectedDays = selectedDays, !selectedDays.isEmpty,
+//              let selectedTimes = selectedTimes, !selectedTimes.isEmpty,
+//              let selectedStart = selectedStart, !selectedStart.isEmpty else {
+//            return
+//        }
+//        // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
+//        let newPill = Pill(name: name,
+//                           dosage: selectedDosage,
+//                           type: selectedType,
+//                           frequency: selectedFrequency,
+//                           days: selectedDays + " left",
+//                           times: selectedTimes + " times",
+//                           isEditable: true,
+//                           start: "Next: " + selectedStart)
+//        // Добавляем новый объект Pill в массив pillsArray
+//        pillsArray.append(newPill)
+//        // Вызываем делегата для передачи обновленного массива
+//        delegate?.pillsViewController(self, didSavePills: pillsArray)
+//        // Закрываем текущий контроллер
+//        dismiss(animated: true, completion: nil)
+//    }
     @objc private func saveButtonTapped() {
-         // Проверяем, что у нас есть ссылка на редактируемую ячейку
-         guard let editingCell = editingCell else {
-             // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
-             return
-         }
+        // Проверяем, что у нас есть ссылка на редактируемую ячейку
+        guard let editingCell = editingCell else {
+            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
+            return
+        }
 
-         var newPill: Pill? // Declare newPill here
+        // Убираем проверки наличия значений для обязательных полей
+        // и создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
+        let newPill = Pill(name: editingCell.textField.text ?? "",
+                           dosage: selectedDosage ?? "",
+                           type: selectedType ?? "",
+                           frequency: selectedFrequency ?? "",
+                           days: (selectedDays ?? "") + " left",
+                           times: (selectedTimes ?? "") + " times",
+                           isEditable: true,
+                           time: "Next: " + (selectedTime ?? ""))
 
-         if let firstDoseDate = firstDose.first {
-             newPill = Pill(
-                 name: editingCell.textField.text ?? "",
-                 dosage: selectedDosage ?? "",
-                 type: selectedType ?? "",
-                 frequency: selectedFrequency ?? "",
-                 days: (selectedDays ?? "") + " left",
-                 times: (selectedTimes ?? "") + " times",
-                 isEditable: true,
-                 firstDose: firstDoseDate
-             )
-             // Используйте newPill
-         } else {
-             print("Ошибка: Массив firstDose пуст!")
-         }
+        // Добавляем новый объект Pill в массив pillsArray
+        pillsArray.append(newPill)
 
-         if let newPill = newPill {
-             print("Содержимое newPill:", newPill)
-             // Добавляем новый объект Pill в массив pillsArray
-             pillsArray.append(newPill)
-             
-             // Вызываем делегата для передачи обновленного массива
-             delegate?.pillsViewController(self, didSavePills: pillsArray)
-             // Выводим в консоль время уведомления
-             scheduleNotification(for: newPill)
-         }
+        // Вызываем делегата для передачи обновленного массива
+        delegate?.pillsViewController(self, didSavePills: pillsArray)
 
-         // Закрываем текущий контроллер
-         dismiss(animated: true, completion: nil)
-     }
+        // Закрываем текущий контроллер
+        dismiss(animated: true, completion: nil)
+    }
 
-     
-    
 } //end
 //MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {
@@ -233,62 +231,3 @@ extension PillsViewController: UIGestureRecognizerDelegate {
         return true
     }
 }
-//MARK: Notifications
-extension PillsViewController {
-    //    private func createNotification(for pill: Pill) {
-    //        // Извлекаем дату и время из строки "Next: HH:mm" в формате DateFormatter
-    //        let content = UNMutableNotificationContent()
-    //        content.title = "Принять лекарство"
-    //        content.body = "Пора"
-    //
-    //        // Создаем триггер для уведомления через 5 секунд (пример)
-    //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-    //
-    //        // Создаем запрос на уведомление
-    //        let request = UNNotificationRequest(identifier: "pillNotification", content: content, trigger: trigger)
-    //
-    //        // Регистрируем запрос на уведомление
-    //        UNUserNotificationCenter.current().add(request) { (error) in
-    //            if let error = error {
-    //                print("Ошибка при создании уведомления: \(error)")
-    //            } else {
-    //                print("Уведомление успешно создано")
-    //            }
-    //        }
-    //    }
-    
-    private func scheduleNotification(for pill: Pill) {
-            // Ensure that firstDose is not nil
-            if let firstDoseDate = pill.firstDose {
-                // Создаем контент уведомления
-                let content = UNMutableNotificationContent()
-                content.title = "Принять лекарство"
-                content.body = "Пора принять \(pill.name ?? "Лекарство")"
-
-                // Создаем компоненты даты для первой дозы
-                let calendar = Calendar.current
-                let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: firstDoseDate)
-
-                // Создаем триггер для уведомления
-                let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-
-                // Создаем запрос на уведомление
-                let request = UNNotificationRequest(identifier: "pillNotification", content: content, trigger: trigger)
-
-                // Регистрируем запрос на уведомление
-                UNUserNotificationCenter.current().add(request) { (error) in
-                    if let error = error {
-                        print("Ошибка при создании уведомления: \(error)")
-                    } else {
-                        print("Уведомление успешно создано")
-                    }
-                }
-            } else {
-                print("Ошибка: Невозможно получить дату первой дозы")
-            }
-        }
-
-
-    
-}
-

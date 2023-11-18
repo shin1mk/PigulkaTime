@@ -20,25 +20,34 @@ final class MainViewController: UIViewController {
         tableView.register(MainViewCustomTableCell.self, forCellReuseIdentifier: "MainCustomCell")
         return tableView
     }()
+ 
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Pills"
-        titleLabel.textColor = .white
+        let pillImage = UIImage(systemName: "pill")
+        let titleLabelText = "Pills "
+        // сначала текст, а потом изображение
+        let attributedText = NSMutableAttributedString(string: titleLabelText)
+        attributedText.append(NSAttributedString(attachment: NSTextAttachment(image: pillImage!)))
+        titleLabel.attributedText = attributedText
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 45)
+        titleLabel.font = UIFont.SFUITextBold(ofSize: 40)
+        titleLabel.textColor = .white
         return titleLabel
     }()
     private let addButton: UIButton = {
-        let addButton = UIButton()
-        let plusFillImage = UIImage(systemName: "plus.circle.fill")?
-            .withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
-        addButton.setImage(plusFillImage, for: .normal)
-        addButton.setTitle(" Add pills", for: .normal)
-        addButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
-        addButton.setTitleColor(.white, for: .normal)
-        addButton.backgroundColor = .systemGray6
-        addButton.layer.cornerRadius = 5
-        return addButton
+        let button = UIButton()
+        // plus.fill icon attachment
+        let plusFillImage = UIImage(systemName: "plus.circle.fill")?.withTintColor(.white)
+        let plusFillAttachment = NSTextAttachment(image: plusFillImage!)
+        // attributed text
+        let attributedText = NSMutableAttributedString(string: " Add pills")
+        attributedText.insert(NSAttributedString(attachment: plusFillAttachment), at: 0)
+        // text color to white
+        attributedText.addAttributes([.font: UIFont.SFUITextMedium(ofSize: 20)!, .foregroundColor: UIColor.white], range: NSRange(location: 1, length: "Add Pills".count))
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.backgroundColor = .systemGray6
+        button.layer.cornerRadius = 5
+        return button
     }()
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -111,34 +120,23 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return pillsArray.count
     }
     // содержимое ячейки
-    // содержимое ячейки
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
-          // фон ячейки
-          let backgroundCellColor = UIView()
-          backgroundCellColor.backgroundColor = .clear
-          cell.selectedBackgroundView = backgroundCellColor
-          // установим title в ячейку
-          let pill = pillsArray[indexPath.row]
-          cell.setTitleLabelText(pill.name!)
-          cell.setTypeLabelText(pill.type)
-          cell.setDosageLabelText(pill.dosage)
-          cell.setFrequencyLabelText(pill.frequency)
-          cell.setDaysLabelText(pill.days)
-          cell.setTimesLabelText(pill.times)
-  //        cell.setFirstDoseLabelText(pill.firstDose)
-          let dateFormatter = DateFormatter()
-             dateFormatter.dateFormat = "HH:mm"
-
-             // Преобразуем Date в строку с использованием DateFormatter
-             if let firstDoseDate = pill.firstDose {
-                 let firstDoseString = dateFormatter.string(from: firstDoseDate)
-                 cell.setFirstDoseLabelText(firstDoseString)
-             } else {
-                 cell.setFirstDoseLabelText("No first dose")
-             }
-          return cell
-      }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCustomCell", for: indexPath) as! MainViewCustomTableCell
+        // фон ячейки
+        let backgroundCellColor = UIView()
+        backgroundCellColor.backgroundColor = .clear
+        cell.selectedBackgroundView = backgroundCellColor
+        // установим title в ячейку
+        let pill = pillsArray[indexPath.row]
+        cell.setTitleLabelText(pill.name!)
+        cell.setTypeLabelText(pill.type)
+        cell.setDosageLabelText(pill.dosage)
+        cell.setFrequencyLabelText(pill.frequency)
+        cell.setDaysLabelText(pill.days)
+        cell.setTimesLabelText(pill.times)
+        cell.setTimeLabelText(pill.time)
+        return cell
+    }
     // нажатая ячейка
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
@@ -175,4 +173,3 @@ extension MainViewController: PillsViewControllerDelegate {
         tableView.reloadData()
     }
 }
-
