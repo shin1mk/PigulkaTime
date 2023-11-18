@@ -27,15 +27,13 @@ extension PillsViewController {
             print("Selected Days: \(selectedTimes ?? "No times selected")")
         case 6:
             if component == 0 {
-                // Выбран час
                 let selectedHour = row
-                //                   let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
+                // let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
                 let selectedMinute = pickerView.selectedRow(inComponent: 1)
                 selectedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
             } else {
-                // Выбраны минуты
                 let selectedHour = pickerView.selectedRow(inComponent: 0)
-                //                   let selectedMinute = row * 5
+                // let selectedMinute = row * 5
                 let selectedMinute = row
                 selectedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
             }

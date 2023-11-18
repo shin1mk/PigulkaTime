@@ -151,47 +151,11 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
-//    @objc private func saveButtonTapped() {
-//        // Проверяем, что у нас есть ссылка на редактируемую ячейку
-//        guard let editingCell = editingCell else {
-//            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
-//            return
-//        }
-//        // Проверяем, что все обязательные поля заполнены
-//        guard let name = editingCell.textField.text, !name.isEmpty,
-//              let selectedDosage = selectedDosage, !selectedDosage.isEmpty,
-//              let selectedType = selectedType, !selectedType.isEmpty,
-//              let selectedFrequency = selectedFrequency, !selectedFrequency.isEmpty,
-//              let selectedDays = selectedDays, !selectedDays.isEmpty,
-//              let selectedTimes = selectedTimes, !selectedTimes.isEmpty,
-//              let selectedStart = selectedStart, !selectedStart.isEmpty else {
-//            return
-//        }
-//        // Создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
-//        let newPill = Pill(name: name,
-//                           dosage: selectedDosage,
-//                           type: selectedType,
-//                           frequency: selectedFrequency,
-//                           days: selectedDays + " left",
-//                           times: selectedTimes + " times",
-//                           isEditable: true,
-//                           start: "Next: " + selectedStart)
-//        // Добавляем новый объект Pill в массив pillsArray
-//        pillsArray.append(newPill)
-//        // Вызываем делегата для передачи обновленного массива
-//        delegate?.pillsViewController(self, didSavePills: pillsArray)
-//        // Закрываем текущий контроллер
-//        dismiss(animated: true, completion: nil)
-//    }
     @objc private func saveButtonTapped() {
-        // Проверяем, что у нас есть ссылка на редактируемую ячейку
         guard let editingCell = editingCell else {
-            // В случае, если editingCell равен nil (нет редактируемой ячейки), выходим из метода
             return
         }
 
-        // Убираем проверки наличия значений для обязательных полей
-        // и создаем новый объект Pill на основе введенных данных в текстовое поле и выбранного типа
         let newPill = Pill(name: editingCell.textField.text ?? "",
                            dosage: selectedDosage ?? "",
                            type: selectedType ?? "",
@@ -199,18 +163,14 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                            days: (selectedDays ?? "") + " left",
                            times: (selectedTimes ?? "") + " times",
                            isEditable: true,
-                           time: "Next: " + (selectedTime ?? ""))
-
+                           time: "Time: " + (selectedTime ?? ""))
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
-
         // Вызываем делегата для передачи обновленного массива
         delegate?.pillsViewController(self, didSavePills: pillsArray)
-
         // Закрываем текущий контроллер
         dismiss(animated: true, completion: nil)
     }
-
 } //end
 //MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {
