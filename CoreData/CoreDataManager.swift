@@ -67,4 +67,16 @@ class CoreDataManager {
 
            return pills
        }
+    func deletePillFromCoreData(pill: Pigulka) {
+        let context = persistentContainer.viewContext
+        context.delete(pill)
+
+        do {
+            try context.save()
+            print("Pill deleted from Core Data.")
+        } catch {
+            print("Error deleting pill from Core Data: \(error)")
+        }
+    }
+
 }

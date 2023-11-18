@@ -149,7 +149,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
-
     @objc private func saveButtonTapped(_ sender: UIButton) {
         guard let editingCell = editingCell,
               let selectedType = selectedType,
@@ -203,9 +202,9 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                            type: selectedType,
                            frequency: selectedFrequency,
                            days: "\(selectedDays) days left",
-                           times: "Times \(selectedTimes ?? "empty")",
+                           times: "\(selectedTimes ?? "no")",
                            isEditable: true,
-                           time: "Time: \(selectedTime)")
+                           time: "\(selectedTime)")
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
@@ -214,7 +213,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         editingCell.textField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
-
     // Вспомогательная функция для получения даты из выбранного времени
     private func getSelectedTimeDate(selectedTime: String) -> Date? {
         let calendar = Calendar.current

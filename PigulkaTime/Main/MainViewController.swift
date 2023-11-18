@@ -12,6 +12,7 @@ import UserNotifications
 final class MainViewController: UIViewController {
 //    public var pillsArray: [Pill] = [] // массив таблеток
     private var pillsArray: [Pigulka] = []
+    let coreDataManager = CoreDataManager.shared
 
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
@@ -123,6 +124,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         // установим title в ячейку
         let pill = pillsArray[indexPath.row]
         cell.setTitleLabelText(pill.name ?? "")
+        cell.setTypeLabelText(pill.type ?? "")
         cell.setDosageLabelText(pill.dosage ?? "")
         cell.setFrequencyLabelText(pill.frequency ?? "")
         cell.setDaysLabelText(pill.days ?? "")
@@ -136,20 +138,50 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         print("didSelectRowAt")
     }
     // swipe to delete func
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        guard !pillsArray.isEmpty else {
+//            return nil
+//        }
+//
+//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+//            // Perform your delete logic here
+//            self?.pillsArray.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//            completionHandler(true)
+//        }
+//
+//        deleteAction.backgroundColor = .systemRed
+//        // Добавляем обработку для красного текста внутри кнопки удаления
+//        deleteAction.image = UIImage(systemName: "trash.fill")
+//        deleteAction.title = nil
+//
+//        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+//        configuration.performsFirstActionWithFullSwipe = false
+//
+//        return configuration
+//    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !pillsArray.isEmpty else {
             return nil
         }
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
-            // Perform your delete logic here
-            self?.pillsArray.remove(at: indexPath.row)
+            guard let self = self else { return }
+
+            // Получаем объект, который нужно удалить
+            let pillToRemove = self.pillsArray[indexPath.row]
+
+            // Удаляем объект из массива данных
+            self.pillsArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            // Удаляем объект из Core Data
+            self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
+
             completionHandler(true)
         }
         
         deleteAction.backgroundColor = .systemRed
-        // Добавляем обработку для красного текста внутри кнопки удаления
         deleteAction.image = UIImage(systemName: "trash.fill")
         deleteAction.title = nil
         
@@ -158,6 +190,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         return configuration
     }
+
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
 extension MainViewController: PillsViewControllerDelegate {
@@ -173,8 +206,13 @@ extension MainViewController: PillsViewControllerDelegate {
                                                       selectedTime: pill.time)
         }
         // Загрузите обновленные таблетки из Core Data
+        print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
-        tableView.reloadData()
+        print("After: \(pillsArray)")
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+
     }
 
 }
