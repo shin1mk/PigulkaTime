@@ -59,37 +59,16 @@ extension PillsViewController: DaysCustomTableCellDelegate {
     // daysOkButtonTapped
     @objc private func daysOkButtonTapped(_ sender: UIButton) {
         // Получите выбранные дни
-        guard let selectedDaysString = selectedDays else {
+        guard let selectedDays = selectedDays else {
             // Обработка случая, когда selectedDays равно nil
             print("Дни не выбраны.")
             dismiss(animated: true, completion: nil)
             return
         }
-        // Очистка строки от лишних символов и преобразование в Int
-        let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
-        guard let selectedDays = Int(cleanedSelectedDaysString) else {
-            print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
-            return
-        }
-        // Выведите в консоль выбранный тип
-        print("Selected days: \(selectedDays)")
         // выбранный тип в typeLabel
         if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
-        // Получите выбранное время
-        guard let selectedTime = selectedTime else {
-            print("Time not selected.")
-            return
-        }
-        // Установите выбранную частоту
-        guard let selectedFrequency = selectedFrequency else {
-            print("Frequency not selected.")
-            return
-        }
-        let startDate = Date() // Используйте вашу начальную дату
-        let dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: startDate) ?? Date() }
-        scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency)
         // Снимите фокус с текстового поля
         editingCell?.textField.resignFirstResponder()
         // Закройте UIViewController при нажатии кнопки "OK"
@@ -137,7 +116,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         }
     }
     
-    private func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String) {
+     func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String) {
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
         let name = editingCell?.textField.text ?? "Time for pill"

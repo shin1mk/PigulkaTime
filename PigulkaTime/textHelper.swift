@@ -6,8 +6,6 @@
 //
 
 /*
- frequency => time => how many days
-
- need to
- frequency => days => times => start
+если время поменять но не трогать дни . уведомл не появляется
+ 
  */
