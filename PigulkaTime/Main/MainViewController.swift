@@ -138,28 +138,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         print("didSelectRowAt")
     }
     // swipe to delete func
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        guard !pillsArray.isEmpty else {
-//            return nil
-//        }
-//
-//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
-//            // Perform your delete logic here
-//            self?.pillsArray.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            completionHandler(true)
-//        }
-//
-//        deleteAction.backgroundColor = .systemRed
-//        // Добавляем обработку для красного текста внутри кнопки удаления
-//        deleteAction.image = UIImage(systemName: "trash.fill")
-//        deleteAction.title = nil
-//
-//        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-//        configuration.performsFirstActionWithFullSwipe = false
-//
-//        return configuration
-//    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !pillsArray.isEmpty else {
             return nil
@@ -195,24 +173,29 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
 extension MainViewController: PillsViewControllerDelegate {
     func pillsViewController(_ controller: PillsViewController, didSavePills pills: [Pill]) {
-        // Assuming you want to iterate over each pill in the array
         for pill in pills {
+            // Преобразуем строку "0 days left" в Int
+            let daysInt: Int = {
+                let digits = pill.days.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                return Int(digits ) ?? 0
+            }()
+
             CoreDataManager.shared.savePillToCoreData(name: pill.name ?? "",
                                                       selectedDosage: pill.dosage,
                                                       selectedType: pill.type,
                                                       selectedFrequency: pill.frequency,
-                                                      selectedDays: Int(pill.days) ?? 0, // Convert String to Int
+                                                      selectedDays: daysInt,
                                                       selectedTimes: pill.times,
                                                       selectedTime: pill.time)
         }
+
         // Загрузите обновленные таблетки из Core Data
         print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
         print("After: \(pillsArray)")
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-
     }
-
 }
