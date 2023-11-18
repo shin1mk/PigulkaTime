@@ -31,7 +31,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 4 // For Type picker view
+        pickerView.tag = 5 // For Type picker view
         pickerView.backgroundColor = .black
         pickerView.selectRow(0, inComponent: 0, animated: false)
 
@@ -74,7 +74,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         // Выведите в консоль выбранный тип
         print("Selected days: \(selectedDays)")
         // выбранный тип в typeLabel
-        if let daysCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
+        if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
         // Получите выбранное время
@@ -140,8 +140,8 @@ extension PillsViewController: DaysCustomTableCellDelegate {
     private func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String) {
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
-        let name = editingCell?.textField.text ?? "Пора принять лекарство"
-        content.body = "Time for \(name)"
+        let name = editingCell?.textField.text ?? "Time for pill"
+        content.body = "Time for \(name) \(selectedDosage ?? "no dosage") \(selectedType ?? "no type")"
         // Добавляем виброотклик
         content.sound = .default
         content.sound = UNNotificationSound.default

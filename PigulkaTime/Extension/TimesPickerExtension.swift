@@ -30,7 +30,7 @@ extension PillsViewController: TimesCustomTableCellDelegate {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 5 // For Type picker view
+        pickerView.tag = 6 // For Type picker view
         pickerView.backgroundColor = .black
         pickerView.selectRow(0, inComponent: 0, animated: false)
 
@@ -66,7 +66,7 @@ extension PillsViewController: TimesCustomTableCellDelegate {
         // Выведите в консоль выбранный тип
         print("Selected times: \(selectedTimes)")
         // выбранный тип в typeLabel
-        if let timesCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? TimesCustomTableCell {
+        if let timesCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimesCustomTableCell {
             timesCell.setTimesText("\(selectedTimes)")
         }
         // Снимите фокус с текстового поля

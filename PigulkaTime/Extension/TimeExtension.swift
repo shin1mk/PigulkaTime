@@ -31,7 +31,7 @@ extension PillsViewController: TimeCustomTableCellDelegate {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 6 // For Type picker view
+        pickerView.tag = 4 // For Type picker view
         pickerView.backgroundColor = .black
         pickerView.selectRow(0, inComponent: 0, animated: false)
         
@@ -96,7 +96,7 @@ extension PillsViewController: TimeCustomTableCellDelegate {
             // Запланируйте уведомление
             //            scheduleNotification(at: nextDaySelectedDate ?? Date())
             // выбранное время в typeLabel
-            if let timeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimeCustomTableCell {
+            if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
                 timeCell.setTimeLabelText("\(selectedTime)")
             }
             // Снимите фокус с текстового поля
@@ -108,7 +108,7 @@ extension PillsViewController: TimeCustomTableCellDelegate {
         // Запланируйте уведомление
         //        scheduleNotification(at: selectedDate ?? Date())
         // выбранное время в typeLabel
-        if let timeCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimeCustomTableCell {
+        if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
             timeCell.setTimeLabelText("\(selectedTime)")
         }
         // Снимите фокус с текстового поля
