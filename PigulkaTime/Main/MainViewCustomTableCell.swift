@@ -22,35 +22,35 @@ final class MainViewCustomTableCell: UITableViewCell {
         let dosageLabel = UILabel()
         dosageLabel.text = ""
         dosageLabel.textColor = .systemGray
-        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 18)
+        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
         typeLabel.text = ""
         typeLabel.textColor = .systemGray
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 18)
+        typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return typeLabel
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
         frequencyLabel.text = ""
         frequencyLabel.textColor = .systemGray
-        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 18)
+        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return frequencyLabel
     }()
     private let daysLabel: UILabel = {
         let daysLabel = UILabel()
         daysLabel.text = ""
         daysLabel.textColor = .systemGray
-        daysLabel.font = UIFont.SFUITextRegular(ofSize: 18)
+        daysLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return daysLabel
     }()
     private let timesLabel: UILabel = {
         let timesLabel = UILabel()
         timesLabel.text = ""
         timesLabel.textColor = .systemGray
-        timesLabel.font = UIFont.SFUITextRegular(ofSize: 18)
+        timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return timesLabel
     }()
     private let timeLabel: UILabel = {
@@ -59,6 +59,11 @@ final class MainViewCustomTableCell: UITableViewCell {
         timeLabel.textColor = .systemGray
         timeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return timeLabel
+    }()
+    private let bottomBorderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6 // Цвет бордера
+        return view
     }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -118,6 +123,14 @@ final class MainViewCustomTableCell: UITableViewCell {
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(20)
+        }
+        // bottomBorderView
+        addSubview(bottomBorderView)
+        bottomBorderView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(10) // или другое значение отступа
+            make.trailing.equalToSuperview().offset(-10) // или другое значение отступа
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1) // Высота бордера
         }
     }
     // общий метод для установки текста в Labels

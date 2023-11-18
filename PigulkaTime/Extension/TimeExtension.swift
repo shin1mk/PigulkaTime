@@ -56,47 +56,7 @@ extension PillsViewController: TimeCustomTableCellDelegate {
         
         return okButton
     }
-    
-//    @objc private func timeOkButtonTapped(_ sender: UIButton) {
-//        // Получите выбранное время из свойства selectedStarting
-//        guard let selectedTime = selectedTime else {
-//            print("No time selected.")
-//            dismiss(animated: true, completion: nil)
-//            return
-//        }
-//        // в консоль выбранное время
-//        print("Selected time at: \(selectedTime)")
-//        // Установите календарь и текущую дату
-//        let calendar = Calendar.current
-//        let currentDate = Date()
-//        // Разделите строку времени
-//        let timeComponents = selectedTime.components(separatedBy: ":")
-//        guard let hour = Int(timeComponents[0]), let minute = Int(timeComponents[1]) else {
-//            print("Invalid time format.")
-//            dismiss(animated: true, completion: nil)
-//            return
-//        }
-//        // Создайте новую дату с текущими годом, месяцем и днем, а также выбранными часами и минутами
-//        var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
-//        dateComponents.hour = hour
-//        dateComponents.minute = minute
-//        dateComponents.second = 0 // Установите секунды на 0, если необходимо
-//        let selectedDate = calendar.date(from: dateComponents)
-//
-//        // Проверьте, не выбрано ли время в прошлом
-//        if selectedDate ?? Date() < currentDate {
-//
-//        }
-//
-//        // выбранное время в typeLabel
-//        if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
-//            timeCell.setTimeLabelText("\(selectedTime)")
-//        }
-//        // Снимите фокус с текстового поля
-//        editingCell?.textField.resignFirstResponder()
-//        // Закройте UIViewController при нажатии кнопки "OK"
-//        dismiss(animated: true, completion: nil)
-//    }
+ 
     @objc private func timeOkButtonTapped(_ sender: UIButton) {
         // Получите выбранное время из свойства selectedStarting
         guard let selectedTime = selectedTime else {

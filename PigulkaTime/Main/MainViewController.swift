@@ -20,6 +20,7 @@ final class MainViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         tableView.register(MainViewCustomTableCell.self, forCellReuseIdentifier: "MainCustomCell")
         return tableView
     }()
@@ -136,6 +137,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // нажатая ячейка
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
+        let selectedPill = pillsArray[indexPath.row]
+        // Создайте экземпляр PillsViewController
+        let pillsViewController = PillsViewController()
+        // Задайте свойство editingPill вашего PillsViewController, чтобы передать данные для редактирования
+        pillsViewController.editingPill = selectedPill
+        pillsViewController.modalPresentationStyle = .popover
+        pillsViewController.delegate = self
+        // Представьте ваш PillsViewController
+        present(pillsViewController, animated: true, completion: nil)
     }
     // swipe to delete func
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -188,7 +198,6 @@ extension MainViewController: PillsViewControllerDelegate {
                                                       selectedTimes: pill.times,
                                                       selectedTime: pill.time)
         }
-
         // Загрузите обновленные таблетки из Core Data
         print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()

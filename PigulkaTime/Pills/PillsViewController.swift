@@ -37,6 +37,12 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     weak var delegate: PillsViewControllerDelegate?
     // timer
     var timer: Timer?
+    var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
+    // Добавь инициализатор
+    convenience init(pill: Pigulka) {
+        self.init()
+        self.editingPill = pill
+    }
     //MARK: Public
     public var editingCell: DrugNameCustomTableCell? // изменения ячейки
     public var pillsArray: [Pill] = [] // массив
@@ -104,6 +110,85 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         setupTableView()
         setupTarget()
         setupGesture()
+        setupEditPill()
+    }
+    
+    func setupEditPill() {
+        if let editingPill = editingPill {
+            // Заполняем соответствующие переменные значениями из editingPill
+            selectedType = editingPill.type
+            selectedDosage = editingPill.dosage
+            selectedFrequency = editingPill.frequency
+            
+            if let daysLeft = editingPill.days?.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(), let daysInt = Int(daysLeft) {
+                selectedDays = "\(daysInt) days left"
+            }
+            
+            selectedTimes = editingPill.times
+            selectedTime = editingPill.time
+            
+            // Принты для отслеживания данных
+            print("Selected Type: \(selectedType ?? "N/A")")
+            print("Selected Dosage: \(selectedDosage ?? "N/A")")
+            print("Selected Frequency: \(selectedFrequency ?? "N/A")")
+            print("Selected Days: \(selectedDays ?? "N/A")")
+            print("Selected Times: \(selectedTimes ?? "N/A")")
+            print("Selected Time: \(selectedTime ?? "N/A")")
+            // Обновление значений в пикервью
+            //            if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
+            //                    typeCell.setLabelText(selectedType ?? "")
+            //                    typeCell.pickerView.selectRow(types.firstIndex(of: selectedType ?? "") ?? 0, inComponent: 0, animated: false)
+            //                }
+            //
+            //                if let dosageCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DosageCustomTableCell {
+            //                    dosageCell.setDosageText(selectedDosage ?? "")
+            //                    dosageCell.pickerView.selectRow(dosages.firstIndex(of: selectedDosage ?? "") ?? 0, inComponent: 0, animated: false)
+            //                }
+            //
+            //                if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
+            //                    frequencyCell.setFrequencyText(selectedFrequency ?? "")
+            //                    frequencyCell.pickerView.selectRow(frequency.firstIndex(of: selectedFrequency ?? "") ?? 0, inComponent: 0, animated: false)
+            //                }
+            //
+            //                if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
+            //                    daysCell.setDaysText(selectedDays ?? "")
+            //                    let cleanedSelectedDaysString = selectedDays?.replacingOccurrences(of: "days left", with: "").trimmingCharacters(in: .whitespaces)
+            //                    let daysIndex = days.firstIndex(of: cleanedSelectedDaysString ?? "") ?? 0
+            //                    daysCell.pickerView.selectRow(daysIndex, inComponent: 0, animated: false)
+            //                }
+            //
+            //                if let timesCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimesCustomTableCell {
+            //                    timesCell.setTimesText(selectedTimes ?? "")
+            //                    timesCell.pickerView.selectRow(times.firstIndex(of: selectedTimes ?? "") ?? 0, inComponent: 0, animated: false)
+            //                }
+            //
+            //                if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
+            //                    timeCell.setTimeLabelText(selectedTime ?? "")
+            //                    let timeIndex = time.firstIndex(of: selectedTime ?? "") ?? 0
+            //                    timeCell.pickerView.selectRow(timeIndex, inComponent: 0, animated: false)
+            //                }
+            
+            // Заполняем значения в соответствующих ячейках
+            if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
+                typeCell.setLabelText(selectedType ?? "")
+            }
+            if let dosageCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DosageCustomTableCell {
+                dosageCell.setDosageText(selectedDosage ?? "")
+            }
+            if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
+                frequencyCell.setFrequencyText(selectedFrequency ?? "")
+            }
+            if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
+                daysCell.setDaysText(selectedDays ?? "")
+            }
+            if let timesCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimesCustomTableCell {
+                timesCell.setTimesText(selectedTimes ?? "")
+            }
+            if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
+                timeCell.setTimeLabelText(selectedTime ?? "")
+            }
+        }
+        
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -160,31 +245,31 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Some fields are not selected.")
             return
         }
-
+        
         let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
         guard let selectedDays = Int(cleanedSelectedDaysString) else {
             print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
             return
         }
-
+        
         print("Selected days: \(selectedDays)")
-
+        
         if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
-
+        
         // Print or use the selectedTime and selectedFrequency as needed
         print("Selected Time: \(selectedTime)")
         print("Selected Frequency: \(selectedFrequency)")
-
+        
         // Set the timeLabel text
         if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
             timeCell.setTimeLabelText("\(selectedTime)")
         }
-
+        
         let startDate = Date()
         var dates = [Date]()
-
+        
         // Проверьте, если выбранное время уже прошло, добавьте 1 день к дате начала
         if let timeDate = getSelectedTimeDate(selectedTime: selectedTime) {
             if timeDate < startDate {
@@ -194,9 +279,9 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: startDate) ?? Date() }
             }
         }
-
+        
         scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency)
-
+        
         let newPill = Pill(name: editingCell.textField.text ?? "",
                            dosage: selectedDosage,
                            type: selectedType,
@@ -209,7 +294,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
         delegate?.pillsViewController(self, didSavePills: pillsArray)
-
+        
         editingCell.textField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
@@ -217,21 +302,21 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private func getSelectedTimeDate(selectedTime: String) -> Date? {
         let calendar = Calendar.current
         let currentDate = Date()
-
+        
         let timeComponents = selectedTime.components(separatedBy: ":")
         guard let hour = Int(timeComponents[0]), let minute = Int(timeComponents[1]) else {
             print("Invalid time format.")
             return nil
         }
-
+        
         var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
         dateComponents.hour = hour
         dateComponents.minute = minute
         dateComponents.second = 0
-
+        
         return calendar.date(from: dateComponents)
     }
-
+    
     
 } //end
 //MARK: tap to close Keyboard
