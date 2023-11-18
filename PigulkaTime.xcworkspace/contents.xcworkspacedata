@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Pigulka+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Pigulka+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:PigulkaTime.xcodeproj">
    </FileRef>
    <FileRef

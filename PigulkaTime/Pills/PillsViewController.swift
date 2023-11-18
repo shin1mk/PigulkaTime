@@ -206,7 +206,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                            times: "Times \(selectedTimes ?? "empty")",
                            isEditable: true,
                            time: "Time: \(selectedTime)")
-
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
