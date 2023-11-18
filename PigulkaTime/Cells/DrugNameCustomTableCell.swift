@@ -27,7 +27,7 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
         textField.returnKeyType = .done
         let placeholderFont = UIFont.SFUITextRegular(ofSize: 17)
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.gray, // Цвет текста плейсхолдера
+            .foregroundColor: UIColor.gray,
             .font: placeholderFont as Any,
         ]
         textField.attributedPlaceholder = NSAttributedString(string: "Enter name", attributes: placeholderAttributes)

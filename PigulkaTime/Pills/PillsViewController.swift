@@ -50,10 +50,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Every 4 weeks"]
     public var selectedFrequency: String?
     // for days picker view
-//    public let days: [String] = (0...100).map {  "\($0) day\($0 == 1 ? "" : "s")" }
     public let days: [String] = (0...100).compactMap { $0 == 1 ? nil : "\($0) day\($0 == 1 ? "" : "s")" }
     public var selectedDays: String?
-//    public var selectedDays: Int?
     // for times per day picker view
     public let times: [String] = (0...10).map { "\($0)" }
     public var selectedTimes: String?
@@ -150,27 +148,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private func setupTarget() {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
-//    // saveButton
-//    @objc private func saveButtonTapped() {
-//        guard let editingCell = editingCell else {
-//            return
-//        }
-//
-//        let newPill = Pill(name: editingCell.textField.text ?? "",
-//                           dosage: selectedDosage ?? "",
-//                           type: selectedType ?? "",
-//                           frequency: selectedFrequency ?? "",
-//                           days: (selectedDays ?? "") + " left",
-//                           times: (selectedTimes ?? "") + " times",
-//                           isEditable: true,
-//                           time: "Time: " + (selectedTime ?? ""))
-//        // Добавляем новый объект Pill в массив pillsArray
-//        pillsArray.append(newPill)
-//        // Вызываем делегата для передачи обновленного массива
-//        delegate?.pillsViewController(self, didSavePills: pillsArray)
-//        // Закрываем текущий контроллер
-//        dismiss(animated: true, completion: nil)
-//    }
+    // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
         guard let editingCell = editingCell,
               let selectedType = selectedType,
@@ -182,52 +160,52 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Some fields are not selected.")
             return
         }
-
+        
         let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
         guard let selectedDays = Int(cleanedSelectedDaysString) else {
             print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
             return
         }
-
+        
         print("Selected days: \(selectedDays)")
-
+        
         if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
-
+        
         // Print or use the selectedTime and selectedFrequency as needed
         print("Selected Time: \(selectedTime)")
         print("Selected Frequency: \(selectedFrequency)")
-
+        
         // Set the timeLabel text
         if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
             timeCell.setTimeLabelText("\(selectedTime)")
         }
-
+        
         let startDate = Date()
         let dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: startDate) ?? Date() }
-
+        
         scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency)
-
+        
         let newPill = Pill(name: editingCell.textField.text ?? "",
                            dosage: selectedDosage,
                            type: selectedType,
                            frequency: selectedFrequency,
-                           days: "\(selectedDays) left",
-                           times: "Times: 1", // You may need to update this based on your requirements
+                           days: "\(selectedDays) days left",
+                           times: "Times \(selectedTimes ?? "empty")",
                            isEditable: true,
                            time: "Time: \(selectedTime)")
-
+        
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
         delegate?.pillsViewController(self, didSavePills: pillsArray)
-
+        
         editingCell.textField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
-
-
+    
+    
 } //end
 //MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {

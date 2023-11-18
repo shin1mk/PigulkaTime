@@ -104,7 +104,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // высота
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 90
     }
     // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

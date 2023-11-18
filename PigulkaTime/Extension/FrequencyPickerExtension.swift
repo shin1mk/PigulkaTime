@@ -63,7 +63,6 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
             dismiss(animated: true, completion: nil)
             return
         }
-        
         // Проверьте, было ли выбрано время, если нет, установите значение по умолчанию (0)
         let selectedTime = selectedTime ?? "0"
         
