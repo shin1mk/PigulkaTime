@@ -37,6 +37,7 @@
 		135B38952AFAA031007C1C04 /* textHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38942AFAA031007C1C04 /* textHelper.swift */; };
 		135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C5F412B08F69100FF299B /* CoreDataManager.swift */; };
 		1374D2C52B01FA4E0017398C /* TimeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1374D2C42B01FA4E0017398C /* TimeCustomTableCell.swift */; };
+		13AE99772B0A255A00AA6852 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE99762B0A255A00AA6852 /* NotificationManager.swift */; };
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
@@ -101,6 +102,7 @@
 		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHelper.swift; sourceTree = "<group>"; };
 		135C5F412B08F69100FF299B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1374D2C42B01FA4E0017398C /* TimeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCustomTableCell.swift; sourceTree = "<group>"; };
+		13AE99762B0A255A00AA6852 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
 		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		135B38452AFA9EC4007C1C04 = {
 			isa = PBXGroup;
 			children = (
+				13AE99762B0A255A00AA6852 /* NotificationManager.swift */,
 				135C5F402B08F67C00FF299B /* CoreData */,
 				135B38502AFA9EC4007C1C04 /* PigulkaTime */,
 				135B386A2AFA9EC5007C1C04 /* PigulkaTimeTests */,
@@ -579,6 +582,7 @@
 				13523D422B0348AB00D5C649 /* TimeExtension.swift in Sources */,
 				13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */,
 				1374D2C52B01FA4E0017398C /* TimeCustomTableCell.swift in Sources */,
+				13AE99772B0A255A00AA6852 /* NotificationManager.swift in Sources */,
 				13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */,
 				13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */,
 				13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */,

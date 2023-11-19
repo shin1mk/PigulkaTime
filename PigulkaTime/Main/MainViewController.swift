@@ -138,14 +138,22 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
         let selectedPill = pillsArray[indexPath.row]
+        
         // Создайте экземпляр PillsViewController
         let pillsViewController = PillsViewController()
+        
         // Задайте свойство editingPill вашего PillsViewController, чтобы передать данные для редактирования
         pillsViewController.editingPill = selectedPill
+        
+        // Установите стиль модальной презентации
         pillsViewController.modalPresentationStyle = .popover
+        
+        // Установите делегата
         pillsViewController.delegate = self
+        
         // Представьте ваш PillsViewController
         present(pillsViewController, animated: true, completion: nil)
+
     }
     // swipe to delete func
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -175,7 +183,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = false
-        
+
         return configuration
     }
 
