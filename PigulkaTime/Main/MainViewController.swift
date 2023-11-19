@@ -58,8 +58,7 @@ final class MainViewController: UIViewController {
         setupConstraints()
         setupTableView()
         setupTarget()
-        pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
-
+        coreDataLoad()
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -106,6 +105,11 @@ final class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    // coreData download
+    private func coreDataLoad() {
+        pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
+        self.emptyLabel.isHidden = !self.pillsArray.isEmpty
+    }
     // targets
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
@@ -124,7 +128,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // высота
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 70
     }
     // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -234,7 +238,6 @@ extension MainViewController: PillsViewControllerDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.emptyLabel.isHidden = !self.pillsArray.isEmpty
-
         }
     }
 }

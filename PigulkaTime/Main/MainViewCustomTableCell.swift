@@ -15,42 +15,42 @@ final class MainViewCustomTableCell: UITableViewCell {
         titleLabel.text = ""
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextMedium(ofSize: 25)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 22)
         return titleLabel
     }()
     private let dosageLabel: UILabel = {
         let dosageLabel = UILabel()
         dosageLabel.text = ""
         dosageLabel.textColor = .systemGray
-        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
         typeLabel.text = ""
         typeLabel.textColor = .systemGray
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        typeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return typeLabel
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
         frequencyLabel.text = ""
         frequencyLabel.textColor = .systemGray
-        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return frequencyLabel
     }()
     private let daysLabel: UILabel = {
         let daysLabel = UILabel()
         daysLabel.text = ""
         daysLabel.textColor = .systemGray
-        daysLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        daysLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return daysLabel
     }()
     private let timesLabel: UILabel = {
         let timesLabel = UILabel()
         timesLabel.text = ""
         timesLabel.textColor = .systemGray
-        timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        timesLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return timesLabel
     }()
     private let timeLabel: UILabel = {
@@ -79,50 +79,50 @@ final class MainViewCustomTableCell: UITableViewCell {
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(5)
+            make.top.equalToSuperview().offset(2)
             make.leading.equalToSuperview().offset(10)
         }
         // dosageLabel
         addSubview(dosageLabel)
         dosageLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(10)
-            make.height.equalTo(20)
+//            make.height.equalTo(20)
         }
         // typeLabel
         addSubview(typeLabel)
         typeLabel.snp.makeConstraints { make in
             make.top.equalTo(dosageLabel.snp.top)
             make.leading.equalTo(dosageLabel.snp.trailing).offset(5)
-            make.height.equalTo(20)
+//            make.height.equalTo(20)
         }
         // frequencyLabel
         addSubview(frequencyLabel)
         frequencyLabel.snp.makeConstraints { make in
-            make.top.equalTo(typeLabel.snp.bottom).offset(5)
+            make.top.equalTo(typeLabel.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(10)
-            make.height.equalTo(20)
+//            make.height.equalTo(20)
         }
         // times Label
         addSubview(timesLabel)
         timesLabel.snp.makeConstraints { make in
             make.top.equalTo(frequencyLabel.snp.top)
             make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
-            make.height.equalTo(20)
+//            make.height.equalTo(20)
         }
         // days Label
         addSubview(daysLabel)
         daysLabel.snp.makeConstraints { make in
             make.top.equalTo(timesLabel.snp.top)
             make.leading.equalTo(timesLabel.snp.trailing).offset(10)
-            make.height.equalTo(20)
+//            make.height.equalTo(20)
         }
         // time Label
         addSubview(timeLabel)
         timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(20)
+//            make.height.equalTo(20)
         }
         // bottomBorderView
         addSubview(bottomBorderView)
