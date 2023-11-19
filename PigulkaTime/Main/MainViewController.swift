@@ -32,6 +32,14 @@ final class MainViewController: UIViewController {
         titleLabel.font = UIFont.SFUITextHeavy(ofSize: 45)
         return titleLabel
     }()
+    private let emptyLabel: UILabel = {
+        let emptyLabel = UILabel()
+        emptyLabel.text = "No available pills"
+        emptyLabel.textColor = .white
+        emptyLabel.textAlignment = .left
+        emptyLabel.font = UIFont.SFUITextMedium(ofSize: 25)
+        return emptyLabel
+    }()
     private let addButton: UIButton = {
         let addButton = UIButton()
         let plusFillImage = UIImage(systemName: "plus.circle.fill")?
@@ -51,6 +59,7 @@ final class MainViewController: UIViewController {
         setupTableView()
         setupTarget()
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
+
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -67,6 +76,12 @@ final class MainViewController: UIViewController {
             make.leading.trailing.equalTo(view)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             make.height.equalTo(50)
+        }
+        // emptyLabel
+        view.addSubview(emptyLabel)
+        emptyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         // tableView
         view.addSubview(tableView)
@@ -156,6 +171,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     }
     // swipe to delete func
+    // swipe to delete func
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !pillsArray.isEmpty else {
             return nil
@@ -175,6 +191,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
 
             completionHandler(true)
+
+            // Update the isEmpty property and hide/show the emptyLabel accordingly
+            self.emptyLabel.isHidden = !self.pillsArray.isEmpty
         }
         
         deleteAction.backgroundColor = .systemRed
@@ -186,6 +205,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         return configuration
     }
+
 
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
@@ -213,6 +233,8 @@ extension MainViewController: PillsViewControllerDelegate {
 
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.emptyLabel.isHidden = !self.pillsArray.isEmpty
+
         }
     }
 }
