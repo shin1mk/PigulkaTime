@@ -13,4 +13,23 @@
  - [ ] Починить уведомления на завтрашний день
  - [ ] Уменьшить шрифты
 
+ 
+ 
+ private let bottomBorderView: UIView = {
+     let view = UIView()
+     view.backgroundColor = .systemGray6 // Цвет бордера
+     return view
+ }()
+ 
+ 
+ // bottomBorderView
+ addSubview(bottomBorderView)
+ bottomBorderView.snp.makeConstraints { make in
+     make.leading.equalToSuperview()
+     make.trailing.equalToSuperview()
+     make.bottom.equalToSuperview()
+     make.height.equalTo(1) // Высота
+ }
+ 
+ 
  */

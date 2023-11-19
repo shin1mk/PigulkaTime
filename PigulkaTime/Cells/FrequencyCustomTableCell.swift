@@ -27,6 +27,11 @@ final class FrequencyCustomTableCell: UITableViewCell {
         frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return frequencyLabel
     }()
+    private let bottomBorderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6 // Цвет бордера
+        return view
+    }()
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,6 +55,14 @@ final class FrequencyCustomTableCell: UITableViewCell {
         frequencyLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
+        }
+        // bottomBorderView
+        addSubview(bottomBorderView)
+        bottomBorderView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1) // Высота
         }
     }
     // target

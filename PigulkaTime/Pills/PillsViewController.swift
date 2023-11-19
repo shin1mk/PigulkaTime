@@ -38,6 +38,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // timer
     var timer: Timer?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
+    var notificationIdentifiers: [String] = []
+
     // Добавь инициализатор
     convenience init(pill: Pigulka) {
         self.init()
@@ -82,6 +84,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
         tableView.register(TimeCustomTableCell.self, forCellReuseIdentifier: "TimeCustomCell")
+        tableView.separatorStyle = .none
         return tableView
     }()
     //MARK: Properties
@@ -102,6 +105,15 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.backgroundColor = .systemGray6
         saveButton.layer.cornerRadius = 5
         return saveButton
+    }()
+    private let deleteButton: UIButton = {
+        let deleteButton = UIButton()
+        deleteButton.setTitle("Delete", for: .normal)
+        deleteButton.titleLabel?.font = UIFont.SFUITextRegular(ofSize: 15)
+        deleteButton.setTitleColor(.white, for: .normal)
+        deleteButton.backgroundColor = .systemGray6
+        deleteButton.layer.cornerRadius = 5
+        return deleteButton
     }()
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -199,6 +211,14 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
         }
+        // deleteButton
+        view.addSubview(deleteButton)
+        deleteButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.top).offset(8)
+            make.trailing.equalToSuperview().offset(-15)
+            make.height.equalTo(25)
+            make.width.equalTo(70)
+        }
         // bottomMarginGuide граница что б за нее не заходила таблица
         view.addLayoutGuide(bottomMarginGuide)
         bottomMarginGuide.snp.makeConstraints { make in
@@ -232,6 +252,11 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // targets
     private func setupTarget() {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+    }
+    // deleteButton
+    @objc private func deleteButtonTapped(_ sender: UIButton) {
+        print("deleteButton")
     }
     // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
