@@ -43,12 +43,16 @@ class CoreDataManager {
         newPill.isEditable = true
         newPill.time = "Time: \(selectedTime)"
 
+        // Установите уникальный идентификатор
+        newPill.uniqueIdentifier = UUID().uuidString
+
         do {
             try context.save()
             print("Pill saved to Core Data.")
         } catch {
             print("Error saving pill to Core Data: \(error)")
         }
+        
     }
 
 

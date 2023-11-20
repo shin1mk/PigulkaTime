@@ -39,7 +39,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var timer: Timer?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
     var notificationIdentifiers: [String] = []
-    
+//    var identifier: String = "" // добавьте это свойство
+
     // Добавь инициализатор
     convenience init(pill: Pigulka) {
         self.init()
@@ -220,39 +221,41 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
-    // delete button
+    
     @objc private func deleteButtonTapped(_ sender: UIButton) {
         print("deleteButton")
-        
-        // Создайте алерт для подтверждения удаления
+
         let alertController = UIAlertController(
             title: "Delete Pill",
             message: "Are you sure you want to delete this pill?",
             preferredStyle: .alert
         )
-        
-        // Добавьте действие для подтверждения
+
         alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
             guard let self = self else { return }
-            
-            // Отмените уведомления для удаляемого объекта
+
             if let editingPill = self.editingPill {
-//                self.cancelNotificationsForPill(pill: editingPill)
-                
+                print("Deleting pill: \(editingPill)")
+
+                // Отмените уведомления для удаляемого объекта
+                print("Before Removal: \(notificationIdentifiers)")
+//                removeNotification(withIdentifier: notificationIdentifiers.first ?? "")
+                removeAllNotifications()
+                print("After Removal: \(notificationIdentifiers)")
                 // Удалите данные из Core Data
                 CoreDataManager.shared.deletePillFromCoreData(pill: editingPill)
             }
-            
+
             // Закройте PillsViewController
             self.dismiss(animated: true, completion: nil)
         }))
-        
-        // Добавьте действие для отмены
+
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        // Представьте алерт
+
         present(alertController, animated: true, completion: nil)
     }
+
+
 
     // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
@@ -310,7 +313,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                            days: "\(selectedDays) days left",
                            times: "\(selectedTimes ?? "no")",
                            isEditable: true,
-                           time: "\(selectedTime)")
+                           time: "\(selectedTime)",
+                           identifier: "")
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива

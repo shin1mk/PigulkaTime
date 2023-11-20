@@ -9,5 +9,6 @@
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="times" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="uniqueIdentifier" optional="YES" attributeType="String"/>
     </entity>
 </model>

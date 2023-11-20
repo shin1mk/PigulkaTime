@@ -25,5 +25,5 @@ public class Pigulka: NSManagedObject {
     @NSManaged public var times: String?
     @NSManaged public var isEditable: Bool
     @NSManaged public var time: String?
-
+    @NSManaged public var uniqueIdentifier: String?
 }

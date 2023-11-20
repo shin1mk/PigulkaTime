@@ -16,4 +16,6 @@ struct Pill {
     var times: String
     var isEditable: Bool
     var time: String
+    var identifier: String
+
 }
