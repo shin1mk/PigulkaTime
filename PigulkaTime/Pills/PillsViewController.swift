@@ -255,9 +255,44 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     // deleteButton
+//    @objc private func deleteButtonTapped(_ sender: UIButton) {
+    //        print("deleteButton")
+    //    }
     @objc private func deleteButtonTapped(_ sender: UIButton) {
         print("deleteButton")
+
+        // Создайте алерт для подтверждения удаления
+        let alertController = UIAlertController(
+            title: "Delete Pill",
+            message: "Are you sure you want to delete this pill?",
+            preferredStyle: .alert
+        )
+
+        // Добавьте действие для подтверждения
+        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+
+            // Удалите данные из Core Data
+            if let editingPill = self.editingPill {
+                CoreDataManager.shared.deletePillFromCoreData(pill: editingPill)
+
+                // Отмените уведомления для удаляемой таблетки
+//                self.cancelNotificationsForPill(pill: editingPill)
+            }
+
+            // Закройте PillsViewController
+            self.dismiss(animated: true, completion: nil)
+        }))
+
+        // Добавьте действие для отмены
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        // Представьте алерт
+        present(alertController, animated: true, completion: nil)
     }
+
+    
+    
     // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
         guard let editingCell = editingCell,

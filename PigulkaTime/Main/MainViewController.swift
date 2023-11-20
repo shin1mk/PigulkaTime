@@ -13,6 +13,7 @@ final class MainViewController: UIViewController {
 //    public var pillsArray: [Pill] = [] // массив таблеток
     private var pillsArray: [Pigulka] = []
     let coreDataManager = CoreDataManager.shared
+    var pillsViewController: PillsViewController?
 
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
@@ -34,10 +35,10 @@ final class MainViewController: UIViewController {
     }()
     private let emptyLabel: UILabel = {
         let emptyLabel = UILabel()
-        emptyLabel.text = "No available pills"
+        emptyLabel.text = "Your pill box is empty"
         emptyLabel.textColor = .white
         emptyLabel.textAlignment = .left
-        emptyLabel.font = UIFont.SFUITextMedium(ofSize: 25)
+        emptyLabel.font = UIFont.SFUITextBold(ofSize: 18)
         return emptyLabel
     }()
     private let addButton: UIButton = {
@@ -59,6 +60,10 @@ final class MainViewController: UIViewController {
         setupTableView()
         setupTarget()
         coreDataLoad()
+        // Инициализация pillsViewController
+         pillsViewController = PillsViewController()
+         pillsViewController?.modalPresentationStyle = .popover
+         pillsViewController?.delegate = self
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -153,27 +158,28 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-    // нажатая ячейка
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
         let selectedPill = pillsArray[indexPath.row]
-        
-        // Создайте экземпляр PillsViewController
-        let pillsViewController = PillsViewController()
-        
+
+        // Проверьте, что pillsViewController не nil
+        guard let pillsViewController = pillsViewController else {
+            return
+        }
+
         // Задайте свойство editingPill вашего PillsViewController, чтобы передать данные для редактирования
         pillsViewController.editingPill = selectedPill
-        
-        // Установите стиль модальной презентации
-        pillsViewController.modalPresentationStyle = .popover
-        
-        // Установите делегата
+
+        // Установите делегата (если это еще не сделано)
         pillsViewController.delegate = self
-        
+
+        // Обновите представление (если оно видимо)
+        pillsViewController.setupEditPill()
+
         // Представьте ваш PillsViewController
         present(pillsViewController, animated: true, completion: nil)
-
     }
+
     // swipe to delete func
     // swipe to delete func
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -221,6 +227,7 @@ extension MainViewController: PillsViewControllerDelegate {
                 let digits = pill.days.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
                 return Int(digits ) ?? 0
             }()
+            pillsViewController = controller
 
             CoreDataManager.shared.savePillToCoreData(name: pill.name ?? "",
                                                       selectedDosage: pill.dosage,

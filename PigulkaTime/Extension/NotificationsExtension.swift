@@ -106,15 +106,15 @@ extension PillsViewController {
                     if let notificationDate = notificationDate {
                         let formattedDate = dateFormatter.string(from: notificationDate)
                         
-                        //                        let requestIdentifier = UUID().uuidString
-                        //                        let request = UNNotificationRequest(identifier: "\(index)-\(time)", content: content, trigger: trigger)
-                        //                        notificationIdentifiers.append(request.identifier)
                         
-                        let requestIdentifier = UUID().uuidString
+                        let requestIdentifier = "\(index)-\(time)"
                         let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
                         notificationIdentifiers.append(requestIdentifier)
-                        print("Уведомление будет установлено с идентификатором \(requestIdentifier) на дату \(formattedDate) в \(time) с частотой \(frequency)")
-                        
+                        //                        let requestIdentifier = UUID().uuidString
+                        //                        let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
+                        //                        notificationIdentifiers.append(requestIdentifier)
+                        //                        print("Уведомление будет установлено с идентификатором \(requestIdentifier) на дату \(formattedDate) в \(time) с частотой \(frequency)")
+                        //
                         // Выводим информацию о дне, времени и частоте перед установкой уведомления
                         print("Уведомление будет установлено на дату \(formattedDate) в \(time) с частотой \(frequency)")
                         
@@ -133,21 +133,21 @@ extension PillsViewController {
                 }
             }
         }
+    }
+    func cancelNotificationsForPill(pill: Pill) {
+        // Identifiers of notifications for this pill
+        let identifiers = notificationIdentifiers
         
-        func cancelNotificationsForPill(pill: Pill) {
-            // Идентификаторы уведомлений для данной ячейки
-            let identifiers = notificationIdentifiers
+        // Cancel notifications based on identifiers
+        for identifier in identifiers {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
             
-            // Отменяем уведомления по идентификаторам
-            for identifier in identifiers {
-                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-                
-                // Удаление идентификатора из массива
-                if let index = notificationIdentifiers.firstIndex(of: identifier) {
-                    notificationIdentifiers.remove(at: index)
-                }
+            // Remove the identifier from the array
+            if let index = notificationIdentifiers.firstIndex(of: identifier) {
+                notificationIdentifiers.remove(at: index)
             }
         }
     }
+    
     
 }
