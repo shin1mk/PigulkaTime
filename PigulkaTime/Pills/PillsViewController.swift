@@ -131,14 +131,15 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             selectedType = editingPill.type
             selectedDosage = editingPill.dosage
             selectedFrequency = editingPill.frequency
-            
-            if let daysLeft = editingPill.days?.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(), let daysInt = Int(daysLeft) {
+
+            if let daysLeft = editingPill.days?.replacingOccurrences(of: " days left", with: ""),
+               let daysInt = Int(daysLeft) {
                 selectedDays = "\(daysInt) days left"
             }
-            
+
             selectedTimes = editingPill.times
             selectedTime = editingPill.time
-            
+
             // Принты для отслеживания данных
             print("Selected Type: \(selectedType ?? "N/A")")
             print("Selected Dosage: \(selectedDosage ?? "N/A")")
@@ -146,40 +147,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
             print("Selected Time: \(selectedTime ?? "N/A")")
-            // Обновление значений в пикервью
-            //            if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
-            //                    typeCell.setLabelText(selectedType ?? "")
-            //                    typeCell.pickerView.selectRow(types.firstIndex(of: selectedType ?? "") ?? 0, inComponent: 0, animated: false)
-            //                }
-            //
-            //                if let dosageCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DosageCustomTableCell {
-            //                    dosageCell.setDosageText(selectedDosage ?? "")
-            //                    dosageCell.pickerView.selectRow(dosages.firstIndex(of: selectedDosage ?? "") ?? 0, inComponent: 0, animated: false)
-            //                }
-            //
-            //                if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
-            //                    frequencyCell.setFrequencyText(selectedFrequency ?? "")
-            //                    frequencyCell.pickerView.selectRow(frequency.firstIndex(of: selectedFrequency ?? "") ?? 0, inComponent: 0, animated: false)
-            //                }
-            //
-            //                if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
-            //                    daysCell.setDaysText(selectedDays ?? "")
-            //                    let cleanedSelectedDaysString = selectedDays?.replacingOccurrences(of: "days left", with: "").trimmingCharacters(in: .whitespaces)
-            //                    let daysIndex = days.firstIndex(of: cleanedSelectedDaysString ?? "") ?? 0
-            //                    daysCell.pickerView.selectRow(daysIndex, inComponent: 0, animated: false)
-            //                }
-            //
-            //                if let timesCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimesCustomTableCell {
-            //                    timesCell.setTimesText(selectedTimes ?? "")
-            //                    timesCell.pickerView.selectRow(times.firstIndex(of: selectedTimes ?? "") ?? 0, inComponent: 0, animated: false)
-            //                }
-            //
-            //                if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
-            //                    timeCell.setTimeLabelText(selectedTime ?? "")
-            //                    let timeIndex = time.firstIndex(of: selectedTime ?? "") ?? 0
-            //                    timeCell.pickerView.selectRow(timeIndex, inComponent: 0, animated: false)
-            //                }
-            
+
             // Заполняем значения в соответствующих ячейках
             if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
                 typeCell.setLabelText(selectedType ?? "")
@@ -200,8 +168,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 timeCell.setTimeLabelText(selectedTime ?? "")
             }
         }
-        
     }
+
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black

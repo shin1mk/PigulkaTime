@@ -13,7 +13,7 @@ final class MainViewController: UIViewController {
 //    public var pillsArray: [Pill] = [] // массив таблеток
     private var pillsArray: [Pigulka] = []
     let coreDataManager = CoreDataManager.shared
-    var pillsViewController: PillsViewController?
+    private var pillsViewController: PillsViewController?
 
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
@@ -61,9 +61,9 @@ final class MainViewController: UIViewController {
         setupTarget()
         coreDataLoad()
         // Инициализация pillsViewController
-         pillsViewController = PillsViewController()
-         pillsViewController?.modalPresentationStyle = .popover
-         pillsViewController?.delegate = self
+//         pillsViewController = PillsViewController()
+//         pillsViewController?.modalPresentationStyle = .popover
+//         pillsViewController?.delegate = self
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -158,29 +158,28 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
         let selectedPill = pillsArray[indexPath.row]
 
-        // Проверьте, что pillsViewController не nil
-        guard let pillsViewController = pillsViewController else {
-            return
+        if pillsViewController == nil {
+            // Инициализация pillsViewController, если он еще не инициализирован
+            pillsViewController = PillsViewController()
+            pillsViewController?.modalPresentationStyle = .popover
+            pillsViewController?.delegate = self
         }
 
         // Задайте свойство editingPill вашего PillsViewController, чтобы передать данные для редактирования
-        pillsViewController.editingPill = selectedPill
+        pillsViewController?.editingPill = selectedPill
 
-        // Установите делегата (если это еще не сделано)
-        pillsViewController.delegate = self
-
-        // Обновите представление (если оно видимо)
-        pillsViewController.setupEditPill()
-
-        // Представьте ваш PillsViewController
-        present(pillsViewController, animated: true, completion: nil)
+        // Представьте ваш PillsViewController только если он не был представлен ранее
+        if pillsViewController?.isBeingPresented == false {
+            present(pillsViewController!, animated: true) {
+                self.pillsViewController?.setupEditPill()
+            }
+        }
     }
-
-    // swipe to delete func
     // swipe to delete func
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard !pillsArray.isEmpty else {
