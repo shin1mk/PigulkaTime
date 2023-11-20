@@ -192,17 +192,37 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             // Получаем объект, который нужно удалить
             let pillToRemove = self.pillsArray[indexPath.row]
 
-            // Удаляем объект из массива данных
-            self.pillsArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            // Создайте алерт для подтверждения удаления
+            let alertController = UIAlertController(
+                title: "Delete Pill",
+                message: "Are you sure you want to delete this pill?",
+                preferredStyle: .alert
+            )
 
-            // Удаляем объект из Core Data
-            self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
+            // Добавьте действие для подтверждения
+            alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
 
-            completionHandler(true)
+                // Удаляем объект из массива данных
+                self.pillsArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
 
-            // Update the isEmpty property and hide/show the emptyLabel accordingly
-            self.emptyLabel.isHidden = !self.pillsArray.isEmpty
+                // Удаляем объект из Core Data
+                self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
+
+                completionHandler(true)
+
+                // Update the isEmpty property and hide/show the emptyLabel accordingly
+                self.emptyLabel.isHidden = !self.pillsArray.isEmpty
+            }))
+
+            // Добавьте действие для отмены
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                completionHandler(false) // Отменить удаление
+            }))
+
+            // Представьте алерт
+            self.present(alertController, animated: true, completion: nil)
         }
         
         deleteAction.backgroundColor = .systemRed

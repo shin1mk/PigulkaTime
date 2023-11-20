@@ -39,7 +39,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var timer: Timer?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
     var notificationIdentifiers: [String] = []
-
+    
     // Добавь инициализатор
     convenience init(pill: Pigulka) {
         self.init()
@@ -131,14 +131,13 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             selectedType = editingPill.type
             selectedDosage = editingPill.dosage
             selectedFrequency = editingPill.frequency
-
+            selectedTimes = editingPill.times
+            selectedTime = editingPill.time
             if let daysLeft = editingPill.days?.replacingOccurrences(of: " days left", with: ""),
                let daysInt = Int(daysLeft) {
                 selectedDays = "\(daysInt) days left"
             }
-
-            selectedTimes = editingPill.times
-            selectedTime = editingPill.time
+            
 
             // Принты для отслеживания данных
             print("Selected Type: \(selectedType ?? "N/A")")
@@ -147,7 +146,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
             print("Selected Time: \(selectedTime ?? "N/A")")
-
+            
             // Заполняем значения в соответствующих ячейках
             if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
                 typeCell.setLabelText(selectedType ?? "")
@@ -169,7 +168,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
     }
-
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black
@@ -222,45 +220,40 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
-    // deleteButton
-//    @objc private func deleteButtonTapped(_ sender: UIButton) {
-    //        print("deleteButton")
-    //    }
+    // delete button
     @objc private func deleteButtonTapped(_ sender: UIButton) {
         print("deleteButton")
-
+        
         // Создайте алерт для подтверждения удаления
         let alertController = UIAlertController(
             title: "Delete Pill",
             message: "Are you sure you want to delete this pill?",
             preferredStyle: .alert
         )
-
+        
         // Добавьте действие для подтверждения
         alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
             guard let self = self else { return }
-
-            // Удалите данные из Core Data
+            
+            // Отмените уведомления для удаляемого объекта
             if let editingPill = self.editingPill {
-                CoreDataManager.shared.deletePillFromCoreData(pill: editingPill)
-
-                // Отмените уведомления для удаляемой таблетки
 //                self.cancelNotificationsForPill(pill: editingPill)
+                
+                // Удалите данные из Core Data
+                CoreDataManager.shared.deletePillFromCoreData(pill: editingPill)
             }
-
+            
             // Закройте PillsViewController
             self.dismiss(animated: true, completion: nil)
         }))
-
+        
         // Добавьте действие для отмены
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
+        
         // Представьте алерт
         present(alertController, animated: true, completion: nil)
     }
 
-    
-    
     // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
         guard let editingCell = editingCell,

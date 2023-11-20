@@ -106,15 +106,11 @@ extension PillsViewController {
                     if let notificationDate = notificationDate {
                         let formattedDate = dateFormatter.string(from: notificationDate)
                         
-                        
-                        let requestIdentifier = "\(index)-\(time)"
+                        let requestIdentifier = UUID().uuidString
                         let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
                         notificationIdentifiers.append(requestIdentifier)
-                        //                        let requestIdentifier = UUID().uuidString
-                        //                        let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
-                        //                        notificationIdentifiers.append(requestIdentifier)
-                        //                        print("Уведомление будет установлено с идентификатором \(requestIdentifier) на дату \(formattedDate) в \(time) с частотой \(frequency)")
-                        //
+                        print("Уведомление будет установлено с идентификатором \(requestIdentifier) на дату \(formattedDate) в \(time) с частотой \(frequency)")
+                        
                         // Выводим информацию о дне, времени и частоте перед установкой уведомления
                         print("Уведомление будет установлено на дату \(formattedDate) в \(time) с частотой \(frequency)")
                         
@@ -134,6 +130,7 @@ extension PillsViewController {
             }
         }
     }
+    
     func cancelNotificationsForPill(pill: Pill) {
         // Identifiers of notifications for this pill
         let identifiers = notificationIdentifiers
