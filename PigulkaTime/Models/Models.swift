@@ -8,7 +8,7 @@
 import Foundation
 
 struct Pill {
-    var name: String?
+    var name: String
     var dosage: String
     var type: String
     var frequency: String
@@ -17,5 +17,5 @@ struct Pill {
     var isEditable: Bool
     var time: String
     var identifier: String
-
+    var notificationIdentifiers: String
 }

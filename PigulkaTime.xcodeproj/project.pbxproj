@@ -98,7 +98,7 @@
 		135B388B2AFA9F98007C1C04 /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Light.ttf"; sourceTree = "<group>"; };
 		135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 		135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
-		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textHelper.swift; sourceTree = "<group>"; };
+		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = textHelper.swift; path = ../textHelper.swift; sourceTree = "<group>"; };
 		135C5F412B08F69100FF299B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1374D2C42B01FA4E0017398C /* TimeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCustomTableCell.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
@@ -146,6 +146,7 @@
 		131FF95A2AFF87F700ABFCB9 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */,
 				13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */,
 				1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */,
 				1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */,
@@ -202,8 +203,6 @@
 				135B38942AFAA031007C1C04 /* textHelper.swift */,
 				13523D322B03463E00D5C649 /* Extension */,
 				131FF95A2AFF87F700ABFCB9 /* Cells */,
-				13EFB0202AFE444900C9E67B /* Pills */,
-				13D5FE5E2AFE41F900F403D0 /* Main */,
 				13F556072AFCB0BA0025119F /* Models */,
 				135B38862AFA9F45007C1C04 /* Resources */,
 				135B38852AFA9F2E007C1C04 /* Controllers */,
@@ -241,6 +240,8 @@
 		135B38852AFA9F2E007C1C04 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				13EFB0212AFE453F00C9E67B /* PillsViewController.swift */,
+				135B38552AFA9EC4007C1C04 /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -275,23 +276,6 @@
 				135C5F412B08F69100FF299B /* CoreDataManager.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		13D5FE5E2AFE41F900F403D0 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */,
-				135B38552AFA9EC4007C1C04 /* MainViewController.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		13EFB0202AFE444900C9E67B /* Pills */ = {
-			isa = PBXGroup;
-			children = (
-				13EFB0212AFE453F00C9E67B /* PillsViewController.swift */,
-			);
-			path = Pills;
 			sourceTree = "<group>";
 		};
 		13F556072AFCB0BA0025119F /* Models */ = {

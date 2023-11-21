@@ -39,7 +39,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var timer: Timer?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
     var notificationIdentifiers: [String] = []
-//    var identifier: String = "" // добавьте это свойство
 
     // Добавь инициализатор
     convenience init(pill: Pigulka) {
@@ -304,17 +303,21 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
         
-        scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency)
+
+        let newPill = Pill(
+            name: editingCell.textField.text ?? "",
+            dosage: selectedDosage,
+            type: selectedType,
+            frequency: selectedFrequency,
+            days: "\(selectedDays) days left",
+            times: "\(selectedTimes ?? "no")",
+            isEditable: true,
+            time: "\(selectedTime)",
+            identifier: "",
+            notificationIdentifiers: "" // Установите ваш идентификатор уведомления как строку
+        )
         
-        let newPill = Pill(name: editingCell.textField.text ?? "",
-                           dosage: selectedDosage,
-                           type: selectedType,
-                           frequency: selectedFrequency,
-                           days: "\(selectedDays) days left",
-                           times: "\(selectedTimes ?? "no")",
-                           isEditable: true,
-                           time: "\(selectedTime)",
-                           identifier: "")
+        scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency, notificationIdentifiers: notificationIdentifiers)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива
@@ -341,8 +344,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         return calendar.date(from: dateComponents)
     }
-    
-    
 } //end
 //MARK: tap to close Keyboard
 extension PillsViewController: UIGestureRecognizerDelegate {

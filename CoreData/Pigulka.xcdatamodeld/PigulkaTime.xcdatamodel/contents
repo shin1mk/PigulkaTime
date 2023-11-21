@@ -6,6 +6,7 @@
         <attribute name="frequency" optional="YES" attributeType="String"/>
         <attribute name="isEditable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notificationIdentifiers" optional="YES" attributeType="String" valueTransformerName=""/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="times" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>

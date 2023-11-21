@@ -152,8 +152,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTypeLabelText(pill.type ?? "")
         cell.setDosageLabelText(pill.dosage ?? "")
         cell.setFrequencyLabelText(pill.frequency ?? "")
-        cell.setDaysLabelText(pill.days ?? "")
-        cell.setTimesLabelText(pill.times ?? "")
+        cell.setDaysLabelText("\(pill.days!) days left")
+        cell.setTimesLabelText("Times \(pill.times!)")
         cell.setTimeLabelText(pill.time ?? "")
 
         return cell
@@ -244,17 +244,27 @@ extension MainViewController: PillsViewControllerDelegate {
             // Преобразуем строку "0 days left" в Int
             let daysInt: Int = {
                 let digits = pill.days.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                return Int(digits ) ?? 0
+                return Int(digits) ?? 0
             }()
             pillsViewController = controller
 
-            CoreDataManager.shared.savePillToCoreData(name: pill.name ?? "",
+            CoreDataManager.shared.savePillToCoreData(name: pill.name ,
                                                       selectedDosage: pill.dosage,
                                                       selectedType: pill.type,
                                                       selectedFrequency: pill.frequency,
                                                       selectedDays: daysInt,
                                                       selectedTimes: pill.times,
-                                                      selectedTime: pill.time)
+                                                      selectedTime: pill.time,
+                                                      notificationIdentifiers: pill.notificationIdentifiers)
+
+            // Получаем уведомления из Core Data и добавляем их идентификаторы к таблетке
+//            let pillFromCoreData = CoreDataManager.shared.loadPillsFromCoreData().last
+//
+//            // Проверяем, что мы успешно загрузили таблетку из Core Data
+//            if let pillFromCoreData = pillFromCoreData {
+//                pillFromCoreData.notificationIdentifiers = Array(arrayLiteral: pill.notificationIdentifiers).joined(separator: ",")
+//            }
+
         }
         // Загрузите обновленные таблетки из Core Data
         print("Before: \(pillsArray)")

@@ -10,7 +10,8 @@ import UserNotifications
 
 
 extension PillsViewController {
-    func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String) {
+    func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String, notificationIdentifiers: [String]) {
+        
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
         let name = editingCell?.textField.text ?? "Time for pill"
@@ -75,9 +76,10 @@ extension PillsViewController {
         }
         
         // Зберегти ідентифікатори у властивості класу
+        
         self.notificationIdentifiers = notificationIdentifiers
         print("Массив индентификатооров: \(notificationIdentifiers)")
-
+        
     }
     // Видалення нотифікації по ідентифікатору
     func removeNotification(withIdentifier identifier: String) {
