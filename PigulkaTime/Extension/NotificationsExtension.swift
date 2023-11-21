@@ -79,29 +79,6 @@ extension PillsViewController {
         print("Массив индентификатооров: \(notificationIdentifiers)")
 
     }
-    
-    
-    //    func cancelNotificationsForPigulka(pigulka: Pigulka) {
-    //        print("Canceling notifications for Pigulka: \(pigulka)")
-    //
-    //        DispatchQueue.main.async {
-    //            let center = UNUserNotificationCenter.current()
-    //
-    //            // Извлекаем уникальный идентификатор, если он существует
-    //            if let identifier = pigulka.uniqueIdentifier {
-    //                // Удаляем ожидающие уведомления
-    //                center.removePendingNotificationRequests(withIdentifiers: [identifier])
-    //
-    //                // Удаляем доставленные уведомления
-    //                center.removeDeliveredNotifications(withIdentifiers: [identifier])
-    //
-    //                print("Notifications successfully canceled for Pigulka: \(pigulka)")
-    //            } else {
-    //                print("Unique identifier is nil for Pigulka: \(pigulka)")
-    //            }
-    //        }
-    //    }
-    
     // Видалення нотифікації по ідентифікатору
     func removeNotification(withIdentifier identifier: String) {
         print("Removing notification with identifier: \(identifier)")
@@ -114,14 +91,10 @@ extension PillsViewController {
             notificationIdentifiers.remove(at: index)
         }
     }
-    
     // Очистка всіх нотифікацій
     func removeAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         // Очищення масиву
         notificationIdentifiers.removeAll()
     }
-    
-    
-    
 }
