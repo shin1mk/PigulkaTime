@@ -31,7 +31,7 @@ class CoreDataManager {
                             selectedDays: Int,
                             selectedTimes: String?,
                             selectedTime: String,
-                            notificationIdentifiers: String) {
+                            notificationIdentifiers: [String]) {
         let context = persistentContainer.viewContext
         
         let newPill = Pigulka(context: context)
@@ -44,8 +44,12 @@ class CoreDataManager {
         newPill.isEditable = true
         newPill.time = selectedTime
         newPill.uniqueIdentifier = UUID().uuidString
-        newPill.notificationIdentifiers = notificationIdentifiers
         
+        // Преобразование массива строк в одну строку через разделитель
+        let notificationIdentifiersString = notificationIdentifiers.joined(separator: ",")
+        newPill.notificationIdentifiers = notificationIdentifiersString
+        
+        // Просто сохраняем контекст после добавления новой записи
         do {
             try context.save()
             print("Pill saved to Core Data.")
@@ -53,6 +57,8 @@ class CoreDataManager {
             print("Error saving pill to Core Data: \(error)")
         }
     }
+
+
     //MARK: - load from core data
     func loadPillsFromCoreData() -> [Pigulka] {
         let context = persistentContainer.viewContext

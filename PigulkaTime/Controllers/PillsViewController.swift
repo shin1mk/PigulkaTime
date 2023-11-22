@@ -36,7 +36,9 @@ protocol TimeCustomTableCellDelegate: AnyObject {
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var delegate: PillsViewControllerDelegate?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
-    var notificationIdentifiers: [String] = []
+    var notificationIdentifiers = [String]()
+//    var testMassive = [String]()
+
     // Добавь инициализатор
     convenience init(pill: Pigulka) {
         self.init()
@@ -294,9 +296,9 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             isEditable: true,
             time: "\(selectedTime)",
             identifier: "",
-            notificationIdentifiers: "" // Установите ваш идентификатор уведомления как строку
+            notificationIdentifiers: notificationIdentifiers.joined(separator: ", ") // Преобразование массива в строку
         )
-        scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency, notificationIdentifiers: notificationIdentifiers)
+        scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива

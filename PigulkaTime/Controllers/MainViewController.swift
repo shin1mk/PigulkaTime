@@ -183,6 +183,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard !pillsArray.isEmpty else {
             return nil
         }
+        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
             guard let self = self else { return }
             // Получаем объект, который нужно удалить
@@ -198,26 +199,38 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 // Удаляем объект из массива данных
                 self.pillsArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+                // Удаляем уведомления
+                pillsViewController?.removeAllNotifications()
+                print("Pill removed: \(pillToRemove)")
+                 print("Pills array after removal: \(self.pillsArray)")
+                print("Notification identifiers after removal: \(String(describing: pillsViewController?.notificationIdentifiers))")
+                 
                 // Удаляем объект из Core Data
                 self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
                 completionHandler(true)
+                
+                // Обновляем видимость emptyLabel
                 self.emptyLabel.isHidden = !self.pillsArray.isEmpty
             }))
+            
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
                 completionHandler(false) // Отменить удаление
             }))
+            
             self.present(alertController, animated: true, completion: nil)
         }
         
-        deleteAction.backgroundColor = .systemRed
+        deleteAction.backgroundColor = UIColor.systemRed
         deleteAction.image = UIImage(systemName: "trash.fill")
-        deleteAction.title = nil
+        deleteAction.title = ""
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = false
 
         return configuration
     }
+
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
 extension MainViewController: PillsViewControllerDelegate {
@@ -229,6 +242,8 @@ extension MainViewController: PillsViewControllerDelegate {
                 return Int(digits) ?? 0
             }()
             pillsViewController = controller
+            let notificationIdentifiersArray = pillsViewController?.notificationIdentifiers ?? []
+//            let notificationIdentifiersArray = ["TestIdentifier1", "TestIdentifier2"]
 
             CoreDataManager.shared.savePillToCoreData(name: pill.name ,
                                                       selectedDosage: pill.dosage,
@@ -237,7 +252,7 @@ extension MainViewController: PillsViewControllerDelegate {
                                                       selectedDays: daysInt,
                                                       selectedTimes: pill.times,
                                                       selectedTime: pill.time,
-                                                      notificationIdentifiers: pill.notificationIdentifiers)
+                                                      notificationIdentifiers: notificationIdentifiersArray)
         }
         // Загрузите обновленные таблетки из Core Data
         print("Before: \(pillsArray)")
