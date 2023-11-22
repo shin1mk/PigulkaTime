@@ -15,7 +15,7 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7 // Общее количество ячеек
     }
-    
+    //MARK: - cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier: String
         switch indexPath.row {

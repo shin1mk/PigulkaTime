@@ -87,50 +87,44 @@ final class MainViewCustomTableCell: UITableViewCell {
         dosageLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(10)
-//            make.height.equalTo(20)
         }
         // typeLabel
         addSubview(typeLabel)
         typeLabel.snp.makeConstraints { make in
             make.top.equalTo(dosageLabel.snp.top)
             make.leading.equalTo(dosageLabel.snp.trailing).offset(5)
-//            make.height.equalTo(20)
         }
         // frequencyLabel
         addSubview(frequencyLabel)
         frequencyLabel.snp.makeConstraints { make in
             make.top.equalTo(typeLabel.snp.bottom).offset(0)
             make.leading.equalToSuperview().offset(10)
-//            make.height.equalTo(20)
         }
         // times Label
         addSubview(timesLabel)
         timesLabel.snp.makeConstraints { make in
             make.top.equalTo(frequencyLabel.snp.top)
             make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
-//            make.height.equalTo(20)
         }
         // days Label
         addSubview(daysLabel)
         daysLabel.snp.makeConstraints { make in
             make.top.equalTo(timesLabel.snp.top)
             make.leading.equalTo(timesLabel.snp.trailing).offset(10)
-//            make.height.equalTo(20)
         }
         // time Label
         addSubview(timeLabel)
         timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-//            make.height.equalTo(20)
         }
         // bottomBorderView
         addSubview(bottomBorderView)
         bottomBorderView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10) // или другое значение отступа
-            make.trailing.equalToSuperview().offset(-10) // или другое значение отступа
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview()
-            make.height.equalTo(1) // Высота бордера
+            make.height.equalTo(1)
         }
     }
     // общий метод для установки текста в Labels

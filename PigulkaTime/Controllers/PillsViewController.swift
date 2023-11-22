@@ -35,11 +35,8 @@ protocol TimeCustomTableCellDelegate: AnyObject {
 
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var delegate: PillsViewControllerDelegate?
-    // timer
-    var timer: Timer?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
     var notificationIdentifiers: [String] = []
-
     // Добавь инициализатор
     convenience init(pill: Pigulka) {
         self.init()
@@ -137,8 +134,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                let daysInt = Int(daysLeft) {
                 selectedDays = "\(daysInt) days left"
             }
-            
-
             // Принты для отслеживания данных
             print("Selected Type: \(selectedType ?? "N/A")")
             print("Selected Dosage: \(selectedDosage ?? "N/A")")
@@ -244,18 +239,11 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 // Удалите данные из Core Data
                 CoreDataManager.shared.deletePillFromCoreData(pill: editingPill)
             }
-
-            // Закройте PillsViewController
             self.dismiss(animated: true, completion: nil)
         }))
-
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
         present(alertController, animated: true, completion: nil)
     }
-
-
-
     // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
         guard let editingCell = editingCell,
@@ -274,25 +262,19 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
             return
         }
-        
         print("Selected days: \(selectedDays)")
-        
         if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
-        
         // Print or use the selectedTime and selectedFrequency as needed
         print("Selected Time: \(selectedTime)")
         print("Selected Frequency: \(selectedFrequency)")
-        
         // Set the timeLabel text
         if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
             timeCell.setTimeLabelText("\(selectedTime)")
         }
-        
         let startDate = Date()
         var dates = [Date]()
-        
         // Проверьте, если выбранное время уже прошло, добавьте 1 день к дате начала
         if let timeDate = getSelectedTimeDate(selectedTime: selectedTime) {
             if timeDate < startDate {
@@ -302,8 +284,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: startDate) ?? Date() }
             }
         }
-        
-
         let newPill = Pill(
             name: editingCell.textField.text ?? "",
             dosage: selectedDosage,
@@ -316,7 +296,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             identifier: "",
             notificationIdentifiers: "" // Установите ваш идентификатор уведомления как строку
         )
-        
         scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency, notificationIdentifiers: notificationIdentifiers)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)

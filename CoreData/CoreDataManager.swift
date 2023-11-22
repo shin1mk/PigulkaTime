@@ -23,7 +23,7 @@ class CoreDataManager {
         })
         return container
     }()
-    
+    //MARK: - save to core data
     func savePillToCoreData(name: String,
                             selectedDosage: String,
                             selectedType: String,
@@ -53,8 +53,8 @@ class CoreDataManager {
             print("Error saving pill to Core Data: \(error)")
         }
     }
-    
-    func loadPillsFromCoreData() -> [Pigulka] { // Change return type to [Pigulka]
+    //MARK: - load from core data
+    func loadPillsFromCoreData() -> [Pigulka] {
         let context = persistentContainer.viewContext
         var pills: [Pigulka] = []
         
@@ -69,7 +69,7 @@ class CoreDataManager {
         
         return pills
     }
-    
+    //MARK: - delete from core data
     func deletePillFromCoreData(pill: Pigulka) {
         let context = persistentContainer.viewContext
         context.delete(pill)

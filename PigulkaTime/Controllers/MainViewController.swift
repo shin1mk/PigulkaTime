@@ -169,10 +169,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             pillsViewController?.modalPresentationStyle = .popover
             pillsViewController?.delegate = self
         }
-
         // Задайте свойство editingPill вашего PillsViewController, чтобы передать данные для редактирования
         pillsViewController?.editingPill = selectedPill
-
         // Представьте ваш PillsViewController только если он не был представлен ранее
         if pillsViewController?.isBeingPresented == false {
             present(pillsViewController!, animated: true) {
@@ -185,43 +183,29 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard !pillsArray.isEmpty else {
             return nil
         }
-        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
             guard let self = self else { return }
-
             // Получаем объект, который нужно удалить
             let pillToRemove = self.pillsArray[indexPath.row]
-
             // Создайте алерт для подтверждения удаления
             let alertController = UIAlertController(
                 title: "Delete Pill",
                 message: "Are you sure you want to delete this pill?",
                 preferredStyle: .alert
             )
-
-            // Добавьте действие для подтверждения
             alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
                 guard let self = self else { return }
-
                 // Удаляем объект из массива данных
                 self.pillsArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-
                 // Удаляем объект из Core Data
                 self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
-
                 completionHandler(true)
-
-                // Update the isEmpty property and hide/show the emptyLabel accordingly
                 self.emptyLabel.isHidden = !self.pillsArray.isEmpty
             }))
-
-            // Добавьте действие для отмены
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
                 completionHandler(false) // Отменить удаление
             }))
-
-            // Представьте алерт
             self.present(alertController, animated: true, completion: nil)
         }
         
@@ -234,8 +218,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         return configuration
     }
-
-
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
 extension MainViewController: PillsViewControllerDelegate {
@@ -256,15 +238,6 @@ extension MainViewController: PillsViewControllerDelegate {
                                                       selectedTimes: pill.times,
                                                       selectedTime: pill.time,
                                                       notificationIdentifiers: pill.notificationIdentifiers)
-
-            // Получаем уведомления из Core Data и добавляем их идентификаторы к таблетке
-//            let pillFromCoreData = CoreDataManager.shared.loadPillsFromCoreData().last
-//
-//            // Проверяем, что мы успешно загрузили таблетку из Core Data
-//            if let pillFromCoreData = pillFromCoreData {
-//                pillFromCoreData.notificationIdentifiers = Array(arrayLiteral: pill.notificationIdentifiers).joined(separator: ",")
-//            }
-
         }
         // Загрузите обновленные таблетки из Core Data
         print("Before: \(pillsArray)")

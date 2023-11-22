@@ -11,7 +11,6 @@ import UserNotifications
 
 extension PillsViewController {
     func scheduleNotifications(forDates dates: [Date], atTimes times: [String], withFrequency frequency: String, notificationIdentifiers: [String]) {
-        
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
         let name = editingCell?.textField.text ?? "Time for pill"
@@ -74,20 +73,15 @@ extension PillsViewController {
                 }
             }
         }
-        
         // Зберегти ідентифікатори у властивості класу
-        
         self.notificationIdentifiers = notificationIdentifiers
         print("Массив индентификатооров: \(notificationIdentifiers)")
-        
     }
     // Видалення нотифікації по ідентифікатору
     func removeNotification(withIdentifier identifier: String) {
         print("Removing notification with identifier: \(identifier)")
-        
         // Видаляємо нотифікацію за її ідентифікатором
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-        
         // Видаляємо ідентифікатор зі списку
         if let index = notificationIdentifiers.firstIndex(of: identifier) {
             notificationIdentifiers.remove(at: index)
