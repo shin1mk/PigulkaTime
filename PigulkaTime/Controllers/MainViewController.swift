@@ -10,11 +10,10 @@ import SnapKit
 import UserNotifications
 
 final class MainViewController: UIViewController {
-//    public var pillsArray: [Pill] = [] // массив таблеток
-    private var pillsArray: [Pigulka] = []
-    let coreDataManager = CoreDataManager.shared
+    private var pillsArray: [Pigulka] = [] // массив с данными
+    private let coreDataManager = CoreDataManager.shared
     private var pillsViewController: PillsViewController?
-
+    private var notificationsViewController: NotificationsViewController?
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
     //MARK: Properties
@@ -53,6 +52,13 @@ final class MainViewController: UIViewController {
         addButton.layer.cornerRadius = 5
         return addButton
     }()
+    private let notificationsButton: UIButton = {
+        let notificationsButton = UIButton()
+        let bellFillImage = UIImage(systemName: "bell")?
+            .withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        notificationsButton.setImage(bellFillImage, for: .normal)
+        return notificationsButton
+    }()
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +66,6 @@ final class MainViewController: UIViewController {
         setupTableView()
         setupTarget()
         coreDataLoad()
-        // Инициализация pillsViewController
-//         pillsViewController = PillsViewController()
-//         pillsViewController?.modalPresentationStyle = .popover
-//         pillsViewController?.delegate = self
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -73,6 +75,14 @@ final class MainViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
+        }
+        // notificationsButton
+        view.addSubview(notificationsButton)
+        notificationsButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+            make.width.equalTo(50)
+            make.height.equalTo(60)
         }
         // bottomMarginGuide граница что б за нее не заходила таблица
         view.addLayoutGuide(bottomMarginGuide)
@@ -118,6 +128,7 @@ final class MainViewController: UIViewController {
     // targets
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
+        notificationsButton.addTarget(self, action: #selector(notificationsButtonTapped), for: .touchUpInside)
     }
     // add pill кнопка
     @objc private func addPillButtonTapped() {
@@ -127,6 +138,15 @@ final class MainViewController: UIViewController {
         pillsViewController.modalPresentationStyle = .popover
         pillsViewController.delegate = self
         present(pillsViewController, animated: true, completion: nil)
+    }
+    // notification кнопка
+    @objc private func notificationsButtonTapped() {
+        feedbackGenerator.selectionChanged()
+        // открываем модальное окно
+        let notificationsViewController = NotificationsViewController()
+        notificationsViewController.modalPresentationStyle = .popover
+//        notificationsViewController.delegate = self
+        present(notificationsViewController, animated: true, completion: nil)
     }
 } // end
 //MARK: TableView
@@ -164,14 +184,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let selectedPill = pillsArray[indexPath.row]
 
         if pillsViewController == nil {
-            // Инициализация pillsViewController, если он еще не инициализирован
             pillsViewController = PillsViewController()
             pillsViewController?.modalPresentationStyle = .popover
             pillsViewController?.delegate = self
         }
-        // Задайте свойство editingPill вашего PillsViewController, чтобы передать данные для редактирования
         pillsViewController?.editingPill = selectedPill
-        // Представьте ваш PillsViewController только если он не был представлен ранее
         if pillsViewController?.isBeingPresented == false {
             present(pillsViewController!, animated: true) {
                 self.pillsViewController?.setupEditPill()
@@ -199,17 +216,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 // Удаляем объект из массива данных
                 self.pillsArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                
                 // Удаляем уведомления
                 pillsViewController?.removeAllNotifications()
                 print("Pill removed: \(pillToRemove)")
-                 print("Pills array after removal: \(self.pillsArray)")
+                print("Pills array after removal: \(self.pillsArray)")
                 print("Notification identifiers after removal: \(String(describing: pillsViewController?.notificationIdentifiers))")
-                 
                 // Удаляем объект из Core Data
                 self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
                 completionHandler(true)
-                
                 // Обновляем видимость emptyLabel
                 self.emptyLabel.isHidden = !self.pillsArray.isEmpty
             }))
@@ -217,10 +231,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
                 completionHandler(false) // Отменить удаление
             }))
-            
             self.present(alertController, animated: true, completion: nil)
         }
-        
         deleteAction.backgroundColor = UIColor.systemRed
         deleteAction.image = UIImage(systemName: "trash.fill")
         deleteAction.title = ""
@@ -230,7 +242,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         return configuration
     }
-
 }
 //MARK: открытая функция добавляет в массив данные из PillsViewControler и сохранять в coredata
 extension MainViewController: PillsViewControllerDelegate {
@@ -243,7 +254,6 @@ extension MainViewController: PillsViewControllerDelegate {
             }()
             pillsViewController = controller
             let notificationIdentifiersArray = pillsViewController?.notificationIdentifiers ?? []
-//            let notificationIdentifiersArray = ["TestIdentifier1", "TestIdentifier2"]
 
             CoreDataManager.shared.savePillToCoreData(name: pill.name ,
                                                       selectedDosage: pill.dosage,
@@ -254,7 +264,6 @@ extension MainViewController: PillsViewControllerDelegate {
                                                       selectedTime: pill.time,
                                                       notificationIdentifiers: notificationIdentifiersArray)
         }
-        // Загрузите обновленные таблетки из Core Data
         print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
         print("After: \(pillsArray)")

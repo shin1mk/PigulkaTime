@@ -32,14 +32,10 @@ protocol TimeCustomTableCellDelegate: AnyObject {
     func didSelectTime(cell: TimeCustomTableCell)
 }
 
-
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var delegate: PillsViewControllerDelegate?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
-    var notificationIdentifiers = [String]()
-//    var testMassive = [String]()
-
-    // Добавь инициализатор
+    var notificationIdentifiers = [String]() // тут храним айдишки от уведомл
     convenience init(pill: Pigulka) {
         self.init()
         self.editingPill = pill
@@ -88,6 +84,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }()
     //MARK: Properties
     private let bottomMarginGuide = UILayoutGuide() // нижняя граница
+    private let subtractImageView = UIImageView(image: UIImage(named: "subtract"))
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "Add pill"
@@ -168,10 +165,16 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black
+        // substract
+        view.addSubview(subtractImageView)
+        subtractImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(view).offset(10)
+        }
         // titleLabel
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
         }
         // deleteButton
@@ -193,7 +196,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.addSubview(tableView)
         tableView.backgroundColor = UIColor.clear
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+            make.top.equalTo(titleLabel.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
             make.bottom.equalTo(bottomMarginGuide.snp.top)
