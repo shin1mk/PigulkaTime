@@ -10,7 +10,7 @@ import SnapKit
 
 // передаем из пикер вью сюда
 protocol FirstCustomTableCellDelegate: AnyObject {
-    func didSelectTime(cell: FirstCustomTableCell)
+    func didSelectFirstTime(cell: FirstCustomTableCell)
 }
 
 final class FirstCustomTableCell: UITableViewCell {
@@ -18,7 +18,7 @@ final class FirstCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let firstTitleLabel: UILabel = {
         let firstTitleLabel = UILabel()
-        firstTitleLabel.text = "Notification time"
+        firstTitleLabel.text = "First notification"
         firstTitleLabel.textColor = .white
         firstTitleLabel.textAlignment = .left
         firstTitleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
@@ -29,8 +29,16 @@ final class FirstCustomTableCell: UITableViewCell {
         firstNotificationLabel.text = "Choose \u{2192}"
         firstNotificationLabel.textColor = .systemGray
         firstNotificationLabel.textAlignment = .right
-        firstNotificationLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        firstNotificationLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return firstNotificationLabel
+    }()
+    private let firstDaysLabel: UILabel = {
+        let firstDaysLabel = UILabel()
+        firstDaysLabel.text = "Days left"
+        firstDaysLabel.textColor = .systemGray
+        firstDaysLabel.textAlignment = .right
+        firstDaysLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        return firstDaysLabel
     }()
     private let bottomBorderView: UIView = {
         let view = UIView()
@@ -55,10 +63,16 @@ final class FirstCustomTableCell: UITableViewCell {
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview()
         }
+        // firstDaysLabel
+        addSubview(firstDaysLabel)
+        firstDaysLabel.snp.makeConstraints { make in
+            make.top.equalTo(firstTitleLabel.snp.bottom).offset(5)
+            make.leading.equalToSuperview()
+        }
         // firstNotificationLabel
         addSubview(firstNotificationLabel)
         firstNotificationLabel.snp.makeConstraints { make in
-            make.top.equalTo(firstNotificationLabel.snp.top)
+            make.top.equalTo(firstTitleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
         // bottomBorderView
@@ -77,10 +91,14 @@ final class FirstCustomTableCell: UITableViewCell {
     }
     // ячейка нажата вызываем протокол
     @objc private func cellTapped() {
-        delegate?.didSelectTime(cell: self)
+        delegate?.didSelectFirstTime(cell: self)
     }
-    // установить текст в ячейку
+    // установить время в ячейку
     func setFirstTimeText(_ text: String) {
         firstNotificationLabel.text = text
+    }
+    // установить дней в ячейку
+    func setFirstDaysText(_ text: String) {
+        firstDaysLabel.text = text
     }
 } //end

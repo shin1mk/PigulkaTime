@@ -1,5 +1,5 @@
 //
-//  FirstPickerView.swift
+//  SecondPickerView.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 23.11.2023.
@@ -8,9 +8,10 @@
 import UIKit
 import UserNotifications
 
-extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+extension NotificationsViewController {
     // MARK: - Time Picker
-    func didSelectTime(cell: FirstCustomTableCell) {
+    func didSelectSecondTime(cell: SecondCustomTableCell) {
         let pickerViewController = createPickerViewController()
         present(pickerViewController, animated: true, completion: nil)
     }
@@ -18,7 +19,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
     private func createPickerViewController() -> UIViewController {
         let pickerViewController = UIViewController()
         let pickerView = createPickerView(for: pickerViewController)
-        let okButton = createTimeOkButton(for: pickerViewController)
+        let okButton = createSecondTimeOkButton(for: pickerViewController)
         
         pickerViewController.view.addSubview(pickerView)
         pickerViewController.view.addSubview(okButton)
@@ -31,7 +32,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 4 // For Type picker view
+        pickerView.tag = 1 // For Type picker view
         pickerView.backgroundColor = .black
         pickerView.selectRow(0, inComponent: 0, animated: false)
         
@@ -42,13 +43,13 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         return pickerView
     }
     
-    private func createTimeOkButton(for pickerViewController: UIViewController) -> UIButton {
+    private func createSecondTimeOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
         okButton.setTitle("OK", for: .normal)
         okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
-        okButton.addTarget(self, action: #selector(timeOkButtonTapped(_:)), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(secondOkButtonTapped(_:)), for: .touchUpInside)
         
         let bottomMargin: CGFloat = 30
         let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
@@ -57,24 +58,12 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         return okButton
     }
     
-//    @objc private func timeOkButtonTapped(_ sender: UIButton) {
-//        // Обновляем ячейку, например, для первой строки таблицы
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        if let cell = tableView.cellForRow(at: indexPath) as? FirstCustomTableCell {
-//            // Обновляем текст в ячейке с выбранным временем
-//            cell.setFirstTimeText(String(format: "%02d:%02d", selectedHour, selectedMinute))
-//        }
-//        let formattedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
-//        print("Formatted Time: \(formattedTime)")
-//        // Закрываем пикер вью
-//        dismiss(animated: true, completion: nil)
-//    }
-    @objc private func timeOkButtonTapped(_ sender: UIButton) {
+    @objc private func secondOkButtonTapped(_ sender: UIButton) {
         // Обновляем ячейку, например, для первой строки таблицы
-        let indexPath = IndexPath(row: 0, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? FirstCustomTableCell {
+        let indexPath = IndexPath(row: 1, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? SecondCustomTableCell {
             // Обновляем текст в ячейке с выбранным временем
-            cell.setFirstTimeText(String(format: "%02d:%02d", selectedHour, selectedMinute))
+            cell.setSecondTimeText(String(format: "%02d:%02d", selectedHour, selectedMinute))
         }
 
         // Закрываем пикер вью
@@ -86,7 +75,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
-        content.body = "FirstNotification!"
+        content.body = "SecondNotification!"
         content.sound = .default
 
         // Создаем экземпляр класса UNCalendarNotificationTrigger для триггера по времени
@@ -97,14 +86,14 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 
         // Создаем запрос на уведомление
-        let request = UNNotificationRequest(identifier: "firstNotification", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "SecondNotification", content: content, trigger: trigger)
 
         // Добавляем запрос в центр уведомлений
         center.add(request) { (error) in
             if let error = error {
                 print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
             } else {
-                print("Уведомление успешно добавлено")
+                print("SecondNotification.swift")
             }
         }
         // Выводим в консоль время уведомления
@@ -112,9 +101,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         if let notificationTime = trigger.nextTriggerDate() {
             let formattedNotificationTime = dateFormatter.string(from: notificationTime)
-            print("Уведомление запланировано на время: \(formattedNotificationTime)")
+            print("второе Уведомление запланировано на время: \(formattedNotificationTime)")
         }
     }
-
-
 }

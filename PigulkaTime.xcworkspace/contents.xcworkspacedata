@@ -8,9 +8,6 @@
       location = "group:Pigulka+CoreDataProperties.swift">
    </FileRef>
    <FileRef
-      location = "group:PigulkaTime/../textHelper.swift">
-   </FileRef>
-   <FileRef
       location = "group:PigulkaTime.xcodeproj">
    </FileRef>
    <FileRef

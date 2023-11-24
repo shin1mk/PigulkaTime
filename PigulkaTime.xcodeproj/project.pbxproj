@@ -11,6 +11,10 @@
 		1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */; };
 		1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */; };
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
+		133E778B2B0F691C009ABCC7 /* SecondPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */; };
+		133E778D2B0F6929009ABCC7 /* SecondCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */; };
+		133E77902B0F706C009ABCC7 /* DaysNotificationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778F2B0F706C009ABCC7 /* DaysNotificationTableCell.swift */; };
+		133E77922B0F708F009ABCC7 /* DaysNotificationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E77912B0F708F009ABCC7 /* DaysNotificationPickerView.swift */; };
 		134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */; };
 		13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D332B03465F00D5C649 /* TypePickerExtension.swift */; };
 		13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */; };
@@ -36,7 +40,6 @@
 		135B38912AFA9F98007C1C04 /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388B2AFA9F98007C1C04 /* SFUIText-Light.ttf */; };
 		135B38922AFA9F98007C1C04 /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */; };
 		135B38932AFA9F98007C1C04 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */; };
-		135B38952AFAA031007C1C04 /* textHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38942AFAA031007C1C04 /* textHelper.swift */; };
 		135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C5F412B08F69100FF299B /* CoreDataManager.swift */; };
 		1374D2C52B01FA4E0017398C /* TimeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1374D2C42B01FA4E0017398C /* TimeCustomTableCell.swift */; };
 		139168942B0F1F95001A36C0 /* FirstCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */; };
@@ -76,6 +79,10 @@
 		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
 		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
+		133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPickerView.swift; sourceTree = "<group>"; };
+		133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCustomTableCell.swift; sourceTree = "<group>"; };
+		133E778F2B0F706C009ABCC7 /* DaysNotificationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysNotificationTableCell.swift; sourceTree = "<group>"; };
+		133E77912B0F708F009ABCC7 /* DaysNotificationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysNotificationPickerView.swift; sourceTree = "<group>"; };
 		134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPerCustomTableCell.swift; sourceTree = "<group>"; };
 		13523D332B03465F00D5C649 /* TypePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerExtension.swift; sourceTree = "<group>"; };
 		13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTableViewExtension.swift; sourceTree = "<group>"; };
@@ -105,7 +112,6 @@
 		135B388B2AFA9F98007C1C04 /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Light.ttf"; sourceTree = "<group>"; };
 		135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 		135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
-		135B38942AFAA031007C1C04 /* textHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = textHelper.swift; path = ../textHelper.swift; sourceTree = "<group>"; };
 		135C5F412B08F69100FF299B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		1374D2C42B01FA4E0017398C /* TimeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCustomTableCell.swift; sourceTree = "<group>"; };
 		139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCustomTableCell.swift; sourceTree = "<group>"; };
@@ -168,6 +174,33 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		133E77882B0F688E009ABCC7 /* first */ = {
+			isa = PBXGroup;
+			children = (
+				13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */,
+				139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */,
+			);
+			path = first;
+			sourceTree = "<group>";
+		};
+		133E77892B0F689C009ABCC7 /* second */ = {
+			isa = PBXGroup;
+			children = (
+				133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */,
+				133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */,
+			);
+			path = second;
+			sourceTree = "<group>";
+		};
+		133E778E2B0F703D009ABCC7 /* days */ = {
+			isa = PBXGroup;
+			children = (
+				133E778F2B0F706C009ABCC7 /* DaysNotificationTableCell.swift */,
+				133E77912B0F708F009ABCC7 /* DaysNotificationPickerView.swift */,
+			);
+			path = days;
+			sourceTree = "<group>";
+		};
 		13523D322B03463E00D5C649 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +220,7 @@
 		135B38452AFA9EC4007C1C04 = {
 			isa = PBXGroup;
 			children = (
-				13ECF7172B0F195F00DB91A1 /* Notifications */,
+				13CB32442B111B0300CEED26 /* trash */,
 				135C5F402B08F67C00FF299B /* CoreData */,
 				135B38502AFA9EC4007C1C04 /* PigulkaTime */,
 				135B386A2AFA9EC5007C1C04 /* PigulkaTimeTests */,
@@ -211,7 +244,8 @@
 		135B38502AFA9EC4007C1C04 /* PigulkaTime */ = {
 			isa = PBXGroup;
 			children = (
-				135B38942AFAA031007C1C04 /* textHelper.swift */,
+				13ECF7172B0F195F00DB91A1 /* Notifications */,
+				13DD9D9A2B0F39D400E23504 /* pickerViews */,
 				13523D322B03463E00D5C649 /* Extension */,
 				131FF95A2AFF87F700ABFCB9 /* Cells */,
 				13F556072AFCB0BA0025119F /* Models */,
@@ -289,11 +323,19 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		13CB32442B111B0300CEED26 /* trash */ = {
+			isa = PBXGroup;
+			children = (
+				133E778E2B0F703D009ABCC7 /* days */,
+			);
+			path = trash;
+			sourceTree = "<group>";
+		};
 		13DD9D9A2B0F39D400E23504 /* pickerViews */ = {
 			isa = PBXGroup;
 			children = (
-				13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */,
-				139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */,
+				133E77892B0F689C009ABCC7 /* second */,
+				133E77882B0F688E009ABCC7 /* first */,
 			);
 			path = pickerViews;
 			sourceTree = "<group>";
@@ -301,7 +343,6 @@
 		13ECF7172B0F195F00DB91A1 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				13DD9D9A2B0F39D400E23504 /* pickerViews */,
 				13ECF7192B0F198300DB91A1 /* NotificationsViewController.swift */,
 				135930632B0F394B00E9779B /* NotificationTableView.swift */,
 				135930652B0F39A300E9779B /* NotificationPickerViewExtension.swift */,
@@ -582,13 +623,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				133E77902B0F706C009ABCC7 /* DaysNotificationTableCell.swift in Sources */,
 				13523D442B0348DC00D5C649 /* SettingPickerExtension.swift in Sources */,
 				134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */,
+				133E778D2B0F6929009ABCC7 /* SecondCustomTableCell.swift in Sources */,
 				139168942B0F1F95001A36C0 /* FirstCustomTableCell.swift in Sources */,
-				135B38952AFAA031007C1C04 /* textHelper.swift in Sources */,
 				13523D3C2B03485A00D5C649 /* FrequencyPickerExtension.swift in Sources */,
 				13523D3A2B03483900D5C649 /* DosagePickerExtension.swift in Sources */,
+				133E778B2B0F691C009ABCC7 /* SecondPickerView.swift in Sources */,
 				135B385C2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld in Sources */,
+				133E77922B0F708F009ABCC7 /* DaysNotificationPickerView.swift in Sources */,
 				135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */,
 				135930642B0F394B00E9779B /* NotificationTableView.swift in Sources */,
 				13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */,
