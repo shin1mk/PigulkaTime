@@ -100,6 +100,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func setupEditPill() {
         if let editingPill = editingPill {
             // Заполняем соответствующие переменные значениями из editingPill
+             
             selectedType = editingPill.type
             selectedDosage = editingPill.dosage
             selectedFrequency = editingPill.frequency
@@ -114,7 +115,11 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Frequency: \(selectedFrequency ?? "N/A")")
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
-            
+       
+            // название препарата ставим в поле ввода
+            if let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? DrugNameCustomTableCell {
+                nameCell.textField.text = editingPill.name
+            }
             // Заполняем значения в соответствующих ячейках
             if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
                 typeCell.setLabelText(selectedType ?? "")
@@ -125,10 +130,10 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
                 frequencyCell.setFrequencyText(selectedFrequency ?? "")
             }
-            if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
+            if let daysCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
                 daysCell.setDaysText(selectedDays ?? "")
             }
-            if let timesCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimesCustomTableCell {
+            if let timesCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? TimesCustomTableCell {
                 timesCell.setTimesText(selectedTimes ?? "")
             }
         }
