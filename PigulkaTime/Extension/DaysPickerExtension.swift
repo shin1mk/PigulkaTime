@@ -30,7 +30,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 5 // For Type picker view
+        pickerView.tag = 4 // For Type picker view
         pickerView.backgroundColor = .black
         pickerView.selectRow(0, inComponent: 0, animated: false)
         
@@ -65,7 +65,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
             return
         }
         // выбранный тип в typeLabel
-        if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
+        if let daysCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
             daysCell.setDaysText("\(selectedDays)")
         }
         // Снимите фокус с текстового поля

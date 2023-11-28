@@ -145,7 +145,6 @@ final class MainViewController: UIViewController {
         // открываем модальное окно
         let notificationsViewController = NotificationsViewController()
         notificationsViewController.modalPresentationStyle = .popover
-//        notificationsViewController.delegate = self
         present(notificationsViewController, animated: true, completion: nil)
     }
 } // end
@@ -174,7 +173,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setFrequencyLabelText(pill.frequency ?? "")
         cell.setDaysLabelText("\(pill.days!) days left")
         cell.setTimesLabelText("Times \(pill.times!)")
-        cell.setTimeLabelText(pill.time ?? "")
 
         return cell
     }
@@ -188,6 +186,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             pillsViewController?.modalPresentationStyle = .popover
             pillsViewController?.delegate = self
         }
+        
         pillsViewController?.editingPill = selectedPill
         if pillsViewController?.isBeingPresented == false {
             present(pillsViewController!, animated: true) {
@@ -217,10 +216,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 self.pillsArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 // Удаляем уведомления
-                pillsViewController?.removeAllNotifications()
                 print("Pill removed: \(pillToRemove)")
                 print("Pills array after removal: \(self.pillsArray)")
-                print("Notification identifiers after removal: \(String(describing: pillsViewController?.notificationIdentifiers))")
                 // Удаляем объект из Core Data
                 self.coreDataManager.deletePillFromCoreData(pill: pillToRemove)
                 completionHandler(true)
@@ -253,16 +250,13 @@ extension MainViewController: PillsViewControllerDelegate {
                 return Int(digits) ?? 0
             }()
             pillsViewController = controller
-            let notificationIdentifiersArray = pillsViewController?.notificationIdentifiers ?? []
 
             CoreDataManager.shared.savePillToCoreData(name: pill.name ,
                                                       selectedDosage: pill.dosage,
                                                       selectedType: pill.type,
                                                       selectedFrequency: pill.frequency,
                                                       selectedDays: daysInt,
-                                                      selectedTimes: pill.times,
-                                                      selectedTime: pill.time,
-                                                      notificationIdentifiers: notificationIdentifiersArray)
+                                                      selectedTimes: pill.times)
         }
         print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()

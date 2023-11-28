@@ -20,22 +20,9 @@ extension PillsViewController {
             selectedFrequency = frequency[row]
             print("Selected Frequency: \(selectedFrequency ?? "No frequency selected")")
         case 4:
-            if component == 0 {
-                let selectedHour = row
-                // let selectedMinute = pickerView.selectedRow(inComponent: 1) * 5
-                let selectedMinute = pickerView.selectedRow(inComponent: 1)
-                selectedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
-            } else {
-                let selectedHour = pickerView.selectedRow(inComponent: 0)
-                // let selectedMinute = row * 5
-                let selectedMinute = row
-                selectedTime = String(format: "%02d:%02d", selectedHour, selectedMinute)
-            }
-            print("Selected time at: \(selectedTime ?? "No time selected")")
-        case 5:
             selectedDays = days[row]
             print("Selected Days: \(selectedDays ?? "No days selected")")
-        case 6:
+        case 5:
             selectedTimes = times[row]
             print("Selected Days: \(selectedTimes ?? "No times selected")")
     
@@ -53,10 +40,8 @@ extension PillsViewController {
         case 3:
             return 1
         case 4:
-            return 2
-        case 5:
             return 1
-        case 6:
+        case 5:
             return 1
         default:
             return 1
@@ -72,15 +57,8 @@ extension PillsViewController {
         case 3:
             return frequency.count
         case 4:
-            if component == 0 {
-                return 24 // Часы от 0 до 23
-            } else {
-                //                return 12 // Минуты от 0 до 55 с шагом 5
-                return 60 // Минуты от 0 до 55 с шагом 5
-            }
-        case 5:
             return days.count
-        case 6:
+        case 5:
             return times.count
  
         default:
@@ -97,15 +75,8 @@ extension PillsViewController {
         case 3:
             return frequency[row]
         case 4:
-            if component == 0 {
-                return String(format: "%02d", row) // Форматирование часов
-            } else {
-                return String(format: "%02d", row) // Форматирование минут с шагом 5
-                //                return String(format: "%02d", row * 5) // Форматирование минут с шагом 5
-            }
-        case 5:
             return days[row]
-        case 6:
+        case 5:
             return times[row]
         default:
             return nil

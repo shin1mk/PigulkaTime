@@ -29,9 +29,7 @@ class CoreDataManager {
                             selectedType: String,
                             selectedFrequency: String,
                             selectedDays: Int,
-                            selectedTimes: String?,
-                            selectedTime: String,
-                            notificationIdentifiers: [String]) {
+                            selectedTimes: String?) {
         let context = persistentContainer.viewContext
         
         let newPill = Pigulka(context: context)
@@ -42,12 +40,7 @@ class CoreDataManager {
         newPill.days = "\(selectedDays)"
         newPill.times = selectedTimes
         newPill.isEditable = true
-        newPill.time = selectedTime
         newPill.uniqueIdentifier = UUID().uuidString
-        
-        // Преобразование массива строк в одну строку через разделитель
-        let notificationIdentifiersString = notificationIdentifiers.joined(separator: ",")
-        newPill.notificationIdentifiers = notificationIdentifiersString
         
         // Просто сохраняем контекст после добавления новой записи
         do {

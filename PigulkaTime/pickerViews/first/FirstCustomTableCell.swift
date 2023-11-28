@@ -11,6 +11,7 @@ import SnapKit
 // передаем из пикер вью сюда
 protocol FirstCustomTableCellDelegate: AnyObject {
     func didSelectFirstTime(cell: FirstCustomTableCell)
+    func didToggleSwitch(cell: FirstCustomTableCell, isOn: Bool)
 }
 
 final class FirstCustomTableCell: UITableViewCell {
@@ -45,11 +46,18 @@ final class FirstCustomTableCell: UITableViewCell {
         view.backgroundColor = .systemGray6 // Цвет бордера
         return view
     }()
+    private let switchControl: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isOn = true
+        return switchControl
+    }()
+    
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
         setupGesture()
+        setupTarget()
     }
     required init?(coder aDecoder: NSCoder) {
         return nil
@@ -75,6 +83,12 @@ final class FirstCustomTableCell: UITableViewCell {
             make.top.equalTo(firstTitleLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
+        // switchControl
+        contentView.addSubview(switchControl)
+        switchControl.snp.makeConstraints { make in
+            make.top.equalTo(firstNotificationLabel.snp.bottom).offset(5)
+            make.trailing.equalToSuperview().offset(-10)
+        }
         // bottomBorderView
         addSubview(bottomBorderView)
         bottomBorderView.snp.makeConstraints { make in
@@ -89,6 +103,26 @@ final class FirstCustomTableCell: UITableViewCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         contentView.addGestureRecognizer(tapGesture)
     }
+    // target
+    private func setupTarget() {
+        switchControl.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
+    }
+    
+    @objc private func switchValueChanged() {
+        // Вызывайте делегат или выполните другие действия в зависимости от значения бегунка
+        cancelAllNotifications()
+        delegate?.didToggleSwitch(cell: self, isOn: switchControl.isOn)
+        // Изменяем цвет текста в зависимости от состояния свитча
+        if switchControl.isOn {
+            firstTitleLabel.textColor = .white
+            firstDaysLabel.textColor = .systemGray
+            firstNotificationLabel.textColor = .systemGray
+        } else {
+            firstTitleLabel.textColor = .systemGray5
+            firstDaysLabel.textColor = .systemGray5
+            firstNotificationLabel.textColor = .systemGray5
+        }
+    }
     // ячейка нажата вызываем протокол
     @objc private func cellTapped() {
         delegate?.didSelectFirstTime(cell: self)
@@ -101,4 +135,28 @@ final class FirstCustomTableCell: UITableViewCell {
     func setFirstDaysText(_ text: String) {
         firstDaysLabel.text = text
     }
+    
+//    func cancelAllNotifications() {
+//        DispatchQueue.main.async {
+//            let center = UNUserNotificationCenter.current()
+//            center.removeAllPendingNotificationRequests()
+//            center.removeAllDeliveredNotifications()
+//            print("All notifications canceled.")
+//        }
+//    }
+    // Ваш метод отмены уведомлений
+    func cancelAllNotifications() {
+        DispatchQueue.main.async {
+            let notificationCenter = UNUserNotificationCenter.current()
+            // Получаем список всех текущих уведомлений
+            notificationCenter.getPendingNotificationRequests { requests in
+                // Удаляем каждое уведомление по его идентификатору
+                for request in requests {
+                    notificationCenter.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                    print("Notification removed with identifier: \(request.identifier)")
+                }
+            }
+        }
+    }
+
 } //end

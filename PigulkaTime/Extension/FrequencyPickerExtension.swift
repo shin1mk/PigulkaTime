@@ -63,10 +63,7 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
             dismiss(animated: true, completion: nil)
             return
         }
-        // Проверьте, было ли выбрано время, если нет, установите значение по умолчанию (0)
-        let selectedTime = selectedTime ?? "0"
         
-        print("Selected Time: \(selectedTime)")
         print("Selected Frequency: \(selectedFrequency)")
         // выбранную частоту в frequencyLabel
         if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
@@ -76,46 +73,5 @@ extension PillsViewController: FrequencyCustomTableCellDelegate {
         editingCell?.textField.resignFirstResponder()
         // Закройте UIViewController при нажатии кнопки "OK"
         dismiss(animated: true, completion: nil)
-    }
-    
-    func getNotificationTrigger(forFrequency frequency: String, dateComponents: DateComponents) -> UNNotificationTrigger? {
-        switch frequency {
-        case "Daily":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every Hour":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
-        case "Every 2 hours":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 7200, repeats: true)
-        case "Every 3 hours":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 10800, repeats: true)
-        case "Every 4 hours":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 14400, repeats: true)
-        case "Every 6 hours":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 21600, repeats: true)
-        case "Every 8 hours":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 28800, repeats: true)
-        case "Every 12 hours":
-            return UNTimeIntervalNotificationTrigger(timeInterval: 43200, repeats: true)
-        case "Every 2 days":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 3 days":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 4 days":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 5 days":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 6 days":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Weekly":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 2 weeks":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 3 weeks":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        case "Every 4 weeks":
-            return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        default:
-            return nil
-        }
     }
 }

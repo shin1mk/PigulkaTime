@@ -119,31 +119,14 @@ extension NotificationsViewController {
         }
     }
 
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        switch component {
-//        case 0:
-//            // Обработайте выбор дня
-//            let selectedDayInterval = daysIntervals[row]
-//            print("Selected Day Interval: \(selectedDayInterval)")
-//        case 1:
-//            selectedHour = row
-//            print("Selected Hour: \(selectedHour)")
-//        case 2:
-//            selectedMinute = row
-//            print("Selected Minute: \(selectedMinute)")
-//        default:
-//            break
-//        }
-//    }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
           switch component {
           case 0:
               // Обработайте выбор дня
               let selectedDayInterval = daysIntervals[row]
               print("Selected Day Interval: \(selectedDayInterval)")
-
-              // Обновляем значение selectedValue
-              selectedValue = daysArray[row]
+              // Обновляем значение selectedDays in vc
+              selectedDays = daysArray[row]
           case 1:
               selectedHour = row
               print("Selected Hour: \(selectedHour)")

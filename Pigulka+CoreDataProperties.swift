@@ -22,10 +22,7 @@ extension Pigulka {
     @NSManaged public var isEditable: Bool
     @NSManaged public var name: String?
     
-    @NSManaged public var notificationIdentifiers: String?
-    @NSManaged public var time: String?
     @NSManaged public var times: String?
     @NSManaged public var type: String?
     @NSManaged public var uniqueIdentifier: String?
-
 }

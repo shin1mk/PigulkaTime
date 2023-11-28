@@ -28,14 +28,10 @@ protocol DaysCustomTableCellDelegate: AnyObject {
 protocol TimesCustomTableCellDelegate: AnyObject {
     func didSelectTimes(cell: TimesCustomTableCell)
 }
-protocol TimeCustomTableCellDelegate: AnyObject {
-    func didSelectTime(cell: TimeCustomTableCell)
-}
 
 final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var delegate: PillsViewControllerDelegate?
     var editingPill: Pigulka? // Переменная для хранения данных, которые нужно редактировать
-    var notificationIdentifiers = [String]() // тут храним айдишки от уведомл
     convenience init(pill: Pigulka) {
         self.init()
         self.editingPill = pill
@@ -53,22 +49,12 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Every 4 weeks"]
     public var selectedFrequency: String?
     // for days picker view
-    public let days: [String] = (0...100).compactMap { $0 == 1 ? nil : "\($0) day\($0 == 1 ? "" : "s")" }
+    public let days: [String] = ["1 day", "2 days", "3 days", "4 days", "5 days", "6 days", "7 days", "10 days", "14 days", "30 days", "60 days", "90 days"]
     public var selectedDays: String?
     // for times per day picker view
-    public let times: [String] = (0...10).map { "\($0)" }
+    public let times: [String] = (1...10).map { "\($0)" }
     public var selectedTimes: String?
-    // for starting picker view
-    public let time: [String] = {
-        var times = [String]()
-        for hour in 0...23 {
-            for minute in stride(from: 0, through: 55, by: 5) {
-                times.append(String(format: "%02d:%02d", hour, minute))
-            }
-        }
-        return times
-    }()
-    public var selectedTime: String?
+
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +64,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
-        tableView.register(TimeCustomTableCell.self, forCellReuseIdentifier: "TimeCustomCell")
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -102,15 +87,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.layer.cornerRadius = 5
         return saveButton
     }()
-    private let deleteButton: UIButton = {
-        let deleteButton = UIButton()
-        deleteButton.setTitle("Delete", for: .normal)
-        deleteButton.titleLabel?.font = UIFont.SFUITextRegular(ofSize: 15)
-        deleteButton.setTitleColor(.white, for: .normal)
-        deleteButton.backgroundColor = .systemGray6
-        deleteButton.layer.cornerRadius = 5
-        return deleteButton
-    }()
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +104,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             selectedDosage = editingPill.dosage
             selectedFrequency = editingPill.frequency
             selectedTimes = editingPill.times
-            selectedTime = editingPill.time
             if let daysLeft = editingPill.days?.replacingOccurrences(of: " days left", with: ""),
                let daysInt = Int(daysLeft) {
                 selectedDays = "\(daysInt) days left"
@@ -139,7 +114,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Frequency: \(selectedFrequency ?? "N/A")")
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
-            print("Selected Time: \(selectedTime ?? "N/A")")
             
             // Заполняем значения в соответствующих ячейках
             if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
@@ -157,9 +131,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             if let timesCell = tableView.cellForRow(at: IndexPath(row: 6, section: 0)) as? TimesCustomTableCell {
                 timesCell.setTimesText(selectedTimes ?? "")
             }
-            if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
-                timeCell.setTimeLabelText(selectedTime ?? "")
-            }
         }
     }
     //MARK: Constraints
@@ -176,14 +147,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
-        }
-        // deleteButton
-        view.addSubview(deleteButton)
-        deleteButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.top).offset(8)
-            make.trailing.equalToSuperview().offset(-15)
-            make.height.equalTo(25)
-            make.width.equalTo(70)
         }
         // bottomMarginGuide граница что б за нее не заходила таблица
         view.addLayoutGuide(bottomMarginGuide)
@@ -218,36 +181,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // targets
     private func setupTarget() {
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func deleteButtonTapped(_ sender: UIButton) {
-        print("deleteButton")
-
-        let alertController = UIAlertController(
-            title: "Delete Pill",
-            message: "Are you sure you want to delete this pill?",
-            preferredStyle: .alert
-        )
-
-        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
-            guard let self = self else { return }
-
-            if let editingPill = self.editingPill {
-                print("Deleting pill: \(editingPill)")
-
-                // Отмените уведомления для удаляемого объекта
-                print("Before Removal: \(notificationIdentifiers)")
-//                removeNotification(withIdentifier: notificationIdentifiers.first ?? "")
-                removeAllNotifications()
-                print("After Removal: \(notificationIdentifiers)")
-                // Удалите данные из Core Data
-                CoreDataManager.shared.deletePillFromCoreData(pill: editingPill)
-            }
-            self.dismiss(animated: true, completion: nil)
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
     }
     // saveButton
     @objc private func saveButtonTapped(_ sender: UIButton) {
@@ -255,8 +188,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
               let selectedType = selectedType,
               let selectedDosage = selectedDosage,
               let selectedFrequency = selectedFrequency,
-              let selectedDaysString = selectedDays,
-              let selectedTime = selectedTime else {
+              let selectedDaysString = selectedDays else {
             // Обработка случая, когда какие-то из полей не выбраны
             print("Some fields are not selected.")
             return
@@ -272,23 +204,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             daysCell.setDaysText("\(selectedDays)")
         }
         // Print or use the selectedTime and selectedFrequency as needed
-        print("Selected Time: \(selectedTime)")
         print("Selected Frequency: \(selectedFrequency)")
-        // Set the timeLabel text
-        if let timeCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? TimeCustomTableCell {
-            timeCell.setTimeLabelText("\(selectedTime)")
-        }
-        let startDate = Date()
-        var dates = [Date]()
-        // Проверьте, если выбранное время уже прошло, добавьте 1 день к дате начала
-        if let timeDate = getSelectedTimeDate(selectedTime: selectedTime) {
-            if timeDate < startDate {
-                let nextDayDate = startDate.addingTimeInterval(24 * 60 * 60)
-                dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: nextDayDate) ?? Date() }
-            } else {
-                dates = (0..<selectedDays).map { Calendar.current.date(byAdding: .day, value: $0, to: startDate) ?? Date() }
-            }
-        }
+     
         let newPill = Pill(
             name: editingCell.textField.text ?? "",
             dosage: selectedDosage,
@@ -297,11 +214,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             days: "\(selectedDays) days left",
             times: "\(selectedTimes ?? "no")",
             isEditable: true,
-            time: "\(selectedTime)",
-            identifier: "",
-            notificationIdentifiers: notificationIdentifiers.joined(separator: ", ") // Преобразование массива в строку
+            identifier: ""
         )
-        scheduleNotifications(forDates: dates, atTimes: [selectedTime], withFrequency: selectedFrequency)
         // Добавляем новый объект Pill в массив pillsArray
         pillsArray.append(newPill)
         // Вызываем делегата для передачи обновленного массива

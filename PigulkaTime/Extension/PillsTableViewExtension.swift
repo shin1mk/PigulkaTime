@@ -13,7 +13,7 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7 // Общее количество ячеек
+        return 6 // Общее количество ячеек
     }
     //MARK: - cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,16 +37,11 @@ extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         case 4:
-            cellIdentifier = "TimeCustomCell"
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TimeCustomTableCell
-            cell.delegate = self
-            return cell
-        case 5:
             cellIdentifier = "DaysCustomCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DaysCustomTableCell
             cell.delegate = self
             return cell
-        case 6:
+        case 5:
             cellIdentifier = "TimesCustomCell"
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TimesCustomTableCell
             cell.delegate = self
