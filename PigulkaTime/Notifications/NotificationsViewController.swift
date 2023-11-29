@@ -10,7 +10,6 @@ import SnapKit
 import UserNotifications
 
 final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate {
-    
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     // выбранное время
     var selectedHour: Int = 0
@@ -97,14 +96,9 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 cell.setFirstTimeText("Choose \u{2192}")
                 cell.setFirstDaysText("Days left")
             } else {
-                // Свитч в положении "OFF", установите другой текст
-                // Например, вы можете использовать другие методы для установки текста в ячейке
-                // cell.setFirstNotificationText("Some other text")
-                // cell.setFirstDaysText("Some other text")
+
             }
-            
-            // Теперь вызовите метод в основном потоке
-//            cell.cancelAllNotifications()
+
         }
     }
 } // end

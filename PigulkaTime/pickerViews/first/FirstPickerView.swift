@@ -65,28 +65,22 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
             cell.setFirstTimeText(String(format: "%02d:%02d", selectedHour, selectedMinute))
             cell.setFirstDaysText(selectedDays)
         }
-
         // Закрываем пикер вью
         dismiss(animated: true, completion: nil)
-        
         // Создаем объект UNUserNotificationCenter
         let center = UNUserNotificationCenter.current()
-        
         // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
         content.body = "First notification!"
         content.sound = .default
-        
         // Создаем экземпляр класса Date для выбранного времени пользователя
         let calendar = Calendar.current
         var dateComponents = DateComponents()
         dateComponents.hour = selectedHour
         dateComponents.minute = selectedMinute
-        
-        let firstTriggerDate = getNextTriggerDate(selectedHour: selectedHour, selectedMinute: selectedMinute)
 
-        // Получаем количество дней из выбранной строки
+        let firstTriggerDate = getNextTriggerDate(selectedHour: selectedHour, selectedMinute: selectedMinute)
         // Получаем выбранный интервал времени
         guard let selectedDaysString = daysArray.first(where: { $0 == selectedDays }), let selectedDays = Int(selectedDaysString.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) else {
             return
@@ -97,15 +91,11 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
 
             if let triggerDate = triggerDate {
                 let adjustedDate = calendar.date(bySettingHour: selectedHour, minute: selectedMinute, second: 0, of: triggerDate)!
-                
                 let trigger = UNCalendarNotificationTrigger(dateMatching: calendar.dateComponents([.hour, .minute], from: adjustedDate), repeats: false)
-                
                 // Уникальный идентификатор для каждого уведомления
                 let notificationIdentifier = "FirstNotification_\(daysInterval)"
-                
                 // Создаем запрос на уведомление
                 let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
-                
                 // Добавляем запрос в центр уведомлений
                 center.add(request) { (error) in
                     if let error = error {
@@ -114,7 +104,6 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                         print("First notification added successfully with identifier: \(notificationIdentifier)")
                     }
                 }
-                
                 // Выводим в консоль время уведомления
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -127,13 +116,11 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
     func getNextTriggerDate(selectedHour: Int, selectedMinute: Int) -> Date {
         let calendar = Calendar.current
         let currentDate = Date()
-
         // Создаем экземпляр класса Date для выбранного времени пользователя сегодня
         var todayComponents = DateComponents()
         todayComponents.hour = selectedHour
         todayComponents.minute = selectedMinute
         let todayTriggerDate = calendar.date(bySettingHour: selectedHour, minute: selectedMinute, second: 0, of: currentDate)!
-
         // Если выбранное время уже прошло сегодня, увеличиваем дату на 1 день
         let firstTriggerDate = todayTriggerDate > currentDate ? todayTriggerDate : calendar.date(byAdding: .day, value: 1, to: todayTriggerDate)!
 

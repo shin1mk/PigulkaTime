@@ -135,15 +135,6 @@ final class FirstCustomTableCell: UITableViewCell {
     func setFirstDaysText(_ text: String) {
         firstDaysLabel.text = text
     }
-    
-//    func cancelAllNotifications() {
-//        DispatchQueue.main.async {
-//            let center = UNUserNotificationCenter.current()
-//            center.removeAllPendingNotificationRequests()
-//            center.removeAllDeliveredNotifications()
-//            print("All notifications canceled.")
-//        }
-//    }
     // Ваш метод отмены уведомлений
     func cancelAllNotifications() {
         DispatchQueue.main.async {
@@ -158,5 +149,4 @@ final class FirstCustomTableCell: UITableViewCell {
             }
         }
     }
-
 } //end

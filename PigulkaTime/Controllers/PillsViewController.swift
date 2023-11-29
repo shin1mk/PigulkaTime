@@ -96,11 +96,10 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         setupGesture()
         setupEditPill()
     }
-    
+    // editing pill
     func setupEditPill() {
         if let editingPill = editingPill {
             // Заполняем соответствующие переменные значениями из editingPill
-             
             selectedType = editingPill.type
             selectedDosage = editingPill.dosage
             selectedFrequency = editingPill.frequency
