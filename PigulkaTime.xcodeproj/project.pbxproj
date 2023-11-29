@@ -198,7 +198,7 @@
 		135B38452AFA9EC4007C1C04 = {
 			isa = PBXGroup;
 			children = (
-				135C5F402B08F67C00FF299B /* CoreData */,
+				135C5F402B08F67C00FF299B /* PigulkaData */,
 				135B38502AFA9EC4007C1C04 /* PigulkaTime */,
 				135B386A2AFA9EC5007C1C04 /* PigulkaTimeTests */,
 				135B38742AFA9EC5007C1C04 /* PigulkaTimeUITests */,
@@ -222,7 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				13ECF7172B0F195F00DB91A1 /* Notifications */,
-				13DD9D9A2B0F39D400E23504 /* pickerViews */,
+				13DD9D9A2B0F39D400E23504 /* NotificationsView */,
 				13523D322B03463E00D5C649 /* Extension */,
 				131FF95A2AFF87F700ABFCB9 /* Cells */,
 				13F556072AFCB0BA0025119F /* Models */,
@@ -291,22 +291,22 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		135C5F402B08F67C00FF299B /* CoreData */ = {
+		135C5F402B08F67C00FF299B /* PigulkaData */ = {
 			isa = PBXGroup;
 			children = (
 				135B385A2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld */,
 				135C5F412B08F69100FF299B /* CoreDataManager.swift */,
 			);
-			path = CoreData;
+			path = PigulkaData;
 			sourceTree = "<group>";
 		};
-		13DD9D9A2B0F39D400E23504 /* pickerViews */ = {
+		13DD9D9A2B0F39D400E23504 /* NotificationsView */ = {
 			isa = PBXGroup;
 			children = (
-				133E77892B0F689C009ABCC7 /* second */,
 				133E77882B0F688E009ABCC7 /* first */,
+				133E77892B0F689C009ABCC7 /* second */,
 			);
-			path = pickerViews;
+			path = NotificationsView;
 			sourceTree = "<group>";
 		};
 		13ECF7172B0F195F00DB91A1 /* Notifications */ = {
