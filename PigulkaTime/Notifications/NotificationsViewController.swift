@@ -12,26 +12,8 @@ import UserNotifications
 final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate {
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     // выбранное время
-    var selectedHour: Int = 0
-    var selectedMinute: Int = 0
-    var selectedDays: String = ""
-    
-    let daysArray = ["1 day", "2 days", "3 days", "4 days", "5 days", "6 days", "7 days", "10 days", "14 days", "30 days", "60 days", "90 days"]
-    let daysIntervals: [TimeInterval] = [
-        1 * 24 * 60 * 60,   // 1 day
-        2 * 24 * 60 * 60,   // 2 days
-        3 * 24 * 60 * 60,   // 3 days
-        4 * 24 * 60 * 60,   // 4 days
-        5 * 24 * 60 * 60,   // 5 days
-        6 * 24 * 60 * 60,   // 6 days
-        7 * 24 * 60 * 60,   // 1 week
-        10 * 24 * 60 * 60,  // 10 days
-        14 * 24 * 60 * 60,  // 2 weeks
-        30 * 24 * 60 * 60,  // 1 month
-        60 * 24 * 60 * 60,  // 2 months
-        90 * 24 * 60 * 60   // 3 months
-    ]
-    
+    var FirstSelectedHour: Int = 0
+    var FirstSelectedMinute: Int = 0
     //MARK: Properties
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -56,6 +38,11 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         setupConstraints()
         setupTableView()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadDataFromUserDefaultsAndUpdateCell()
+    }
+
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black
@@ -87,6 +74,38 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.dataSource = self
     }
     
+    private func loadDataFromUserDefaultsAndUpdateCell() {
+        let defaults = UserDefaults.standard
+        if let hour = defaults.value(forKey: "FirstSelectedHour") as? Int,
+           let minute = defaults.value(forKey: "FirstSelectedMinute") as? Int {
+            // Преобразование значения days в String
+            FirstSelectedHour = hour
+            FirstSelectedMinute = minute
+            tableView.reloadData() // Обновите всю таблицу
+
+            // Обновление соответствующей ячейки таблицы
+            let indexPath = IndexPath(row: 0, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? FirstCustomTableCell {
+                // Обновляем текст в ячейке с выбранным временем
+                cell.setFirstTimeText(String(format: "%02d:%02d", FirstSelectedHour, FirstSelectedMinute))
+            } else {
+                print("Ячейка не найдена")
+            }
+
+            // Вывод в консоль для отслеживания
+            print("Данные успешно загружены:")
+            print("FirstSelectedHour: \(FirstSelectedHour)")
+            print("FirstSelectedMinute: \(FirstSelectedMinute)")
+
+        } else {
+            print("Данные не найдены в UserDefaults.")
+        }
+    }
+  
+
+
+
+    
     func didToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
         print("Switch is \(isOn ? "ON" : "OFF")")
         
@@ -96,9 +115,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 cell.setFirstTimeText("Choose \u{2192}")
                 cell.setFirstDaysText("Days left")
             } else {
-
             }
-
         }
     }
 } // end

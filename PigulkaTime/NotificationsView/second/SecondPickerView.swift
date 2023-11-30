@@ -63,7 +63,7 @@ extension NotificationsViewController {
         let indexPath = IndexPath(row: 1, section: 0)
         if let cell = tableView.cellForRow(at: indexPath) as? SecondCustomTableCell {
             // Обновляем текст в ячейке с выбранным временем
-            cell.setSecondTimeText(String(format: "%02d:%02d", selectedHour, selectedMinute))
+            cell.setSecondTimeText(String(format: "%02d:%02d", FirstSelectedHour, FirstSelectedMinute))
         }
 
         // Закрываем пикер вью
@@ -80,8 +80,8 @@ extension NotificationsViewController {
 
         // Создаем экземпляр класса UNCalendarNotificationTrigger для триггера по времени
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
-        dateComponents.hour = selectedHour
-        dateComponents.minute = selectedMinute
+        dateComponents.hour = FirstSelectedHour
+        dateComponents.minute = FirstSelectedMinute
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 
