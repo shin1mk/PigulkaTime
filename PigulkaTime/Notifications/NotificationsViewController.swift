@@ -15,7 +15,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     var FirstSelectedHour: Int = 0
     var FirstSelectedMinute: Int = 0
     //MARK: Properties
-    lazy var tableView: UITableView = {
+    public lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
@@ -42,7 +42,6 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         super.viewDidAppear(animated)
         loadDataFromUserDefaultsAndUpdateCell()
     }
-
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black
@@ -73,7 +72,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+    // load from userDefaults
     private func loadDataFromUserDefaultsAndUpdateCell() {
         let defaults = UserDefaults.standard
         if let hour = defaults.value(forKey: "FirstSelectedHour") as? Int,
@@ -82,7 +81,6 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             FirstSelectedHour = hour
             FirstSelectedMinute = minute
             tableView.reloadData() // Обновите всю таблицу
-
             // Обновление соответствующей ячейки таблицы
             let indexPath = IndexPath(row: 0, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) as? FirstCustomTableCell {
@@ -91,30 +89,23 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             } else {
                 print("Ячейка не найдена")
             }
-
             // Вывод в консоль для отслеживания
             print("Данные успешно загружены:")
             print("FirstSelectedHour: \(FirstSelectedHour)")
             print("FirstSelectedMinute: \(FirstSelectedMinute)")
-
         } else {
             print("Данные не найдены в UserDefaults.")
         }
     }
-  
-
-
-
-    
+    // toggle switch
     func didToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
         print("Switch is \(isOn ? "ON" : "OFF")")
         
         DispatchQueue.main.async {
             if isOn {
-                // Свитч в положении "ON", установите текст по умолчанию
-                cell.setFirstTimeText("Choose \u{2192}")
-                cell.setFirstDaysText("Days left")
+                self.createFirstNotification()
             } else {
+                self.cancelFirstNotification()
             }
         }
     }

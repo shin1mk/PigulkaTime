@@ -21,7 +21,6 @@ extension Pigulka {
     @NSManaged public var frequency: String?
     @NSManaged public var isEditable: Bool
     @NSManaged public var name: String?
-    
     @NSManaged public var times: String?
     @NSManaged public var type: String?
     @NSManaged public var uniqueIdentifier: String?
