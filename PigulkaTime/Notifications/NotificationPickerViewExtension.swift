@@ -43,17 +43,35 @@ extension NotificationsViewController {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-          switch component {
-          case 0:
-              FirstSelectedHour = row
-              print("Selected Hour: \(FirstSelectedHour)")
-          case 1:
-              FirstSelectedMinute = row
-              print("Selected Minute: \(FirstSelectedMinute)")
-          default:
-              break
-          }
-      }
+        switch pickerView.tag {
+        case 0:
+            // Обработка для первого пикера
+            switch component {
+            case 0:
+                FirstSelectedHour = row
+                print("Selected Hour for First Picker: \(FirstSelectedHour)")
+            case 1:
+                FirstSelectedMinute = row
+                print("Selected Minute for First Picker: \(FirstSelectedMinute)")
+            default:
+                break
+            }
+        case 1:
+            // Обработка для второго пикера
+            switch component {
+            case 0:
+                SecondSelectedHour = row
+                print("Selected Hour for Second Picker: \(SecondSelectedHour)")
+            case 1:
+                SecondSelectedMinute = row
+                print("Selected Minute for Second Picker: \(SecondSelectedMinute)")
+            default:
+                break
+            }
+        default:
+            break
+        }
+    }
 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let title: String

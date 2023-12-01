@@ -14,6 +14,9 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     // выбранное время
     var FirstSelectedHour: Int = 0
     var FirstSelectedMinute: Int = 0
+    
+    var SecondSelectedHour: Int = 0
+    var SecondSelectedMinute: Int = 0
     //MARK: Properties
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -40,7 +43,8 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        loadDataFromUserDefaultsAndUpdateCell()
+        loadFirstDataFromUserDefaultsAndUpdateCell()
+        loadSecondDataFromUserDefaultsAndUpdateCell()
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -73,7 +77,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.dataSource = self
     }
     // load from userDefaults
-    private func loadDataFromUserDefaultsAndUpdateCell() {
+    private func loadFirstDataFromUserDefaultsAndUpdateCell() {
         let defaults = UserDefaults.standard
         if let hour = defaults.value(forKey: "FirstSelectedHour") as? Int,
            let minute = defaults.value(forKey: "FirstSelectedMinute") as? Int {
@@ -97,15 +101,51 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             print("Данные не найдены в UserDefaults.")
         }
     }
+    
+    private func loadSecondDataFromUserDefaultsAndUpdateCell() {
+        let defaults = UserDefaults.standard
+        if let hour = defaults.value(forKey: "SecondSelectedHour") as? Int,
+           let minute = defaults.value(forKey: "SecondSelectedMinute") as? Int {
+            // Преобразование значения days в String
+            SecondSelectedHour = hour
+            SecondSelectedMinute = minute
+            tableView.reloadData() // Обновите всю таблицу
+            // Обновление соответствующей ячейки таблицы
+            let indexPath = IndexPath(row: 1, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? SecondCustomTableCell {
+                // Обновляем текст в ячейке с выбранным временем
+                cell.setSecondTimeText(String(format: "%02d:%02d", SecondSelectedHour, SecondSelectedMinute))
+            } else {
+                print("Ячейка не найдена")
+            }
+            // Вывод в консоль для отслеживания
+            print("Данные успешно загружены:")
+            print("SecondSelectedHour: \(SecondSelectedHour)")
+            print("SecondSelectedMinute: \(SecondSelectedMinute)")
+        } else {
+            print("Данные не найдены в UserDefaults.")
+        }
+    }
     // toggle switch
-    func didToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
-        print("Switch is \(isOn ? "ON" : "OFF")")
+    func didFirstToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
+        print("First Switch is \(isOn ? "ON" : "OFF")")
         
         DispatchQueue.main.async {
             if isOn {
                 self.createFirstNotification()
             } else {
                 self.cancelFirstNotification()
+            }
+        }
+    }
+    func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool) {
+        print("Second Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createSecondNotification()
+            } else {
+                self.cancelSecondNotification()
             }
         }
     }

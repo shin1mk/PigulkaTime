@@ -122,34 +122,16 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         print("FirstSelectedHour: \(FirstSelectedHour)")
         print("FirstSelectedMinute: \(FirstSelectedMinute)")
     }
-    
     // Ваш метод отмены уведомлений
-//    func cancelAllNotifications() {
-//        DispatchQueue.main.async {
-//            let notificationCenter = UNUserNotificationCenter.current()
-//            // Получаем список всех текущих уведомлений
-//            notificationCenter.getPendingNotificationRequests { requests in
-//                // Удаляем каждое уведомление по его идентификатору
-//                for request in requests {
-//                    notificationCenter.removePendingNotificationRequests(withIdentifiers: [request.identifier])
-//                    print("Notification removed with identifier: \(request.identifier)")
-//                }
-//            }
-//        }
-//    }
     func cancelFirstNotification() {
         DispatchQueue.main.async {
             let notificationCenter = UNUserNotificationCenter.current()
-            
             // Уникальный идентификатор для уведомления
             let notificationIdentifier = "FirstNotification"
-            
             // Удаляем уведомление с указанным идентификатором
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
-            
             print("Notification removed with identifier: \(notificationIdentifier)")
         }
     }
-
 } // end
 
