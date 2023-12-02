@@ -67,6 +67,8 @@ extension NotificationsViewController {
             cell.switchControl.isOn = true
             // Сохраняем состояние свитча в UserDefaults
             cell.saveSwitchState(isOn: true)
+            // Обновляем UI после установки времени
+            cell.updateUIForSwitchState(isOn: true)
         }
         // Закрываем пикер вью
         dismiss(animated: true, completion: nil)
@@ -76,6 +78,41 @@ extension NotificationsViewController {
         saveThirdNotificationTime()
     }
     // создаем уведомление
+//    func createThirdNotification() {
+//        // Создаем объект UNUserNotificationCenter
+//        let center = UNUserNotificationCenter.current()
+//        // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
+//        let content = UNMutableNotificationContent()
+//        content.title = "PigulkaTime"
+//        content.body = "Third notification!"
+//        content.sound = .default
+//        // Установка текущей даты и времени с учетом локального времени устройства
+//        let now = Date()
+//        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
+//        // Установка выбранного времени
+//        dateComponents.hour = ThirdSelectedHour
+//        dateComponents.minute = ThirdSelectedMinute
+//        // Создание объекта Date на основе DateComponents
+//        if let triggerDate = Calendar.current.date(from: dateComponents) {
+//            print("Уведомление будет запущено для времени: \(triggerDate)")
+//            // Создаем запрос на уведомление с повторением каждый день
+//            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//            // Уникальный идентификатор для уведомления
+//            let notificationIdentifier = "ThirdNotification"
+//            // Создаем запрос на уведомление
+//            let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
+//            // Добавляем запрос в центр уведомлений
+//            center.add(request) { (error) in
+//                if let error = error {
+//                    print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
+//                } else {
+//                    print("Third notification added successfully with identifier: \(notificationIdentifier)")
+//                }
+//            }
+//        } else {
+//            print("Не удалось создать объект Date из DateComponents")
+//        }
+//    }
     func createThirdNotification() {
         // Создаем объект UNUserNotificationCenter
         let center = UNUserNotificationCenter.current()
@@ -86,13 +123,17 @@ extension NotificationsViewController {
         content.sound = .default
         // Установка текущей даты и времени с учетом локального времени устройства
         let now = Date()
-        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
         // Установка выбранного времени
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
         dateComponents.hour = ThirdSelectedHour
         dateComponents.minute = ThirdSelectedMinute
+        // Если выбранное время уже прошло сегодня, увеличиваем день на 1
+        if let triggerDate = Calendar.current.date(from: dateComponents), triggerDate <= now {
+            dateComponents.day! += 1
+        }
         // Создание объекта Date на основе DateComponents
         if let triggerDate = Calendar.current.date(from: dateComponents) {
-            print("Уведомление будет запущено для времени: \(triggerDate)")
+            print("3 Уведомление будет запущено для времени: \(triggerDate)")
             // Создаем запрос на уведомление с повторением каждый день
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             // Уникальный идентификатор для уведомления
@@ -102,13 +143,13 @@ extension NotificationsViewController {
             // Добавляем запрос в центр уведомлений
             center.add(request) { (error) in
                 if let error = error {
-                    print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
+                    print("3 Ошибка при добавлении уведомления: \(error.localizedDescription)")
                 } else {
                     print("Third notification added successfully with identifier: \(notificationIdentifier)")
                 }
             }
         } else {
-            print("Не удалось создать объект Date из DateComponents")
+            print("3 Не удалось создать объект Date из DateComponents")
         }
     }
     // сохраняем время в userdefault
@@ -118,7 +159,7 @@ extension NotificationsViewController {
         defaults.set(ThirdSelectedHour, forKey: "ThirdSelectedHour")
         defaults.set(ThirdSelectedMinute, forKey: "ThirdSelectedMinute")
         // Вывод в консоль для отслеживания
-        print("Данные успешно сохранены:")
+        print("3 Данные успешно сохранены:")
         print("ThirdSelectedHour: \(ThirdSelectedHour)")
         print("ThirdSelectedMinute: \(ThirdSelectedMinute)")
     }

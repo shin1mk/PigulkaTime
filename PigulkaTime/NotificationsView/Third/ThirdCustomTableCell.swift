@@ -21,7 +21,7 @@ final class ThirdCustomTableCell: UITableViewCell {
         label.text = "--:--"
         label.textColor = .white
         label.textAlignment = .right
-        label.font = UIFont.SFUITextMedium(ofSize: 25)
+        label.font = UIFont.SFUITextMedium(ofSize: 35)
         return label
     }()
     private let bottomBorderView: UIView = {
@@ -94,7 +94,7 @@ final class ThirdCustomTableCell: UITableViewCell {
         saveSwitchState(isOn: switchControl.isOn)
     }
 
-    private func updateUIForSwitchState(isOn: Bool) {
+    func updateUIForSwitchState(isOn: Bool) {
         thirdNotificationLabel.textColor = isOn ? .white : .systemGray
     }
 

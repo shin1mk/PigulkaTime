@@ -1,8 +1,8 @@
 //
-//  SecondPickerView.swift
+//  FifthPickerView.swift
 //  PigulkaTime
 //
-//  Created by SHIN MIKHAIL on 23.11.2023.
+//  Created by SHIN MIKHAIL on 02.12.2023.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import UserNotifications
 
 extension NotificationsViewController {
     // MARK: - Time Picker
-    func didSelectSecondTime(cell: SecondCustomTableCell) {
+    func didSelectFifthTime(cell: FifthCustomTableCell) {
         let pickerViewController = createPickerViewController()
         present(pickerViewController, animated: true, completion: nil)
     }
@@ -18,7 +18,7 @@ extension NotificationsViewController {
     private func createPickerViewController() -> UIViewController {
         let pickerViewController = UIViewController()
         let pickerView = createPickerView(for: pickerViewController)
-        let okButton = createSecondTimeOkButton(for: pickerViewController)
+        let okButton = createFifthTimeOkButton(for: pickerViewController)
         
         pickerViewController.view.addSubview(pickerView)
         pickerViewController.view.addSubview(okButton)
@@ -31,7 +31,7 @@ extension NotificationsViewController {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.tag = 1
+        pickerView.tag = 4
         pickerView.backgroundColor = .black
         pickerView.selectRow(0, inComponent: 0, animated: false)
         
@@ -42,13 +42,13 @@ extension NotificationsViewController {
         return pickerView
     }
     
-    private func createSecondTimeOkButton(for pickerViewController: UIViewController) -> UIButton {
+    private func createFifthTimeOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
         okButton.setTitle("OK", for: .normal)
         okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
-        okButton.addTarget(self, action: #selector(secondOkButtonTapped(_:)), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(fifthOkButtonTapped(_:)), for: .touchUpInside)
         
         let bottomMargin: CGFloat = 30
         let okButtonY = pickerViewController.view.bounds.height - bottomMargin - 340
@@ -57,12 +57,12 @@ extension NotificationsViewController {
         return okButton
     }
     // кнопка нажата
-    @objc private func secondOkButtonTapped(_ sender: UIButton) {
+    @objc private func fifthOkButtonTapped(_ sender: UIButton) {
         // Обновляем ячейку, например, для первой строки таблицы
-        let indexPath = IndexPath(row: 1, section: 0)
-        if let cell = tableView.cellForRow(at: indexPath) as? SecondCustomTableCell {
+        let indexPath = IndexPath(row: 4, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? FifthCustomTableCell {
             // Обновляем текст в ячейке с выбранным временем
-            cell.setSecondTimeText(String(format: "%02d:%02d", SecondSelectedHour, SecondSelectedMinute))
+            cell.setFifthTimeText(String(format: "%02d:%02d", FifthSelectedHour, FifthSelectedMinute))
             // Устанавливаем свитчер включенным
             cell.switchControl.isOn = true
             // Сохраняем состояние свитча в UserDefaults
@@ -73,32 +73,33 @@ extension NotificationsViewController {
         // Закрываем пикер вью
         dismiss(animated: true, completion: nil)
         // Создаем уведомление
-        createSecondNotification()
+        createFifthNotification()
         // Сохраняем данные в UserDefaults
-        saveSecondNotificationTime()
+        saveFifthNotificationTime()
+
     }
     // создаем уведомление
-//    func createSecondNotification() {
+//    func createThirdNotification() {
 //        // Создаем объект UNUserNotificationCenter
 //        let center = UNUserNotificationCenter.current()
 //        // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
 //        let content = UNMutableNotificationContent()
 //        content.title = "PigulkaTime"
-//        content.body = "Second notification!"
+//        content.body = "Third notification!"
 //        content.sound = .default
 //        // Установка текущей даты и времени с учетом локального времени устройства
 //        let now = Date()
 //        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
 //        // Установка выбранного времени
-//        dateComponents.hour = SecondSelectedHour
-//        dateComponents.minute = SecondSelectedMinute
+//        dateComponents.hour = ThirdSelectedHour
+//        dateComponents.minute = ThirdSelectedMinute
 //        // Создание объекта Date на основе DateComponents
 //        if let triggerDate = Calendar.current.date(from: dateComponents) {
 //            print("Уведомление будет запущено для времени: \(triggerDate)")
 //            // Создаем запрос на уведомление с повторением каждый день
 //            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 //            // Уникальный идентификатор для уведомления
-//            let notificationIdentifier = "SecondNotification"
+//            let notificationIdentifier = "ThirdNotification"
 //            // Создаем запрос на уведомление
 //            let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
 //            // Добавляем запрос в центр уведомлений
@@ -106,69 +107,69 @@ extension NotificationsViewController {
 //                if let error = error {
 //                    print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
 //                } else {
-//                    print("Second notification added successfully with identifier: \(notificationIdentifier)")
+//                    print("Third notification added successfully with identifier: \(notificationIdentifier)")
 //                }
 //            }
 //        } else {
 //            print("Не удалось создать объект Date из DateComponents")
 //        }
 //    }
-    func createSecondNotification() {
+    func createFifthNotification() {
         // Создаем объект UNUserNotificationCenter
         let center = UNUserNotificationCenter.current()
         // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
-        content.body = "Second notification!"
+        content.body = "Fifth notification!"
         content.sound = .default
         // Установка текущей даты и времени с учетом локального времени устройства
         let now = Date()
         // Установка выбранного времени
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
-        dateComponents.hour = SecondSelectedHour
-        dateComponents.minute = SecondSelectedMinute
+        dateComponents.hour = FifthSelectedHour
+        dateComponents.minute = FifthSelectedMinute
         // Если выбранное время уже прошло сегодня, увеличиваем день на 1
         if let triggerDate = Calendar.current.date(from: dateComponents), triggerDate <= now {
             dateComponents.day! += 1
         }
         // Создание объекта Date на основе DateComponents
         if let triggerDate = Calendar.current.date(from: dateComponents) {
-            print("2 Уведомление будет запущено для времени: \(triggerDate)")
+            print("5 Уведомление будет запущено для времени: \(triggerDate)")
             // Создаем запрос на уведомление с повторением каждый день
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             // Уникальный идентификатор для уведомления
-            let notificationIdentifier = "SecondNotification"
+            let notificationIdentifier = "FifthNotification"
             // Создаем запрос на уведомление
             let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
             // Добавляем запрос в центр уведомлений
             center.add(request) { (error) in
                 if let error = error {
-                    print("2 Ошибка при добавлении уведомления: \(error.localizedDescription)")
+                    print("5 Ошибка при добавлении уведомления: \(error.localizedDescription)")
                 } else {
-                    print("Second notification added successfully with identifier: \(notificationIdentifier)")
+                    print("Fifth notification added successfully with identifier: \(notificationIdentifier)")
                 }
             }
         } else {
-            print("2 Не удалось создать объект Date из DateComponents")
+            print("5 Не удалось создать объект Date из DateComponents")
         }
     }
     // сохраняем время в userdefault
-    private func saveSecondNotificationTime() {
+    private func saveFifthNotificationTime() {
         // Сохранение данных в UserDefaults
         let defaults = UserDefaults.standard
-        defaults.set(SecondSelectedHour, forKey: "SecondSelectedHour")
-        defaults.set(SecondSelectedMinute, forKey: "SecondSelectedMinute")
+        defaults.set(FifthSelectedHour, forKey: "FifthSelectedHour")
+        defaults.set(FifthSelectedMinute, forKey: "FifthSelectedMinute")
         // Вывод в консоль для отслеживания
-        print("2 Данные успешно сохранены:")
-        print("SecondSelectedHour: \(SecondSelectedHour)")
-        print("SecondSelectedMinute: \(SecondSelectedMinute)")
+        print("5 Данные успешно сохранены:")
+        print("FifthSelectedHour: \(FifthSelectedHour)")
+        print("FifthSelectedMinute: \(FifthSelectedMinute)")
     }
     // Ваш метод отмены уведомлений
-    func cancelSecondNotification() {
+    func cancelFifthNotification() {
         DispatchQueue.main.async {
             let notificationCenter = UNUserNotificationCenter.current()
             // Уникальный идентификатор для уведомления
-            let notificationIdentifier = "SecondNotification"
+            let notificationIdentifier = "FifthNotification"
             // Удаляем уведомление с указанным идентификатором
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
             print("Notification removed with identifier: \(notificationIdentifier)")

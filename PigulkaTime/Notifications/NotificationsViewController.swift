@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 import UserNotifications
 
-final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate {
+final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate, FourthCustomTableCellDelegate, FifthCustomTableCellDelegate {
+
+    
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     // выбранное время
     var FirstSelectedHour: Int = 0
@@ -21,6 +23,12 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     var ThirdSelectedHour: Int = 0
     var ThirdSelectedMinute: Int = 0
     
+    var FourthSelectedHour: Int = 0
+    var FourthSelectedMinute: Int = 0
+    
+    var FifthSelectedHour: Int = 0
+    var FifthSelectedMinute: Int = 0
+    
     //MARK: Properties
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -29,6 +37,8 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.register(FirstCustomTableCell.self, forCellReuseIdentifier: "FirstCustomTableCell")
         tableView.register(SecondCustomTableCell.self, forCellReuseIdentifier: "SecondCustomTableCell")
         tableView.register(ThirdCustomTableCell.self, forCellReuseIdentifier: "ThirdCustomTableCell")
+        tableView.register(FourthCustomTableCell.self, forCellReuseIdentifier: "FourthCustomTableCell")
+        tableView.register(FifthCustomTableCell.self, forCellReuseIdentifier: "FifthCustomTableCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -51,6 +61,8 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         loadFirstDataFromUserDefaultsAndUpdateCell()
         loadSecondDataFromUserDefaultsAndUpdateCell()
         loadThirdDataFromUserDefaultsAndUpdateCell()
+        loadFourthDataFromUserDefaultsAndUpdateCell()
+        loadFifthDataFromUserDefaultsAndUpdateCell()
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -82,7 +94,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.delegate = self
         tableView.dataSource = self
     }
-    // load from userDefaults
+    // load from userDefaults1
     private func loadFirstDataFromUserDefaultsAndUpdateCell() {
         let defaults = UserDefaults.standard
         if let hour = defaults.value(forKey: "FirstSelectedHour") as? Int,
@@ -100,14 +112,14 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 print("Ячейка не найдена")
             }
             // Вывод в консоль для отслеживания
-            print("Данные успешно загружены:")
+            print("1 Данные успешно загружены:")
             print("FirstSelectedHour: \(FirstSelectedHour)")
             print("FirstSelectedMinute: \(FirstSelectedMinute)")
         } else {
-            print("Данные не найдены в UserDefaults.")
+            print("1 Данные не найдены в UserDefaults.")
         }
     }
-    
+    // load from userDefaults2
     private func loadSecondDataFromUserDefaultsAndUpdateCell() {
         let defaults = UserDefaults.standard
         if let hour = defaults.value(forKey: "SecondSelectedHour") as? Int,
@@ -125,14 +137,14 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 print("Ячейка не найдена")
             }
             // Вывод в консоль для отслеживания
-            print("Данные успешно загружены:")
+            print("2 Данные успешно загружены:")
             print("SecondSelectedHour: \(SecondSelectedHour)")
             print("SecondSelectedMinute: \(SecondSelectedMinute)")
         } else {
-            print("Данные не найдены в UserDefaults.")
+            print("2 Данные не найдены в UserDefaults.")
         }
     }
-    
+    // load from userDefaults3
     private func loadThirdDataFromUserDefaultsAndUpdateCell() {
         let defaults = UserDefaults.standard
         if let hour = defaults.value(forKey: "ThirdSelectedHour") as? Int,
@@ -150,14 +162,64 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 print("Ячейка не найдена")
             }
             // Вывод в консоль для отслеживания
-            print("Данные успешно загружены:")
+            print("3 Данные успешно загружены:")
             print("ThirdSelectedHour: \(ThirdSelectedHour)")
             print("ThirdSelectedMinute: \(ThirdSelectedMinute)")
         } else {
-            print("Данные не найдены в UserDefaults.")
+            print("3 Данные не найдены в UserDefaults.")
         }
     }
-    // toggle switch
+    // load from userDefaults4
+    private func loadFourthDataFromUserDefaultsAndUpdateCell() {
+        let defaults = UserDefaults.standard
+        if let hour = defaults.value(forKey: "FourthSelectedHour") as? Int,
+           let minute = defaults.value(forKey: "FourthSelectedMinute") as? Int {
+            // Преобразование значения days в String
+            FourthSelectedHour = hour
+            FourthSelectedMinute = minute
+            tableView.reloadData() // Обновите всю таблицу
+            // Обновление соответствующей ячейки таблицы
+            let indexPath = IndexPath(row: 3, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? FourthCustomTableCell {
+                // Обновляем текст в ячейке с выбранным временем
+                cell.setFourthTimeText(String(format: "%02d:%02d", FourthSelectedHour, FourthSelectedMinute))
+            } else {
+                print("Ячейка не найдена")
+            }
+            // Вывод в консоль для отслеживания
+            print("4 Данные успешно загружены:")
+            print("FourthSelectedHour: \(FourthSelectedHour)")
+            print("FourthSelectedMinute: \(FourthSelectedMinute)")
+        } else {
+            print("4 Данные не найдены в UserDefaults.")
+        }
+    }
+    // load from userDefaults5
+    private func loadFifthDataFromUserDefaultsAndUpdateCell() {
+        let defaults = UserDefaults.standard
+        if let hour = defaults.value(forKey: "FifthSelectedHour") as? Int,
+           let minute = defaults.value(forKey: "FifthSelectedMinute") as? Int {
+            // Преобразование значения days в String
+            FifthSelectedHour = hour
+            FifthSelectedMinute = minute
+            tableView.reloadData() // Обновите всю таблицу
+            // Обновление соответствующей ячейки таблицы
+            let indexPath = IndexPath(row: 4, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? FifthCustomTableCell {
+                // Обновляем текст в ячейке с выбранным временем
+                cell.setFifthTimeText(String(format: "%02d:%02d", FifthSelectedHour, FifthSelectedMinute))
+            } else {
+                print("Ячейка не найдена")
+            }
+            // Вывод в консоль для отслеживания
+            print("5 Данные успешно загружены:")
+            print("FifthSelectedHour: \(FifthSelectedHour)")
+            print("FifthSelectedMinute: \(FifthSelectedMinute)")
+        } else {
+            print("5 Данные не найдены в UserDefaults.")
+        }
+    }
+    // toggle switch1
     func didFirstToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
         print("First Switch is \(isOn ? "ON" : "OFF")")
         
@@ -169,7 +231,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             }
         }
     }
-    
+    // toggle switch2
     func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool) {
         print("Second Switch is \(isOn ? "ON" : "OFF")")
         
@@ -181,7 +243,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             }
         }
     }
-    
+    // toggle switch3
     func didThirdToggleSwitch(cell: ThirdCustomTableCell, isOn: Bool) {
         print("Third Switch is \(isOn ? "ON" : "OFF")")
         
@@ -190,6 +252,30 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 self.createThirdNotification()
             } else {
                 self.cancelThirdNotification()
+            }
+        }
+    }
+    // toggle switch4
+    func didFourthToggleSwitch(cell: FourthCustomTableCell, isOn: Bool) {
+        print("Third Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createFourthNotification()
+            } else {
+                self.cancelFourthNotification()
+            }
+        }
+    }
+    // toggle switch5
+    func didFifthToggleSwitch(cell: FifthCustomTableCell, isOn: Bool) {
+        print("Fifth Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createFifthNotification()
+            } else {
+                self.cancelFifthNotification()
             }
         }
     }

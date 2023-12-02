@@ -67,6 +67,8 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
             cell.switchControl.isOn = true
             // Сохраняем состояние свитча в UserDefaults
             cell.saveSwitchState(isOn: true)
+            // Обновляем UI после установки времени
+            cell.updateUIForSwitchState(isOn: true)
         }
         // Закрываем пикер вью
         dismiss(animated: true, completion: nil)
@@ -76,6 +78,41 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         saveFirstNotificationTime()
     }
     // создаем уведомление
+//    func createFirstNotification() {
+//        // Создаем объект UNUserNotificationCenter
+//        let center = UNUserNotificationCenter.current()
+//        // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
+//        let content = UNMutableNotificationContent()
+//        content.title = "PigulkaTime"
+//        content.body = "First notification!"
+//        content.sound = .default
+//        // Установка текущей даты и времени с учетом локального времени устройства
+//        let now = Date()
+//        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
+//        // Установка выбранного времени
+//        dateComponents.hour = FirstSelectedHour
+//        dateComponents.minute = FirstSelectedMinute
+//        // Создание объекта Date на основе DateComponents
+//        if let triggerDate = Calendar.current.date(from: dateComponents) {
+//            print("Уведомление будет запущено для времени: \(triggerDate)")
+//            // Создаем запрос на уведомление с повторением каждый день
+//            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//            // Уникальный идентификатор для уведомления
+//            let notificationIdentifier = "FirstNotification"
+//            // Создаем запрос на уведомление
+//            let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
+//            // Добавляем запрос в центр уведомлений
+//            center.add(request) { (error) in
+//                if let error = error {
+//                    print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
+//                } else {
+//                    print("First notification added successfully with identifier: \(notificationIdentifier)")
+//                }
+//            }
+//        } else {
+//            print("Не удалось создать объект Date из DateComponents")
+//        }
+//    }
     func createFirstNotification() {
         // Создаем объект UNUserNotificationCenter
         let center = UNUserNotificationCenter.current()
@@ -86,13 +123,17 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         content.sound = .default
         // Установка текущей даты и времени с учетом локального времени устройства
         let now = Date()
-        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
         // Установка выбранного времени
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
         dateComponents.hour = FirstSelectedHour
         dateComponents.minute = FirstSelectedMinute
+        // Если выбранное время уже прошло сегодня, увеличиваем день на 1
+        if let triggerDate = Calendar.current.date(from: dateComponents), triggerDate <= now {
+            dateComponents.day! += 1
+        }
         // Создание объекта Date на основе DateComponents
         if let triggerDate = Calendar.current.date(from: dateComponents) {
-            print("Уведомление будет запущено для времени: \(triggerDate)")
+            print("1 Уведомление будет запущено для времени: \(triggerDate)")
             // Создаем запрос на уведомление с повторением каждый день
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             // Уникальный идентификатор для уведомления
@@ -102,13 +143,13 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
             // Добавляем запрос в центр уведомлений
             center.add(request) { (error) in
                 if let error = error {
-                    print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
+                    print("1 Ошибка при добавлении уведомления: \(error.localizedDescription)")
                 } else {
                     print("First notification added successfully with identifier: \(notificationIdentifier)")
                 }
             }
         } else {
-            print("Не удалось создать объект Date из DateComponents")
+            print("1 Не удалось создать объект Date из DateComponents")
         }
     }
     // сохраняем время в userdefault
@@ -118,7 +159,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         defaults.set(FirstSelectedHour, forKey: "FirstSelectedHour")
         defaults.set(FirstSelectedMinute, forKey: "FirstSelectedMinute")
         // Вывод в консоль для отслеживания
-        print("Данные успешно сохранены:")
+        print("1 Данные успешно сохранены:")
         print("FirstSelectedHour: \(FirstSelectedHour)")
         print("FirstSelectedMinute: \(FirstSelectedMinute)")
     }

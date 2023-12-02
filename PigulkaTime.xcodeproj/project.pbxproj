@@ -37,6 +37,10 @@
 		135B38922AFA9F98007C1C04 /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */; };
 		135B38932AFA9F98007C1C04 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */; };
 		135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C5F412B08F69100FF299B /* CoreDataManager.swift */; };
+		136A5B1E2B1BD16D003AFE59 /* FourthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B1D2B1BD16D003AFE59 /* FourthPickerView.swift */; };
+		136A5B202B1BD18A003AFE59 /* FourthCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */; };
+		136A5B232B1BD532003AFE59 /* FifthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B222B1BD532003AFE59 /* FifthPickerView.swift */; };
+		136A5B252B1BD542003AFE59 /* FifthCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */; };
 		139168942B0F1F95001A36C0 /* FirstCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */; };
 		13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE32B1B169900F95944 /* ThirdPickerView.swift */; };
 		13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */; };
@@ -106,6 +110,10 @@
 		135B388C2AFA9F98007C1C04 /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 		135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		135C5F412B08F69100FF299B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		136A5B1D2B1BD16D003AFE59 /* FourthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthPickerView.swift; sourceTree = "<group>"; };
+		136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthCustomTableCell.swift; sourceTree = "<group>"; };
+		136A5B222B1BD532003AFE59 /* FifthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthPickerView.swift; sourceTree = "<group>"; };
+		136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthCustomTableCell.swift; sourceTree = "<group>"; };
 		139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCustomTableCell.swift; sourceTree = "<group>"; };
 		13A00CE32B1B169900F95944 /* ThirdPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPickerView.swift; sourceTree = "<group>"; };
 		13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCustomTableCell.swift; sourceTree = "<group>"; };
@@ -304,6 +312,24 @@
 			path = PigulkaData;
 			sourceTree = "<group>";
 		};
+		136A5B1C2B1BD148003AFE59 /* Fourth */ = {
+			isa = PBXGroup;
+			children = (
+				136A5B1D2B1BD16D003AFE59 /* FourthPickerView.swift */,
+				136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */,
+			);
+			path = Fourth;
+			sourceTree = "<group>";
+		};
+		136A5B212B1BD525003AFE59 /* Fifth */ = {
+			isa = PBXGroup;
+			children = (
+				136A5B222B1BD532003AFE59 /* FifthPickerView.swift */,
+				136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */,
+			);
+			path = Fifth;
+			sourceTree = "<group>";
+		};
 		13A00CE22B1B166500F95944 /* Third */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +342,8 @@
 		13DD9D9A2B0F39D400E23504 /* NotificationsView */ = {
 			isa = PBXGroup;
 			children = (
+				136A5B212B1BD525003AFE59 /* Fifth */,
+				136A5B1C2B1BD148003AFE59 /* Fourth */,
 				133E77892B0F689C009ABCC7 /* second */,
 				133E77882B0F688E009ABCC7 /* first */,
 				13A00CE22B1B166500F95944 /* Third */,
@@ -608,6 +636,7 @@
 			files = (
 				13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */,
 				13523D442B0348DC00D5C649 /* SettingPickerExtension.swift in Sources */,
+				136A5B1E2B1BD16D003AFE59 /* FourthPickerView.swift in Sources */,
 				13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */,
 				134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */,
 				133E778D2B0F6929009ABCC7 /* SecondCustomTableCell.swift in Sources */,
@@ -619,12 +648,15 @@
 				135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */,
 				135930642B0F394B00E9779B /* NotificationTableView.swift in Sources */,
 				13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */,
+				136A5B232B1BD532003AFE59 /* FifthPickerView.swift in Sources */,
 				13DD9D9C2B0F39E300E23504 /* FirstPickerView.swift in Sources */,
+				136A5B252B1BD542003AFE59 /* FifthCustomTableCell.swift in Sources */,
 				135B388F2AFA9F98007C1C04 /* CustomFonts.swift in Sources */,
 				13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */,
 				13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */,
 				13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */,
 				13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */,
+				136A5B202B1BD18A003AFE59 /* FourthCustomTableCell.swift in Sources */,
 				13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */,
