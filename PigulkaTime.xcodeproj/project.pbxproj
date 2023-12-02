@@ -38,6 +38,8 @@
 		135B38932AFA9F98007C1C04 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */; };
 		135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C5F412B08F69100FF299B /* CoreDataManager.swift */; };
 		139168942B0F1F95001A36C0 /* FirstCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */; };
+		13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE32B1B169900F95944 /* ThirdPickerView.swift */; };
+		13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */; };
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
@@ -105,6 +107,8 @@
 		135B388D2AFA9F98007C1C04 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
 		135C5F412B08F69100FF299B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCustomTableCell.swift; sourceTree = "<group>"; };
+		13A00CE32B1B169900F95944 /* ThirdPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPickerView.swift; sourceTree = "<group>"; };
+		13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCustomTableCell.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
 		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
@@ -300,11 +304,21 @@
 			path = PigulkaData;
 			sourceTree = "<group>";
 		};
+		13A00CE22B1B166500F95944 /* Third */ = {
+			isa = PBXGroup;
+			children = (
+				13A00CE32B1B169900F95944 /* ThirdPickerView.swift */,
+				13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */,
+			);
+			path = Third;
+			sourceTree = "<group>";
+		};
 		13DD9D9A2B0F39D400E23504 /* NotificationsView */ = {
 			isa = PBXGroup;
 			children = (
-				133E77882B0F688E009ABCC7 /* first */,
 				133E77892B0F689C009ABCC7 /* second */,
+				133E77882B0F688E009ABCC7 /* first */,
+				13A00CE22B1B166500F95944 /* Third */,
 			);
 			path = NotificationsView;
 			sourceTree = "<group>";
@@ -592,7 +606,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */,
 				13523D442B0348DC00D5C649 /* SettingPickerExtension.swift in Sources */,
+				13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */,
 				134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */,
 				133E778D2B0F6929009ABCC7 /* SecondCustomTableCell.swift in Sources */,
 				139168942B0F1F95001A36C0 /* FirstCustomTableCell.swift in Sources */,

@@ -8,6 +8,8 @@
 import UIKit
 
 extension NotificationsViewController {
+    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2 // 2 компонента для часов и минут
     }
@@ -68,26 +70,20 @@ extension NotificationsViewController {
             default:
                 break
             }
+        case 2:
+            // Обработка для второго пикера
+            switch component {
+            case 0:
+                ThirdSelectedHour = row
+                print("Selected Hour for Second Picker: \(ThirdSelectedHour)")
+            case 1:
+                ThirdSelectedMinute = row
+                print("Selected Minute for Second Picker: \(ThirdSelectedMinute)")
+            default:
+                break
+            }
         default:
             break
         }
-    }
-
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let title: String
-        switch component {
-        case 0:
-            title = (row == 0) ? "" : String(format: "%02d", row)
-        case 1:
-            title = (row == 0) ? "" : String(format: "%02d", row)
-        default:
-            return nil
-        }
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: UIFont.SFUITextMedium(ofSize: 20)!
-        ]
-        return NSAttributedString(string: title, attributes: attributes)
     }
 }

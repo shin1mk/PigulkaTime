@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import UserNotifications
 
-final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate {
+final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate {
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     // выбранное время
     var FirstSelectedHour: Int = 0
@@ -17,6 +17,10 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     
     var SecondSelectedHour: Int = 0
     var SecondSelectedMinute: Int = 0
+    
+    var ThirdSelectedHour: Int = 0
+    var ThirdSelectedMinute: Int = 0
+    
     //MARK: Properties
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -24,6 +28,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.separatorStyle = .none
         tableView.register(FirstCustomTableCell.self, forCellReuseIdentifier: "FirstCustomTableCell")
         tableView.register(SecondCustomTableCell.self, forCellReuseIdentifier: "SecondCustomTableCell")
+        tableView.register(ThirdCustomTableCell.self, forCellReuseIdentifier: "ThirdCustomTableCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -45,6 +50,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         super.viewDidAppear(animated)
         loadFirstDataFromUserDefaultsAndUpdateCell()
         loadSecondDataFromUserDefaultsAndUpdateCell()
+        loadThirdDataFromUserDefaultsAndUpdateCell()
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -126,6 +132,31 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             print("Данные не найдены в UserDefaults.")
         }
     }
+    
+    private func loadThirdDataFromUserDefaultsAndUpdateCell() {
+        let defaults = UserDefaults.standard
+        if let hour = defaults.value(forKey: "ThirdSelectedHour") as? Int,
+           let minute = defaults.value(forKey: "ThirdSelectedMinute") as? Int {
+            // Преобразование значения days в String
+            ThirdSelectedHour = hour
+            ThirdSelectedMinute = minute
+            tableView.reloadData() // Обновите всю таблицу
+            // Обновление соответствующей ячейки таблицы
+            let indexPath = IndexPath(row: 2, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? ThirdCustomTableCell {
+                // Обновляем текст в ячейке с выбранным временем
+                cell.setThirdTimeText(String(format: "%02d:%02d", ThirdSelectedHour, ThirdSelectedMinute))
+            } else {
+                print("Ячейка не найдена")
+            }
+            // Вывод в консоль для отслеживания
+            print("Данные успешно загружены:")
+            print("ThirdSelectedHour: \(ThirdSelectedHour)")
+            print("ThirdSelectedMinute: \(ThirdSelectedMinute)")
+        } else {
+            print("Данные не найдены в UserDefaults.")
+        }
+    }
     // toggle switch
     func didFirstToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
         print("First Switch is \(isOn ? "ON" : "OFF")")
@@ -138,6 +169,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             }
         }
     }
+    
     func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool) {
         print("Second Switch is \(isOn ? "ON" : "OFF")")
         
@@ -146,6 +178,18 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
                 self.createSecondNotification()
             } else {
                 self.cancelSecondNotification()
+            }
+        }
+    }
+    
+    func didThirdToggleSwitch(cell: ThirdCustomTableCell, isOn: Bool) {
+        print("Third Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createThirdNotification()
+            } else {
+                self.cancelThirdNotification()
             }
         }
     }

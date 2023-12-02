@@ -13,7 +13,7 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,6 +27,11 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCustomTableCell", for: indexPath) as! SecondCustomTableCell
             cell.delegate = self
             cell.tag = 1
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCustomTableCell", for: indexPath) as! ThirdCustomTableCell
+            cell.delegate = self
+            cell.tag = 2
             return cell
         default:
             return UITableViewCell()

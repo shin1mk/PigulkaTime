@@ -1,22 +1,22 @@
 //
-//  SecondCustomTableCell.swift
+//  ThirdCustomTableCell.swift
 //  PigulkaTime
 //
-//  Created by SHIN MIKHAIL on 23.11.2023.
+//  Created by SHIN MIKHAIL on 02.12.2023.
 //
 
 import UIKit
 import SnapKit
 
-protocol SecondCustomTableCellDelegate: AnyObject {
-    func didSelectSecondTime(cell: SecondCustomTableCell)
-    func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool)
+protocol ThirdCustomTableCellDelegate: AnyObject {
+    func didSelectThirdTime(cell: ThirdCustomTableCell)
+    func didThirdToggleSwitch(cell: ThirdCustomTableCell, isOn: Bool)
 }
 
-final class SecondCustomTableCell: UITableViewCell {
-    weak var delegate: SecondCustomTableCellDelegate?
+final class ThirdCustomTableCell: UITableViewCell {
+    weak var delegate: ThirdCustomTableCellDelegate?
     //MARK: Properties
-    private let secondNotificationLabel: UILabel = {
+    private let thirdNotificationLabel: UILabel = {
         let label = UILabel()
         label.text = "--:--"
         label.textColor = .white
@@ -34,7 +34,7 @@ final class SecondCustomTableCell: UITableViewCell {
         switchControl.isOn = true
         return switchControl
     }()
-    private let switchStateKey = "SecondSwitchState"
+    private let switchStateKey = "ThirdSwitchState"
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,8 +50,8 @@ final class SecondCustomTableCell: UITableViewCell {
     private func setupConstraints() {
         backgroundColor = .clear
         // label
-        addSubview(secondNotificationLabel)
-        secondNotificationLabel.snp.makeConstraints { make in
+        addSubview(thirdNotificationLabel)
+        thirdNotificationLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview()
         }
@@ -79,9 +79,9 @@ final class SecondCustomTableCell: UITableViewCell {
     private func setupTarget() {
         switchControl.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
         // switch state
-        if let savedSecondSwitchState = UserDefaults.standard.value(forKey: switchStateKey) as? Bool {
-            switchControl.isOn = savedSecondSwitchState
-            updateUIForSwitchState(isOn: savedSecondSwitchState)
+        if let savedThirdSwitchState = UserDefaults.standard.value(forKey: switchStateKey) as? Bool {
+            switchControl.isOn = savedThirdSwitchState
+            updateUIForSwitchState(isOn: savedThirdSwitchState)
         } else {
             switchControl.isOn = false
             updateUIForSwitchState(isOn: false)
@@ -89,13 +89,13 @@ final class SecondCustomTableCell: UITableViewCell {
     }
     // switch
     @objc private func switchValueChanged() {
-        delegate?.didSecondToggleSwitch(cell: self, isOn: switchControl.isOn)
+        delegate?.didThirdToggleSwitch(cell: self, isOn: switchControl.isOn)
         updateUIForSwitchState(isOn: switchControl.isOn)
         saveSwitchState(isOn: switchControl.isOn)
     }
 
     private func updateUIForSwitchState(isOn: Bool) {
-        secondNotificationLabel.textColor = isOn ? .white : .systemGray
+        thirdNotificationLabel.textColor = isOn ? .white : .systemGray
     }
 
     func saveSwitchState(isOn: Bool) {
@@ -103,10 +103,10 @@ final class SecondCustomTableCell: UITableViewCell {
     }
 
     @objc private func cellTapped() {
-        delegate?.didSelectSecondTime(cell: self)
+        delegate?.didSelectThirdTime(cell: self)
     }
 
-    func setSecondTimeText(_ text: String) {
-        secondNotificationLabel.text = text
+    func setThirdTimeText(_ text: String) {
+        thirdNotificationLabel.text = text
     }
 }
