@@ -209,6 +209,12 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             if let selectedDays = Int(cleanedSelectedDaysString) {
                 print("Selected days: \(selectedDays)")
                 
+                if let editingPill = editingPill,
+                   let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
+                    pillsArray.remove(at: index)
+                    print("Removed old pill: \(editingPill.name ?? "N/A")")
+                }
+                
                 if let editingPill = editingPill {
                     // Обновляем существующий объект Pigulka в Core Data
                     CoreDataManager.shared.updatePillInCoreData(pill: editingPill, dosage: selectedDosage, type: selectedType, frequency: selectedFrequency, days: selectedDays, times: selectedTimes)
