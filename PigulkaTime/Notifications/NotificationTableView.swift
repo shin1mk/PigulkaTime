@@ -54,7 +54,7 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     // устанавливаем clear цвет для выделения
-      func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-          cell.selectionStyle = .none
-      }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.selectionStyle = .none
+    }
 } // end

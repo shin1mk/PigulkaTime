@@ -59,7 +59,7 @@ extension PillsViewController {
             return days.count
         case 5:
             return times.count
- 
+            
         default:
             return 0
         }

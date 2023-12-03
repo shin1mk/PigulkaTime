@@ -173,14 +173,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setFrequencyLabelText(pill.frequency ?? "")
         cell.setDaysLabelText("\(pill.days!) days")
         cell.setTimesLabelText("\(pill.times!) times")
-
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
         let selectedPill = pillsArray[indexPath.row]
-
+        
         if pillsViewController == nil {
             pillsViewController = PillsViewController()
             pillsViewController?.modalPresentationStyle = .popover
@@ -236,7 +236,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = false
-
+        
         return configuration
     }
 }
@@ -250,7 +250,7 @@ extension MainViewController: PillsViewControllerDelegate {
                 return Int(digits) ?? 0
             }()
             pillsViewController = controller
-
+            
             CoreDataManager.shared.savePillToCoreData(name: pill.name ,
                                                       selectedDosage: pill.dosage,
                                                       selectedType: pill.type,
@@ -261,7 +261,7 @@ extension MainViewController: PillsViewControllerDelegate {
         print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
         print("After: \(pillsArray)")
-
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.emptyLabel.isHidden = !self.pillsArray.isEmpty

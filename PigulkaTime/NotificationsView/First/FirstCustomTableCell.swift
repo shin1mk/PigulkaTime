@@ -42,7 +42,7 @@ final class FirstCustomTableCell: UITableViewCell {
         setupGesture()
         setupTarget()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
@@ -101,11 +101,11 @@ final class FirstCustomTableCell: UITableViewCell {
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }
-
+    
     @objc private func cellTapped() {
         delegate?.didSelectFirstTime(cell: self)
     }
-
+    
     func setFirstTimeText(_ text: String) {
         firstNotificationLabel.text = text
     }

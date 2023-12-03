@@ -42,7 +42,7 @@ final class ThirdCustomTableCell: UITableViewCell {
         setupGesture()
         setupTarget()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
@@ -101,11 +101,11 @@ final class ThirdCustomTableCell: UITableViewCell {
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }
-
+    
     @objc private func cellTapped() {
         delegate?.didSelectThirdTime(cell: self)
     }
-
+    
     func setThirdTimeText(_ text: String) {
         thirdNotificationLabel.text = text
     }

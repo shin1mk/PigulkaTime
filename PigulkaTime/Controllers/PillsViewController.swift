@@ -54,7 +54,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // for times per day picker view
     public let times: [String] = (1...10).map { "\($0)" }
     public var selectedTimes: String?
-
+    
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +124,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
             // Обновляем titleLabel с именем препарата
             titleLabel.text = editingPill.name ?? "Add pill"
-
+            
             // Заполняем значения в соответствующих ячейках
             if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
                 typeCell.setLabelText(selectedType ?? "")
@@ -199,16 +199,16 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         print("selectedFrequency: \(selectedFrequency ?? "nil")")
         print("selectedDays: \(selectedDays ?? "nil")")
         print("selectedTimes: \(selectedTimes ?? "nil")")
-
+        
         if let selectedType = selectedType,
            let selectedDosage = selectedDosage,
            let selectedFrequency = selectedFrequency,
            let selectedDaysString = selectedDays {
-
+            
             let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
             if let selectedDays = Int(cleanedSelectedDaysString) {
                 print("Selected days: \(selectedDays)")
-
+                
                 if let editingPill = editingPill {
                     // Обновляем существующий объект Pigulka в Core Data
                     CoreDataManager.shared.updatePillInCoreData(pill: editingPill, dosage: selectedDosage, type: selectedType, frequency: selectedFrequency, days: selectedDays, times: selectedTimes)
@@ -242,7 +242,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
                 // Вызываем делегата для передачи обновленного массива
                 delegate?.pillsViewController(self, didSavePills: pillsArray)
-
+                
                 dismiss(animated: true, completion: nil)
             } else {
                 print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")

@@ -42,7 +42,7 @@ final class SixthCustomTableCell: UITableViewCell {
         setupGesture()
         setupTarget()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
@@ -101,11 +101,11 @@ final class SixthCustomTableCell: UITableViewCell {
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }
-
+    
     @objc private func cellTapped() {
         delegate?.didSelectSixthTime(cell: self)
     }
-
+    
     func setSixthTimeText(_ text: String) {
         sixthNotificationLabel.text = text
     }

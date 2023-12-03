@@ -42,7 +42,7 @@ final class FourthCustomTableCell: UITableViewCell {
         setupGesture()
         setupTarget()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
@@ -101,11 +101,11 @@ final class FourthCustomTableCell: UITableViewCell {
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }
-
+    
     @objc private func cellTapped() {
         delegate?.didSelectFourthTime(cell: self)
     }
-
+    
     func setFourthTimeText(_ text: String) {
         fourthNotificationLabel.text = text
     }

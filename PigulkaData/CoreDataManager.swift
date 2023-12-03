@@ -41,8 +41,7 @@ class CoreDataManager {
         newPill.times = selectedTimes
         newPill.isEditable = true
         newPill.uniqueIdentifier = UUID().uuidString
-        
-        // Просто сохраняем контекст после добавления новой записи
+ 
         do {
             try context.save()
             print("Pill saved to Core Data.")
@@ -81,7 +80,6 @@ class CoreDataManager {
     //MARK: - update in core data
     func updatePillInCoreData(pill: Pigulka, dosage: String, type: String, frequency: String, days: Int, times: String?) {
         let context = persistentContainer.viewContext
-
         // Обновляем свойства существующего объекта
         pill.dosage = dosage
         pill.type = type
@@ -89,7 +87,6 @@ class CoreDataManager {
         pill.days = "\(days)"
         pill.times = times
 
-        // Просто сохраняем контекст после обновления записи
         do {
             try context.save()
             print("Pill updated in Core Data.")

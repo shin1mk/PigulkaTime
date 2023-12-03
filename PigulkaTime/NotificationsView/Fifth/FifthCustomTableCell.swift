@@ -42,7 +42,7 @@ final class FifthCustomTableCell: UITableViewCell {
         setupGesture()
         setupTarget()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         return nil
     }
@@ -101,11 +101,11 @@ final class FifthCustomTableCell: UITableViewCell {
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }
-
+    
     @objc private func cellTapped() {
         delegate?.didSelectFifthTime(cell: self)
     }
-
+    
     func setFifthTimeText(_ text: String) {
         fifthNotificationLabel.text = text
     }
