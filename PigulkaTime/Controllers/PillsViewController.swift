@@ -115,7 +115,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Frequency: \(selectedFrequency ?? "N/A")")
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
-
             // название препарата ставим в поле ввода
             if let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? DrugNameCustomTableCell {
                 nameCell.textField.text = editingPill.name
@@ -194,60 +193,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
-//    @objc private func saveButtonTapped(_ sender: UIButton) {
-//        print("Save button tapped")
-//        print("Before manual check:")
-//        print("selectedType: \(selectedType ?? "nil")")
-//        print("selectedDosage: \(selectedDosage ?? "nil")")
-//        print("selectedFrequency: \(selectedFrequency ?? "nil")")
-//        print("selectedDays: \(selectedDays ?? "nil")")
-//        print("selectedTimes: \(selectedTimes ?? "nil")")
-//
-//        if let selectedType = selectedType,
-//           let selectedDosage = selectedDosage,
-//           let selectedFrequency = selectedFrequency,
-//           let selectedDaysString = selectedDays {
-//
-//            let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
-//            if let selectedDays = Int(cleanedSelectedDaysString) {
-//                print("Selected days: \(selectedDays)")
-//                if let daysCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? DaysCustomTableCell {
-//                    daysCell.setDaysText("\(selectedDays)")
-//                }
-//                // Print or use the selectedTime and selectedFrequency as needed
-//                print("Selected Frequency: \(selectedFrequency)")
-//                print("Pills array count before appending: \(pillsArray.count)")
-//                print("Pills array before appending: \(pillsArray)")
-//
-//                let newPill = Pill(
-//                    name: (editingCell?.textField.text ?? titleLabel.text)!,
-//                    dosage: selectedDosage,
-//                    type: selectedType,
-//                    frequency: selectedFrequency,
-//                    days: "\(selectedDays) days",
-//                    times: "\(selectedTimes ?? "no")",
-//                    isEditable: true,
-//                    identifier: ""
-//                )
-//                // Добавляем новый объект Pill в массив pillsArray
-//                pillsArray.append(newPill)
-//                // Вызываем делегата для передачи обновленного массива
-//                print("Pills array count after appending: \(pillsArray.count)")
-//                print("Pills array after appending: \(pillsArray)")
-//
-//                delegate?.pillsViewController(self, didSavePills: pillsArray)
-//
-//                dismiss(animated: true, completion: nil)
-//            } else {
-//                print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
-//            }
-//        } else {
-//            print("Some fields are not selected.")
-//        }
-//    }
     @objc private func saveButtonTapped(_ sender: UIButton) {
-        print("Before manual check:")
-
         print("selectedType: \(selectedType ?? "nil")")
         print("selectedDosage: \(selectedDosage ?? "nil")")
         print("selectedFrequency: \(selectedFrequency ?? "nil")")
@@ -266,7 +212,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 if let editingPill = editingPill {
                     // Обновляем существующий объект Pigulka в Core Data
                     CoreDataManager.shared.updatePillInCoreData(pill: editingPill, dosage: selectedDosage, type: selectedType, frequency: selectedFrequency, days: selectedDays, times: selectedTimes)
-
                     // Обновляем массив pillsArray после редактирования
                     if let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
                         pillsArray[index] = Pill(
@@ -280,7 +225,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                             identifier: ""
                         )
                     }
-
                 } else {
                     // Если объекта нет в Core Data, создаем новый
                     let newPill = Pill(
@@ -296,7 +240,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     // Добавляем новый объект Pill в массив pillsArray
                     pillsArray.append(newPill)
                 }
-
                 // Вызываем делегата для передачи обновленного массива
                 delegate?.pillsViewController(self, didSavePills: pillsArray)
 
@@ -308,7 +251,6 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Some fields are not selected.")
         }
     }
-
     // Вспомогательная функция для получения даты из выбранного времени
     private func getSelectedTimeDate(selectedTime: String) -> Date? {
         let calendar = Calendar.current

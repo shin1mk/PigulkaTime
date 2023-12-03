@@ -97,5 +97,4 @@ class CoreDataManager {
             print("Error updating pill in Core Data: \(error)")
         }
     }
-
 }
