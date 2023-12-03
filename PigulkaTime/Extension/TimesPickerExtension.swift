@@ -55,7 +55,7 @@ extension PillsViewController: TimesCustomTableCellDelegate {
 
         return okButton
     }
-    
+    // MARK: - Ok Button Action
     @objc private func timesOkButtonTapped(_ sender: UIButton) {
         // Получите выбранный тип из свойства selectedType
         guard let selectedTimes = selectedTimes else {

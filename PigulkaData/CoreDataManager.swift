@@ -50,8 +50,6 @@ class CoreDataManager {
             print("Error saving pill to Core Data: \(error)")
         }
     }
-
-
     //MARK: - load from core data
     func loadPillsFromCoreData() -> [Pigulka] {
         let context = persistentContainer.viewContext

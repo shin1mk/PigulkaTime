@@ -8,10 +8,11 @@
 import UIKit
 
 extension NotificationsViewController {
+    // внутри пикера 2 компонента мин и час
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2 // 2 компонента для часов и минут
     }
-    
+    // часы и минуты
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
@@ -19,18 +20,18 @@ extension NotificationsViewController {
             return 24
         case 1:
             // минут (0-59)
-            //            return 60
+            // return 60
             return 60 / 5
             
         default:
             return 0
         }
     }
-    
+    // ширина внутри пикера
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 60 // width based
     }
-    
+    // часы с нулями
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:
@@ -45,49 +46,7 @@ extension NotificationsViewController {
             return nil
         }
     }
-    
-    //    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    //        switch pickerView.tag {
-    //        case 0:
-    //            // Обработка для первого пикера
-    //            switch component {
-    //            case 0:
-    //                FirstSelectedHour = row
-    //                print("Selected Hour for First Picker: \(FirstSelectedHour)")
-    //            case 1:
-    //                FirstSelectedMinute = row
-    //                print("Selected Minute for First Picker: \(FirstSelectedMinute)")
-    //            default:
-    //                break
-    //            }
-    //        case 1:
-    //            // Обработка для второго пикера
-    //            switch component {
-    //            case 0:
-    //                SecondSelectedHour = row
-    //                print("Selected Hour for Second Picker: \(SecondSelectedHour)")
-    //            case 1:
-    //                SecondSelectedMinute = row
-    //                print("Selected Minute for Second Picker: \(SecondSelectedMinute)")
-    //            default:
-    //                break
-    //            }
-    //        case 2:
-    //            // Обработка для второго пикера
-    //            switch component {
-    //            case 0:
-    //                ThirdSelectedHour = row
-    //                print("Selected Hour for Second Picker: \(ThirdSelectedHour)")
-    //            case 1:
-    //                ThirdSelectedMinute = row
-    //                print("Selected Minute for Second Picker: \(ThirdSelectedMinute)")
-    //            default:
-    //                break
-    //            }
-    //        default:
-    //            break
-    //        }
-    //    }
+    // шаг 5 минут
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let step = 5 // шаг в минутах
         
@@ -129,7 +88,7 @@ extension NotificationsViewController {
                 break
             }
         case 3:
-            // Обработка для третьего пикера
+            // Обработка для четвертого пикера
             switch component {
             case 0:
                 FourthSelectedHour = row
@@ -141,7 +100,7 @@ extension NotificationsViewController {
                 break
             }
         case 4:
-            // Обработка для третьего пикера
+            // Обработка для пятого пикера
             switch component {
             case 0:
                 FifthSelectedHour = row
@@ -156,4 +115,4 @@ extension NotificationsViewController {
             break
         }
     }
-}
+} //end

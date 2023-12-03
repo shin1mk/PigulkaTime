@@ -93,11 +93,11 @@ final class ThirdCustomTableCell: UITableViewCell {
         updateUIForSwitchState(isOn: switchControl.isOn)
         saveSwitchState(isOn: switchControl.isOn)
     }
-
+    // цвет часов
     func updateUIForSwitchState(isOn: Bool) {
         thirdNotificationLabel.textColor = isOn ? .white : .systemGray
     }
-
+    // сохраняем положение свитча
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }

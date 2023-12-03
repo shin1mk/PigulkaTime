@@ -93,11 +93,11 @@ final class FifthCustomTableCell: UITableViewCell {
         updateUIForSwitchState(isOn: switchControl.isOn)
         saveSwitchState(isOn: switchControl.isOn)
     }
-
+    // цвет часов
     func updateUIForSwitchState(isOn: Bool) {
         fifthNotificationLabel.textColor = isOn ? .white : .systemGray
     }
-
+    // сохраняем положение свитча
     func saveSwitchState(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: switchStateKey)
     }

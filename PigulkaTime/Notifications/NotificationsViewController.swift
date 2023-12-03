@@ -10,25 +10,22 @@ import SnapKit
 import UserNotifications
 
 final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate, FourthCustomTableCellDelegate, FifthCustomTableCellDelegate {
-
-    
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
-    // выбранное время
+    // time 1
     var FirstSelectedHour: Int = 0
     var FirstSelectedMinute: Int = 0
-    
+    // time 2
     var SecondSelectedHour: Int = 0
     var SecondSelectedMinute: Int = 0
-    
+    // time 3
     var ThirdSelectedHour: Int = 0
     var ThirdSelectedMinute: Int = 0
-    
+    // time 4
     var FourthSelectedHour: Int = 0
     var FourthSelectedMinute: Int = 0
-    
+    // time 5
     var FifthSelectedHour: Int = 0
     var FifthSelectedMinute: Int = 0
-    
     //MARK: Properties
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -94,6 +91,72 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.delegate = self
         tableView.dataSource = self
     }
+} // end
+//MARK: Toggle switcher's
+extension NotificationsViewController {
+    // toggle switch1
+    func didFirstToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
+        print("First Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createFirstNotification()
+            } else {
+                self.cancelFirstNotification()
+            }
+        }
+    }
+    // toggle switch2
+    func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool) {
+        print("Second Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createSecondNotification()
+            } else {
+                self.cancelSecondNotification()
+            }
+        }
+    }
+    // toggle switch3
+    func didThirdToggleSwitch(cell: ThirdCustomTableCell, isOn: Bool) {
+        print("Third Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createThirdNotification()
+            } else {
+                self.cancelThirdNotification()
+            }
+        }
+    }
+    // toggle switch4
+    func didFourthToggleSwitch(cell: FourthCustomTableCell, isOn: Bool) {
+        print("Third Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createFourthNotification()
+            } else {
+                self.cancelFourthNotification()
+            }
+        }
+    }
+    // toggle switch5
+    func didFifthToggleSwitch(cell: FifthCustomTableCell, isOn: Bool) {
+        print("Fifth Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createFifthNotification()
+            } else {
+                self.cancelFifthNotification()
+            }
+        }
+    }
+}
+//MARK: Load from userDefaults
+extension NotificationsViewController {
     // load from userDefaults1
     private func loadFirstDataFromUserDefaultsAndUpdateCell() {
         let defaults = UserDefaults.standard
@@ -219,64 +282,4 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             print("5 Данные не найдены в UserDefaults.")
         }
     }
-    // toggle switch1
-    func didFirstToggleSwitch(cell: FirstCustomTableCell, isOn: Bool) {
-        print("First Switch is \(isOn ? "ON" : "OFF")")
-        
-        DispatchQueue.main.async {
-            if isOn {
-                self.createFirstNotification()
-            } else {
-                self.cancelFirstNotification()
-            }
-        }
-    }
-    // toggle switch2
-    func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool) {
-        print("Second Switch is \(isOn ? "ON" : "OFF")")
-        
-        DispatchQueue.main.async {
-            if isOn {
-                self.createSecondNotification()
-            } else {
-                self.cancelSecondNotification()
-            }
-        }
-    }
-    // toggle switch3
-    func didThirdToggleSwitch(cell: ThirdCustomTableCell, isOn: Bool) {
-        print("Third Switch is \(isOn ? "ON" : "OFF")")
-        
-        DispatchQueue.main.async {
-            if isOn {
-                self.createThirdNotification()
-            } else {
-                self.cancelThirdNotification()
-            }
-        }
-    }
-    // toggle switch4
-    func didFourthToggleSwitch(cell: FourthCustomTableCell, isOn: Bool) {
-        print("Third Switch is \(isOn ? "ON" : "OFF")")
-        
-        DispatchQueue.main.async {
-            if isOn {
-                self.createFourthNotification()
-            } else {
-                self.cancelFourthNotification()
-            }
-        }
-    }
-    // toggle switch5
-    func didFifthToggleSwitch(cell: FifthCustomTableCell, isOn: Bool) {
-        print("Fifth Switch is \(isOn ? "ON" : "OFF")")
-        
-        DispatchQueue.main.async {
-            if isOn {
-                self.createFifthNotification()
-            } else {
-                self.cancelFifthNotification()
-            }
-        }
-    }
-} // end
+}

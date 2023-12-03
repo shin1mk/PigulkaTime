@@ -55,7 +55,7 @@ extension PillsViewController: DaysCustomTableCellDelegate {
         
         return okButton
     }
-    // daysOkButtonTapped
+    // MARK: - Ok Button Action
     @objc private func daysOkButtonTapped(_ sender: UIButton) {
         // Получите выбранные дни
         guard let selectedDays = selectedDays else {

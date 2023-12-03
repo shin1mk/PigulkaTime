@@ -76,44 +76,8 @@ extension NotificationsViewController {
         createFifthNotification()
         // Сохраняем данные в UserDefaults
         saveFifthNotificationTime()
-
     }
     // создаем уведомление
-//    func createThirdNotification() {
-//        // Создаем объект UNUserNotificationCenter
-//        let center = UNUserNotificationCenter.current()
-//        // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
-//        let content = UNMutableNotificationContent()
-//        content.title = "PigulkaTime"
-//        content.body = "Third notification!"
-//        content.sound = .default
-//        // Установка текущей даты и времени с учетом локального времени устройства
-//        let now = Date()
-//        var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
-//        // Установка выбранного времени
-//        dateComponents.hour = ThirdSelectedHour
-//        dateComponents.minute = ThirdSelectedMinute
-//        // Создание объекта Date на основе DateComponents
-//        if let triggerDate = Calendar.current.date(from: dateComponents) {
-//            print("Уведомление будет запущено для времени: \(triggerDate)")
-//            // Создаем запрос на уведомление с повторением каждый день
-//            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-//            // Уникальный идентификатор для уведомления
-//            let notificationIdentifier = "ThirdNotification"
-//            // Создаем запрос на уведомление
-//            let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
-//            // Добавляем запрос в центр уведомлений
-//            center.add(request) { (error) in
-//                if let error = error {
-//                    print("Ошибка при добавлении уведомления: \(error.localizedDescription)")
-//                } else {
-//                    print("Third notification added successfully with identifier: \(notificationIdentifier)")
-//                }
-//            }
-//        } else {
-//            print("Не удалось создать объект Date из DateComponents")
-//        }
-//    }
     func createFifthNotification() {
         // Создаем объект UNUserNotificationCenter
         let center = UNUserNotificationCenter.current()
@@ -164,7 +128,7 @@ extension NotificationsViewController {
         print("FifthSelectedHour: \(FifthSelectedHour)")
         print("FifthSelectedMinute: \(FifthSelectedMinute)")
     }
-    // Ваш метод отмены уведомлений
+    // отмена уведомлений
     func cancelFifthNotification() {
         DispatchQueue.main.async {
             let notificationCenter = UNUserNotificationCenter.current()

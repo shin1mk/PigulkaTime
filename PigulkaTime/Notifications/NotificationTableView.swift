@@ -8,14 +8,15 @@
 import UIKit
 
 extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource {
+    // высотка ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 75
     }
-    
+    // количество ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         5
     }
-    
+    // каждая ячейка
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
@@ -47,5 +48,8 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
             return UITableViewCell()
         }
     }
-
-}
+    // устанавливаем clear цвет для выделения
+      func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+          cell.selectionStyle = .none
+      }
+} // end
