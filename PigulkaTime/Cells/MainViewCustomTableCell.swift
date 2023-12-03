@@ -15,49 +15,49 @@ final class MainViewCustomTableCell: UITableViewCell {
         titleLabel.text = ""
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextMedium(ofSize: 22)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 23)
         return titleLabel
     }()
     private let dosageLabel: UILabel = {
         let dosageLabel = UILabel()
         dosageLabel.text = ""
         dosageLabel.textColor = .systemGray
-        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
         typeLabel.text = ""
         typeLabel.textColor = .systemGray
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return typeLabel
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
         frequencyLabel.text = ""
         frequencyLabel.textColor = .systemGray
-        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return frequencyLabel
     }()
     private let daysLabel: UILabel = {
         let daysLabel = UILabel()
         daysLabel.text = ""
         daysLabel.textColor = .systemGray
-        daysLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        daysLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return daysLabel
     }()
     private let timesLabel: UILabel = {
         let timesLabel = UILabel()
         timesLabel.text = ""
         timesLabel.textColor = .systemGray
-        timesLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return timesLabel
     }()
     private let timeLabel: UILabel = {
         let timeLabel = UILabel()
         timeLabel.text = ""
         timeLabel.textColor = .systemGray
-        timeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        timeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
         return timeLabel
     }()
     private let bottomBorderView: UIView = {
@@ -103,19 +103,15 @@ final class MainViewCustomTableCell: UITableViewCell {
         // times Label
         addSubview(timesLabel)
         timesLabel.snp.makeConstraints { make in
-            make.top.equalTo(frequencyLabel.snp.top)
-            make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
+            make.top.equalTo(typeLabel.snp.top)
+//            make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+
         }
         // days Label
         addSubview(daysLabel)
         daysLabel.snp.makeConstraints { make in
-            make.top.equalTo(timesLabel.snp.top)
-            make.leading.equalTo(timesLabel.snp.trailing).offset(10)
-        }
-        // time Label
-        addSubview(timeLabel)
-        timeLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalTo(frequencyLabel.snp.top)
             make.trailing.equalToSuperview().offset(-10)
         }
         // bottomBorderView

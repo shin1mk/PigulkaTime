@@ -25,7 +25,6 @@ extension PillsViewController {
         case 5:
             selectedTimes = times[row]
             print("Selected Days: \(selectedTimes ?? "No times selected")")
-
         default:
             break
         }
