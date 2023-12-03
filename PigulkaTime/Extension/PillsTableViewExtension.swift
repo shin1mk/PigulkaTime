@@ -9,7 +9,7 @@ import UIKit
 //MARK: table view settings
 extension PillsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 45
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

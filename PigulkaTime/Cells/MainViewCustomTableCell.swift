@@ -22,42 +22,42 @@ final class MainViewCustomTableCell: UITableViewCell {
         let dosageLabel = UILabel()
         dosageLabel.text = ""
         dosageLabel.textColor = .systemGray
-        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        dosageLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return dosageLabel
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
         typeLabel.text = ""
         typeLabel.textColor = .systemGray
-        typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        typeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return typeLabel
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
         frequencyLabel.text = ""
         frequencyLabel.textColor = .systemGray
-        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return frequencyLabel
     }()
     private let daysLabel: UILabel = {
         let daysLabel = UILabel()
         daysLabel.text = ""
         daysLabel.textColor = .systemGray
-        daysLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        daysLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return daysLabel
     }()
     private let timesLabel: UILabel = {
         let timesLabel = UILabel()
         timesLabel.text = ""
         timesLabel.textColor = .systemGray
-        timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        timesLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return timesLabel
     }()
     private let timeLabel: UILabel = {
         let timeLabel = UILabel()
         timeLabel.text = ""
         timeLabel.textColor = .systemGray
-        timeLabel.font = UIFont.SFUITextRegular(ofSize: 17)
+        timeLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return timeLabel
     }()
     private let bottomBorderView: UIView = {
@@ -79,13 +79,13 @@ final class MainViewCustomTableCell: UITableViewCell {
         // title Label
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(2)
+            make.top.equalToSuperview().offset(5)
             make.leading.equalToSuperview().offset(10)
         }
         // dosageLabel
         addSubview(dosageLabel)
         dosageLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(0)
+            make.top.equalTo(titleLabel.snp.bottom).offset(3)
             make.leading.equalToSuperview().offset(10)
         }
         // typeLabel
@@ -97,21 +97,19 @@ final class MainViewCustomTableCell: UITableViewCell {
         // frequencyLabel
         addSubview(frequencyLabel)
         frequencyLabel.snp.makeConstraints { make in
-            make.top.equalTo(typeLabel.snp.bottom).offset(0)
-            make.leading.equalToSuperview().offset(10)
+            make.top.equalTo(typeLabel.snp.top)
+            make.leading.equalTo(typeLabel.snp.trailing).offset(5)
         }
         // times Label
         addSubview(timesLabel)
         timesLabel.snp.makeConstraints { make in
-            make.top.equalTo(typeLabel.snp.top)
-//            make.leading.equalTo(frequencyLabel.snp.trailing).offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-
+            make.top.equalTo(frequencyLabel.snp.top)
+            make.leading.equalTo(frequencyLabel.snp.trailing).offset(5)
         }
         // days Label
         addSubview(daysLabel)
         daysLabel.snp.makeConstraints { make in
-            make.top.equalTo(frequencyLabel.snp.top)
+            make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
         }
         // bottomBorderView

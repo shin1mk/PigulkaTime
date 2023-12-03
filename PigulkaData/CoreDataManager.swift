@@ -78,5 +78,24 @@ class CoreDataManager {
             print("Error deleting pill from Core Data: \(error)")
         }
     }
-    
+    //MARK: - update in core data
+    func updatePillInCoreData(pill: Pigulka, dosage: String, type: String, frequency: String, days: Int, times: String?) {
+        let context = persistentContainer.viewContext
+
+        // Обновляем свойства существующего объекта
+        pill.dosage = dosage
+        pill.type = type
+        pill.frequency = frequency
+        pill.days = "\(days)"
+        pill.times = times
+
+        // Просто сохраняем контекст после обновления записи
+        do {
+            try context.save()
+            print("Pill updated in Core Data.")
+        } catch {
+            print("Error updating pill in Core Data: \(error)")
+        }
+    }
+
 }

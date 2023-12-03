@@ -152,7 +152,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // высота
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 60
     }
     // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,8 +171,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTypeLabelText(pill.type ?? "")
         cell.setDosageLabelText(pill.dosage ?? "")
         cell.setFrequencyLabelText(pill.frequency ?? "")
-        cell.setDaysLabelText("\(pill.days!) days left")
-        cell.setTimesLabelText("Times \(pill.times!)")
+        cell.setDaysLabelText("\(pill.days!) days")
+        cell.setTimesLabelText("\(pill.times!) times")
 
         return cell
     }

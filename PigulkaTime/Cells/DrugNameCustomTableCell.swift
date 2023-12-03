@@ -10,7 +10,7 @@ import SnapKit
 
 final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
     //MARK: Properties
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "Drug name"
         titleLabel.textColor = .white
