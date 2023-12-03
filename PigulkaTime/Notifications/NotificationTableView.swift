@@ -14,7 +14,7 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     // количество ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        6
     }
     // каждая ячейка
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,6 +43,11 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
             let cell = tableView.dequeueReusableCell(withIdentifier: "FifthCustomTableCell", for: indexPath) as! FifthCustomTableCell
             cell.delegate = self
             cell.tag = 4
+            return cell
+        case 5:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SixthCustomTableCell", for: indexPath) as! SixthCustomTableCell
+            cell.delegate = self
+            cell.tag = 5
             return cell
         default:
             return UITableViewCell()

@@ -111,6 +111,18 @@ extension NotificationsViewController {
             default:
                 break
             }
+        case 5:
+            // Обработка для пятого пикера
+            switch component {
+            case 0:
+                SixthSelectedHour = row
+                print("Selected Hour for Sixth Picker: \(SixthSelectedHour)")
+            case 1:
+                SixthSelectedMinute = row * step
+                print("Selected Minute for Sixth Picker: \(SixthSelectedMinute)")
+            default:
+                break
+            }
         default:
             break
         }

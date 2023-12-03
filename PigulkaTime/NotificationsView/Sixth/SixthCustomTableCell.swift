@@ -1,22 +1,22 @@
 //
-//  SecondCustomTableCell.swift
+//  SixthCustomTableCell.swift
 //  PigulkaTime
 //
-//  Created by SHIN MIKHAIL on 23.11.2023.
+//  Created by SHIN MIKHAIL on 03.12.2023.
 //
 
 import UIKit
 import SnapKit
 
-protocol SecondCustomTableCellDelegate: AnyObject {
-    func didSelectSecondTime(cell: SecondCustomTableCell)
-    func didSecondToggleSwitch(cell: SecondCustomTableCell, isOn: Bool)
+protocol SixthCustomTableCellDelegate: AnyObject {
+    func didSelectSixthTime(cell: SixthCustomTableCell)
+    func didSixthToggleSwitch(cell: SixthCustomTableCell, isOn: Bool)
 }
 
-final class SecondCustomTableCell: UITableViewCell {
-    weak var delegate: SecondCustomTableCellDelegate?
+final class SixthCustomTableCell: UITableViewCell {
+    weak var delegate: SixthCustomTableCellDelegate?
     //MARK: Properties
-    private let secondNotificationLabel: UILabel = {
+    private let sixthNotificationLabel: UILabel = {
         let label = UILabel()
         label.text = "--:--"
         label.textColor = .white
@@ -34,7 +34,7 @@ final class SecondCustomTableCell: UITableViewCell {
         switchControl.isOn = true
         return switchControl
     }()
-    private let switchStateKey = "SecondSwitchState"
+    private let switchStateKey = "SixthSwitchState"
     //MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,8 +50,8 @@ final class SecondCustomTableCell: UITableViewCell {
     private func setupConstraints() {
         backgroundColor = .clear
         // label
-        addSubview(secondNotificationLabel)
-        secondNotificationLabel.snp.makeConstraints { make in
+        addSubview(sixthNotificationLabel)
+        sixthNotificationLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview()
         }
@@ -79,9 +79,9 @@ final class SecondCustomTableCell: UITableViewCell {
     private func setupTarget() {
         switchControl.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
         // switch state
-        if let savedSecondSwitchState = UserDefaults.standard.value(forKey: switchStateKey) as? Bool {
-            switchControl.isOn = savedSecondSwitchState
-            updateUIForSwitchState(isOn: savedSecondSwitchState)
+        if let savedFifthSwitchState = UserDefaults.standard.value(forKey: switchStateKey) as? Bool {
+            switchControl.isOn = savedFifthSwitchState
+            updateUIForSwitchState(isOn: savedFifthSwitchState)
         } else {
             switchControl.isOn = false
             updateUIForSwitchState(isOn: false)
@@ -89,13 +89,13 @@ final class SecondCustomTableCell: UITableViewCell {
     }
     // switch
     @objc private func switchValueChanged() {
-        delegate?.didSecondToggleSwitch(cell: self, isOn: switchControl.isOn)
+        delegate?.didSixthToggleSwitch(cell: self, isOn: switchControl.isOn)
         updateUIForSwitchState(isOn: switchControl.isOn)
         saveSwitchState(isOn: switchControl.isOn)
     }
     // цвет часов
     func updateUIForSwitchState(isOn: Bool) {
-        secondNotificationLabel.textColor = isOn ? .white : .systemGray
+        sixthNotificationLabel.textColor = isOn ? .white : .systemGray
     }
     // сохраняем положение свитча
     func saveSwitchState(isOn: Bool) {
@@ -103,10 +103,10 @@ final class SecondCustomTableCell: UITableViewCell {
     }
 
     @objc private func cellTapped() {
-        delegate?.didSelectSecondTime(cell: self)
+        delegate?.didSelectSixthTime(cell: self)
     }
 
-    func setSecondTimeText(_ text: String) {
-        secondNotificationLabel.text = text
+    func setSixthTimeText(_ text: String) {
+        sixthNotificationLabel.text = text
     }
 }

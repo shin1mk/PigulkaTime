@@ -21,7 +21,7 @@ final class ThirdCustomTableCell: UITableViewCell {
         label.text = "--:--"
         label.textColor = .white
         label.textAlignment = .right
-        label.font = UIFont.SFUITextMedium(ofSize: 35)
+        label.font = UIFont.SFUITextLight(ofSize: 50)
         return label
     }()
     private let bottomBorderView: UIView = {

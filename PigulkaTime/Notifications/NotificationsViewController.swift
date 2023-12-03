@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import UserNotifications
 
-final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate, FourthCustomTableCellDelegate, FifthCustomTableCellDelegate {
+final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate, FourthCustomTableCellDelegate, FifthCustomTableCellDelegate, SixthCustomTableCellDelegate {
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
     // time 1
     var FirstSelectedHour: Int = 0
@@ -26,6 +26,9 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     // time 5
     var FifthSelectedHour: Int = 0
     var FifthSelectedMinute: Int = 0
+    // time 6
+    var SixthSelectedHour: Int = 0
+    var SixthSelectedMinute: Int = 0
     //MARK: Properties
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -36,6 +39,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         tableView.register(ThirdCustomTableCell.self, forCellReuseIdentifier: "ThirdCustomTableCell")
         tableView.register(FourthCustomTableCell.self, forCellReuseIdentifier: "FourthCustomTableCell")
         tableView.register(FifthCustomTableCell.self, forCellReuseIdentifier: "FifthCustomTableCell")
+        tableView.register(SixthCustomTableCell.self, forCellReuseIdentifier: "SixthCustomTableCell")
         return tableView
     }()
     private let titleLabel: UILabel = {
@@ -60,6 +64,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         loadThirdDataFromUserDefaultsAndUpdateCell()
         loadFourthDataFromUserDefaultsAndUpdateCell()
         loadFifthDataFromUserDefaultsAndUpdateCell()
+        loadSixthDataFromUserDefaultsAndUpdateCell()
     }
     //MARK: Constraints
     private func setupConstraints() {
@@ -151,6 +156,18 @@ extension NotificationsViewController {
                 self.createFifthNotification()
             } else {
                 self.cancelFifthNotification()
+            }
+        }
+    }
+    // toggle switch6
+    func didSixthToggleSwitch(cell: SixthCustomTableCell, isOn: Bool) {
+        print("Sixth Switch is \(isOn ? "ON" : "OFF")")
+        
+        DispatchQueue.main.async {
+            if isOn {
+                self.createSixthNotification()
+            } else {
+                self.cancelSixthNotification()
             }
         }
     }
@@ -280,6 +297,31 @@ extension NotificationsViewController {
             print("FifthSelectedMinute: \(FifthSelectedMinute)")
         } else {
             print("5 Данные не найдены в UserDefaults.")
+        }
+    }
+    // load from userDefaults6
+    private func loadSixthDataFromUserDefaultsAndUpdateCell() {
+        let defaults = UserDefaults.standard
+        if let hour = defaults.value(forKey: "SixthSelectedHour") as? Int,
+           let minute = defaults.value(forKey: "SixthSelectedMinute") as? Int {
+            // Преобразование значения days в String
+            SixthSelectedHour = hour
+            SixthSelectedMinute = minute
+            tableView.reloadData() // Обновите всю таблицу
+            // Обновление соответствующей ячейки таблицы
+            let indexPath = IndexPath(row: 5, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? SixthCustomTableCell {
+                // Обновляем текст в ячейке с выбранным временем
+                cell.setSixthTimeText(String(format: "%02d:%02d", SixthSelectedHour, SixthSelectedMinute))
+            } else {
+                print("Ячейка не найдена")
+            }
+            // Вывод в консоль для отслеживания
+            print("6 Данные успешно загружены:")
+            print("SixthSelectedHour: \(SixthSelectedHour)")
+            print("SixthSelectedMinute: \(SixthSelectedMinute)")
+        } else {
+            print("6 Данные не найдены в UserDefaults.")
         }
     }
 }
