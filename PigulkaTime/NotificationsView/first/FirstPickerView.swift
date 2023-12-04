@@ -92,15 +92,11 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
         dateComponents.hour = FirstSelectedHour
         dateComponents.minute = FirstSelectedMinute
-        // Если выбранное время уже прошло сегодня, увеличиваем день на 1
-        if let triggerDate = Calendar.current.date(from: dateComponents), triggerDate <= now {
-            dateComponents.day! += 1
-        }
-        // Создание объекта Date на основе DateComponents
+        // Если выбранное время уже прошло сегодня, устанавливаем триггер на следующий день
         if let triggerDate = Calendar.current.date(from: dateComponents) {
             print("1 Уведомление будет запущено для времени: \(triggerDate)")
-            // Создаем запрос на уведомление с повторением каждый день
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            // Создаем триггер на следующий день с тем же временем
+            let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute], from: triggerDate), repeats: true)
             // Уникальный идентификатор для уведомления
             let notificationIdentifier = "FirstNotification"
             // Создаем запрос на уведомление
@@ -110,11 +106,22 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 if let error = error {
                     print("1 Ошибка при добавлении уведомления: \(error.localizedDescription)")
                 } else {
-                    print("First notification added successfully with identifier: \(notificationIdentifier)")
+                    print("Уведомление успешно добавлено для следующего повторения.")
                 }
             }
         } else {
             print("1 Не удалось создать объект Date из DateComponents")
+        }
+    }
+    // отмена уведомлений
+    func cancelFirstNotification() {
+        DispatchQueue.main.async {
+            let notificationCenter = UNUserNotificationCenter.current()
+            // Уникальный идентификатор для уведомления
+            let notificationIdentifier = "FirstNotification"
+            // Удаляем уведомление с указанным идентификатором
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
+            print("Notification removed with identifier: \(notificationIdentifier)")
         }
     }
     // сохраняем время в userdefault
@@ -127,17 +134,6 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         print("1 Данные успешно сохранены:")
         print("FirstSelectedHour: \(FirstSelectedHour)")
         print("FirstSelectedMinute: \(FirstSelectedMinute)")
-    }
-    // отмена уведомлений
-    func cancelFirstNotification() {
-        DispatchQueue.main.async {
-            let notificationCenter = UNUserNotificationCenter.current()
-            // Уникальный идентификатор для уведомления
-            let notificationIdentifier = "FirstNotification"
-            // Удаляем уведомление с указанным идентификатором
-            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
-            print("Notification removed with identifier: \(notificationIdentifier)")
-        }
     }
 } // end
 

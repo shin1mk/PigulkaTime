@@ -92,15 +92,11 @@ extension NotificationsViewController {
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: now)
         dateComponents.hour = FifthSelectedHour
         dateComponents.minute = FifthSelectedMinute
-        // Если выбранное время уже прошло сегодня, увеличиваем день на 1
-        if let triggerDate = Calendar.current.date(from: dateComponents), triggerDate <= now {
-            dateComponents.day! += 1
-        }
-        // Создание объекта Date на основе DateComponents
+        // Если выбранное время уже прошло сегодня, устанавливаем триггер на следующий день
         if let triggerDate = Calendar.current.date(from: dateComponents) {
             print("5 Уведомление будет запущено для времени: \(triggerDate)")
-            // Создаем запрос на уведомление с повторением каждый день
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            // Создаем триггер на следующий день с тем же временем
+            let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute], from: triggerDate), repeats: true)
             // Уникальный идентификатор для уведомления
             let notificationIdentifier = "FifthNotification"
             // Создаем запрос на уведомление
@@ -110,11 +106,22 @@ extension NotificationsViewController {
                 if let error = error {
                     print("5 Ошибка при добавлении уведомления: \(error.localizedDescription)")
                 } else {
-                    print("Fifth notification added successfully with identifier: \(notificationIdentifier)")
+                    print("Уведомление успешно добавлено для следующего повторения.")
                 }
             }
         } else {
             print("5 Не удалось создать объект Date из DateComponents")
+        }
+    }
+    // отмена уведомлений
+    func cancelFifthNotification() {
+        DispatchQueue.main.async {
+            let notificationCenter = UNUserNotificationCenter.current()
+            // Уникальный идентификатор для уведомления
+            let notificationIdentifier = "FifthNotification"
+            // Удаляем уведомление с указанным идентификатором
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
+            print("Notification removed with identifier: \(notificationIdentifier)")
         }
     }
     // сохраняем время в userdefault
@@ -127,17 +134,6 @@ extension NotificationsViewController {
         print("5 Данные успешно сохранены:")
         print("FifthSelectedHour: \(FifthSelectedHour)")
         print("FifthSelectedMinute: \(FifthSelectedMinute)")
-    }
-    // отмена уведомлений
-    func cancelFifthNotification() {
-        DispatchQueue.main.async {
-            let notificationCenter = UNUserNotificationCenter.current()
-            // Уникальный идентификатор для уведомления
-            let notificationIdentifier = "FifthNotification"
-            // Удаляем уведомление с указанным идентификатором
-            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
-            print("Notification removed with identifier: \(notificationIdentifier)")
-        }
     }
 } // end
 
