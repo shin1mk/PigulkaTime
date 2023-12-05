@@ -171,10 +171,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTypeLabelText(pill.type ?? "")
         cell.setDosageLabelText(pill.dosage ?? "")
         cell.setFrequencyLabelText(pill.frequency ?? "")
-        cell.setDaysLabelText("\(pill.days!) days")
+//        cell.setDaysLabelText("\(pill.days!) days")
+        // Рассчитываем конечную дату
+        if let daysString = pill.days, let daysInt = Int(daysString) {
+            let remainingDays = calculateRemainingDays(startDate: pill.startDate, numberOfDays: daysInt)
+            cell.setDaysLabelText("\(remainingDays) days")
+        } else {
+            cell.setDaysLabelText("N/A") // или другое значение по умолчанию
+        }
+
         cell.setTimesLabelText("\(pill.times!) times")
-        
+
         return cell
+    }
+
+    func calculateRemainingDays(startDate: Date?, numberOfDays: Int) -> Int {
+        let calendar = Calendar.current
+        let endDate = calendar.date(byAdding: .day, value: numberOfDays, to: startDate ?? Date()) ?? Date()
+        let remainingDays = calendar.dateComponents([.day], from: Date(), to: endDate).day ?? 0
+        return remainingDays
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -256,7 +271,8 @@ extension MainViewController: PillsViewControllerDelegate {
                                                       selectedType: pill.type,
                                                       selectedFrequency: pill.frequency,
                                                       selectedDays: daysInt,
-                                                      selectedTimes: pill.times)
+                                                      selectedTimes: pill.times,
+                                                      startDate: Date()) // Текущая дата
         }
         print("Before: \(pillsArray)")
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()

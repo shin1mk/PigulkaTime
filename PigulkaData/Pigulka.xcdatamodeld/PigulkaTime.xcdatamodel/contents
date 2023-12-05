@@ -6,6 +6,7 @@
         <attribute name="frequency" optional="YES" attributeType="String"/>
         <attribute name="isEditable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="times" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String"/>

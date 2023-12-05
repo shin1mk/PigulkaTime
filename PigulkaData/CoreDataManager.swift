@@ -29,7 +29,8 @@ class CoreDataManager {
                             selectedType: String,
                             selectedFrequency: String,
                             selectedDays: Int,
-                            selectedTimes: String?) {
+                            selectedTimes: String?,
+                            startDate: Date) {
         let context = persistentContainer.viewContext
         
         let newPill = Pigulka(context: context)
@@ -41,7 +42,7 @@ class CoreDataManager {
         newPill.times = selectedTimes
         newPill.isEditable = true
         newPill.uniqueIdentifier = UUID().uuidString
- 
+        newPill.startDate = Date()
         do {
             try context.save()
             print("Pill saved to Core Data.")
@@ -86,7 +87,8 @@ class CoreDataManager {
         pill.frequency = frequency
         pill.days = "\(days)"
         pill.times = times
-
+        pill.startDate = Date()
+        
         do {
             try context.save()
             print("Pill updated in Core Data.")

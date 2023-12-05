@@ -24,4 +24,5 @@ extension Pigulka {
     @NSManaged public var times: String?
     @NSManaged public var type: String?
     @NSManaged public var uniqueIdentifier: String?
+    @NSManaged public var startDate: Date()
 }

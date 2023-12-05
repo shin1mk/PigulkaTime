@@ -40,16 +40,16 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public var editingCell: DrugNameCustomTableCell? // изменения ячейки
     public var pillsArray: [Pill] = [] // массив
     // for type picker view
-    public let types = ["", "Pills", "Injections", "Suppositories", "Tablets", "Capsules", "Syrups", "Drops", "Ointments", "Sprays", "Lozenges", "Inhalers"]
+    public let types = ["Not selected", "Pills", "Tablets", "Capsules", "Drops", "Injections", "Suppositories", "Syrups",  "Ointments", "Sprays", "Lozenges", "Inhalers"]
     public var selectedType: String?
     // for dosage picker view
-    public let dosages = ["", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
+    public let dosages = ["Not selected", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
     public var selectedDosage: String?
     // for frequency picker view
-    public let frequency = ["", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Every 2 days", "Every 3 days", "Every 4 days", "Every 5 days", "Every 6 days", "Weekly", "Every 2 weeks", "Every 3 weeks", "Every 4 weeks"]
+    public let frequency = ["Not selected", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 12 hours", "Every other day", "Weekly", "As needed", "Other"]
     public var selectedFrequency: String?
     // for days picker view
-    public let days: [String] = ["1 day", "2 days", "3 days", "4 days", "5 days", "6 days", "7 days", "10 days", "14 days", "30 days", "60 days", "90 days"]
+    public let days: [String] = ["2 days", "3 days", "4 days", "5 days", "7 days", "10 days", "14 days", "30 days", "60 days", "90 days"]
     public var selectedDays: String?
     // for times per day picker view
     public let times: [String] = (1...10).map { "\($0)" }
@@ -97,6 +97,53 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         setupEditPill()
     }
     // editing pill
+//    func setupEditPill() {
+//        if let editingPill = editingPill {
+//            // Заполняем соответствующие переменные значениями из editingPill
+//            selectedType = editingPill.type
+//            selectedDosage = editingPill.dosage
+//            selectedFrequency = editingPill.frequency
+//            selectedTimes = editingPill.times
+//            if let daysLeft = editingPill.days?.replacingOccurrences(of: " days", with: ""),
+//               let daysInt = Int(daysLeft) {
+//                selectedDays = "\(daysInt) days"
+//            }
+//            // Принты для отслеживания данных
+//            print("Editing Pill Name: \(editingPill.name ?? "N/A")")
+//            print("Selected Type: \(selectedType ?? "N/A")")
+//            print("Selected Dosage: \(selectedDosage ?? "N/A")")
+//            print("Selected Frequency: \(selectedFrequency ?? "N/A")")
+//            print("Selected Days: \(selectedDays ?? "N/A")")
+//            print("Selected Times: \(selectedTimes ?? "N/A")")
+//            // название препарата ставим в поле ввода
+//            if let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? DrugNameCustomTableCell {
+//                nameCell.textField.text = editingPill.name
+//                nameCell.textField.textColor = .systemGray6
+//                nameCell.textField.isUserInteractionEnabled = false
+//                nameCell.titleLabel.textColor = .systemGray6
+//            }
+//            // Обновляем titleLabel с именем препарата
+//            titleLabel.text = editingPill.name ?? "Add pill"
+//
+//            // Заполняем значения в соответствующих ячейках
+//            if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
+//                typeCell.setLabelText(selectedType ?? "")
+//            }
+//            if let dosageCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? DosageCustomTableCell {
+//                dosageCell.setDosageText(selectedDosage ?? "")
+//            }
+//            if let frequencyCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? FrequencyCustomTableCell {
+//                frequencyCell.setFrequencyText(selectedFrequency ?? "")
+//            }
+//            if let daysCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? DaysCustomTableCell {
+//                daysCell.setDaysText(selectedDays ?? "")
+//            }
+//            if let timesCell = tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? TimesCustomTableCell {
+//                timesCell.setTimesText(selectedTimes ?? "")
+//            }
+//        }
+//    }
+    // editing pill
     func setupEditPill() {
         if let editingPill = editingPill {
             // Заполняем соответствующие переменные значениями из editingPill
@@ -108,6 +155,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                let daysInt = Int(daysLeft) {
                 selectedDays = "\(daysInt) days"
             }
+            
             // Принты для отслеживания данных
             print("Editing Pill Name: \(editingPill.name ?? "N/A")")
             print("Selected Type: \(selectedType ?? "N/A")")
@@ -115,6 +163,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Frequency: \(selectedFrequency ?? "N/A")")
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
+            
             // название препарата ставим в поле ввода
             if let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? DrugNameCustomTableCell {
                 nameCell.textField.text = editingPill.name
@@ -122,6 +171,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 nameCell.textField.isUserInteractionEnabled = false
                 nameCell.titleLabel.textColor = .systemGray6
             }
+            
             // Обновляем titleLabel с именем препарата
             titleLabel.text = editingPill.name ?? "Add pill"
             
@@ -193,62 +243,139 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     // saveButton
+//    @objc private func saveButtonTapped(_ sender: UIButton) {
+//        print("selectedType: \(selectedType ?? "nil")")
+//        print("selectedDosage: \(selectedDosage ?? "nil")")
+//        print("selectedFrequency: \(selectedFrequency ?? "nil")")
+//        print("selectedDays: \(selectedDays ?? "nil")")
+//        print("selectedTimes: \(selectedTimes ?? "nil")")
+//
+//        if let selectedType = selectedType,
+//           let selectedDosage = selectedDosage,
+//           let selectedFrequency = selectedFrequency,
+//           let selectedDaysString = selectedDays {
+//
+//            let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
+//            if let selectedDays = Int(cleanedSelectedDaysString) {
+//                print("Selected days: \(selectedDays)")
+//
+//                if let editingPill = editingPill,
+//                   let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
+//                    pillsArray.remove(at: index)
+//                    print("Removed old pill: \(editingPill.name ?? "N/A")")
+//                }
+//
+//                let defaultPillName = "Unnamed Pill"
+//                let pillName = (editingCell?.textField.text ?? titleLabel.text)!.isEmpty ? defaultPillName : (editingCell?.textField.text ?? titleLabel.text)!
+//
+//                if let editingPill = editingPill {
+//                    // Обновляем существующий объект Pigulka в Core Data
+//                    CoreDataManager.shared.updatePillInCoreData(pill: editingPill, dosage: selectedDosage, type: selectedType, frequency: selectedFrequency, days: selectedDays, times: selectedTimes)
+//                    // Обновляем массив pillsArray после редактирования
+//                    if let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
+//                        pillsArray[index] = Pill(
+//                            name: pillName,
+//                            dosage: selectedDosage,
+//                            type: selectedType,
+//                            frequency: selectedFrequency,
+//                            days: "\(selectedDays) days",
+//                            times: "\(selectedTimes ?? "no")",
+//                            isEditable: true,
+//                            identifier: "",
+//                            startDate: Date()
+//                        )
+//                    }
+//                } else {
+//                    // Если объекта нет в Core Data, создаем новый
+//                    let newPill = Pill(
+//                        name: pillName,
+//                        dosage: selectedDosage,
+//                        type: selectedType,
+//                        frequency: selectedFrequency,
+//                        days: "\(selectedDays) days",
+//                        times: "\(selectedTimes ?? "no")",
+//                        isEditable: true,
+//                        identifier: "",
+//                        startDate: Date()
+//                    )
+//                    // Добавляем новый объект Pill в массив pillsArray
+//                    pillsArray.append(newPill)
+//                }
+//                // Вызываем делегата для передачи обновленного массива
+//                delegate?.pillsViewController(self, didSavePills: pillsArray)
+//
+//                dismiss(animated: true, completion: nil)
+//            } else {
+//                print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
+//            }
+//        } else {
+//            print("Some fields are not selected.")
+//        }
+//    }
     @objc private func saveButtonTapped(_ sender: UIButton) {
         print("selectedType: \(selectedType ?? "nil")")
         print("selectedDosage: \(selectedDosage ?? "nil")")
         print("selectedFrequency: \(selectedFrequency ?? "nil")")
         print("selectedDays: \(selectedDays ?? "nil")")
         print("selectedTimes: \(selectedTimes ?? "nil")")
-        
+
         if let selectedType = selectedType,
            let selectedDosage = selectedDosage,
            let selectedFrequency = selectedFrequency,
            let selectedDaysString = selectedDays {
-            
+
             let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
             if let selectedDays = Int(cleanedSelectedDaysString) {
                 print("Selected days: \(selectedDays)")
-                
+
                 if let editingPill = editingPill,
                    let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
                     pillsArray.remove(at: index)
                     print("Removed old pill: \(editingPill.name ?? "N/A")")
                 }
-                
+
+                let defaultPillName = "Unnamed Pill"
+                let pillName = (editingCell?.textField.text ?? titleLabel.text)!.isEmpty ? defaultPillName : (editingCell?.textField.text ?? titleLabel.text)!
+
                 if let editingPill = editingPill {
                     // Обновляем существующий объект Pigulka в Core Data
                     CoreDataManager.shared.updatePillInCoreData(pill: editingPill, dosage: selectedDosage, type: selectedType, frequency: selectedFrequency, days: selectedDays, times: selectedTimes)
                     // Обновляем массив pillsArray после редактирования
-                    if let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
-                        pillsArray[index] = Pill(
-                            name: (editingCell?.textField.text ?? titleLabel.text)!,
+//                    if let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
+                    if pillsArray.firstIndex(where: { $0.name == editingPill.name }) != nil {
+                        let newPill = Pill(
+                            name: pillName,
                             dosage: selectedDosage,
                             type: selectedType,
                             frequency: selectedFrequency,
                             days: "\(selectedDays) days",
                             times: "\(selectedTimes ?? "no")",
                             isEditable: true,
-                            identifier: ""
+                            identifier: "",
+                            startDate: Date()
                         )
+                        print("Updated pill with time: \(newPill.startDate )")
                     }
                 } else {
                     // Если объекта нет в Core Data, создаем новый
                     let newPill = Pill(
-                        name: (editingCell?.textField.text ?? titleLabel.text)!,
+                        name: pillName,
                         dosage: selectedDosage,
                         type: selectedType,
                         frequency: selectedFrequency,
                         days: "\(selectedDays) days",
                         times: "\(selectedTimes ?? "no")",
                         isEditable: true,
-                        identifier: ""
+                        identifier: "",
+                        startDate: Date()
                     )
                     // Добавляем новый объект Pill в массив pillsArray
                     pillsArray.append(newPill)
+                    print("Added new pill with time: \(newPill.startDate )")
                 }
                 // Вызываем делегата для передачи обновленного массива
                 delegate?.pillsViewController(self, didSavePills: pillsArray)
-                
+
                 dismiss(animated: true, completion: nil)
             } else {
                 print("Invalid or non-integer value for selectedDays: \(cleanedSelectedDaysString)")
