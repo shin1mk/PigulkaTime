@@ -43,8 +43,8 @@ extension PillsViewController: DaysCustomTableCellDelegate {
     
     private func createDaysOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
-        okButton.setTitle("OK", for: .normal)
-        okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
+        okButton.setTitle("Done", for: .normal)
+        okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(daysOkButtonTapped(_:)), for: .touchUpInside)

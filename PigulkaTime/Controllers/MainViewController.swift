@@ -171,7 +171,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTypeLabelText(pill.type ?? "")
         cell.setDosageLabelText(pill.dosage ?? "")
         cell.setFrequencyLabelText(pill.frequency ?? "")
-//        cell.setDaysLabelText("\(pill.days!) days")
         // Рассчитываем конечную дату
         if let daysString = pill.days, let daysInt = Int(daysString) {
             let remainingDays = calculateRemainingDays(startDate: pill.startDate, numberOfDays: daysInt)
@@ -184,14 +183,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-
+    // рассчет дней прошедших и оставшихся
     func calculateRemainingDays(startDate: Date?, numberOfDays: Int) -> Int {
         let calendar = Calendar.current
         let endDate = calendar.date(byAdding: .day, value: numberOfDays, to: startDate ?? Date()) ?? Date()
         let remainingDays = calendar.dateComponents([.day], from: Date(), to: endDate).day ?? 0
         return remainingDays
     }
-    
+    // нажатая ячейка открывает пилс заполненный
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt")
         let selectedPill = pillsArray[indexPath.row]

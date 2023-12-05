@@ -44,8 +44,8 @@ extension NotificationsViewController {
     
     private func createFourthTimeOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
-        okButton.setTitle("OK", for: .normal)
-        okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 18)
+        okButton.setTitle("Done", for: .normal)
+        okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
         okButton.addTarget(self, action: #selector(fourthOkButtonTapped(_:)), for: .touchUpInside)
@@ -84,7 +84,7 @@ extension NotificationsViewController {
         // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
-        content.body = "Fourth notification!"
+        content.body = "Time to take your pills!"
         content.sound = .default
         // Установка текущей даты и времени с учетом локального времени устройства
         let now = Date()
