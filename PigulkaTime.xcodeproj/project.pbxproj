@@ -19,9 +19,9 @@
 		13523D3C2B03485A00D5C649 /* FrequencyPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */; };
 		13523D3E2B03487500D5C649 /* DaysPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */; };
 		13523D402B03488F00D5C649 /* TimesPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */; };
-		13523D442B0348DC00D5C649 /* SettingPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */; };
-		135930642B0F394B00E9779B /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135930632B0F394B00E9779B /* NotificationTableView.swift */; };
-		135930662B0F39A300E9779B /* NotificationPickerViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135930652B0F39A300E9779B /* NotificationPickerViewExtension.swift */; };
+		13523D442B0348DC00D5C649 /* PillsPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D432B0348DC00D5C649 /* PillsPickerExtension.swift */; };
+		135930642B0F394B00E9779B /* NotificationTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135930632B0F394B00E9779B /* NotificationTableViewExtension.swift */; };
+		135930662B0F39A300E9779B /* NotificationPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135930652B0F39A300E9779B /* NotificationPickerExtension.swift */; };
 		135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38512AFA9EC4007C1C04 /* AppDelegate.swift */; };
 		135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */; };
 		135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B38552AFA9EC4007C1C04 /* MainViewController.swift */; };
@@ -90,9 +90,9 @@
 		13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyPickerExtension.swift; sourceTree = "<group>"; };
 		13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysPickerExtension.swift; sourceTree = "<group>"; };
 		13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPickerExtension.swift; sourceTree = "<group>"; };
-		13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPickerExtension.swift; sourceTree = "<group>"; };
-		135930632B0F394B00E9779B /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
-		135930652B0F39A300E9779B /* NotificationPickerViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPickerViewExtension.swift; sourceTree = "<group>"; };
+		13523D432B0348DC00D5C649 /* PillsPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsPickerExtension.swift; sourceTree = "<group>"; };
+		135930632B0F394B00E9779B /* NotificationTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewExtension.swift; sourceTree = "<group>"; };
+		135930652B0F39A300E9779B /* NotificationPickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPickerExtension.swift; sourceTree = "<group>"; };
 		135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigulkaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		135B38512AFA9EC4007C1C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		135B38532AFA9EC4007C1C04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		131FF95A2AFF87F700ABFCB9 /* Cells */ = {
+		131FF95A2AFF87F700ABFCB9 /* PillsCustomCell */ = {
 			isa = PBXGroup;
 			children = (
 				13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */,
@@ -176,45 +176,24 @@
 				13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */,
 				134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */,
 			);
-			path = Cells;
+			path = PillsCustomCell;
 			sourceTree = "<group>";
 		};
-		133E77882B0F688E009ABCC7 /* First */ = {
-			isa = PBXGroup;
-			children = (
-				13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */,
-				139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */,
-			);
-			path = First;
-			sourceTree = "<group>";
-		};
-		133E77892B0F689C009ABCC7 /* Second */ = {
-			isa = PBXGroup;
-			children = (
-				133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */,
-				133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */,
-			);
-			path = Second;
-			sourceTree = "<group>";
-		};
-		13523D322B03463E00D5C649 /* Extension */ = {
+		13523D322B03463E00D5C649 /* PillsPickerViewExtension */ = {
 			isa = PBXGroup;
 			children = (
 				13523D332B03465F00D5C649 /* TypePickerExtension.swift */,
-				13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */,
 				13523D392B03483900D5C649 /* DosagePickerExtension.swift */,
 				13523D3B2B03485A00D5C649 /* FrequencyPickerExtension.swift */,
 				13523D3D2B03487500D5C649 /* DaysPickerExtension.swift */,
 				13523D3F2B03488F00D5C649 /* TimesPickerExtension.swift */,
-				13523D432B0348DC00D5C649 /* SettingPickerExtension.swift */,
 			);
-			path = Extension;
+			path = PillsPickerViewExtension;
 			sourceTree = "<group>";
 		};
 		135B38452AFA9EC4007C1C04 = {
 			isa = PBXGroup;
 			children = (
-				135C5F402B08F67C00FF299B /* PigulkaData */,
 				135B38502AFA9EC4007C1C04 /* PigulkaTime */,
 				135B386A2AFA9EC5007C1C04 /* PigulkaTimeTests */,
 				135B38742AFA9EC5007C1C04 /* PigulkaTimeUITests */,
@@ -237,10 +216,13 @@
 		135B38502AFA9EC4007C1C04 /* PigulkaTime */ = {
 			isa = PBXGroup;
 			children = (
-				13ECF7172B0F195F00DB91A1 /* Notifications */,
-				13DD9D9A2B0F39D400E23504 /* NotificationsView */,
-				13523D322B03463E00D5C649 /* Extension */,
-				131FF95A2AFF87F700ABFCB9 /* Cells */,
+				136A5B212B1BD525003AFE59 /* NotificationPickerView */,
+				13F4C13A2B1C5FB50078A751 /* NotificationCustomCell */,
+				135C5F402B08F67C00FF299B /* PigulkaData */,
+				13ECF7172B0F195F00DB91A1 /* TableView */,
+				13DD9D9A2B0F39D400E23504 /* PickerExtension */,
+				13523D322B03463E00D5C649 /* PillsPickerViewExtension */,
+				131FF95A2AFF87F700ABFCB9 /* PillsCustomCell */,
 				13F556072AFCB0BA0025119F /* Models */,
 				135B38862AFA9F45007C1C04 /* Resources */,
 				135B38852AFA9F2E007C1C04 /* Controllers */,
@@ -278,6 +260,7 @@
 		135B38852AFA9F2E007C1C04 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				13ECF7192B0F198300DB91A1 /* NotificationsViewController.swift */,
 				13EFB0212AFE453F00C9E67B /* PillsViewController.swift */,
 				135B38552AFA9EC4007C1C04 /* MainViewController.swift */,
 			);
@@ -316,63 +299,48 @@
 			path = PigulkaData;
 			sourceTree = "<group>";
 		};
-		136A5B1C2B1BD148003AFE59 /* Fourth */ = {
-			isa = PBXGroup;
-			children = (
-				136A5B1D2B1BD16D003AFE59 /* FourthPickerView.swift */,
-				136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */,
-			);
-			path = Fourth;
-			sourceTree = "<group>";
-		};
-		136A5B212B1BD525003AFE59 /* Fifth */ = {
-			isa = PBXGroup;
-			children = (
-				136A5B222B1BD532003AFE59 /* FifthPickerView.swift */,
-				136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */,
-			);
-			path = Fifth;
-			sourceTree = "<group>";
-		};
-		13A00CE22B1B166500F95944 /* Third */ = {
-			isa = PBXGroup;
-			children = (
-				13A00CE32B1B169900F95944 /* ThirdPickerView.swift */,
-				13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */,
-			);
-			path = Third;
-			sourceTree = "<group>";
-		};
-		13DD9D9A2B0F39D400E23504 /* NotificationsView */ = {
-			isa = PBXGroup;
-			children = (
-				13F4C13A2B1C5FB50078A751 /* Sixth */,
-				136A5B212B1BD525003AFE59 /* Fifth */,
-				136A5B1C2B1BD148003AFE59 /* Fourth */,
-				133E77892B0F689C009ABCC7 /* Second */,
-				133E77882B0F688E009ABCC7 /* First */,
-				13A00CE22B1B166500F95944 /* Third */,
-			);
-			path = NotificationsView;
-			sourceTree = "<group>";
-		};
-		13ECF7172B0F195F00DB91A1 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				13ECF7192B0F198300DB91A1 /* NotificationsViewController.swift */,
-				135930632B0F394B00E9779B /* NotificationTableView.swift */,
-				135930652B0F39A300E9779B /* NotificationPickerViewExtension.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
-		13F4C13A2B1C5FB50078A751 /* Sixth */ = {
+		136A5B212B1BD525003AFE59 /* NotificationPickerView */ = {
 			isa = PBXGroup;
 			children = (
 				13F4C13B2B1C5FD10078A751 /* SixthPickerView.swift */,
-				13F4C13D2B1C5FDE0078A751 /* SixthCustomTableCell.swift */,
+				136A5B222B1BD532003AFE59 /* FifthPickerView.swift */,
+				13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */,
+				13A00CE32B1B169900F95944 /* ThirdPickerView.swift */,
+				133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */,
+				136A5B1D2B1BD16D003AFE59 /* FourthPickerView.swift */,
 			);
-			path = Sixth;
+			path = NotificationPickerView;
+			sourceTree = "<group>";
+		};
+		13DD9D9A2B0F39D400E23504 /* PickerExtension */ = {
+			isa = PBXGroup;
+			children = (
+				135930652B0F39A300E9779B /* NotificationPickerExtension.swift */,
+				13523D432B0348DC00D5C649 /* PillsPickerExtension.swift */,
+			);
+			path = PickerExtension;
+			sourceTree = "<group>";
+		};
+		13ECF7172B0F195F00DB91A1 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				135930632B0F394B00E9779B /* NotificationTableViewExtension.swift */,
+				13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		13F4C13A2B1C5FB50078A751 /* NotificationCustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */,
+				136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */,
+				133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */,
+				13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */,
+				13F4C13D2B1C5FDE0078A751 /* SixthCustomTableCell.swift */,
+				139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */,
+			);
+			path = NotificationCustomCell;
 			sourceTree = "<group>";
 		};
 		13F556072AFCB0BA0025119F /* Models */ = {
@@ -649,7 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */,
-				13523D442B0348DC00D5C649 /* SettingPickerExtension.swift in Sources */,
+				13523D442B0348DC00D5C649 /* PillsPickerExtension.swift in Sources */,
 				136A5B1E2B1BD16D003AFE59 /* FourthPickerView.swift in Sources */,
 				13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */,
 				134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */,
@@ -660,7 +628,7 @@
 				133E778B2B0F691C009ABCC7 /* SecondPickerView.swift in Sources */,
 				135B385C2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld in Sources */,
 				135B38562AFA9EC4007C1C04 /* MainViewController.swift in Sources */,
-				135930642B0F394B00E9779B /* NotificationTableView.swift in Sources */,
+				135930642B0F394B00E9779B /* NotificationTableViewExtension.swift in Sources */,
 				13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */,
 				136A5B232B1BD532003AFE59 /* FifthPickerView.swift in Sources */,
 				13DD9D9C2B0F39E300E23504 /* FirstPickerView.swift in Sources */,
@@ -682,7 +650,7 @@
 				135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */,
 				1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */,
 				1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */,
-				135930662B0F39A300E9779B /* NotificationPickerViewExtension.swift in Sources */,
+				135930662B0F39A300E9779B /* NotificationPickerExtension.swift in Sources */,
 				13F556092AFCB0CE0025119F /* Models.swift in Sources */,
 				135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */,
 			);

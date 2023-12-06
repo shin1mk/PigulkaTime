@@ -47,7 +47,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         titleLabel.text = "Notifications"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 30)
+        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
         return titleLabel
     }()
     private let subtitleLabel: UILabel = {
@@ -99,7 +99,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         view.addSubview(tableView)  // Добавьте эту строку
         tableView.backgroundColor = .clear
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
             make.bottom.equalToSuperview()

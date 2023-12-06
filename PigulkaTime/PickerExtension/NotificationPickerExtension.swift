@@ -1,5 +1,5 @@
 //
-//  NotificationPickerViewExtension.swift
+//  NotificationPickerExtension.swift
 //  PigulkaTime
 //
 //  Created by SHIN MIKHAIL on 23.11.2023.

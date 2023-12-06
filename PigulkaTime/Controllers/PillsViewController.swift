@@ -43,27 +43,27 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public let types = ["Not selected", "Pills", "Tablets", "Capsules", "Drops", "Injections", "Suppositories", "Syrups",  "Ointments", "Sprays", "Lozenges", "Inhalers"]
     public var selectedType: String?
     // for dosage picker view
-    public let dosages = ["Not selected", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
+    public let dosages = ["0", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
     public var selectedDosage: String?
     // for frequency picker view
-    public let frequency = ["Not selected", "Daily", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 4 hours", "Every 6 hours", "Every 12 hours", "Every other day", "Weekly", "As needed", "Other"]
+    public let frequency = ["Not selected","Every day", "Every other day", "As needed", "Other", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Weekly"]
     public var selectedFrequency: String?
     // for days picker view
-    public let days: [String] = ["2 days", "3 days", "4 days", "5 days", "7 days", "10 days", "14 days", "30 days", "60 days", "90 days"]
+    public let days: [String] = ["2", "3", "4", "5", "6", "7", "10", "14", "30", "60", "90", "120"]
     public var selectedDays: String?
     // for times per day picker view
-    public let times: [String] = (1...10).map { "\($0)" }
+    public let times: [String] = (1...6).map { "\($0)" }
     public var selectedTimes: String?
     
     public lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DrugNameCustomTableCell.self, forCellReuseIdentifier: "DrugNameCustomCell")
         tableView.register(TypeCustomTableCell.self, forCellReuseIdentifier: "TypeCustomCell")
         tableView.register(DosageCustomTableCell.self, forCellReuseIdentifier: "DosageCustomCell")
         tableView.register(FrequencyCustomTableCell.self, forCellReuseIdentifier: "FrequencyCustomCell")
         tableView.register(DaysCustomTableCell.self, forCellReuseIdentifier: "DaysCustomCell")
         tableView.register(TimesCustomTableCell.self, forCellReuseIdentifier: "TimesCustomCell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -75,16 +75,16 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         titleLabel.text = "Add pill"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 30)
+        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
         return titleLabel
     }()
     private let saveButton: UIButton = {
         let saveButton = UIButton()
         saveButton.setTitle("Save", for: .normal)
-        saveButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
+        saveButton.titleLabel?.font = UIFont.SFUITextBold(ofSize: 22)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = .systemGray6
-        saveButton.layer.cornerRadius = 5
+        saveButton.layer.cornerRadius = 10
         return saveButton
     }()
     //MARK: Lifecycle
@@ -104,11 +104,10 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             selectedDosage = editingPill.dosage
             selectedFrequency = editingPill.frequency
             selectedTimes = editingPill.times
-            if let daysLeft = editingPill.days?.replacingOccurrences(of: " days", with: ""),
+            if let daysLeft = editingPill.days?.replacingOccurrences(of: "", with: ""),
                let daysInt = Int(daysLeft) {
-                selectedDays = "\(daysInt) days"
+                selectedDays = "\(daysInt)"
             }
-            
             // Принты для отслеживания данных
             print("Editing Pill Name: \(editingPill.name ?? "N/A")")
             print("Selected Type: \(selectedType ?? "N/A")")
@@ -116,18 +115,15 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
             print("Selected Frequency: \(selectedFrequency ?? "N/A")")
             print("Selected Days: \(selectedDays ?? "N/A")")
             print("Selected Times: \(selectedTimes ?? "N/A")")
-            
             // название препарата ставим в поле ввода
             if let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? DrugNameCustomTableCell {
                 nameCell.textField.text = editingPill.name
-                nameCell.textField.textColor = .systemGray6
+                nameCell.textField.textColor = .systemGray5
+                nameCell.titleLabel.textColor = .systemGray5
                 nameCell.textField.isUserInteractionEnabled = false
-                nameCell.titleLabel.textColor = .systemGray6
             }
-            
             // Обновляем titleLabel с именем препарата
             titleLabel.text = editingPill.name ?? "Add pill"
-            
             // Заполняем значения в соответствующих ячейках
             if let typeCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TypeCustomTableCell {
                 typeCell.setLabelText(selectedType ?? "")
@@ -172,7 +168,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.addSubview(tableView)
         tableView.backgroundColor = UIColor.clear
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
             make.bottom.equalTo(bottomMarginGuide.snp.top)
@@ -208,7 +204,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
            let selectedFrequency = selectedFrequency,
            let selectedDaysString = selectedDays {
 
-            let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "days", with: "").trimmingCharacters(in: .whitespaces)
+            let cleanedSelectedDaysString = selectedDaysString.replacingOccurrences(of: "", with: "").trimmingCharacters(in: .whitespaces)
             if let selectedDays = Int(cleanedSelectedDaysString) {
                 print("Selected days: \(selectedDays)")
 
@@ -225,15 +221,14 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     // Обновляем существующий объект Pigulka в Core Data
                     CoreDataManager.shared.updatePillInCoreData(pill: editingPill, dosage: selectedDosage, type: selectedType, frequency: selectedFrequency, days: selectedDays, times: selectedTimes)
                     // Обновляем массив pillsArray после редактирования
-//                    if let index = pillsArray.firstIndex(where: { $0.name == editingPill.name }) {
                     if pillsArray.firstIndex(where: { $0.name == editingPill.name }) != nil {
                         let newPill = Pill(
                             name: pillName,
                             dosage: selectedDosage,
                             type: selectedType,
                             frequency: selectedFrequency,
-                            days: "\(selectedDays) days",
-                            times: "\(selectedTimes ?? "no")",
+                            days: "\(selectedDays)",
+                            times: "\(selectedTimes ?? "0")",
                             isEditable: true,
                             identifier: "",
                             startDate: Date()
@@ -247,8 +242,8 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                         dosage: selectedDosage,
                         type: selectedType,
                         frequency: selectedFrequency,
-                        days: "\(selectedDays) days",
-                        times: "\(selectedTimes ?? "no")",
+                        days: "\(selectedDays)",
+                        times: "\(selectedTimes ?? "0")",
                         isEditable: true,
                         identifier: "",
                         startDate: Date()

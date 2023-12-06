@@ -43,13 +43,13 @@ final class MainViewController: UIViewController {
     private let addButton: UIButton = {
         let addButton = UIButton()
         let plusFillImage = UIImage(systemName: "plus.circle.fill")?
-            .withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+            .withTintColor(UIColor.systemRed, renderingMode: .alwaysOriginal)
         addButton.setImage(plusFillImage, for: .normal)
         addButton.setTitle(" Add pills", for: .normal)
-        addButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
+        addButton.titleLabel?.font = UIFont.SFUITextBold(ofSize: 22)
         addButton.setTitleColor(.white, for: .normal)
         addButton.backgroundColor = .systemGray6
-        addButton.layer.cornerRadius = 5
+        addButton.layer.cornerRadius = 10
         return addButton
     }()
     private let notificationsButton: UIButton = {
@@ -101,7 +101,7 @@ final class MainViewController: UIViewController {
         view.addSubview(tableView)
         tableView.backgroundColor = .clear
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(15)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(5)
             make.trailing.equalToSuperview().offset(-5)
             make.bottom.equalTo(bottomMarginGuide.snp.top)
@@ -174,7 +174,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         // Рассчитываем конечную дату
         if let daysString = pill.days, let daysInt = Int(daysString) {
             let remainingDays = calculateRemainingDays(startDate: pill.startDate, numberOfDays: daysInt)
-            cell.setDaysLabelText("\(remainingDays) days")
+            cell.setDaysLabelText("\(remainingDays) days left")
         } else {
             cell.setDaysLabelText("N/A") // или другое значение по умолчанию
         }

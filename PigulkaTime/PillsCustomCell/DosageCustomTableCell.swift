@@ -13,7 +13,7 @@ final class DosageCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Quantity per dose"
+        titleLabel.text = "Dosage"
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
