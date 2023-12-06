@@ -50,6 +50,14 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         titleLabel.font = UIFont.SFUITextHeavy(ofSize: 30)
         return titleLabel
     }()
+    private let subtitleLabel: UILabel = {
+        let subtitleLabel = UILabel()
+        subtitleLabel.text = "Will be repeated every day"
+        subtitleLabel.textColor = .systemGray
+        subtitleLabel.textAlignment = .left
+        subtitleLabel.font = UIFont.SFUITextRegular(ofSize: 15)
+        return subtitleLabel
+    }()
     private let subtractImageView = UIImageView(image: UIImage(named: "subtract")) // line
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -79,6 +87,12 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
+            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
+        }
+        //subtitle
+        view.addSubview(subtitleLabel)
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(0)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
         }
         // tableView

@@ -54,7 +54,7 @@ final class MainViewController: UIViewController {
     }()
     private let notificationsButton: UIButton = {
         let notificationsButton = UIButton()
-        let bellFillImage = UIImage(systemName: "bell")?
+        let bellFillImage = UIImage(systemName: "bell.fill")?
             .withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
         notificationsButton.setImage(bellFillImage, for: .normal)
         return notificationsButton
