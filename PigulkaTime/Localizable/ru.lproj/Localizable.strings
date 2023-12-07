@@ -1,0 +1,61 @@
+/*
+ Localizable.strings
+ PigulkaTime
+ 
+ Created by SHIN MIKHAIL on 07.12.2023.
+ 
+ */
+//MARK: MainViewController
+"main_titleLabel" = "Таблетки";
+"main_emptyLabel" = "Твоя таблетница пуста :)";
+"main_addButton" = " Добавить таблетку";
+"main_setDaysLabelText" = " дней осталось";
+"main_setTimesLabelText" = " раз";
+
+"deleteTitle" = "Удалить таблетку";
+"deleteMessage" = "Вы уверены, что хотите удалить эту таблетку?";
+"deleteAction" = "Удалить";
+"deleteCancel" = "Отмена";
+//MARK: PillsViewController
+"notSelected" = "Не выбрано";
+"pills" = "Таблетка";
+"capsules" = "Капсула";
+"drops" = "Капли";
+"injections" = "Инъекция";
+"suppositories" = "Свечи";
+"syrups" = "Сироп";
+"ointments" = "Мазь";
+"sprays" = "Спрей";
+"lozenges" = "Леденцы";
+"inhalers" = "Ингаляторы";
+
+"NotSelected" = "Не выбрано";
+"EveryDay" = "Ежедневно";
+"EveryOtherDay" = "Через день";
+"AsNeeded" = "По необходимости";
+"Other" = "Другое";
+"EveryHour" = "Каждый час";
+"Every2Hours" = "Каждые 2 часа";
+"Every3Hours" = "Каждые 3 часа";
+"Every6Hours" = "Каждые 6 часов";
+"Every8Hours" = "Каждые 8 часов";
+"Every12Hours" = "Каждые 12 часов";
+"Weekly" = "Еженедельно";
+
+"pill_titleLabel" = "Добавить таблетку";
+"pill_saveButton" = "Сохранить";
+"pill_defaultPillName" = "Нет названия";
+
+//MARK: NotificationsViewController
+"notification_titleLabel" = "Уведомления";
+"notification_subtitleLabel" = "Будут повторяться каждый день";
+"notification_rateButton" = "Оценить приложение";
+"timeToTake" = "Время принять ваши таблетки!";
+
+"drug_name" = "Название препарата";
+"type_name" = "Тип препарата";
+"choose" = "Выбрать";
+"dosage" = "Дозировка";
+"frequency" = "Частота";
+"how_many_days" = "Сколько дней";
+"how_many_times" = "Сколько раз в день";

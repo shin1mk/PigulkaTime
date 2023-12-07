@@ -45,7 +45,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     }()
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Notifications"
+        titleLabel.text = "notification_titleLabel".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
@@ -53,7 +53,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     }()
     private let subtitleLabel: UILabel = {
         let subtitleLabel = UILabel()
-        subtitleLabel.text = "Will be repeated every day"
+        subtitleLabel.text = "notification_subtitleLabel".localized()
         subtitleLabel.textColor = .systemGray
         subtitleLabel.textAlignment = .left
         subtitleLabel.font = UIFont.SFUITextRegular(ofSize: 15)
@@ -61,8 +61,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     }()
     private let rateButton: UIButton = {
         let button = UIButton()
-//        button.setTitle("rateApp_text".localized(), for: .normal)
-        button.setTitle("Rate app", for: .normal)
+        button.setTitle("notification_rateButton".localized(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.SFUITextRegular(ofSize: 15)
         button.backgroundColor = .systemGray6

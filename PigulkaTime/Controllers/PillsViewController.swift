@@ -40,13 +40,34 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public var editingCell: DrugNameCustomTableCell? // изменения ячейки
     public var pillsArray: [Pill] = [] // массив
     // for type picker view
-    public let types = ["Not selected", "Pills", "Capsules", "Drops", "Injections", "Suppositories", "Syrups",  "Ointments", "Sprays", "Lozenges", "Inhalers"]
+    public let types = ["notSelected".localized(),
+                        "pills".localized(),
+                        "capsules".localized(),
+                        "drops".localized(),
+                        "injections".localized(),
+                        "suppositories".localized(),
+                        "syrups".localized(),
+                        "ointments".localized(),
+                        "sprays".localized(),
+                        "lozenges".localized(),
+                        "inhalers".localized()]
     public var selectedType: String?
     // for dosage picker view
     public let dosages = ["0", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]
     public var selectedDosage: String?
     // for frequency picker view
-    public let frequency = ["Not selected","Every day", "Every other day", "As needed", "Other", "Every Hour", "Every 2 hours", "Every 3 hours", "Every 6 hours", "Every 8 hours", "Every 12 hours", "Weekly"]
+    public let frequency = ["notSelected".localized(),
+                            "everyDay".localized(),
+                            "everyOtherDay".localized(),
+                            "asNeeded".localized(),
+                            "other".localized(),
+                            "everyHour".localized(),
+                            "every2Hours".localized(),
+                            "every3Hours".localized(),
+                            "every6Hours".localized(),
+                            "every8Hours".localized(),
+                            "every12Hours".localized(),
+                            "weekly".localized()]
     public var selectedFrequency: String?
     // for days picker view
     public let days: [String] = ["2", "3", "4", "5", "6", "7", "10", "14", "30", "60", "90", "120"]
@@ -72,7 +93,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     private let subtractImageView = UIImageView(image: UIImage(named: "subtract"))
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Add pill"
+        titleLabel.text = "pill_titleLabel".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
@@ -80,7 +101,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }()
     private let saveButton: UIButton = {
         let saveButton = UIButton()
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle("pill_saveButton".localized(), for: .normal)
         saveButton.titleLabel?.font = UIFont.SFUITextBold(ofSize: 22)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = .systemGray6
@@ -214,7 +235,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     print("Removed old pill: \(editingPill.name ?? "N/A")")
                 }
 
-                let defaultPillName = "Unnamed Pill"
+                let defaultPillName = "pill_defaultPillName".localized()
                 let pillName = (editingCell?.textField.text ?? titleLabel.text)!.isEmpty ? defaultPillName : (editingCell?.textField.text ?? titleLabel.text)!
 
                 if let editingPill = editingPill {

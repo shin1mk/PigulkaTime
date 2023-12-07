@@ -1,0 +1,61 @@
+/*
+ Localizable.strings
+ PigulkaTime
+ 
+ Created by SHIN MIKHAIL on 07.12.2023.
+ 
+ */
+//MARK: MainViewController
+"main_titleLabel" = "Пігулки";
+"main_emptyLabel" = "Твоя таблетниця порожня :)";
+"main_addButton" = "Додати пігулку";
+"main_setDaysLabelText" = " днів залишилося";
+"main_setTimesLabelText" = " разів";
+
+"deleteTitle" = "Видалити пігулку";
+"deleteMessage" = "Ви впевнені, що хочете видалити цю таблетку?";
+"deleteAction" = "Видалити";
+"deleteCancel" = "Cкасувати";
+//MARK: PillsViewController
+"notSelected" = "Не обрано";
+"pills" = "Пігулки";
+"capsules" = "Капсули";
+"drops" = "Краплі";
+"injections" = "Ін'єкції";
+"suppositories" = "Супозиторії";
+"syrups" = "Сироп";
+"ointments" = "Мазь";
+"sprays" = "Спреї";
+"lozenges" = "Льоденці";
+"inhalers" = "Інгалятори";
+
+"notSelected" = "Не обрано";
+"everyDay" = "Щоденно";
+"everyOtherDay" = "Через день";
+"asNeeded" = "За потребою";
+"other" = "Інше";
+"everyHour" = "Кожну годину";
+"every2Hours" = "Кожні 2 години";
+"every3Hours" = "Кожні 3 години";
+"every6Hours" = "Кожні 6 годин";
+"every8Hours" = "Кожні 8 годин";
+"every12Hours" = "Кожні 12 годин";
+"weekly" = "Щотижня";
+
+"pill_titleLabel" = "Додати пігулку";
+"pill_saveButton" = "Зберегти";
+"pill_defaultPillName" = "Без назви";
+
+//MARK: NotificationsViewController
+"notification_titleLabel" = "Сповіщення";
+"notification_subtitleLabel" =  "Буде повторюватися щоденно";
+"notification_rateButton" =  "Оцінити додаток";
+"timeToTake" =  "Час приймати ваши пігулки!";
+
+"drug_name" = "Назва препарату";
+"type_name" = "Тип препарату";
+"choose" = "Вибрати";
+"dosage" = "Дозування ";
+"frequency" = "Частота прийому";
+"how_many_days" = "Скільки днів";
+"how_many_times" = "Скільки разів на день";

@@ -13,7 +13,7 @@ final class FrequencyCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Frequency"
+        titleLabel.text = "frequency".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
@@ -21,7 +21,7 @@ final class FrequencyCustomTableCell: UITableViewCell {
     }()
     private let frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
-        frequencyLabel.text = "Choose \u{2192}"
+        frequencyLabel.text = "choose".localized() + " \u{2192}"
         frequencyLabel.textColor = .systemGray
         frequencyLabel.textAlignment = .right
         frequencyLabel.font = UIFont.SFUITextRegular(ofSize: 17)

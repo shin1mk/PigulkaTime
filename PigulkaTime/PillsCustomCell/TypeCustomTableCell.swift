@@ -13,7 +13,7 @@ final class TypeCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Type"
+        titleLabel.text = "type_name".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
@@ -21,7 +21,7 @@ final class TypeCustomTableCell: UITableViewCell {
     }()
     private let typeLabel: UILabel = {
         let typeLabel = UILabel()
-        typeLabel.text = "Choose \u{2192}"
+        typeLabel.text = "choose".localized() + " \u{2192}"
         typeLabel.textColor = .systemGray
         typeLabel.textAlignment = .right
         typeLabel.font = UIFont.SFUITextRegular(ofSize: 17)

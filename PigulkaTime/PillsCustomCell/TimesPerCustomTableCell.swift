@@ -13,7 +13,7 @@ final class TimesCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "How many times per day"
+        titleLabel.text = "how_many_times".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
@@ -21,7 +21,7 @@ final class TimesCustomTableCell: UITableViewCell {
     }()
     private let timesLabel: UILabel = {
         let timesLabel = UILabel()
-        timesLabel.text = "Choose \u{2192}"
+        timesLabel.text = "choose".localized() + " \u{2192}"
         timesLabel.textColor = .systemGray
         timesLabel.textAlignment = .right
         timesLabel.font = UIFont.SFUITextRegular(ofSize: 17)

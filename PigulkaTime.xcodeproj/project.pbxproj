@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1311AC4C2B21E63700A12EA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1311AC4E2B21E63700A12EA3 /* Localizable.strings */; };
 		1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */; };
 		1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */; };
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
@@ -80,6 +81,9 @@
 /* Begin PBXFileReference section */
 		04D4F1B31EEF4894E03B9AD5 /* Pods-PigulkaTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime_PigulkaTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1311AC4D2B21E63700A12EA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1311AC4F2B21E63D00A12EA3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1311AC502B21E63E00A12EA3 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
 		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
 		1338BB382B21DE8C00DE0E30 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -276,9 +280,9 @@
 		135B38862AFA9F45007C1C04 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1338BB382B21DE8C00DE0E30 /* Info.plist */,
 				135B38872AFA9F69007C1C04 /* Fonts */,
 				135B385D2AFA9EC5007C1C04 /* Assets.xcassets */,
+				1338BB382B21DE8C00DE0E30 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -322,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				1379D8122B20ED53009B67E2 /* Extension + String.swift .swift */,
+				1311AC4E2B21E63700A12EA3 /* Localizable.strings */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -479,6 +484,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				uk,
 			);
 			mainGroup = 135B38452AFA9EC4007C1C04;
 			productRefGroup = 135B384F2AFA9EC4007C1C04 /* Products */;
@@ -500,6 +507,7 @@
 				135B388E2AFA9F98007C1C04 /* SFUIText-Heavy.ttf in Resources */,
 				135B385E2AFA9EC5007C1C04 /* Assets.xcassets in Resources */,
 				135B38902AFA9F98007C1C04 /* SFUIText-Bold.ttf in Resources */,
+				1311AC4C2B21E63700A12EA3 /* Localizable.strings in Resources */,
 				135B38932AFA9F98007C1C04 /* SFUIText-Regular.ttf in Resources */,
 				135B38912AFA9F98007C1C04 /* SFUIText-Light.ttf in Resources */,
 				135B38922AFA9F98007C1C04 /* SFUIText-Medium.ttf in Resources */,
@@ -703,6 +711,19 @@
 			targetProxy = 135B38722AFA9EC5007C1C04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1311AC4E2B21E63700A12EA3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1311AC4D2B21E63700A12EA3 /* en */,
+				1311AC4F2B21E63D00A12EA3 /* ru */,
+				1311AC502B21E63E00A12EA3 /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		135B38792AFA9EC5007C1C04 /* Debug */ = {

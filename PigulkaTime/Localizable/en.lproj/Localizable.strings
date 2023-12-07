@@ -1,0 +1,61 @@
+/* 
+ Localizable.strings
+ PigulkaTime
+ 
+ Created by SHIN MIKHAIL on 07.12.2023.
+ 
+ */
+//MARK: MainViewController
+"main_titleLabel" = "Pills";
+"main_emptyLabel" = "Your pill box is empty :)";
+"main_addButton" = " Add pills";
+"main_setDaysLabelText" = " days left";
+"main_setTimesLabelText" = " times";
+
+"deleteTitle" = "Delete Pill";
+"deleteMessage" = "Are you sure you want to delete this pill?";
+"deleteAction" = "Delete";
+"deleteCancel" = "Cancel";
+//MARK: PillsViewController
+"notSelected" = "Not selected";
+"pills" = "Pills";
+"capsules" = "Capsules";
+"drops" = "Drops";
+"injections" = "Injections";
+"suppositories" = "Suppositories";
+"syrups" = "Syrups";
+"ointments" = "Ointments";
+"sprays" = "Sprays";
+"lozenges" = "Lozenges";
+"inhalers" = "Inhalers";
+
+"NotSelected" = "Not selected";
+"EveryDay" = "Every day";
+"EveryOtherDay" = "Every other day";
+"AsNeeded" = "As needed";
+"Other" = "Other";
+"EveryHour" = "Every hour";
+"Every2Hours" = "Every 2 hours";
+"Every3Hours" = "Every 3 hours";
+"Every6Hours" = "Every 6 hours";
+"Every8Hours" = "Every 8 hours";
+"Every12Hours" = "Every 12 hours";
+"Weekly" = "Weekly";
+
+"pill_titleLabel" = "Add pill";
+"pill_saveButton" = "Save";
+"pill_defaultPillName" = "Unnamed pill";
+
+//MARK: NotificationsViewController
+"notification_titleLabel" = "Notifications";
+"notification_subtitleLabel" = "Will be repeated every day";
+"notification_rateButton" = "Rate app";
+"timeToTake" = "Time to take your pills!";
+
+"drug_name" = "Drug name";
+"type_name" = "Type";
+"choose" = "Choose";
+"dosage" = "Dosage";
+"frequency" = "Frequency";
+"how_many_days" = "How many days";
+"how_many_times" = "How many times per day";

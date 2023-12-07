@@ -13,7 +13,7 @@ final class DaysCustomTableCell: UITableViewCell {
     //MARK: Properties
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "How many days"
+        titleLabel.text = "how_many_days".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
@@ -21,7 +21,7 @@ final class DaysCustomTableCell: UITableViewCell {
     }()
     private let daysLabel: UILabel = {
         let dosageLabel = UILabel()
-        dosageLabel.text = "Choose \u{2192}"
+        dosageLabel.text = "choose".localized() + " \u{2192}"
         dosageLabel.textColor = .systemGray
         dosageLabel.textAlignment = .right
         dosageLabel.font = UIFont.SFUITextRegular(ofSize: 17)

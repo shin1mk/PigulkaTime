@@ -12,7 +12,7 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
     //MARK: Properties
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Drug name"
+        titleLabel.text = "drug_name".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)

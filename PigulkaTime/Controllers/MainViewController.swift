@@ -26,7 +26,7 @@ final class MainViewController: UIViewController {
     }()
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Pills"
+        titleLabel.text = "main_titleLabel".localized();
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.SFUITextHeavy(ofSize: 45)
@@ -34,7 +34,7 @@ final class MainViewController: UIViewController {
     }()
     private let emptyLabel: UILabel = {
         let emptyLabel = UILabel()
-        emptyLabel.text = "Your pill box is empty :)"
+        emptyLabel.text = "main_emptyLabel".localized();
         emptyLabel.textColor = .white
         emptyLabel.textAlignment = .left
         emptyLabel.font = UIFont.SFUITextBold(ofSize: 18)
@@ -45,7 +45,8 @@ final class MainViewController: UIViewController {
         let plusFillImage = UIImage(systemName: "plus.circle.fill")?
             .withTintColor(UIColor.red, renderingMode: .alwaysOriginal)
         addButton.setImage(plusFillImage, for: .normal)
-        addButton.setTitle(" Add pills", for: .normal)
+        addButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 14)
+        addButton.setTitle("main_addButton".localized(), for: .normal)
         addButton.titleLabel?.font = UIFont.SFUITextBold(ofSize: 22)
         addButton.setTitleColor(.white, for: .normal)
         addButton.backgroundColor = .systemGray6
@@ -174,13 +175,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         // Рассчитываем конечную дату
         if let daysString = pill.days, let daysInt = Int(daysString) {
             let remainingDays = calculateRemainingDays(startDate: pill.startDate, numberOfDays: daysInt)
-            cell.setDaysLabelText("\(remainingDays) days left")
+            cell.setDaysLabelText("\(remainingDays)" + "main_setDaysLabelText".localized())
         } else {
             cell.setDaysLabelText("N/A") // или другое значение по умолчанию
         }
 
-        cell.setTimesLabelText("\(pill.times!) times")
-
+        cell.setTimesLabelText("\(pill.times!)" + "main_setTimesLabelText".localized())
         return cell
     }
     // рассчет дней прошедших и оставшихся
@@ -220,11 +220,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             let pillToRemove = self.pillsArray[indexPath.row]
             // Создайте алерт для подтверждения удаления
             let alertController = UIAlertController(
-                title: "Delete Pill",
-                message: "Are you sure you want to delete this pill?",
+                title: "deleteTitle".localized(),
+                message: "deleteMessage".localized(),
                 preferredStyle: .alert
             )
-            alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            alertController.addAction(UIAlertAction(title: "deleteAction".localized(), style: .destructive, handler: { [weak self] _ in
                 guard let self = self else { return }
                 // Удаляем объект из массива данных
                 self.pillsArray.remove(at: indexPath.row)
@@ -239,7 +239,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 self.emptyLabel.isHidden = !self.pillsArray.isEmpty
             }))
             
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alertController.addAction(UIAlertAction(title: "deleteCancel".localized(), style: .cancel, handler: { _ in
                 completionHandler(false) // Отменить удаление
             }))
             self.present(alertController, animated: true, completion: nil)
