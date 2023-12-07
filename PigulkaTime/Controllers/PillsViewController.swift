@@ -96,7 +96,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
         titleLabel.text = "pill_titleLabel".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 35)
+        titleLabel.font = UIFont.SFUITextHeavy(ofSize: 30)
         return titleLabel
     }()
     private let saveButton: UIButton = {

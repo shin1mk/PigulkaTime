@@ -29,18 +29,18 @@
 "lozenges" = "Lozenges";
 "inhalers" = "Inhalers";
 
-"NotSelected" = "Not selected";
-"EveryDay" = "Every day";
-"EveryOtherDay" = "Every other day";
-"AsNeeded" = "As needed";
-"Other" = "Other";
-"EveryHour" = "Every hour";
-"Every2Hours" = "Every 2 hours";
-"Every3Hours" = "Every 3 hours";
-"Every6Hours" = "Every 6 hours";
-"Every8Hours" = "Every 8 hours";
-"Every12Hours" = "Every 12 hours";
-"Weekly" = "Weekly";
+"notSelected" = "Not selected";
+"everyDay" = "Every day";
+"everyOtherDay" = "Every other day";
+"asNeeded" = "As needed";
+"other" = "Other";
+"everyHour" = "Every hour";
+"every2Hours" = "Every 2 hours";
+"every3Hours" = "Every 3 hours";
+"every6Hours" = "Every 6 hours";
+"every8Hours" = "Every 8 hours";
+"every12Hours" = "Every 12 hours";
+"weekly" = "Weekly";
 
 "pill_titleLabel" = "Add pill";
 "pill_saveButton" = "Save";
@@ -53,9 +53,11 @@
 "timeToTake" = "Time to take your pills!";
 
 "drug_name" = "Drug name";
+"drug_name_placeholder" = "Enter";
 "type_name" = "Type";
 "choose" = "Choose";
 "dosage" = "Dosage";
 "frequency" = "Frequency";
 "how_many_days" = "How many days";
 "how_many_times" = "How many times per day";
+"done" = "Done";

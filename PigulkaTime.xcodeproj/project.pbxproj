@@ -13,7 +13,6 @@
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
 		133E778B2B0F691C009ABCC7 /* SecondPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */; };
 		133E778D2B0F6929009ABCC7 /* SecondCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */; };
-		134EC4042B20E41E003A6C7B /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134EC4032B20E41E003A6C7B /* text.swift */; };
 		134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */; };
 		13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D332B03465F00D5C649 /* TypePickerExtension.swift */; };
 		13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */; };
@@ -90,7 +89,6 @@
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
 		133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPickerView.swift; sourceTree = "<group>"; };
 		133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCustomTableCell.swift; sourceTree = "<group>"; };
-		134EC4032B20E41E003A6C7B /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
 		134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPerCustomTableCell.swift; sourceTree = "<group>"; };
 		13523D332B03465F00D5C649 /* TypePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerExtension.swift; sourceTree = "<group>"; };
 		13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTableViewExtension.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 		135B38452AFA9EC4007C1C04 = {
 			isa = PBXGroup;
 			children = (
-				134EC4032B20E41E003A6C7B /* text.swift */,
 				135B38502AFA9EC4007C1C04 /* PigulkaTime */,
 				135B386A2AFA9EC5007C1C04 /* PigulkaTimeTests */,
 				135B38742AFA9EC5007C1C04 /* PigulkaTimeUITests */,
@@ -664,7 +661,6 @@
 				13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */,
 				136A5B202B1BD18A003AFE59 /* FourthCustomTableCell.swift in Sources */,
 				13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */,
-				134EC4042B20E41E003A6C7B /* text.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */,
 				13ECF71A2B0F198300DB91A1 /* NotificationsViewController.swift in Sources */,

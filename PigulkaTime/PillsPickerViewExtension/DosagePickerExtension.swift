@@ -43,7 +43,7 @@ extension PillsViewController: DosageCustomTableCellDelegate {
     
     private func createDosageOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
-        okButton.setTitle("Done", for: .normal)
+        okButton.setTitle("done".localized(), for: .normal)
         okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6

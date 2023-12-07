@@ -44,7 +44,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
     
     private func createFirstTimeOkButton(for pickerViewController: UIViewController) -> UIButton {
         let okButton = UIButton(type: .system)
-        okButton.setTitle("Done", for: .normal)
+        okButton.setTitle("done".localized(), for: .normal)
         okButton.titleLabel?.font = UIFont.SFUITextMedium(ofSize: 20)
         okButton.setTitleColor(.white, for: .normal)
         okButton.backgroundColor = .systemGray6
@@ -84,7 +84,7 @@ extension NotificationsViewController: UIPickerViewDelegate, UIPickerViewDataSou
         // Создаем экземпляр класса UNMutableNotificationContent для настройки уведомления
         let content = UNMutableNotificationContent()
         content.title = "PigulkaTime"
-        content.body = "Time to take your pills!"
+        content.body = "timeToTake".localized()
         content.sound = .default
         // Установка текущей даты и времени с учетом локального времени устройства
         let now = Date()

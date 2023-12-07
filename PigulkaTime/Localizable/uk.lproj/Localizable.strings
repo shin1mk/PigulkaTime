@@ -53,9 +53,11 @@
 "timeToTake" =  "Час приймати ваши пігулки!";
 
 "drug_name" = "Назва препарату";
+"drug_name_placeholder" = "Введіть";
 "type_name" = "Тип препарату";
 "choose" = "Вибрати";
 "dosage" = "Дозування ";
 "frequency" = "Частота прийому";
 "how_many_days" = "Скільки днів";
 "how_many_times" = "Скільки разів на день";
+"done" = "Готово";

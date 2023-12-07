@@ -29,18 +29,18 @@
 "lozenges" = "Леденцы";
 "inhalers" = "Ингаляторы";
 
-"NotSelected" = "Не выбрано";
-"EveryDay" = "Ежедневно";
-"EveryOtherDay" = "Через день";
-"AsNeeded" = "По необходимости";
-"Other" = "Другое";
-"EveryHour" = "Каждый час";
-"Every2Hours" = "Каждые 2 часа";
-"Every3Hours" = "Каждые 3 часа";
-"Every6Hours" = "Каждые 6 часов";
-"Every8Hours" = "Каждые 8 часов";
-"Every12Hours" = "Каждые 12 часов";
-"Weekly" = "Еженедельно";
+"notSelected" = "Не выбрано";
+"everyDay" = "Ежедневно";
+"everyOtherDay" = "Через день";
+"asNeeded" = "По необходимости";
+"other" = "Другое";
+"everyHour" = "Каждый час";
+"every2Hours" = "Каждые 2 часа";
+"every3Hours" = "Каждые 3 часа";
+"every6Hours" = "Каждые 6 часов";
+"every8Hours" = "Каждые 8 часов";
+"every12Hours" = "Каждые 12 часов";
+"weekly" = "Еженедельно";
 
 "pill_titleLabel" = "Добавить таблетку";
 "pill_saveButton" = "Сохранить";
@@ -52,10 +52,12 @@
 "notification_rateButton" = "Оценить приложение";
 "timeToTake" = "Время принять ваши таблетки!";
 
-"drug_name" = "Название препарата";
+"drug_name" = "Название";
+"drug_name_placeholder" = "Введите";
 "type_name" = "Тип препарата";
 "choose" = "Выбрать";
 "dosage" = "Дозировка";
-"frequency" = "Частота";
+"frequency" = "Частота приема";
 "how_many_days" = "Сколько дней";
 "how_many_times" = "Сколько раз в день";
+"done" = "Готово";
