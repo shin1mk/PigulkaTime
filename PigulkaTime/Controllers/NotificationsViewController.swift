@@ -135,7 +135,7 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
     }
     
     @objc private func rateButtonTapped() {
-        if let url = URL(string: "https://apps.apple.com/us/app/pigulkatime/id6468251721") {
+        if let url = URL(string: "https://apps.apple.com/app/pigulkatime/id6471518578") {
             let safariViewController = SFSafariViewController(url: url)
             present(safariViewController, animated: true, completion: nil)
         }
