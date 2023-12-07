@@ -40,7 +40,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
     public var editingCell: DrugNameCustomTableCell? // изменения ячейки
     public var pillsArray: [Pill] = [] // массив
     // for type picker view
-    public let types = ["Not selected", "Pills", "Tablets", "Capsules", "Drops", "Injections", "Suppositories", "Syrups",  "Ointments", "Sprays", "Lozenges", "Inhalers"]
+    public let types = ["Not selected", "Pills", "Capsules", "Drops", "Injections", "Suppositories", "Syrups",  "Ointments", "Sprays", "Lozenges", "Inhalers"]
     public var selectedType: String?
     // for dosage picker view
     public let dosages = ["0", "0.25", "0.5", "1", "1.5", "2", "2.5", "3", "4", "5", "10", "15", "20", "25", "30"]

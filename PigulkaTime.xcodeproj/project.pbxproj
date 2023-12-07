@@ -12,6 +12,7 @@
 		1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */; };
 		133E778B2B0F691C009ABCC7 /* SecondPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */; };
 		133E778D2B0F6929009ABCC7 /* SecondCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */; };
+		134EC4042B20E41E003A6C7B /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134EC4032B20E41E003A6C7B /* text.swift */; };
 		134FE0542B011256009FABE5 /* TimesPerCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */; };
 		13523D342B03465F00D5C649 /* TypePickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D332B03465F00D5C649 /* TypePickerExtension.swift */; };
 		13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */; };
@@ -41,6 +42,7 @@
 		136A5B202B1BD18A003AFE59 /* FourthCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */; };
 		136A5B232B1BD532003AFE59 /* FifthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B222B1BD532003AFE59 /* FifthPickerView.swift */; };
 		136A5B252B1BD542003AFE59 /* FifthCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */; };
+		1379D8132B20ED53009B67E2 /* Extension + String.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = 1379D8122B20ED53009B67E2 /* Extension + String.swift .swift */; };
 		139168942B0F1F95001A36C0 /* FirstCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */; };
 		13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE32B1B169900F95944 /* ThirdPickerView.swift */; };
 		13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */; };
@@ -80,9 +82,11 @@
 		10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PigulkaTime_PigulkaTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327E0F72AFF890A000D4829 /* TypeCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCustomTableCell.swift; sourceTree = "<group>"; };
 		1327E0F92AFF8A2D000D4829 /* DosageCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageCustomTableCell.swift; sourceTree = "<group>"; };
+		1338BB382B21DE8C00DE0E30 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1339CC172B008A66001171F6 /* FrequencyCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyCustomTableCell.swift; sourceTree = "<group>"; };
 		133E778A2B0F691C009ABCC7 /* SecondPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPickerView.swift; sourceTree = "<group>"; };
 		133E778C2B0F6929009ABCC7 /* SecondCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCustomTableCell.swift; sourceTree = "<group>"; };
+		134EC4032B20E41E003A6C7B /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
 		134FE0532B011256009FABE5 /* TimesPerCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesPerCustomTableCell.swift; sourceTree = "<group>"; };
 		13523D332B03465F00D5C649 /* TypePickerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerExtension.swift; sourceTree = "<group>"; };
 		13523D372B0347D200D5C649 /* PillsTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTableViewExtension.swift; sourceTree = "<group>"; };
@@ -99,7 +103,6 @@
 		135B38552AFA9EC4007C1C04 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		135B385B2AFA9EC4007C1C04 /* PigulkaTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PigulkaTime.xcdatamodel; sourceTree = "<group>"; };
 		135B385D2AFA9EC5007C1C04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		135B38622AFA9EC5007C1C04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		135B38672AFA9EC5007C1C04 /* PigulkaTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PigulkaTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		135B386B2AFA9EC5007C1C04 /* PigulkaTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigulkaTimeTests.swift; sourceTree = "<group>"; };
 		135B38712AFA9EC5007C1C04 /* PigulkaTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PigulkaTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +119,7 @@
 		136A5B1F2B1BD18A003AFE59 /* FourthCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthCustomTableCell.swift; sourceTree = "<group>"; };
 		136A5B222B1BD532003AFE59 /* FifthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthPickerView.swift; sourceTree = "<group>"; };
 		136A5B242B1BD542003AFE59 /* FifthCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthCustomTableCell.swift; sourceTree = "<group>"; };
+		1379D8122B20ED53009B67E2 /* Extension + String.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift .swift"; sourceTree = "<group>"; };
 		139168932B0F1F95001A36C0 /* FirstCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCustomTableCell.swift; sourceTree = "<group>"; };
 		13A00CE32B1B169900F95944 /* ThirdPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPickerView.swift; sourceTree = "<group>"; };
 		13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCustomTableCell.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		135B38452AFA9EC4007C1C04 = {
 			isa = PBXGroup;
 			children = (
+				134EC4032B20E41E003A6C7B /* text.swift */,
 				135B38502AFA9EC4007C1C04 /* PigulkaTime */,
 				135B386A2AFA9EC5007C1C04 /* PigulkaTimeTests */,
 				135B38742AFA9EC5007C1C04 /* PigulkaTimeUITests */,
@@ -216,6 +221,7 @@
 		135B38502AFA9EC4007C1C04 /* PigulkaTime */ = {
 			isa = PBXGroup;
 			children = (
+				1379D8112B20ED31009B67E2 /* Localizable */,
 				136A5B212B1BD525003AFE59 /* NotificationPickerView */,
 				13F4C13A2B1C5FB50078A751 /* NotificationCustomCell */,
 				135C5F402B08F67C00FF299B /* PigulkaData */,
@@ -270,9 +276,9 @@
 		135B38862AFA9F45007C1C04 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1338BB382B21DE8C00DE0E30 /* Info.plist */,
 				135B38872AFA9F69007C1C04 /* Fonts */,
 				135B385D2AFA9EC5007C1C04 /* Assets.xcassets */,
-				135B38622AFA9EC5007C1C04 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -310,6 +316,14 @@
 				136A5B1D2B1BD16D003AFE59 /* FourthPickerView.swift */,
 			);
 			path = NotificationPickerView;
+			sourceTree = "<group>";
+		};
+		1379D8112B20ED31009B67E2 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				1379D8122B20ED53009B67E2 /* Extension + String.swift .swift */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		13DD9D9A2B0F39D400E23504 /* PickerExtension */ = {
@@ -642,9 +656,11 @@
 				13523D382B0347D200D5C649 /* PillsTableViewExtension.swift in Sources */,
 				136A5B202B1BD18A003AFE59 /* FourthCustomTableCell.swift in Sources */,
 				13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */,
+				134EC4042B20E41E003A6C7B /* text.swift in Sources */,
 				135B38522AFA9EC4007C1C04 /* AppDelegate.swift in Sources */,
 				13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */,
 				13ECF71A2B0F198300DB91A1 /* NotificationsViewController.swift in Sources */,
+				1379D8132B20ED53009B67E2 /* Extension + String.swift .swift in Sources */,
 				13523D402B03488F00D5C649 /* TimesPickerExtension.swift in Sources */,
 				1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */,
 				135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */,
@@ -885,6 +901,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = code.PigulkaTimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -906,6 +925,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = code.PigulkaTimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -925,6 +947,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = code.PigulkaTimeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -944,6 +969,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = code.PigulkaTimeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

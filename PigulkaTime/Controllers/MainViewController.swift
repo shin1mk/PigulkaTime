@@ -34,7 +34,7 @@ final class MainViewController: UIViewController {
     }()
     private let emptyLabel: UILabel = {
         let emptyLabel = UILabel()
-        emptyLabel.text = "Your pill box is empty"
+        emptyLabel.text = "Your pill box is empty :)"
         emptyLabel.textColor = .white
         emptyLabel.textAlignment = .left
         emptyLabel.font = UIFont.SFUITextBold(ofSize: 18)
@@ -43,7 +43,7 @@ final class MainViewController: UIViewController {
     private let addButton: UIButton = {
         let addButton = UIButton()
         let plusFillImage = UIImage(systemName: "plus.circle.fill")?
-            .withTintColor(UIColor.systemRed, renderingMode: .alwaysOriginal)
+            .withTintColor(UIColor.red, renderingMode: .alwaysOriginal)
         addButton.setImage(plusFillImage, for: .normal)
         addButton.setTitle(" Add pills", for: .normal)
         addButton.titleLabel?.font = UIFont.SFUITextBold(ofSize: 22)

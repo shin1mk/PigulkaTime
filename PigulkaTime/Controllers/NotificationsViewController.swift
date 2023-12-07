@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import UserNotifications
+import SafariServices
 
 final class NotificationsViewController: UIViewController, FirstCustomTableCellDelegate, SecondCustomTableCellDelegate, ThirdCustomTableCellDelegate, FourthCustomTableCellDelegate, FifthCustomTableCellDelegate, SixthCustomTableCellDelegate {
     private let feedbackGenerator = UISelectionFeedbackGenerator() // виброотклик
@@ -58,12 +59,23 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
         subtitleLabel.font = UIFont.SFUITextRegular(ofSize: 15)
         return subtitleLabel
     }()
+    private let rateButton: UIButton = {
+        let button = UIButton()
+//        button.setTitle("rateApp_text".localized(), for: .normal)
+        button.setTitle("Rate app", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.SFUITextRegular(ofSize: 15)
+        button.backgroundColor = .systemGray6
+        button.layer.cornerRadius = 10
+        return button
+    }()
     private let subtractImageView = UIImageView(image: UIImage(named: "subtract")) // line
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
         setupTableView()
+        setupTarget()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -104,11 +116,30 @@ final class NotificationsViewController: UIViewController, FirstCustomTableCellD
             make.trailing.equalToSuperview().offset(-15)
             make.bottom.equalToSuperview()
         }
+        // rateButton
+        view.addSubview(rateButton)
+        rateButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(100)
+            make.trailing.equalToSuperview().offset(-100)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.height.equalTo(30)
+        }
     }
     // setup table view
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func setupTarget() {
+        rateButton.addTarget(self, action: #selector(rateButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func rateButtonTapped() {
+        if let url = URL(string: "https://apps.apple.com/us/app/pigulkatime/id6468251721") {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
     }
 } // end
 //MARK: Toggle switcher's
