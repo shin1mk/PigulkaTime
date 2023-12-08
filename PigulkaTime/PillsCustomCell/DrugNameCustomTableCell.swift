@@ -102,6 +102,6 @@ extension DrugNameCustomTableCell {
         // Проверяем, не превышает ли новая длина текста ограничение в 14 символов
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        return newText.count <= 14
+        return newText.count <= 15
     }
 }

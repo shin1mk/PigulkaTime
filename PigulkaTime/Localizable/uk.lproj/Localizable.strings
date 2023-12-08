@@ -9,7 +9,7 @@
 "main_titleLabel" = "Пігулки";
 "main_emptyLabel" = "Твоя таблетниця порожня :)";
 "main_addButton" = "Додати пігулку";
-"main_setDaysLabelText" = " днів залишилося";
+"main_setDaysLabelText" = " днів залиш-ся";
 "main_setTimesLabelText" = " разів";
 
 "deleteTitle" = "Видалити пігулку";
