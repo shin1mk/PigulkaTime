@@ -48,6 +48,11 @@
 		13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */; };
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
+		13D255572B32B56900DF4BDA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 13D255562B32B56900DF4BDA /* SnapKit */; };
+		13D255592B32B56900DF4BDA /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 13D255582B32B56900DF4BDA /* SnapKit-Dynamic */; };
+		13D2555A2B32B56900DF4BDA /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 13D255582B32B56900DF4BDA /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		13D2555D2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */; };
+		13D2555E2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
 		13DD9D9C2B0F39E300E23504 /* FirstPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */; };
 		13DE747E2B23CA4900CA8217 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DE747D2B23CA4900CA8217 /* text.swift */; };
@@ -57,7 +62,6 @@
 		13F4C13E2B1C5FDE0078A751 /* SixthCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4C13D2B1C5FDE0078A751 /* SixthCustomTableCell.swift */; };
 		13F556092AFCB0CE0025119F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F556082AFCB0CE0025119F /* Models.swift */; };
 		1C7C301CB9D25F401D0D202B /* Pods_PigulkaTime_PigulkaTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */; };
-		84AF4B7E89074E0BF10BCA7C /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1729811E64AF8AB5CFCAF21 /* Pods_PigulkaTime.framework */; };
 		EDB337EA128F5AF950FAD18C /* Pods_PigulkaTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8238238973B9FC1E3666BF86 /* Pods_PigulkaTimeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +81,21 @@
 			remoteInfo = PigulkaTime;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		13D2555B2B32B56900DF4BDA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				13D2555A2B32B56900DF4BDA /* SnapKit-Dynamic in Embed Frameworks */,
+				13D2555E2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		04D4F1B31EEF4894E03B9AD5 /* Pods-PigulkaTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PigulkaTimeTests.release.xcconfig"; path = "Target Support Files/Pods-PigulkaTimeTests/Pods-PigulkaTimeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +147,7 @@
 		13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCustomTableCell.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
+		13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_PigulkaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
 		13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPickerView.swift; sourceTree = "<group>"; };
 		13DE747D2B23CA4900CA8217 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
@@ -150,7 +170,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84AF4B7E89074E0BF10BCA7C /* Pods_PigulkaTime.framework in Frameworks */,
+				13D255572B32B56900DF4BDA /* SnapKit in Frameworks */,
+				13D255592B32B56900DF4BDA /* SnapKit-Dynamic in Frameworks */,
+				13D2555D2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +408,7 @@
 		F555BBF69CCAA6246C3EE7F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */,
 				F1729811E64AF8AB5CFCAF21 /* Pods_PigulkaTime.framework */,
 				10B0451D6127085528CC988B /* Pods_PigulkaTime_PigulkaTimeUITests.framework */,
 				8238238973B9FC1E3666BF86 /* Pods_PigulkaTimeTests.framework */,
@@ -404,13 +427,17 @@
 				135B384A2AFA9EC4007C1C04 /* Sources */,
 				135B384B2AFA9EC4007C1C04 /* Frameworks */,
 				135B384C2AFA9EC4007C1C04 /* Resources */,
-				7B9E55D09806803EBEF86BF0 /* [CP] Embed Pods Frameworks */,
+				13D2555B2B32B56900DF4BDA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PigulkaTime;
+			packageProductDependencies = (
+				13D255562B32B56900DF4BDA /* SnapKit */,
+				13D255582B32B56900DF4BDA /* SnapKit-Dynamic */,
+			);
 			productName = PigulkaTime;
 			productReference = 135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */;
 			productType = "com.apple.product-type.application";
@@ -442,7 +469,6 @@
 				135B386D2AFA9EC5007C1C04 /* Sources */,
 				135B386E2AFA9EC5007C1C04 /* Frameworks */,
 				135B386F2AFA9EC5007C1C04 /* Resources */,
-				302E9FA335729E367671843B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -462,7 +488,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					135B384D2AFA9EC4007C1C04 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -488,6 +514,9 @@
 				uk,
 			);
 			mainGroup = 135B38452AFA9EC4007C1C04;
+			packageReferences = (
+				13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 135B384F2AFA9EC4007C1C04 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -531,40 +560,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		302E9FA335729E367671843B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime-PigulkaTimeUITests/Pods-PigulkaTime-PigulkaTimeUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7B9E55D09806803EBEF86BF0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PigulkaTime/Pods-PigulkaTime-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B4A395D738B9CF5C0EF3CE56 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -730,6 +725,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -762,6 +759,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -790,6 +788,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -822,6 +822,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -847,7 +848,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 5F8NF33WRR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PigulkaTime/Resources/Info.plist;
@@ -862,7 +863,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = code.PigulkaTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -881,7 +882,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 5F8NF33WRR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PigulkaTime/Resources/Info.plist;
@@ -896,7 +897,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = code.PigulkaTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1040,6 +1041,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13D255562B32B56900DF4BDA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		13D255582B32B56900DF4BDA /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		135B385A2AFA9EC4007C1C04 /* Pigulka.xcdatamodeld */ = {

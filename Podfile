@@ -6,7 +6,6 @@ target 'PigulkaTime' do
   use_frameworks!
 
   # Pods for PigulkaTime
-  pod 'SnapKit'
 
   target 'PigulkaTimeTests' do
     inherit! :search_paths
