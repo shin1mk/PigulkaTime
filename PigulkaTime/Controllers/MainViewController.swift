@@ -68,6 +68,14 @@ final class MainViewController: UIViewController {
         setupTarget()
         coreDataLoad()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("View will appear - MainViewController")
+        coreDataLoad()
+        tableView.reloadData()
+        print("Data reloaded - MainViewController")
+        print("Number of pills: \(pillsArray.count)")
+    }
     //MARK: Constraints
     private func setupConstraints() {
         view.backgroundColor = .black

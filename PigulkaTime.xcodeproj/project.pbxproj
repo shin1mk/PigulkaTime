@@ -50,6 +50,7 @@
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
 		13DD9D9C2B0F39E300E23504 /* FirstPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */; };
+		13DE747E2B23CA4900CA8217 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DE747D2B23CA4900CA8217 /* text.swift */; };
 		13ECF71A2B0F198300DB91A1 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ECF7192B0F198300DB91A1 /* NotificationsViewController.swift */; };
 		13EFB0222AFE453F00C9E67B /* PillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EFB0212AFE453F00C9E67B /* PillsViewController.swift */; };
 		13F4C13C2B1C5FD10078A751 /* SixthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4C13B2B1C5FD10078A751 /* SixthPickerView.swift */; };
@@ -129,6 +130,7 @@
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
 		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
 		13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPickerView.swift; sourceTree = "<group>"; };
+		13DE747D2B23CA4900CA8217 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
 		13ECF7192B0F198300DB91A1 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		13EFB0212AFE453F00C9E67B /* PillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsViewController.swift; sourceTree = "<group>"; };
 		13F4C13B2B1C5FD10078A751 /* SixthPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixthPickerView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				135B38862AFA9F45007C1C04 /* Resources */,
 				135B38852AFA9F2E007C1C04 /* Controllers */,
 				135B38842AFA9F1C007C1C04 /* Application */,
+				13DE747D2B23CA4900CA8217 /* text.swift */,
 			);
 			path = PigulkaTime;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				1327E0F82AFF890A000D4829 /* TypeCustomTableCell.swift in Sources */,
 				135C5F422B08F69100FF299B /* CoreDataManager.swift in Sources */,
 				1339CC182B008A66001171F6 /* FrequencyCustomTableCell.swift in Sources */,
+				13DE747E2B23CA4900CA8217 /* text.swift in Sources */,
 				1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */,
 				135930662B0F39A300E9779B /* NotificationPickerExtension.swift in Sources */,
 				13F556092AFCB0CE0025119F /* Models.swift in Sources */,
