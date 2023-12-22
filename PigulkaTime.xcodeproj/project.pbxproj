@@ -47,10 +47,8 @@
 		13A00CE42B1B169900F95944 /* ThirdPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE32B1B169900F95944 /* ThirdPickerView.swift */; };
 		13A00CE62B1B16A800F95944 /* ThirdCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */; };
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
+		13BE32542B32B748002208DE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 13BE32532B32B748002208DE /* SnapKit */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
-		13D255572B32B56900DF4BDA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 13D255562B32B56900DF4BDA /* SnapKit */; };
-		13D255592B32B56900DF4BDA /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 13D255582B32B56900DF4BDA /* SnapKit-Dynamic */; };
-		13D2555A2B32B56900DF4BDA /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 13D255582B32B56900DF4BDA /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		13D2555D2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */; };
 		13D2555E2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
@@ -89,7 +87,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				13D2555A2B32B56900DF4BDA /* SnapKit-Dynamic in Embed Frameworks */,
 				13D2555E2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -170,9 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13D255572B32B56900DF4BDA /* SnapKit in Frameworks */,
-				13D255592B32B56900DF4BDA /* SnapKit-Dynamic in Frameworks */,
 				13D2555D2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Frameworks */,
+				13BE32542B32B748002208DE /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,8 +431,7 @@
 			);
 			name = PigulkaTime;
 			packageProductDependencies = (
-				13D255562B32B56900DF4BDA /* SnapKit */,
-				13D255582B32B56900DF4BDA /* SnapKit-Dynamic */,
+				13BE32532B32B748002208DE /* SnapKit */,
 			);
 			productName = PigulkaTime;
 			productReference = 135B384E2AFA9EC4007C1C04 /* PigulkaTime.app */;
@@ -515,7 +510,7 @@
 			);
 			mainGroup = 135B38452AFA9EC4007C1C04;
 			packageReferences = (
-				13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				13BE32522B32B748002208DE /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 135B384F2AFA9EC4007C1C04 /* Products */;
 			projectDirPath = "";
@@ -1043,7 +1038,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		13BE32522B32B748002208DE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -1054,15 +1049,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		13D255562B32B56900DF4BDA /* SnapKit */ = {
+		13BE32532B32B748002208DE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 13BE32522B32B748002208DE /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		13D255582B32B56900DF4BDA /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 13878EFD2B32B42F009DB91C /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 

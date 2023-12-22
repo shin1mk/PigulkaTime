@@ -60,6 +60,10 @@ final class MainViewController: UIViewController {
         notificationsButton.setImage(bellFillImage, for: .normal)
         return notificationsButton
     }()
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        return refreshControl
+    }()
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,16 +132,24 @@ final class MainViewController: UIViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.addSubview(refreshControl)
+    }
+    @objc private func refreshData() {
+        coreDataLoad()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     // coreData download
     private func coreDataLoad() {
         pillsArray = CoreDataManager.shared.loadPillsFromCoreData()
         self.emptyLabel.isHidden = !self.pillsArray.isEmpty
+        print("Data loaded from Core Data. Number of pills: \(pillsArray.count)")
     }
     // targets
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
         notificationsButton.addTarget(self, action: #selector(notificationsButtonTapped), for: .touchUpInside)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     // add pill кнопка
     @objc private func addPillButtonTapped() {
