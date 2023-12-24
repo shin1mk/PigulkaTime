@@ -58,3 +58,4 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.selectionStyle = .none
     }
 } // end
+ 
