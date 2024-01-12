@@ -15,7 +15,7 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
         titleLabel.text = "drug_name".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 20)
         return titleLabel
     }()
     public let textField: UITextField = {
@@ -25,7 +25,7 @@ final class DrugNameCustomTableCell: UITableViewCell, UITextFieldDelegate {
         textField.isUserInteractionEnabled = true
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
-        let placeholderFont = UIFont.SFUITextRegular(ofSize: 17)
+        let placeholderFont = UIFont.SFUITextMedium(ofSize: 17)
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.gray,
             .font: placeholderFont as Any,

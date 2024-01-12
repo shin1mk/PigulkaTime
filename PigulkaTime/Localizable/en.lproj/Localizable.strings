@@ -49,7 +49,6 @@
 //MARK: NotificationsViewController
 "notification_titleLabel" = "Notifications";
 "notification_subtitleLabel" = "Will be repeated every day";
-"notification_rateButton" = "Rate app";
 "timeToTake" = "Time to take your pills!";
 
 "drug_name" = "Drug name";
@@ -61,3 +60,11 @@
 "how_many_days" = "How many days";
 "how_many_times" = "How many times per day";
 "done" = "Done";
+
+//MARK: - about vc
+"about_text" = "About PigulkaTime:\n\nOur application will help you create a medication schedule, set up notifications, and never miss a dose again!\nReceive timely reminders and take charge of your health.";
+"like_text" = "If you like our app:";
+"share_text" = "Share the app";
+"rate_text" = "⭐️ Rate app";
+"support_text" = "☕️ Support us";
+"letter_text" = "✉️ Write to us";

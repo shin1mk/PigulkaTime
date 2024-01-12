@@ -16,7 +16,7 @@ final class TimesCustomTableCell: UITableViewCell {
         titleLabel.text = "how_many_times".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 20)
         return titleLabel
     }()
     private let timesLabel: UILabel = {

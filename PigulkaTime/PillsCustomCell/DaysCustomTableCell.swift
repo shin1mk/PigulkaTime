@@ -16,7 +16,7 @@ final class DaysCustomTableCell: UITableViewCell {
         titleLabel.text = "how_many_days".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 20)
         return titleLabel
     }()
     private let daysLabel: UILabel = {

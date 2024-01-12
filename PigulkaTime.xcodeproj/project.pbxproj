@@ -49,6 +49,7 @@
 		13B4F9642AFF3E18007B779D /* DrugNameCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */; };
 		13BE32542B32B748002208DE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 13BE32532B32B748002208DE /* SnapKit */; };
 		13CB053A2AFB5AAE008770D0 /* MainViewCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */; };
+		13CCFF482B51614100232FCB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCFF472B51614100232FCB /* AboutViewController.swift */; };
 		13D2555D2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */; };
 		13D2555E2B32B57E00DF4BDA /* Pods_PigulkaTime.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13D7D1362B009769009CC9E6 /* DaysCustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */; };
@@ -144,6 +145,7 @@
 		13A00CE52B1B16A800F95944 /* ThirdCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCustomTableCell.swift; sourceTree = "<group>"; };
 		13B4F9632AFF3E18007B779D /* DrugNameCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugNameCustomTableCell.swift; sourceTree = "<group>"; };
 		13CB05392AFB5AAE008770D0 /* MainViewCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCustomTableCell.swift; sourceTree = "<group>"; };
+		13CCFF472B51614100232FCB /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		13D2555C2B32B57E00DF4BDA /* Pods_PigulkaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_PigulkaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D7D1352B009769009CC9E6 /* DaysCustomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCustomTableCell.swift; sourceTree = "<group>"; };
 		13DD9D9B2B0F39E300E23504 /* FirstPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPickerView.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				13ECF7192B0F198300DB91A1 /* NotificationsViewController.swift */,
 				13EFB0212AFE453F00C9E67B /* PillsViewController.swift */,
 				135B38552AFA9EC4007C1C04 /* MainViewController.swift */,
+				13CCFF472B51614100232FCB /* AboutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				1327E0FA2AFF8A2D000D4829 /* DosageCustomTableCell.swift in Sources */,
 				135930662B0F39A300E9779B /* NotificationPickerExtension.swift in Sources */,
 				13F556092AFCB0CE0025119F /* Models.swift in Sources */,
+				13CCFF482B51614100232FCB /* AboutViewController.swift in Sources */,
 				135B38542AFA9EC4007C1C04 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

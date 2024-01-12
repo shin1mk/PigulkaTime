@@ -16,7 +16,7 @@ final class DosageCustomTableCell: UITableViewCell {
         titleLabel.text = "dosage".localized()
         titleLabel.textColor = .white
         titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.SFUITextRegular(ofSize: 20)
+        titleLabel.font = UIFont.SFUITextMedium(ofSize: 20)
         return titleLabel
     }()
     private let dosageLabel: UILabel = {

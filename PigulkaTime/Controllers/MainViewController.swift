@@ -60,6 +60,13 @@ final class MainViewController: UIViewController {
         notificationsButton.setImage(bellFillImage, for: .normal)
         return notificationsButton
     }()
+    private let aboutButton: UIButton = {
+        let notificationsButton = UIButton()
+        let bellFillImage = UIImage(systemName: "info.bubble.fill")?
+            .withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        notificationsButton.setImage(bellFillImage, for: .normal)
+        return notificationsButton
+    }()
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         return refreshControl
@@ -94,6 +101,14 @@ final class MainViewController: UIViewController {
         notificationsButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+            make.width.equalTo(50)
+            make.height.equalTo(60)
+        }   
+        // aboutButton
+        view.addSubview(aboutButton)
+        aboutButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.equalTo(notificationsButton.snp.leading).offset(-10)
             make.width.equalTo(50)
             make.height.equalTo(60)
         }
@@ -134,10 +149,14 @@ final class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.addSubview(refreshControl)
     }
+    
     @objc private func refreshData() {
         coreDataLoad()
-        tableView.reloadData()
-        refreshControl.endRefreshing()
+        // Имитация задержки загрузки в течение 1 секунд
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     // coreData download
     private func coreDataLoad() {
@@ -149,6 +168,7 @@ final class MainViewController: UIViewController {
     private func setupTarget() {
         addButton.addTarget(self, action: #selector(addPillButtonTapped), for: .touchUpInside)
         notificationsButton.addTarget(self, action: #selector(notificationsButtonTapped), for: .touchUpInside)
+        aboutButton.addTarget(self, action: #selector(aboutButtonTapped), for: .touchUpInside)
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     // add pill кнопка
@@ -165,6 +185,14 @@ final class MainViewController: UIViewController {
         feedbackGenerator.selectionChanged()
         // открываем модальное окно
         let notificationsViewController = NotificationsViewController()
+        notificationsViewController.modalPresentationStyle = .popover
+        present(notificationsViewController, animated: true, completion: nil)
+    }    
+    // about кнопка
+    @objc private func aboutButtonTapped() {
+        feedbackGenerator.selectionChanged()
+        // открываем модальное окно
+        let notificationsViewController = AboutViewController()
         notificationsViewController.modalPresentationStyle = .popover
         present(notificationsViewController, animated: true, completion: nil)
     }
