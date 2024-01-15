@@ -10,7 +10,7 @@
 "main_emptyLabel" = "Your pill box is empty :)";
 "main_addButton" = " Add pills";
 "main_setDaysLabelText" = " days left";
-"main_setTimesLabelText" = " times";
+"main_setTimesLabelText" = " t/day";
 
 "deleteTitle" = "Delete Pill";
 "deleteMessage" = "Are you sure you want to delete this pill?";
@@ -62,7 +62,8 @@
 "done" = "Done";
 
 //MARK: - about vc
-"about_text" = "About PigulkaTime:\n\nOur application will help you create a medication schedule, set up notifications, and never miss a dose again!\nReceive timely reminders and take charge of your health.";
+//"about_text" = "About PigulkaTime:\n\nOur application will help you create a medication schedule, set up notifications, and never miss a dose again!\nReceive timely reminders and take charge of your health.";
+"about_text" = "About the PigulkaTime:\n\nOur app helps you create a medication schedule, set up notifications, and never miss a medication again!\n\nGet timely reminders.";
 "like_text" = "If you like our app:";
 "share_text" = "Share the app";
 "rate_text" = "⭐️ Rate app";

@@ -70,7 +70,7 @@ final class PillsViewController: UIViewController, UIPickerViewDelegate, UIPicke
                             "weekly".localized()]
     public var selectedFrequency: String?
     // for days picker view
-    public let days: [String] = ["2", "3", "4", "5", "6", "7", "10", "14", "30", "60", "90", "120"]
+    public let days: [String] = (2...30).map { String($0) } + ["60"]
     public var selectedDays: String?
     // for times per day picker view
     public let times: [String] = (1...6).map { "\($0)" }

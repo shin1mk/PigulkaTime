@@ -10,7 +10,7 @@
 "main_emptyLabel" = "Твоя таблетниця порожня :)";
 "main_addButton" = "Додати пігулку";
 "main_setDaysLabelText" = " днів залиш-ся";
-"main_setTimesLabelText" = " разів";
+"main_setTimesLabelText" = " р/день";
 
 "deleteTitle" = "Видалити пігулку";
 "deleteMessage" = "Ви впевнені, що хочете видалити цю таблетку?";
@@ -47,9 +47,8 @@
 "pill_defaultPillName" = "Без назви";
 
 //MARK: NotificationsViewController
-"notification_titleLabel" = "Сповіщення";
-"notification_subtitleLabel" =  "Буде повторюватися щоденно";
-"notification_rateButton" =  "Оцінити додаток";
+"notification_titleLabel" = "Повідомлення";
+"notification_subtitleLabel" = "Будуть повторюватися щодня";
 "timeToTake" =  "Час приймати ваши пігулки!";
 
 "drug_name" = "Назва препарату";
@@ -63,7 +62,7 @@
 "done" = "Готово";
 
 //MARK: - про vc
-"about_text" = "Про PigulkaTime:\n\nНаш додаток допоможе вам скласти графік прийому ліків, налаштувати сповіщення і більше ніколи не пропустити дозу!\nОтримуйте вчасні нагадування та відповідально ставтеся до свого здоров'я.";
+"about_text" = "Про застосунок PigulkaTime:\n\nНаш застосунок допоможе вам створити розклад приймання ліків, налаштувати сповіщення і більше ніколи не пропускати приймання медикаментів.\n\nОдержуйте своєчасні нагадування.";
 "like_text" = "Якщо вам сподобався наш додаток:";
 "share_text" = "Поділіться додатком";
 "rate_text" = "⭐️ Оцініть додаток";

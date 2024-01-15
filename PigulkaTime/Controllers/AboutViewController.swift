@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import SafariServices
 
-
 final class AboutViewController: UIViewController {
     //MARK: Properties
     private let bottomMarginView: UIView = {
@@ -108,7 +107,7 @@ final class AboutViewController: UIViewController {
         
         contentView.addSubview(textLabel)
         textLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(20)
+            make.top.equalTo(contentView).offset(40)
             make.leading.trailing.equalToSuperview().inset(15)
             make.height.greaterThanOrEqualTo(150)
         }
